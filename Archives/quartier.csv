@@ -1,0 +1,345 @@
+RefLocalite;RefQuartier;Libelle
+30101;3010101;HAMOUMBOU 1                                       
+30101;3010102;HAMOUMBOU 2                                       
+30101;3010103;MJIHARI                                           
+30101;3010104;HAMPANGA                                          
+30101;3010105;HABOMO                                            
+30101;3010106;BANDRAMAJI                                        
+30101;3010107;CHIWE                                             
+30101;3010108;HOMBO                                             
+30101;3010109;MISSIRI                                           
+30101;3010110;CHITSANGANI                                       
+30101;3010111;GOUNGOIMWE                                        
+30101;3010112;ALLIANCE                                          
+30101;3010113;LAZARE                                            
+30101;3010114;SANGANI                                           
+30101;3010115;FRAHANI                                           
+30101;3010116;MINADZINI                                         
+30101;3010117;CHOUGOUJOU                                        
+30101;3010118;HAPANDRE                                          
+30102;3010201;MINADZINI                                         
+30102;3010202;GOUNI                                             
+30102;3010203;PAMA                                              
+30102;3010204;HAMCHACO                                          
+30102;3010205;MAWOUNDROUNI                                      
+30102;3010206;BANDRAJOU                                         
+30102;3010207;HADJABIRI                                         
+30102;3010208;MLOUALE                                           
+30103;3010301;CHICONI                                           
+30103;3010302;BANDRAJOU                                         
+30103;3010303;BACHILIER                                         
+30103;3010304;KOMONI                                            
+30103;3010305;BARAKANI                                          
+30103;3010306;GARAJI                                            
+30103;3010307;MKIROIDJIMOI                                      
+30104;3010401;POUZINI                                           
+30105;3010501;HAIBARA                                           
+30105;3010502;MOIMOI 1                                          
+30105;3010503;MOIMOI 2                                          
+30105;3010504;BODZA                                             
+30105;3010505;MJIMVIA                                           
+30105;3010506;PAGÉ                                              
+30201;3020101;KAWENI                                            
+30201;3020102;GNAMBO                                            
+30201;3020103;LIKOHORO                                          
+30201;3020104;DAGO LAHARI                                       
+30201;3020105;MKIROIDJIMOI                                      
+30201;3020106;GUIDZONI                                          
+30201;3020107;ECOLE PRIMAIRE                                    
+30201;3020108;MMANGAJOU                                         
+30201;3020109;HOUMAITHARA                                       
+30201;3020110;TERRAIN DE FOOT                                   
+30202;3020201;NTERENI                                           
+30202;3020202;DAGO LAHARI                                       
+30202;3020203;MOYA                                              
+30202;3020204;DAGO LAJOU                                        
+30202;3020205;GNAMBO                                            
+30202;3020206;TCHORONI                                          
+30202;3020207;DARINI                                            
+30202;3020208;LIKOHORO                                          
+30202;3020209;PALACHIO                                          
+30202;3020210;DAGO LATSINI                                      
+30203;3020301;CENTRE ECOLE                                      
+30203;3020302;KOJANI                                            
+30203;3020303;MAANRIFA                                          
+30203;3020304;JENDRACOUNI                                       
+30203;3020305;TCHORONI                                          
+30203;3020306;MWE BOCO                                          
+30204;3020401;DAGO LATSINI                                      
+30204;3020402;DAGO LAHARI                                       
+30204;3020403;DAGO LAJOU                                        
+30204;3020404;LACHTE                                            
+30204;3020405;CHILIMAJOU                                        
+30204;3020406;MIRERENI                                          
+30205;3020501;WANGANI                                           
+30205;3020502;KOMONI                                            
+30205;3020503;BANGALACHAO                                       
+30205;3020504;FOUNGUE                                           
+30205;3020505;PANGAHARI                                         
+30205;3020506;DAGO LAHARI                                       
+30205;3020507;MILEMBENI                                         
+30206;3020601;CHITROUNI CENTRE                                  
+30206;3020602;JOUMOIMJI                                         
+30206;3020603;GNAMBO                                            
+30207;3020701;LIJONGO                                           
+30207;3020702;PADZADJOU                                         
+30207;3020703;DAGO LATSINI                                      
+30207;3020704;DOUKA LAMOUJI                                     
+30208;3020801;SAHARA                                            
+30208;3020802;NGNAMBO                                           
+30208;3020803;MADZAHANI                                         
+30208;3020804;SALAMANI                                          
+30301;3030101;CHITSOUNGUINI                                     
+30301;3030102;POTELEA                                           
+30301;3030103;BOUEDZANI                                         
+30301;3030104;CLINGUENI                                         
+30301;3030105;MADARASSANI                                       
+30301;3030106;BWECOUNI                                          
+30301;3030107;MOUZDALFA                                         
+30301;3030108;MARSATRA                                          
+30301;3030109;MOUDRIANI                                         
+30301;3030110;CARDJAVINDZA                                      
+30301;3030111;MKIRAPWANI                                        
+30301;3030112;MBOUYOUJOU                                        
+30302;3030201;DAGO LAJOU                                        
+30302;3030202;DAGO LATSINI                                      
+30302;3030203;MJIMVIA                                           
+30303;3030301;SABENANI                                          
+30303;3030302;MIRERENI                                          
+30303;3030303;MGNAMBAJOU                                        
+30303;3030304;MHAJOUJOU                                         
+30303;3030305;LAKARERA                                          
+30303;3030306;TRENANI                                           
+30304;3030401;GOUNGOIMWE                                        
+30304;3030402;PARENI                                            
+30304;3030403;LAZERVOUNE                                        
+30304;3030404;DAGO LATSINI                                      
+30304;3030405;POTELEA                                           
+30304;3030406;KAFENI                                            
+30305;3030501;DAGO LAJOU                                        
+30305;3030502;DAGO LATSINI                                      
+30305;3030503;PARENI                                            
+30306;3030601;VALAJOU                                           
+30306;3030602;DZIANI                                            
+30306;3030603;BANDRAJOU                                         
+30306;3030604;DAGO LATSINI                                      
+30306;3030605;SALAMANI YA KOKI                                  
+30401;3040101;MADZAHANI                                         
+30401;3040102;BANGWA MADZAHANI                                  
+30401;3040103;MROJOU                                            
+30401;3040104;BANDRAHARI                                        
+30402;3040201;SOHAMWE                                           
+30402;3040202;BANDRAJOU                                         
+30402;3040203;CHAMBEJOU                                         
+30402;3040204;CHONGOJOU DIMWINI                                 
+30402;3040205;DAGO LATSINI                                      
+30402;3040206;DAGO LAHARI                                       
+30402;3040207;DAGO LAJOU                                        
+30402;3040208;BANDRANI                                          
+30402;3040209;BANDRA LADZOUMWEGNE                               
+30402;3040210;NKOMAJOU                                          
+30403;3040301;JINDZANI                                          
+30403;3040302;MJIMANDRA                                         
+30403;3040303;DAGO LATSINI                                      
+30403;3040304;CHONGOJOU                                         
+30501;3050101;HARIYAMOUJI                                       
+30501;3050102;MAWENI                                            
+30501;3050103;RIADHUI                                           
+30501;3050104;BATULAYA                                          
+30501;3050105;HANTSIMBO                                         
+30501;3050106;MOMONI                                            
+30501;3050107;OUMOINI                                           
+30501;3050108;DJOMANI                                           
+30501;3050109;PENGOIJOU                                         
+30502;3050201;NTRERENI                                          
+30502;3050202;MJIMVIA                                           
+30502;3050203;OUJOUMBE                                          
+30503;3050301;DAGO LAJOU                                        
+30503;3050302;DAGO LATSINI                                      
+30506;3050601;SANDZENI                                          
+30506;3050602;GOMBENI                                           
+30507;3050701;SALAMANI                                          
+30507;3050702;GOLF                                              
+30507;3050703;CADER                                             
+30601;3060101;DAGO LAJOU                                        
+30601;3060102;DAGO LATSINI                                      
+30602;3060201;DAGO LAJOU                                        
+30602;3060202;DAGO LATSINI                                      
+30603;3060301;GÉGÉ                                              
+30604;3060401;DAGO LAJOU                                        
+30604;3060402;DAGO LATSINI                                      
+30701;3070101;MACHINIJOU                                        
+30701;3070102;MJIMVIA                                           
+30701;3070103;MKIROIDJIMOI                                      
+30701;3070104;BACO                                              
+30701;3070105;POTELEA                                           
+30702;3070201;MKIROIDJIMOI                                      
+30702;3070202;DAGO LAJOU                                        
+30702;3070203;MGNAMBAJOU                                        
+30702;3070204;PALACHIO                                          
+30704;3070401;DAGO LAJOU                                        
+30704;3070402;DAGO LATSINI                                      
+30704;3070403;CHITSAMPOUNI                                      
+30705;3070501;CHIRONI                                           
+30705;3070502;SABENA                                            
+30705;3070503;BANDRALAHARI                                      
+30705;3070504;DARINI                                            
+30706;3070601;DAGO LATSINI                                      
+30707;3070701;DAGO LAJOU                                        
+30707;3070702;DAGO LATSINI                                      
+30708;3070801;BADRAJOU                                          
+30708;3070802;DAGO LATSINI                                      
+30709;3070901;MALEMA                                            
+30709;3070902;BANDRAMDROUNDRA                                   
+30709;3070903;CHILIMOUNE                                        
+30709;3070904;BANDRAJOU                                         
+30801;3080101;M1 HARIYAMOUJI                                    
+30801;3080102;M1 MKIROIDJIMOI                                   
+30801;3080103;M1 DAGO LAJOU                                     
+30801;3080104;M2 BASMAJOU                                       
+30801;3080105;M2 GARAJOU                                        
+30801;3080106;M2 DARSAANDA                                      
+30801;3080107;M2 DAGO LATSINI                                   
+30801;3080108;M3 ZIPWEPURINI                                    
+30801;3080109;M3 KAMBANI                                        
+30801;3080110;M3 BANDRANI                                       
+30801;3080111;M3 ECOLE PRIMAIRE                                 
+30801;3080112;LIWARA                                            
+30802;3080201;HARIYAMOUJI                                       
+30802;3080202;BANDRANI                                          
+30803;3080301;MRIJOU I                                          
+30803;3080302;MRIJOU 2                                          
+30804;3080401;DAJI 1                                            
+30804;3080402;DAJI 2                                            
+30805;3080501;DAGONI KANGANI                                    
+30805;3080502;DAWOUNI                                           
+30805;3080503;MJIHARI                                           
+30805;3080504;MJAMAWE                                           
+30805;3080505;BANDRAHARI                                        
+30805;3080506;COL DE MOYA                                       
+30806;3080601;DAGO LAJOU                                        
+30806;3080602;DAGO LATSINI                                      
+30806;3080603;MTSOUVENI                                         
+30806;3080604;LICOHORO                                          
+30807;3080701;JANDZA                                            
+30808;3080801;ZIMBABWE                                          
+30808;3080802;OUBENI                                            
+30808;3080803;ZANZA                                             
+30808;3080804;SINGANI                                           
+30901;3090101;MAGOUDROUNI 1                                     
+30901;3090102;MAGOUDROUNI 2                                     
+30901;3090103;BARAKANI                                          
+30901;3090104;MNODROJOU                                         
+30901;3090105;BANDRAJOU                                         
+30902;3090201;DAGO LAJOU                                        
+30902;3090202;DAGO LATSINI                                      
+30902;3090203;COMBANI                                           
+30902;3090204;PANGAHARI                                         
+30902;3090205;BANDRAJOU                                         
+30903;3090301;DAGO LAJOU                                        
+30903;3090302;DAGO LATSINI                                      
+30904;3090401;BANDRANI                                          
+30904;3090402;LYAMANI                                           
+30904;3090403;BANGOUENI                                         
+30904;3090404;PAREJOU BWEJOU                                    
+30905;3090501;PARENI                                            
+30905;3090502;DJANDRO                                           
+30905;3090503;DAGO LAJOU                                        
+30905;3090504;DAGO LATSINI                                      
+30906;3090601;BANDRANI                                          
+30906;3090602;MADOUDOUNI                                        
+30906;3090603;MIRERENI                                          
+30906;3090604;MROKAVA                                           
+30906;3090605;HARIYAMOUJI                                       
+30907;3090701;DAGO LAJOU                                        
+30907;3090702;DAGO LATSINI                                      
+30907;3090703;BWINDRI                                           
+30908;3090801;DAGO LAJOU                                        
+30908;3090802;DAGO LATSINI                                      
+30908;3090803;OUGNAMBO                                          
+30908;3090804;BANDRAJOU COIYI                                   
+30909;3090901;DAGO LAJOU                                        
+30909;3090902;DAGO LATSINI                                      
+30909;3090903;MBOJOU                                            
+30909;3090904;BANDRAJOU MASSINI                                 
+31001;3100101;DAGO LATSINI                                      
+31001;3100102;DAGO LAHARI                                       
+31001;3100103;DAGO LAJOU                                        
+31001;3100104;TERENI                                            
+31002;3100201;MKIRINI                                           
+31002;3100202;BANDRAJOUMI                                       
+31003;3100301;KOMONI                                            
+31003;3100302;MIRONDRONI                                        
+31005;3100501;MRA WAJOU                                         
+31005;3100502;MRA WATSINI                                       
+31101;3110101;GNAMBO                                            
+31101;3110102;DAGO LAJOU                                        
+31101;3110103;DAGO LATSINI                                      
+31101;3110104;MISSIRI                                           
+31101;3110105;MJIHARI                                           
+31101;3110106;WEMANI                                            
+31101;3110107;SALAMANI                                          
+31102;3110201;DAGO LAJOU                                        
+31102;3110202;DAGO LATSINI                                      
+31103;3110301;DAGO LAJOU                                        
+31103;3110302;DAGO LATSINI                                      
+31103;3110303;GNOGAJOU                                          
+31104;3110401;DAGO LATSINI                                      
+31104;3110402;HAOUPEPO                                          
+31105;3110501;BANGUENI                                          
+31105;3110502;DAGO LATSINI                                      
+31105;3110503;MAGASA                                            
+31106;3110601;GNAMBO                                            
+31106;3110602;HABOMO                                            
+31106;3110603;MBOUYOUJOU                                        
+31108;3110801;MRO MHOULI                                        
+31110;3111001;BACO                                              
+31110;3111002;PARENI                                            
+31110;3111003;WIMBI                                             
+31111;3111101;DAGO LAJOU                                        
+31111;3111102;DAGO LAHARI                                       
+31111;3111103;DAGO LATSINI                                      
+31112;3111201;CHITSANGACHELE                                    
+31114;3111401;PARENI                                            
+31114;3111402;HARIYAMOUJI                                       
+31114;3111403;BANDRAJOU                                         
+31115;3111501;DAGO LAJOU                                        
+31115;3111502;PANGAHARI                                         
+31115;3111503;WEMANI                                            
+31115;3111504;BANDRAOUPEPO                                      
+31116;3111601;SALAMANI                                          
+31116;3111602;KADER                                             
+31116;3111603;GOLF                                              
+31116;3111604;DARINI                                            
+31118;3111801;GNAMBO                                            
+31118;3111802;KAWENI                                            
+31118;3111803;BANDRA OUPEPE                                     
+31118;3111804;NINDRI                                            
+31119;3111901;MARONTRONI                                        
+31120;3112001;IMERE2                                            
+31201;3120101;BANDRANCOMA                                       
+31201;3120102;HARIYAMOUJI                                       
+31201;3120103;JOUMOIMJI                                         
+31201;3120104;MGNAMBAJOU                                        
+31202;3120201;DARINI                                            
+31202;3120202;KENYA                                             
+31202;3120203;AGRICULTURE                                       
+31203;3120301;LACOTI                                            
+31203;3120302;MROMAJI                                           
+31203;3120303;LAPELINE                                          
+31203;3120304;MAYINDRINI                                        
+31204;3120401;BANDRAOUPEPO                                      
+31204;3120402;DAGO LATSINI                                      
+31204;3120403;DAGO LAJOU                                        
+31205;3120501;KANGADJE                                          
+31205;3120502;MISSIRI                                           
+31207;3120701;BAIT AL ANFOI                                     
+31207;3120702;CHILIDRONI                                        
+31207;3120703;DAGO LAJOU                                        
+31207;3120704;DAGO LATSINI                                      
+31212;3121201;MAHOUMBI                                          
+31212;3121202;MGNABAJOU                                         
+31212;3121203;MRONI CHOUNGUI                                    
+31213;3121301;BOUROUDA                                          
+31213;3121302;PANGAHARI                                         
+31301;3130101;QUARTIER A RECLASSER                              

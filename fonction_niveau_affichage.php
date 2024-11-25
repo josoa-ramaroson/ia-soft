@@ -1,0 +1,28 @@
+      <? $n=$data['u_niveau']; 
+	  if ($n==1) echo 'clientèle';
+	  if ($n==2) echo 'Facturation'; 
+	  if ($n==3) echo 'Recouvrement';
+	  if ($n==4) echo 'Caisse'; 
+	  if ($n==5) echo 'Releveur'; 
+	  if ($n==6) echo 'Resp Caisse'; 
+	  if ($n==7) echo 'Admin Systeme'; 
+	  if ($n==8) echo 'Resp Facturation'; 
+	  if ($n==9) echo 'Resp Recouvrement'; 
+	  if ($n==10) echo 'TInformatique';
+	  if ($n==20) echo 'Comptabilite'; 
+	  if ($n==30) echo 'Communication';  
+	  if ($n==40) echo 'Approvisionnement'; 
+	  if ($n==41) echo 'Gaz'; 
+	  if ($n==42) echo 'Devis & Branchement';
+	  if ($n==43) echo 'resp Commercial';  
+	  if ($n==44) echo 'Serv Controle';
+	  if ($n==45) echo 'Magazin';
+	  if ($n==46) echo 'Admin Commercial';
+	  if ($n==47) echo 'Laboratoire';
+	  if ($n==50) echo 'Serv Personnel'; 
+	  if ($n==60) echo 'Serv Distribution';
+	  if ($n==70) echo 'Serv Production';  
+	  if ($n==80) echo 'Statistique'; 
+	  if ($n==90) echo 'R&D'; 
+	  if ($n==91) echo 'Suivi MT et plus'; 
+	  ?>

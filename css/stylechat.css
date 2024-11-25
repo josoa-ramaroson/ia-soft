@@ -1,0 +1,322 @@
+/**
+ * Table of Contents:
+ *
+ * 1.0 - Clearing float
+ * 2.0 - Fonts
+ * 3.0 - Basic Structure
+ * 4.0 - Header
+ * 5.0 - Navigation
+ * 6.0 - Content
+ *   6.1 - Post Thumbnail
+ *   6.2 - Entry Header
+ *   6.3 - Entry Meta
+ *   6.4 - Entry Content
+ *   6.5 - Galleries
+ *   6.6 - Post Formats
+ *   6.7 - Post/Image/Paging Navigation
+ *   6.8 - Attachments
+ *   6.9 - Archives
+ *   6.10 - Contributor Page
+ *   6.11 - 404 Page
+ *   6.12 - Full-width
+ *   6.13 - Singular
+ *   6.14 - Comments
+ * 7.0 - Sidebar
+ *   7.1 - Widgets
+ *   7.2 - Content Sidebar Widgets
+ * 8.0 - Footer
+ * 9.0 - Featured Content
+ * 10.0 - Multisite
+ * 11.0 - Media Queries
+ * 12.0 - Print
+ * -----------------------------------------------------------------------------
+ */
+ 
+/**
+ * 1.0 Clearing float
+ * -----------------------------------------------------------------------------
+ */
+ 
+ .wrapper,
+ .wrap,
+ .row,
+ .sub-row,
+ .action-group,
+ .panel						 { overflow:hidden }	
+ 
+.wrapper:before,
+.wrapper:after,
+.wrap:before,
+.wrap:after,
+.row:before,
+.row:after,
+.sub-row:before,
+.sub-row:after,
+.action-group:before,
+.action-group:after,
+.panel:before,
+.panel:after,
+[class*="content"]:before,
+[class*="content"]:after,
+[class*="site"]:before,
+[class*="site"]:after {
+	content: "";
+	display: table;
+}
+
+.wrapper:after,
+.wrap:after,
+.row:after,
+.sub-row:after,
+.action-group:after,
+.panel:after,
+[class*="content"]:after,
+[class*="site"]:after {
+	clear: both;
+}
+
+/**
+ * 2.0 Fonts
+ * -----------------------------------------------------------------------------
+ */
+ 
+
+/**
+ * 3.0 Basic Structure
+ * -----------------------------------------------------------------------------
+ */
+ 	/*
+		text			#333333		rgba(51,51,51,1)
+		text loud		#111111		rgba(17,17,17,1)
+		text quiet		#999999		rgba(153,153,153,1)	
+		gris foncé		#59534e		rgba(89,83,78,1)
+		gris pâle		#7f8c8d		rgba(127,140,141,1)
+		orange			#ff901a		rgba(255,144,26,1)
+		bleu 			#2ea2cc		rgba(46,162,204,1) 	#2ea2cc	rgba(46,162,204,1)
+		vert			#07b87d		rgba(7,184,125,1)	#7ad03a	rgba(122,208,58,1)
+		rouge			#e14d43		rgba(225,77,67,1)	#e14d43 rgba(225,77,67,1)
+	*/
+	
+	html										{ height:100% }
+	
+	body {
+			background-color:#fff;
+			-webkit-background-size:cover;
+			-moz-background-size:cover;
+			-o-background-size:cover;
+			background-size:cover;
+			height:100%;
+			font-family: 'Open Sans', sans-serif;
+			font-size:13px;
+			line-height:1.52857;
+			color:#222
+
+	}
+
+	#page									{ padding-top:50px; padding-bottom:50px }
+	
+	a                                       					{ color:#222 }
+	a:hover, a:focus                                  		{ color:rgba(46,162,204,1); text-decoration:none }
+	a, .anim-hover, .btn                       		       	{ transition:all 0.25s ease 0s }
+	textarea			                           			{ border-radius:4px !important }
+	
+	.alignleft								{ float:left }
+	.alignright								{ float:right }
+	
+	.btn 									{ font-size:13px; border-radius:4px; color:#59534e; background-color:#eee; margin:0 2px 2px 0; float:left; border:1px solid rgba(0,0,0,0.1); border-bottom:2px solid rgba(0,0,0,0.2) }
+	.btn:hover 								{ color:#fff; background-color:rgba(46,162,204,1) }
+
+ 	.wrapper								{ width:100% }
+	
+	.container								{ margin-bottom:25px; background-color:rgba(255,255,255,0.25); background:linear-gradient(to left, rgba(255,255,255,0.25) 0%,rgba(255,255,255,0.75) 100%); box-shadow:0 1px 2px 0 rgba(0,0,0,0.2); position:relative }
+	.container-fluid						{ padding:0; background-color:rgba(255,255,255,0.25); background:linear-gradient(to left, rgba(255,255,255,0.25) 0%,rgba(255,255,255,0.75) 100%); box-shadow:0 1px 2px 0 rgba(0,0,0,0.2); position:relative  }
+
+	.row									{ padding:25px; border-bottom:1px solid rgba(0,0,0,0.1); border-top:1px solid rgba(255,255,255,0.3); position:relative }
+		
+	.section-header							{ text-align:center; margin-top:0; margin-bottom:0; padding-top:0; padding-bottom:0; background:linear-gradient(to left, rgba(68,68,68,0.1) 0%, rgba(38,41,44,0.5) 100%); background-color:rgba(89,83,78,1) }
+	.section-header .row						{ padding:15px 25px }
+	.section-header h1						{ margin:0; padding:0; font-size:15px; text-transform:uppercase; color:#fff; /*color:#59534e;*/ font-weight:500; text-shadow:0px 1px 0px rgba(50,50,50,1) }
+	
+	.header 									{ padding:15px 25px; background-color:rgba(46,162,204,1) }
+	.header h3								{ margin:0; padding:0; font-size:15px; text-transform:uppercase; color:#fff; font-weight:500; text-shadow:0px 1px 0px rgba(100,100,100,1) }
+	
+	.sub-header 								{ padding:15px 25px; border-left:3px solid #2ea2cc; background-color:rgba(46,162,204,0.1) }
+	.sub-header h4							{ margin:0; padding:0; font-size:14px; color:#111; font-weight:500 }
+	
+	.no-top-margin							{ margin-top:0 !important }
+	.no-bottom-margin						{ margin-bottom:0 !important }
+	
+	@media (max-width:479px) {
+		.btn 									{ float:none; width:100% }
+	}
+
+	@media (max-width:768px) {
+		.container				 				{ box-shadow:none; width:100% }
+	}
+	
+	@media (min-width:769px) {
+		.section-header							{ margin-top:50px; text-align:left }
+	}
+	
+
+	
+/**
+ * 4.1 Header
+ * -----------------------------------------------------------------------------
+ */
+ 
+ 	#top-nav 								{ margin:0; background:url('../img/test.jpg') no-repeat center center fixed; background-size:cover; border-bottom:1px solid rgba(0,0,0,0.1); box-shadow:0 1px 2px 0 rgba(0,0,0,0.1) }
+	#top-nav .container-fluid				{ background:rgba(255,255,255,0.4) url('../img/test1.png') no-repeat center center; height:50px }
+	
+	#top-nav a								{ color:rgba(255,255,255,0.75); font-size:21px; display:block; width:50px; height:50px; padding:1px 14px 0 10px; line-height:50px; text-align:center; background-color:rgba(255,255,255,0.3) }
+	#top-nav a:hover 						{ color:#fff; background-color:rgba(46,162,204,1) }
+
+	#top-nav .navbar-back 					{ float:left; border-right:1px solid rgba(0,0,0,0.1) }
+	#top-nav .navbar-home 					{ float:right; padding:0 13px 0 11px; border-left:1px solid rgba(0,0,0,0.1) }
+	
+
+/**
+ * 4.2 Footer
+ * -----------------------------------------------------------------------------
+ */
+ 
+ 	#bottom-nav 						{ background:linear-gradient(to left, rgba(205,205,205,0.25) 0%,rgba(255,255,255,0.75) 100%); background-color:rgba(200,200,200,0.1); margin:0; box-shadow:0 -2px 2px 0 rgba(0,0,0,0.1) }
+	#bottom-nav .container-fluid		{ height:50px; margin:0; padding:0; text-align:center }	
+	#bottom-nav .row					{ height:50px; margin:0; padding:9px 10px }
+
+	#bottom-nav ul					{ list-style:none; text-align:center; max-width:420px; font-size:12px; margin:0 auto; padding:5px 15px; border-radius:4px; background-color:rgba(155,155,155,0.5); border:1px solid rgba(0,0,0,0.1); transition:all 0.25s ease 0s  }
+	#bottom-nav ul li					{ list-style-type:none; margin:0; padding:0 }
+	#bottom-nav ul:hover				{ background-color:rgba(46,162,204,0.75) }
+	
+	#bottom-nav a					{ color:#333; text-shadow:0px 1px 0px rgba(75,75,75,0.1) }
+	#bottom-nav ul:hover a			{ color:#fff }
+
+	
+ /**
+ * 5.0 Navigation
+ * -----------------------------------------------------------------------------
+ */
+ 
+	#main-menu .container					{ margin-top:15px; max-width:360px; text-align:center; background:none; border:none; box-shadow:none }
+	#main-menu .row							{ background:none; border:none; box-shadow:none }
+	
+	#main-menu ul							{ padding:0; margin:0; list-style:none }
+	#main-menu li								{ display:inline-block; text-align:center; overflow:hidden; margin:0 3% 3% 3%; list-style:none }
+	#main-menu a:hover .link-text			{ color:#222 }
+	#main-menu a:hover .link-icon			{ background-color:rgba(46,162,204,1); box-shadow:none; color:#fff }
+	#main-menu .link-text					{ color:#999; font-size:10px }
+	#main-menu .link-icon					{ color:#59534e; font-size:38px; display:block; width:70px; height:70px; background-color:rgba(255,255,255,0.3); padding:16px 14px; border-radius:4px; border:1px solid rgba(0,0,0,0.1); border-bottom:2px solid rgba(0,0,0,0.2) }
+		
+	@media (max-width:640px) {
+		#main-menu li								{ display:inline-block; text-align:center; overflow:hidden; margin:2%; list-style:none }
+	}
+
+	@media (min-width:641px) {
+		#main-menu .container					{ margin-top:40px; max-width:480px }
+		#main-menu .link-text					{ font-size:12px }
+		#main-menu .link-icon					{ font-size:50px; display:block; width:90px; height:90px; padding:21px 16px }
+	}
+
+ /**
+ * 6.0 Content
+ * -----------------------------------------------------------------------------
+ */
+ 
+		.wrap									{ padding-right:40px }		
+		.name									{ display:block; font-size:14px; font-weight:600; margin:0; padding:0; line-height:1.2em }
+		.title									{ display:block; font-size:12px; color:#999; font-style:italic; margin:0; padding:0; line-height:1.2em }
+		.firm									{ display:block; font-size:13px; margin-top:10px; padding:0; line-height:1.2em }
+		.summary								{ margin-top:10px }
+					
+		.pix									{ display:none; float:left; margin-right:25px; margin-bottom:0; border-radius:4px; overflow:hidden; border:1px solid rgba(0,0,0,0.1); border-bottom:2px solid rgba(0,0,0,0.2) }
+
+		@media (min-width:480px) {
+			.pix		 							{ display:block; width:75px; height:75px }
+		}
+		
+		.action-group 							{ margin-top:25px }
+		.action									{ display:block; width:40px; background:rgba(255,255,255,0.3) url('../img/fa-angle-right_off.png') no-repeat center center; border-left:1px solid rgba(0,0,0,0.1); position:absolute; top:0; right:0; bottom:0; margin:auto }
+		.action:hover							{ color:#fff; background:rgba(46,162,204,1) url('../img/test3.png') no-repeat center center  }
+		
+		.icons									{ font-size:12px; color:#999; display:inline-block; width:30px }
+ 
+ 
+
+
+	/**
+	* 6.2 Login
+	* -----------------------------------------------------------------------------
+	*/
+		#login .container							{ max-width:480px }
+		
+		@media (max-width:480px) {
+			#login .container						{ background:none; border:none; box-shadow:none }
+			#login .row								{ border:none }
+			#login .header							{ border-bottom:1px solid rgba(0,0,0,0.1); border-top:1px solid rgba(255,255,255,0.3) }
+			#login-form								{ max-width:400px; margin:0 auto }
+		}
+		
+		@media (min-width:481px) {
+			#login .container						{ width:400px; box-shadow:0 1px 2px 0 rgba(0,0,0,0.2); margin-top:0 }
+			.login-container						{ margin-top:25px }
+		}
+		@media (min-width:768px) {
+			.login-container						{ margin-top:50px }
+		}
+
+		#login-form .action-group 				{ margin-top:25px }
+		#login-form .input-group 				{ margin-bottom:10px }
+		#login-form .control-group 				{ margin-bottom:6px }
+		#login-form .form-control:focus 			{ border-color:rgba(46,162,204,1) }
+		
+		#login-form .login-link 					{ margin:0; float:none; font-size:14px }
+		#login-form .login-link:hover 			{  }
+		
+		#login-form .lost-link 					{ color:#999; display:block; font-size:13px; margin-top:5px; text-align:center }
+		#login-form .lost-link:hover 			{ color:#ff901a }
+		
+		#login-form.error .form-control			{  }		
+		#login-form.error .input-group-addon 	{ background-color:rgba(225,77,67,0.95); color:#fff }
+
+		#login-error 							{ text-align:center; background:rgba(225,77,67,0.95) }
+		#login-error p							{ margin:0; padding:0; font-size:15px; color:#fff; font-weight:600 }
+
+	
+
+
+		
+
+	
+	/**
+	* 6.6 Chat
+	* -----------------------------------------------------------------------------
+	*/
+	
+		@media (min-width:769px) {
+			#chat-display .well				 		{ max-width:960px; padding:30px; margin:0 auto; background-color:rgba(245,245,245,0.5)  }
+		}
+
+	
+		#chat-display .panel		 				{ position:relative;float:left; min-height:80px; max-width:90%; margin-bottom:5px; background-color:rgba(255,255,255,0.5) }
+		#chat-display .wrap		 				{ padding:0 0 0 60px; margin:0 }
+		#chat-display .date		 				{ display:block; font-size:11px; color:#999; font-style:italic; margin:0; padding:0; line-height:1.2em }		
+		#chat-display .pix						{ position:absolute; top:15px; left:15px; display:block; width:50px; height:50px; margin-right:10px; margin-bottom:0; border-radius:4px; overflow:hidden; border:1px solid rgba(0,0,0,0.1); border-bottom:2px solid rgba(0,0,0,0.2) }
+		
+		#chat-display .user		 				{ float:right; background-color:rgba(46,162,204,0.1) }	
+		#chat-display .user .pix					{ left:auto; right:15px; margin-right:0 }
+		#chat-display .user .wrap		 		{ padding:0 60px 0 0; margin:0 }	
+		
+		#chat-form  #send-message 				{ max-width:960px; margin:0 auto }
+		#chat-form .input-group 					{ width:100% }
+		#chat-form .action-group 				{ margin-top:15px }	
+	
+		@media (max-width:768px) {
+			#chat-display .well				 		{ width:100%; padding:0; margin:0; background:none; border:none; box-shadow:none  }
+		}
+		
+
+
+	
+
+
+	

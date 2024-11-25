@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><? include 'titre.php'; ?></title>
+<? include 'inc/head.php'; ?>
+<style type="text/css">
+.centre {
+	text-align: center;
+}
+</style>
+</head>
+  <?php
+	
+
+require 'fonction.php';
+require 'configuration.php';
+
+$link = mysql_connect ($host,$user,$pass); 
+mysql_select_db($db);
+
+$sql5="SELECT * FROM $tbl_fact f , $tbl_contact c  WHERE f.id=c.id and f.nserie=$nserie and f.fannee=$anneec and f.st='E'
+ and  c.Tarif='10' ORDER BY f.id ASC";
+
+$req5=mysql_query($sql5);
+
+	$sqlp="update  $tbl_fact  set impression='imprimé' WHERE nserie='$nserie' and st='E' and Tarif='10'";
+    $resultp=mysql_query($sqlp);
+	
+
+while($data5=mysql_fetch_array($req5)){
+?>
+<body>
+<table width="100%" border="0">
+  <tr>
+   <td width="47%" height="67"><img src="images/eda.png" width="173" height="65" /></td>
+   <td width="53%"><h1 class="centre"> FACTURE MT </h1> <span style="width: 75%; font-size: 24px;">
+    
+    <p align="center"><b><? echo $data5['nserie'].'/'.$data5['fannee']; ?></b></p></td>
+  </tr>
+</table>
+<table width="100%" border="0">
+  <tr>
+    <td width="41%" height="128"><p>Tel : 771 01 68 Fax : 771 02 09 </p>
+      <p>Email:contact@sonelecanjouan.com</p>
+      <p>http://www.sonelecanjouan.com</p>
+      <p>Horaire : Lun-Jeu : 7h30-14h30 /</p>
+      <p> Ven : 7h30-11h / Sam : 7h30-12h30</p></td>
+    <td width="59%"><table width="98%" border="1">
+      <tr>
+        <td><table width="96%" border="0.5" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="31%">Nom du client :</td>
+            <td width="69%"><font color="#000000">
+              <? $client=substr($data5['nomprenom'],0,18); echo $client;?>
+            </font></td>
+          </tr>
+          <tr>
+            <td>Adresse :</td>
+            <td><span style="width: 40%; text-align: left"><span style="width:36%"><? echo $data5['ville'];?></span> <span style="width:36%"><? echo $data5['quartier'];?></span></span></td>
+          </tr>
+          <tr>
+            <td>ID Client :</td>
+            <td><span style="width:36%"><? $Codebare=$data5['id']; echo $data5['id'];?></span></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td><img src="codeBarre.php?Code=<?=$Codebare?>"></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<p align="center">DATE LIMITE DE PAIEMENT : <b> <? $datelimite=$data5['datelimite'];  echo  date("d-m-Y", strtotime($datelimite));?> </b></p>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Information du compteur </h3>
+  </div>
+  <div class="panel-body">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bordercolor="#000000">
+      <tr>
+        <td width="47%"><table width="100%" border="0.5" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="18%">&nbsp;</td>
+            <td width="21%"><strong>Nouveau Index</strong></td>
+            <td width="18%"><strong>Ancien Index</strong></td>
+            <td width="13%"><strong>Cons</strong></td>
+            <td width="12%"><strong>Facture N° </strong></td>
+            <td width="18%"><strong>Compteur  N° </strong></td>
+          </tr>
+          <tr>
+            <td><strong> JOUR</strong></td>
+            <td><span style="width:36%"><? echo $data5['nf'];?> KWH</span></td>
+            <td><span style="width:36%"><? echo $data5['n'];?> KWH</span></td>
+            <td><span style="width:36%"><? echo $data5['cons'];?> KWH</span></td>
+            <td><span style="width:36%"><? echo $data5['nfacture'];$nfacture=$data5['nfacture']; ?></span></td>
+            <td><span style="width:36%"><? echo $data5['ncompteur'];?></span></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td><strong>Coeff</strong> TI</td>
+            <td>&nbsp;</td>
+            <td><strong>Ampere </strong></td>
+          </tr>
+          <tr>
+            <td><strong>NUIT</strong></td>
+            <td><span style="width:36%"><? echo $data5['nf2'];?> KWH</span></td>
+            <td><span style="width:36%"><? echo $data5['n2'];?> KWH</span></td>
+            <td><span style="width:36%"><? echo $data5['coefTi'];?></span></td>
+            <td>&nbsp;</td>
+            <td><span style="width:36%"><? echo $data5['amperage'];?></span></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table>
+  </div>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">Description de la facture </h3>
+    </div>
+    <div class="panel-body">
+      <table width="100%" border="0" cellpadding="0" cellspacing="0" bordercolor="#000000">
+        <tr>
+          <td width="47%"><table width="100%" border="0">
+            <tr>
+              <td width="39%"><strong>Détail de la facture </strong></td>
+              <td width="25%"><strong>Quantité</strong></td>
+              <td width="23%"><strong>Tarification</strong></td>
+              <td width="8%"><strong>Montant</strong></td>
+              <td width="5%">&nbsp;</td>
+            </tr>
+            <tr>
+              <td><span style="width: 40%; text-align: left">Consommation Jour</span></td>
+              <td><span style="width: 13%"><span style="width:36%"><? echo $data5['cons1'];?></span> KWH</span></td>
+              <td><span style="width: 10%"><span style="width:36%"><? echo $data5['t1'];?></span>KMF</span></td>
+              <td><span style="width:36%"><? echo $data5['mont1'];?></span></td>
+              <td><span style="width: 10%">KMF</span></td>
+            </tr>
+            <tr>
+              <td><span style="width: 40%; text-align: left">Consommation Nuit</span></td>
+              <td><span style="width: 13%"><span style="width:36%"><? echo $data5['cons2'];?></span> KWH</span></td>
+              <td><span style="width: 10%"><span style="width:36%"><? echo $data5['t2'];?></span>KMF</span></td>
+              <td><span style="width:36%"><? echo $data5['mont2'];?></span></td>
+              <td><span style="width: 10%">KMF</span></td>
+            </tr>
+            <tr>
+              <td><span style="width: 40%; text-align: left">Puissance Souscrite &amp; Location Compteur</span></td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td><span style="width:36%"><? echo $data5['puisct'];?></span></td>
+              <td><span style="width: 10%">KMF</span></td>
+            </tr>
+            <tr>
+              <td><span style="width: 40%; text-align: left">Montant HT</span></td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td><span style="width:36%"><? echo $data5['totalht'];?></span></td>
+              <td><span style="width: 10%">KMF</span></td>
+            </tr>
+            <tr>
+              <td><span style="width: 40%; text-align: left">Montant TCA</span></td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td><span style="width:36%"><? echo $data5['tax'];?></span></td>
+              <td><span style="width: 10%">KMF</span></td>
+            </tr>
+            <tr>
+              <td><span style="width: 40%; text-align: left">Montant TTC</span></td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td><span style="width:36%"><? echo $data5['totalttc'];?></span></td>
+              <td><span style="width: 10%">KMF</span></td>
+            </tr>
+            <tr>
+              <td><span style="width: 40%; text-align: left">Contribution ORTC</span></td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td><span style="width:36%"><? echo $data5['ortc'];?></span></td>
+              <td><span style="width: 10%">KMF</span></td>
+            </tr>
+            <tr>
+              <td><span style="width: 40%; text-align: left">Impayee</span></td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td><span style="width:36%"><? echo $data5['impayee'];?></span></td>
+              <td><span style="width: 10%">KMF</span></td>
+            </tr>
+            <? /* if ($data5['Pre']!=0){?>
+            <tr>
+              <td>Frais de remise </td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td><span style="width:36%"><? echo $data5['Pre'];?></span></td>
+              <td><span style="width: 10%">KMF</span></td>
+            </tr>
+            <? } else {} */?>
+            <tr>
+              <td><span style="width:36%">MONTANT TOTAL A PAYER </span></td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td><span style="width:36%"><? echo $data5['totalnet'];?></span></td>
+              <td>KMF</td>
+            </tr>
+          </table></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">RECU DE : <font color="#000000"><? echo $data5['nomprenom'];?></font></h3>
+  </div>
+  <div class="panel-body">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bordercolor="#000000">
+      <tr>
+        <td width="47%"><table width="100%" border="0.5" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="76%">MONTANT PAYE : ....................................KMF</td>
+            <td width="24%"><strong>SIGNATURE</strong></td>
+            </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            </tr>
+          <tr>
+            <td>SOLDE A REPORTER :..............................KMF</td>
+            <td>LE </td>
+            </tr>
+        </table></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">COUPON D'ENCAISSEMENT : </h3>
+  </div>
+  <div class="panel-body">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" bordercolor="#000000">
+      <tr>
+        <td width="47%"><table width="100%" border="0.5" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="18%">&nbsp;</td>
+            <td width="21%"><strong>Nouveau Index</strong></td>
+            <td width="18%"><strong>Ancien Index</strong></td>
+            <td width="13%"><strong>Cons</strong></td>
+            <td width="12%"><strong>Facture N° </strong></td>
+            <td width="18%"><strong>Compteur  N° </strong></td>
+          </tr>
+          <tr>
+            <td><strong> JOUR</strong></td>
+            <td><span style="width:36%"><? echo $data5['nf'];?> KWH</span></td>
+            <td><span style="width:36%"><? echo $data5['n'];?> KWH</span></td>
+            <td><span style="width:36%"><? echo $data5['cons'];?> KWH</span></td>
+            <td><span style="width:36%"><? echo $data5['nfacture'];$nfacture=$data5['nfacture']; ?></span></td>
+            <td><span style="width:36%"><? echo $data5['ncompteur'];?></span></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td><strong>ID CLIENT </strong></td>
+            <td><strong>Ampere </strong></td>
+          </tr>
+          <tr>
+            <td><strong>NUIT</strong></td>
+            <td><span style="width:36%"><? echo $data5['nf2'];?> KWH</span></td>
+            <td><span style="width:36%"><? echo $data5['n2'];?> KWH</span></td>
+            <td>&nbsp;</td>
+            <td><span style="width:36%"><? echo $data5['id'];?></span></td>
+            <td><span style="width:36%"><? echo $data5['amperage'];?></span></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table>
+    <table width="100%" border="0">
+      <tr>
+        <td width="57%"><p>Nom / Raison Sociale : <font color="#000000"><? echo $data5['nomprenom'];?></font></p>
+        <p>ADRESSE : <span style="width: 40%; text-align: left"><span style="width:36%"><? echo $data5['ville'];?></span> - <span style="width:36%"><? echo $data5['quartier'];?></span></span></p>
+        <p><img src="codeBarre.php?Code=<?=$Codebare?>" /> DATE : </p></td>
+        <td width="43%"><p><span style="width:36%">Montant total à payer </span>: <span style="width:36%"><? echo $data5['totalnet'];?></span> KMF</p>
+        <p>Montant paye: ...................KMF</p>
+        <p>Solde à reporter:................KMF</p></td>
+      </tr>
+    </table>
+  </div>
+</div>
+  <?php
+}
+?>
+</body>
+</html>
