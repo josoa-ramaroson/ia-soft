@@ -53,14 +53,14 @@ require 'bienvenue.php';    // on appelle la page contenant la fonction
 $mr1=addslashes($_POST['mr1']);
  
 $sql = "SELECT * FROM  $tb_rhpaie where matricule='$mr1' and  anneepaie='$anneepaie' and moispaie='$moispaie'";  
-$req = mysql_query($sql);  
+$req = mysqli_query($linki,$sql);  
 
 	//recherche du repport 
 ?>
  </p>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
    <?php
-while($datam=mysql_fetch_array($req)){ // Start looping table row 
+while($datam=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
    <tr>
    
@@ -75,10 +75,10 @@ while($datam=mysql_fetch_array($req)){ // Start looping table row
       <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
         <tr>
           <td width="18%"><span class="panel-title">
-            <input name="ipaie" type="hidden" id="ipaie" value="<? echo $datam['ipaie']; ?>" />
-            <input name="idrh" type="hidden" id="idrh" value="<? echo $datam['idrh']; ?>" />
+            <input name="ipaie" type="hidden" id="ipaie" value="<?php echo $datam['ipaie']; ?>" />
+            <input name="idrh" type="hidden" id="idrh" value="<?php echo $datam['idrh']; ?>" />
             <font size="2"><strong><font size="2"><strong><font color="#FF0000">
-            <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+            <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
             </font></strong></font></strong></font></span></td>
           <td width="2%">&nbsp;</td>
           <td width="30%">&nbsp;</td>
@@ -90,31 +90,31 @@ while($datam=mysql_fetch_array($req)){ // Start looping table row
           <td><strong><font size="2">Designation</font></strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input name="Designation" type="text" class="form-control" id="Designation" value="<? echo $datam['Designation'];?>" size="10" readonly />
+            <input name="Designation" type="text" class="form-control" id="Designation" value="<?php echo $datam['Designation'];?>" size="10" readonly />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Matricule</font></strong></td>
           <td><strong>
-            <input name="matricule" type="text" class="form-control" id="matricule" value="<? echo $datam['matricule'];?>" size="10" readonly />
+            <input name="matricule" type="text" class="form-control" id="matricule" value="<?php echo $datam['matricule'];?>" size="10" readonly />
           </strong></td>
           </tr>
         <tr>
           <td><strong><font size="2">Nom et Prénom <font size="2"><font color="#FF0000"> *</font></font></font></strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input name="nomprenom" type="text" class="form-control" id="nomprenom" value="<? echo $datam['nomprenom'];?>" size="40" readonly />
+            <input name="nomprenom" type="text" class="form-control" id="nomprenom" value="<?php echo $datam['nomprenom'];?>" size="40" readonly />
           </strong>&nbsp;</td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Date d'embauche</font></strong></td>
           <td><strong>
-            <input name="dembauche" type="text" class="form-control" id="dembauche" value="<? echo $datam['dembauche'];?>" size="40" readonly />
+            <input name="dembauche" type="text" class="form-control" id="dembauche" value="<?php echo $datam['dembauche'];?>" size="40" readonly />
           </strong></td>
           </tr>
         <tr>
           <td><strong>Titre </strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input name="titre" type="text"  class="form-control" id="titre" value="<? echo $datam['titre'];?>" size="40" readonly />
+            <input name="titre" type="text"  class="form-control" id="titre" value="<?php echo $datam['titre'];?>" size="40" readonly />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Direction</font></strong></td>
@@ -126,7 +126,7 @@ while($datam=mysql_fetch_array($req)){ // Start looping table row
           <td><strong><font size="2">Ville</font></strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input name="ville" type="text"  class="form-control" id="ville" value="<? echo $datam['ville'];?>" size="40" readonly />
+            <input name="ville" type="text"  class="form-control" id="ville" value="<?php echo $datam['ville'];?>" size="40" readonly />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Service</font></strong></td>
@@ -138,13 +138,13 @@ while($datam=mysql_fetch_array($req)){ // Start looping table row
           <td>Congé</td>
           <td>&nbsp;</td>
           <td><strong>
-            <input name="nconge" type="text"  class="form-control" id="nconge" value="<? echo $datam['nconge'];?>" size="40" />
+            <input name="nconge" type="text"  class="form-control" id="nconge" value="<?php echo $datam['nconge'];?>" size="40" />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Taux de paiement</font></strong></td>
           <td><strong>
             <select name="Tin" id="Tin">
-              <option selected="selected"><? echo $datam['Tin'];?></option>
+              <option selected="selected"><?php echo $datam['Tin'];?></option>
               <option>100</option>
               <option>90</option>
               <option>80</option>
@@ -179,100 +179,100 @@ while($datam=mysql_fetch_array($req)){ // Start looping table row
         <tr>
           <td>Indice de Base </td>
           <td><strong>
-            <input class="form-control" name="indice" type="text" id="indice" value="<? echo $datam['indice']; ?>" size="20" />
+            <input class="form-control" name="indice" type="text" id="indice" value="<?php echo $datam['indice']; ?>" size="20" />
           </strong></td>
           <td>&nbsp;</td>
           <td>Fonction</td>
           <td><strong>
-            <input name="fonction" type="text" class="form-control" id="fonction" value="<? echo $datam['fonction']; ?>" size="20" />
+            <input name="fonction" type="text" class="form-control" id="fonction" value="<?php echo $datam['fonction']; ?>" size="20" />
           </strong></td>
         </tr>
         <tr>
           <td>Taux </td>
           <td><strong>
-            <input name="taux" type="text" class="form-control" id="taux" value="<? echo $datam['taux']; ?>" size="20" />
+            <input name="taux" type="text" class="form-control" id="taux" value="<?php echo $datam['taux']; ?>" size="20" />
           </strong></td>
           <td>&nbsp;</td>
           <td>Transport</td>
           <td><strong>
-            <input name="transport" type="text" class="form-control" id="transport" value="<? echo $datam['transport']; ?>" size="20" />
+            <input name="transport" type="text" class="form-control" id="transport" value="<?php echo $datam['transport']; ?>" size="20" />
           </strong></td>
         </tr>
         <tr>
           <td>Salaire de Base</td>
           <td><strong>
-            <input name="sbase" type="text" class="form-control" id="sbase" value="<? echo $datam['sbase']; ?>" size="20" />
+            <input name="sbase" type="text" class="form-control" id="sbase" value="<?php echo $datam['sbase']; ?>" size="20" />
           </strong></td>
           <td>&nbsp;</td>
           <td>Logement</td>
           <td><strong>
-            <input name="logement" type="text" class="form-control" id="logement" value="<? echo $datam['logement']; ?>" size="20" />
+            <input name="logement" type="text" class="form-control" id="logement" value="<?php echo $datam['logement']; ?>" size="20" />
           </strong></td>
         </tr>
         <tr>
           <td>Avancement au marité</td>
           <td><strong>
-            <input name="avancement" type="text" class="form-control" id="avancement" value="<? echo $datam['avancement']; ?>" size="20" />
+            <input name="avancement" type="text" class="form-control" id="avancement" value="<?php echo $datam['avancement']; ?>" size="20" />
           </strong></td>
           <td>&nbsp;</td>
           <td>Téléphone</td>
           <td><strong>
-            <input name="telephone" type="text" class="form-control" id="telephone" value="<? echo $datam['telephone']; ?>" size="20" />
+            <input name="telephone" type="text" class="form-control" id="telephone" value="<?php echo $datam['telephone']; ?>" size="20" />
           </strong></td>
         </tr>
         <tr>
           <td>Prime d'anciennete</td>
           <td><strong>
-            <input name="anciennete" type="text" class="form-control" id="anciennete" value="<? echo $datam['anciennete']; ?>" size="20" />
+            <input name="anciennete" type="text" class="form-control" id="anciennete" value="<?php echo $datam['anciennete']; ?>" size="20" />
           </strong></td>
           <td>&nbsp;</td>
           <td>Risque / Autres Indemnite</td>
           <td><strong>
-            <input name="risque" type="text" class="form-control" id="risque" value="<? echo $datam['risque']; ?>" size="20" />
+            <input name="risque" type="text" class="form-control" id="risque" value="<?php echo $datam['risque']; ?>" size="20" />
           </strong></td>
         </tr>
         <tr>
           <td>Gratification</td>
           <td><strong>
-            <input name="gratification" type="text" class="form-control" id="gratification" value="<? echo $datam['gratification']; ?>" size="20" />
+            <input name="gratification" type="text" class="form-control" id="gratification" value="<?php echo $datam['gratification']; ?>" size="20" />
           </strong></td>
           <td>&nbsp;</td>
           <td>Caisse</td>
           <td><strong>
-            <input name="caisse" type="text" class="form-control" id="caisse" value="<? echo $datam['caisse']; ?>" size="20" />
+            <input name="caisse" type="text" class="form-control" id="caisse" value="<?php echo $datam['caisse']; ?>" size="20" />
           </strong></td>
         </tr>
         <tr>
           <td>Rappel</td>
           <td><strong>
-            <input name="srappel" type="text" class="form-control" id="srappel" value="<? echo $datam['srappel']; ?>" size="20" />
+            <input name="srappel" type="text" class="form-control" id="srappel" value="<?php echo $datam['srappel']; ?>" size="20" />
           </strong></td>
           <td>&nbsp;</td>
           <td>Prime Nuit ( Astreinte)</td>
           <td><strong>
-            <input name="astreinte" type="text" class="form-control" id="astreinte" value="<? echo $datam['astreinte']; ?>" size="20" />
+            <input name="astreinte" type="text" class="form-control" id="astreinte" value="<?php echo $datam['astreinte']; ?>" size="20" />
           </strong></td>
         </tr>
         <tr>
           <td>Heures supplementaire</td>
           <td><strong>
-            <input name="heuressup" type="text" class="form-control" id="heuressup" value="<? echo $datam['heuressup']; ?>" size="20" />
+            <input name="heuressup" type="text" class="form-control" id="heuressup" value="<?php echo $datam['heuressup']; ?>" size="20" />
           </strong></td>
           <td>&nbsp;</td>
           <td>Prime de panier</td>
           <td><strong>
-            <input name="panier" type="text" class="form-control" id="panier" value="<? echo $datam['panier']; ?>" size="20" />
+            <input name="panier" type="text" class="form-control" id="panier" value="<?php echo $datam['panier']; ?>" size="20" />
           </strong></td>
         </tr>
         <tr>
           <td>Congé payé</td>
           <td><strong>
-            <input name="conge" type="text" class="form-control" id="conge" value="<? echo $datam['conge']; ?>" size="20" />
+            <input name="conge" type="text" class="form-control" id="conge" value="<?php echo $datam['conge']; ?>" size="20" />
           </strong></td>
           <td>&nbsp;</td>
           <td>Remboursement de frais</td>
           <td><strong>
-            <input name="remboursement" type="text" class="form-control" id="remboursement" value="<? echo $datam['remboursement']; ?>" size="20" />
+            <input name="remboursement" type="text" class="form-control" id="remboursement" value="<?php echo $datam['remboursement']; ?>" size="20" />
           </strong></td>
         </tr>
         <tr>
@@ -301,62 +301,62 @@ while($datam=mysql_fetch_array($req)){ // Start looping table row
       <tr>
         <td>Caisse mutuelle</td>
         <td><strong>
-          <input name="cotisation" type="text" class="form-control" id="cotisation" value="<? echo $datam['cotisation']; ?>" size="20" />
+          <input name="cotisation" type="text" class="form-control" id="cotisation" value="<?php echo $datam['cotisation']; ?>" size="20" />
         </strong></td>
         <td>&nbsp;</td>
         <td>IGR  <strong>
         <select name="igrchoix" id="igrchoix">
-          <option value="<? echo $datam['igrchoix']; ?>" selected="selected">
-           <? $igrchoix=$datam['igrchoix'];  if ($igrchoix==0){echo 'NON';} else {echo 'OUI';} ?>
+          <option value="<?php echo $datam['igrchoix']; ?>" selected="selected">
+           <?php $igrchoix=$datam['igrchoix'];  if ($igrchoix==0){echo 'NON';} else {echo 'OUI';} ?>
             </option>
           <option value="1">OUI</option>
           <option value="0">NON</option>
         </select>
         </strong></td>
         <td><strong>
-          <input name="igr" type="text" disabled="disabled" class="form-control" id="igr" value="<? echo $datam['igr']; ?>" size="20" readonly />
+          <input name="igr" type="text" disabled="disabled" class="form-control" id="igr" value="<?php echo $datam['igr']; ?>" size="20" readonly />
         </strong></td>
       </tr>
       <tr>
         <td>Avance sur Salaire</td>
         <td><strong>
-          <input name="avances" type="text" class="form-control" id="avances" value="<? echo $datam['avances']; ?>" size="20" />
+          <input name="avances" type="text" class="form-control" id="avances" value="<?php echo $datam['avances']; ?>" size="20" />
         </strong></td>
         <td>&nbsp;</td>
         <td>Caisse de retraite<strong><font color="#FF0000">&nbsp;
         </font><strong>
         <select name="crchoix" id="crchoix">
-          <option value="<? echo $datam['crchoix']; ?>" selected="selected">
-           <? $crchoix=$datam['crchoix'];   if ($crchoix==0){echo "NON";} else {echo "OUI";} ?>
+          <option value="<?php echo $datam['crchoix']; ?>" selected="selected">
+           <?php $crchoix=$datam['crchoix'];   if ($crchoix==0){echo "NON";} else {echo "OUI";} ?>
             </option>
           <option value="1">OUI</option>
           <option value="0">NON</option>
         </select>
         </strong></td>
         <td><strong>
-          <input name="retraite" type="text" disabled="disabled" class="form-control" id="retraite" value="<? echo $datam['retraite']; ?>" size="20" readonly />
+          <input name="retraite" type="text" disabled="disabled" class="form-control" id="retraite" value="<?php echo $datam['retraite']; ?>" size="20" readonly />
         </strong></td>
       </tr>
       <tr>
         <td>Pret</td>
         <td><strong>
-          <input name="pret" type="text" class="form-control" id="pret" value="<? echo $datam['pret']; ?>" size="20" />
+          <input name="pret" type="text" class="form-control" id="pret" value="<?php echo $datam['pret']; ?>" size="20" />
         </strong></td>
         <td>&nbsp;</td>
         <td>Caisse de prevoyances</td>
         <td><strong>
-          <input name="prevoyance" type="text" class="form-control" id="prevoyance" value="<? echo $datam['prevoyance']; ?>" size="20" />
+          <input name="prevoyance" type="text" class="form-control" id="prevoyance" value="<?php echo $datam['prevoyance']; ?>" size="20" />
         </strong></td>
       </tr>
       <tr>
         <td>Autre deduction</td>
         <td><strong>
-          <input name="adeduction" type="text" class="form-control" id="adeduction" value="<? echo $datam['adeduction']; ?>" size="20" />
+          <input name="adeduction" type="text" class="form-control" id="adeduction" value="<?php echo $datam['adeduction']; ?>" size="20" />
         </strong></td>
         <td>&nbsp;</td>
         <td>Autres retenue</td>
         <td><strong>
-          <input name="aretenue" type="text" class="form-control" id="aretenue" value="<? echo $datam['aretenue']; ?>" size="20" />
+          <input name="aretenue" type="text" class="form-control" id="aretenue" value="<?php echo $datam['aretenue']; ?>" size="20" />
         </strong></td>
       </tr>
       <tr>
@@ -372,7 +372,7 @@ while($datam=mysql_fetch_array($req)){ // Start looping table row
         <td>&nbsp;</td>
         <td>NET A PAYER </td>
         <td><strong>
-          <input name="SNET" type="text" disabled class="form-control" id="SNET" value="<? echo $datam['SNET']; ?>" size="20" readonly />
+          <input name="SNET" type="text" disabled class="form-control" id="SNET" value="<?php echo $datam['SNET']; ?>" size="20" readonly />
         </strong></td>
       </tr>
       <tr>
@@ -395,7 +395,7 @@ while($datam=mysql_fetch_array($req)){ // Start looping table row
    </tr>
    <?php
 }
-mysql_close ();  
+mysqli_close ();  
 ?>
 </table>
 <p>&nbsp;</p>

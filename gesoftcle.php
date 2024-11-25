@@ -12,7 +12,7 @@ if(($_SESSION['u_niveau']!= 7) &&($_SESSION['u_niveau']!= 10)) {
 
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 
@@ -38,7 +38,7 @@ require 'bienvenue.php';    // on appelle la page contenant la fonction
   ?> 
  
 <form id="form1" name="form1" method="post" action="">
-  <textarea name="textarea" id="textarea" cols="100" rows="10"><? echo $ligne; ?>  </textarea>
+  <textarea name="textarea" id="textarea" cols="100" rows="10"><?php echo $ligne; ?>  </textarea>
 </form>
   <?
  }

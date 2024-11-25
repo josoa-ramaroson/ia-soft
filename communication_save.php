@@ -47,12 +47,10 @@ $date=addslashes($_POST['date']);
 $id_nom=addslashes($_POST['id_nom']);
    
   require 'fonction.php';
-  $link = mysql_connect ($host,$user,$pass);
-  mysql_select_db($db);
 
   $sql="INSERT INTO $tbl_com  (id_nom, date,titre,detail,fichier)
                       VALUES  ('$id_nom','$date','$titre','$detail','$lefichier')";
-   $result=mysql_query($sql);
+   $result=mysqli_query($linki,$sql);
    if($result){
    }
    else {

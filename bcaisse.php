@@ -118,7 +118,7 @@ function barre_navigation ($nb_total,$nb_affichage_par_page,$debut,$nb_liens_dan
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <script type="text/javascript">
@@ -216,9 +216,9 @@ Require("bienvenue.php"); // on appelle la page contenant la fonction
                       </tr>
                       <tr>
                         <td>Login<font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                          <input name="blogin" type="hidden" id="blogin" value="<? $id_nom; ?>">
+                          <input name="blogin" type="hidden" id="blogin" value="<?php $id_nom; ?>">
                         </font></strong></font></strong></font></td>
-                        <td><? echo $id_nom; ?></td>
+                        <td><?php echo $id_nom; ?></td>
                       </tr>
                       <tr>
                         <td>&nbsp;</td>
@@ -243,7 +243,7 @@ Require("bienvenue.php"); // on appelle la page contenant la fonction
                       </tr>
                       <tr>
                         <td><font color="#FF0000">
-                          <input name="verification" type="hidden" id="verification" value="<? 
+                          <input name="verification" type="hidden" id="verification" value="<?php 
 						  
 	$sqfac="SELECT * FROM $tbl_date";
 	$resultfac=mysqli_query($linki,$sqfac);
@@ -267,7 +267,7 @@ Require("bienvenue.php"); // on appelle la page contenant la fonction
                       <h3 class="panel-title"> <em> <h1> ETAPE 2 : Confirmer la date </h1> 
                     </div>
                    
-                    <? 
+                    <?php 
 					
 				$sqlCtmp="SELECT * FROM $tbl_caisse_tmp "; //DESC  ASC
 				$resultCtmp=mysqli_query($linki,$sqlCtmp);
@@ -285,8 +285,8 @@ Require("bienvenue.php"); // on appelle la page contenant la fonction
                       </tr>
                       <tr>
                         <td>Login
-                        <input name="blogin" type="hidden" class="form-control" id="blogin" value="<? echo $id_nom; ?>" size="50" readonly></td>
-                        <td><? echo $id_nom; ?></td>
+                        <input name="blogin" type="hidden" class="form-control" id="blogin" value="<?php echo $id_nom; ?>" size="50" readonly></td>
+                        <td><?php echo $id_nom; ?></td>
                       </tr>
                                             <tr>
                         <td>&nbsp;</td>
@@ -295,8 +295,8 @@ Require("bienvenue.php"); // on appelle la page contenant la fonction
                       <tr>
                         <td>Date confirmation</td>
                         <td><em> <h1>
-                          <input name="date" type="hidden" class="form-control" id="date" value="<? echo $datecaisseT; ?>" size="50" readonly>
-                          <? echo $datecaisseT; ?></h1>
+                          <input name="date" type="hidden" class="form-control" id="date" value="<?php echo $datecaisseT; ?>" size="50" readonly>
+                          <?php echo $datecaisseT; ?></h1>
                         </em></td>
                       </tr>
                       <tr>
@@ -305,7 +305,7 @@ Require("bienvenue.php"); // on appelle la page contenant la fonction
                       </tr>
                       <tr>
                         <td><font color="#FF0000">
-                          <input name="verification" type="hidden" id="verification" value="<? 
+                          <input name="verification" type="hidden" id="verification" value="<?php 
 						  
 	$sqfac="SELECT * FROM $tbl_date";
 	$resultfac=mysqli_query($linki,$sqfac);
@@ -369,9 +369,9 @@ $req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql
 while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
     <tr> 
-      <td align="center" bgcolor="#FFFFFF"><? echo $data['idcaisse'];?>        <div align="left"></div></td>
-      <td align="center" bgcolor="#FFFFFF"><em><h1><? echo $data['blogin'];?> </h1></em></td>
-      <td align="center" bgcolor="#FFFFFF"><em> <h1><? echo $data['datecaisse'];?> </h1></em></td>
+      <td align="center" bgcolor="#FFFFFF"><?php echo $data['idcaisse'];?>        <div align="left"></div></td>
+      <td align="center" bgcolor="#FFFFFF"><em><h1><?php echo $data['blogin'];?> </h1></em></td>
+      <td align="center" bgcolor="#FFFFFF"><em> <h1><?php echo $data['datecaisse'];?> </h1></em></td>
       <td align="center" bgcolor="#FFFFFF">
       
       <a href="bcaisse_res.php" class="btn btn btn-danger"> Retour en arrière </a>

@@ -27,7 +27,7 @@ require_once('calendar/classes/tc_calendar.php');
                    <td width="22%">Login :</td>
                    <td width="78%"><font color="#000000"><strong>
                      <select name="u_login" id="u_login">
-                     <option  value = '<? echo $id_nom; ?>' selected><? echo $nom.''.$prenom ; ?></option>
+                     <option  value = '<?php echo $id_nom; ?>' selected><?php echo $nom.''.$prenom ; ?></option>
                        <?php
 $sql8 = "SELECT * FROM $tbl_utilisateur where (privileges !=7 and privileges !=6) and statut like 'Operationnel' ORDER BY id_nom ASC ";
 $result8 = mysqli_query($linki,$sql8);
@@ -225,7 +225,7 @@ echo '<option value='.$row8['u_login'].' > '.$row8['u_nom'].' '.$row8['u_prenom'
                  </tr>
                  <tr>
                    <td><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                     <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+                     <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
                    </font></strong></font></strong></font></td>
                    <td><input type="submit" name="Enregistrer" id="Enregistrer" value="AJOUTER UN RDV" /></td>
                  </tr>
@@ -352,26 +352,26 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
 
    $bgcolor = "#FFFFFF"; 
 ?>
-  <tr bgcolor=<? echo "$bgcolor" ?>>
-     <td height="35" align="center" ><div align="left"><em><? echo $data['datev'].' '.$data['heures'];?></em></div></td>
-    <td align="center" ><div align="left"><em><? echo $data['datef'].' '.$data['heuresf'];?></em></div></td>
-     <td align="center" ><div align="left"><em><? echo $data['evenement'];?></em>
+  <tr bgcolor=<?php echo "$bgcolor" ?>>
+     <td height="35" align="center" ><div align="left"><em><?php echo $data['datev'].' '.$data['heures'];?></em></div></td>
+    <td align="center" ><div align="left"><em><?php echo $data['datef'].' '.$data['heuresf'];?></em></div></td>
+     <td align="center" ><div align="left"><em><?php echo $data['evenement'];?></em>
      </div></td>
      <td align="center" ><em>
-       <? $SID1=$data['Pris_par_user']; $SID2=$data['id_nom']; echo $SID1;?>
+       <?php $SID1=$data['Pris_par_user']; $SID2=$data['id_nom']; echo $SID1;?>
      </em></td>
      <td align="center" >
          
-    <? $sqldate="SELECT * FROM $tbl_caisse "; //DESC  ASC
-	$resultldate=mysql_query($sqldate);
-	$datecaisse=mysql_fetch_array($resultldate);
+    <?php $sqldate="SELECT * FROM $tbl_caisse "; //DESC  ASC
+	$resultldate=mysqli_query($linki,$sqldate);
+	$datecaisse=mysqli_fetch_array($resultldate);
 	$dateJour=$datecaisse['datecaisse'];
 	$dareRDV=$data['datev'];
     ?>
     
-    <? if ((($SID1==$_SESSION['u_login']) or ($SID2==$_SESSION['u_login'])) and ($dateJour <=$dareRDV)) { ?>
-	<a href="evenement_user_cancel.php?&ID=<? echo  md5(microtime()).$data['idev']; ?>" class="btn-xs btn-danger">X</a>
-	<? } ?>
+    <?php if ((($SID1==$_SESSION['u_login']) or ($SID2==$_SESSION['u_login'])) and ($dateJour <=$dareRDV)) { ?>
+	<a href="evenement_user_cancel.php?&ID=<?php echo  md5(microtime()).$data['idev']; ?>" class="btn-xs btn-danger">X</a>
+	<?php } ?>
      
      </td>
    </tr>

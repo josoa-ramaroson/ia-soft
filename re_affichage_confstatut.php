@@ -4,7 +4,7 @@ require 'configuration.php';
 $id=substr($_REQUEST["id"],32);
 $statut=substr($_REQUEST["satut"],32);
 $sqlp="update  $tbl_contact  set  statut='$statut' WHERE  id='$id'";
-$resultp=mysql_query($sqlp);	
+$resultp=mysqli_query($linki,$sqlp);	
 
 
 
@@ -24,5 +24,5 @@ if ($statut=='6')
 {
 header("location:re_affichage.php");
 }
-mysql_close($link);
+mysqli_close($link);
 ?>

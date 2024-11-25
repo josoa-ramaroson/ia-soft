@@ -14,7 +14,7 @@ if(($_SESSION['u_niveau'] != 2) && ($_SESSION['u_niveau'] != 5) && ($_SESSION['u
 <html>
 <head>
 
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
@@ -123,13 +123,13 @@ Require("bienvenue.php");  // on appelle la page contenant la fonction
       <a href="rapport_facturationimpMTd.php" class="btn btn-sm btn-success" target="_blank" > KWh MT Détail</a> |
       <a href="co_categorie.php" class="btn btn-sm btn-success" > Facturation / Etablissement</a> |
 	  
-	  <? if ($_SESSION['u_niveau']== 3){?>
+	  <?php if ($_SESSION['u_niveau']== 3){?>
       <a href="rapport_penalite.php" class="btn btn-sm btn-success" > Recouvrement Penalité 1000 </a> |
-	   <? } else { }?>
+	   <?php } else { }?>
 	  
-      <? if ($_SESSION['u_niveau']== 2){?>
+      <?php if ($_SESSION['u_niveau']== 2){?>
       <a href="client_demande_suvi.php" class="btn btn-sm btn-success" > Demande des clients </a> |
-      <? } else { }?>
+      <?php } else { }?>
     </form>
   </div>
 </div>
@@ -200,9 +200,9 @@ echo "<option value=$row[refville]>$row[ville]</option>";
                   <select name="annee" size="1" id="annee">
                     <?php
 $sql82 = ("SELECT * FROM annee  ORDER BY annee ASC ");
-$result82 = mysql_query($sql82);
+$result82 = mysqli_query($linki,$sql82);
 
-while ($row82 = mysql_fetch_assoc($result82)) {
+while ($row82 = mysqli_fetch_assoc($result82)) {
 echo '<option> '.$row82['annee'].' </option>';
 }
 ?>
@@ -249,9 +249,9 @@ echo '<option> '.$row82['annee'].' </option>';
               <select name="ref_com" size="1" id="ref_com">
                 <?php
 $sql83 = ("SELECT * FROM commune  ORDER BY commune ASC ");
-$result83 = mysql_query($sql83);
+$result83 = mysqli_query($linki,$sql83);
 
-while ($row83 = mysql_fetch_assoc($result83)) {
+while ($row83 = mysqli_fetch_assoc($result83)) {
 echo '<option value= '.$row83['ref_com'].'> '.$row83['commune'].' </option>';
 }
 ?>
@@ -292,9 +292,9 @@ echo '<option value= '.$row83['ref_com'].'> '.$row83['commune'].' </option>';
                   <select name="annee" size="1" id="annee">
                     <?php
 $sql82 = ("SELECT * FROM z_annee  ORDER BY annee ASC ");
-$result82 = mysql_query($sql82);
+$result82 = mysqli_query($linki,$sql82);
 
-while ($row82 = mysql_fetch_assoc($result82)) {
+while ($row82 = mysqli_fetch_assoc($result82)) {
 echo '<option> '.$row82['annee'].' </option>';
 }
 ?>

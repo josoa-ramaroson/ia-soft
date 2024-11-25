@@ -6,8 +6,8 @@ require 'fonction.php';
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
-<? include 'inc/head.php'; ?>
+<title><?php include("titre.php"); ?></title>
+<?php include 'inc/head.php'; ?>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <script language="javascript" src="calendar/calendar.js"></script>
@@ -19,7 +19,7 @@ $nomclient=$_REQUEST["nc"];
 require "client_lient.php";
 
 $sql = "SELECT *FROM $tb_echangagent where id_client=$idc ORDER BY idv  DESC";  
-$req = mysql_query($sql)
+$req = mysqli_query($linki,$sql)
 
 ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
@@ -35,12 +35,12 @@ $req = mysql_query($sql)
                   <td width="24%">Tache realisé par </td>
                 </tr>
                   <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
                 <tr>
-                  <td><? echo $data['dated'];?></td>
-                  <td><? echo $data['note'];?>  
-                 <? 
+                  <td><?php echo $data['dated'];?></td>
+                  <td><?php echo $data['note'];?>  
+                 <?php 
 				  $tr=$data['Nsend'];
 				  $Banque=$data['Banque'];
 				  
@@ -55,8 +55,8 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
                    <?
 				   $idv=$data['idv'];
 				   $sqlr="SELECT * FROM $tb_echangreponse WHERE idv='$idv'" ;
-				   $resu= mysql_query($sqlr);
-				   $suivi=mysql_fetch_array($resu);
+				   $resu= mysqli_query($linki,$sqlr);
+				   $suivi=mysqli_fetch_array($resu);
 
 				  if ($suivi===FALSE){ } else { echo $suivi['nom']; }
                   ?>

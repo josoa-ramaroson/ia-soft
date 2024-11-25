@@ -46,16 +46,16 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
                 if (isset($_REQUEST["id"]))
                 $id = $_REQUEST["id"];
 $sql = "SELECT * FROM $tbl_contact where id='$id' ";
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-$datam=mysql_fetch_array($req);
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$datam=mysqli_fetch_array($req);
 
 	$sqldate="SELECT * FROM $tbl_caisse "; //DESC  ASC
-	$resultldate=mysql_query($sqldate);
-	$datecaisse=mysql_fetch_array($resultldate);
+	$resultldate=mysqli_query($linki,$sqldate);
+	$datecaisse=mysqli_fetch_array($resultldate);
 	
 	$ssolde="SELECT * FROM $tbl_fact  WHERE id='$id' and st='E' ORDER BY idf DESC LIMIT 0 , 1";
- 	$rsolde=mysql_query($ssolde);
-	$datamsolde=mysql_fetch_array($rsolde);
+ 	$rsolde=mysqli_query($linki,$ssolde);
+	$datamsolde=mysqli_fetch_array($rsolde);
 	
 
 ?></td>
@@ -75,34 +75,34 @@ $datam=mysql_fetch_array($req);
           <td width="11%">ID_CLIENT</td>
           <td width="1%">&nbsp;</td>
           <td width="35%"><strong>
-            <? echo $datam['id'];?>
+            <?php echo $datam['id'];?>
             </strong></td>
           <td width="1%">&nbsp;</td>
           <td width="12%"><strong><font size="2">N Compteur</font></strong></td>
-          <td width="40%"><strong><? echo $datam['ncompteur'];?></strong></td>
+          <td width="40%"><strong><?php echo $datam['ncompteur'];?></strong></td>
         </tr>
         <tr>
           <td><strong><font size="2">Designation</font></strong></td>
           <td>&nbsp;</td>
           <td><strong>
-           <? echo $datam['Designation'];?>
+           <?php echo $datam['Designation'];?>
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Index</font></strong></td>
-          <td><strong><? echo $datam['Indexinitial'];?></strong></td>
+          <td><strong><?php echo $datam['Indexinitial'];?></strong></td>
         </tr>
         <tr>
           <td><strong><font size="2">Nom et Prénom <font size="2"><font color="#FF0000"> *</font></font></font></strong></td>
           <td>&nbsp;</td>
-          <td><? echo $datam['nomprenom'];?>&nbsp;</td>
+          <td><?php echo $datam['nomprenom'];?>&nbsp;</td>
           <td>&nbsp;</td>
           <td>ACTIVITE </td>
-          <td><strong><? echo $datam['CodeActivite'];?></strong></td>
+          <td><strong><?php echo $datam['CodeActivite'];?></strong></td>
         </tr>
         <tr>
           <td><strong><font color="#000000" size="2">Ville</font></strong></td>
           <td>&nbsp;</td>
-          <td><strong><? echo $datam['ville'];?></strong></td>
+          <td><strong><?php echo $datam['ville'];?></strong></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
@@ -110,7 +110,7 @@ $datam=mysql_fetch_array($req);
         <tr>
           <td><strong><font size="2">Quartier</font></strong></td>
           <td>&nbsp;</td>
-          <td><strong><? echo $datam['quartier'];?></strong></td>
+          <td><strong><?php echo $datam['quartier'];?></strong></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
@@ -143,7 +143,7 @@ $datam=mysql_fetch_array($req);
             </tr>
             <tr>
               <td>Date :</td>
-              <td><input name="date" type="text" id="date" value="<? echo $datecaisse['datecaisse'];?>" size="30" readonly="readonly" /></td>
+              <td><input name="date" type="text" id="date" value="<?php echo $datecaisse['datecaisse'];?>" size="30" readonly="readonly" /></td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
@@ -156,15 +156,15 @@ $datam=mysql_fetch_array($req);
               <td>&nbsp;</td>
               <td><input type="submit" name="button" id="button" value="ACTIVER" class="btn btn-sm btn-success" onClick="return confirm('Etes-vous sûr de vouloir activer ce client ')"/>
                 <font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                  <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+                  <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
                   </font><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                    <input name="id" type="hidden" id="id" value="<? echo $datam['id']; ?>" />
+                    <input name="id" type="hidden" id="id" value="<?php echo $datam['id']; ?>" />
                     </font><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                        <input name="quartier" type="hidden" id="quartier" value="<? echo $datam['quartier']; ?>" />
+                        <input name="quartier" type="hidden" id="quartier" value="<?php echo $datam['quartier']; ?>" />
                       </font><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                      <input name="nomprenom" type="hidden" id="nomprenom" value="<? echo $datam['nomprenom'];?>" />
+                      <input name="nomprenom" type="hidden" id="nomprenom" value="<?php echo $datam['nomprenom'];?>" />
                       </font><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                      <input name="Indexinitial" type="hidden" id="Indexinitial" value="<? echo  $datam['Indexinitial']; ?>" />
+                      <input name="Indexinitial" type="hidden" id="Indexinitial" value="<?php echo  $datam['Indexinitial']; ?>" />
                       </font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></td>
             </tr>
           </table>
@@ -176,7 +176,7 @@ $datam=mysql_fetch_array($req);
 </div>
 <div class="panel panel-danger">
   <div class="panel-heading">
-    <h3 class="panel-title">RESILIATION DU CLIENT ( GRATUIT) : Montant restant à payer facturation éléctrique :  <? echo $datamsolde['report'];?> KMF</h3>
+    <h3 class="panel-title">RESILIATION DU CLIENT ( GRATUIT) : Montant restant à payer facturation éléctrique :  <?php echo $datamsolde['report'];?> KMF</h3>
   </div>
   <div class="panel-body">
     <table width="100%" border="0">
@@ -198,7 +198,7 @@ $datam=mysql_fetch_array($req);
             </tr>
             <tr>
               <td>Date :</td>
-              <td><input name="date" type="text" id="date" value="<? echo $datecaisse['datecaisse'];?>" size="30" readonly="readonly" /></td>
+              <td><input name="date" type="text" id="date" value="<?php echo $datecaisse['datecaisse'];?>" size="30" readonly="readonly" /></td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
@@ -210,22 +210,22 @@ $datam=mysql_fetch_array($req);
               </strong></td>
               <td>&nbsp;</td>
               <td>
-              <? if (($datamsolde['report'])<=0 ) { ?>
+              <?php if (($datamsolde['report'])<=0 ) { ?>
            
               <input type="submit" name="button2" id="button2" value="RESILIER" class="btn btn-sm btn-danger" onClick="return confirm('Etes-vous sûr de vouloir resilier ce client ')" />
               
-              <? } else {} ?>
+              <?php } else {} ?>
               
                 <font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                  <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+                  <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
                   </font><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                    <input name="id" type="hidden" id="id" value="<? echo $datam['id']; ?>" />
+                    <input name="id" type="hidden" id="id" value="<?php echo $datam['id']; ?>" />
                     </font><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                      <input name="quartier" type="hidden" id="quartier" value="<? echo $datam['quartier']; ?>" />
+                      <input name="quartier" type="hidden" id="quartier" value="<?php echo $datam['quartier']; ?>" />
                       </font><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                        <input name="nomprenom" type="hidden" id="nomprenom" value="<? echo $datam['nomprenom'];?>" />
+                        <input name="nomprenom" type="hidden" id="nomprenom" value="<?php echo $datam['nomprenom'];?>" />
                   </font><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                  <input name="Indexinitial" type="hidden" id="Indexinitial" value="<? echo  $datam['Indexinitial']; ?>" />
+                  <input name="Indexinitial" type="hidden" id="Indexinitial" value="<?php echo  $datam['Indexinitial']; ?>" />
                   </font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></td>
             </tr>
           </table>

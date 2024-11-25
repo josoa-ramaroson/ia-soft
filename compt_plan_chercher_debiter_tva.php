@@ -11,7 +11,7 @@ require 'fonction.php';
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 </head>
 <?
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
@@ -27,7 +27,7 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
       <tr> 
         <td width="84%"> <div align=""> 
             <form action="compt_plan_chercher_debiter_tva.php" method="post" name="testform" id="form2">
-<? require 'compt_plan_listecompte.php'; ?>
+<?php require 'compt_plan_listecompte.php'; ?>
               <p>&nbsp;</p>
             </form>
           </div></td>
@@ -44,8 +44,8 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
 
 $Numc=$_POST['Numc'];
 $req="SELECT Code , Description FROM $plan where  Code like '$Numc%' ";
-$resultat=mysql_query($req);
-while($row=mysql_fetch_array($resultat)){ // Start looping table row 
+$resultat=mysqli_query($linki,$req);
+while($row=mysqli_fetch_array($resultat)){ // Start looping table row 
 $c=$row['Code'];
 ?>
 <?php
@@ -58,7 +58,7 @@ $c=$row['Code'];
               <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
             </table>
           </form></td>

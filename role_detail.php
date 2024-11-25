@@ -8,7 +8,7 @@ require("session_niveau_role.php");
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 
@@ -16,7 +16,7 @@ require("session_niveau_role.php");
 <?
 require("bienvenue.php"); // on appelle la page contenant la fonction
 ?>
-<? if($_SESSION['u_niveau']==70) {$aff='';} else {$aff='readonly';} ?>
+<?php if($_SESSION['u_niveau']==70) {$aff='';} else {$aff='readonly';} ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
 <p><font size="2"><font size="2"><font size="2">
 
@@ -93,9 +93,9 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
 
    $bgcolor = "#FFFFFF";
 ?>
-    <tr bgcolor=<? echo "$bgcolor" ?>>
-      <td height="29" align="center" ><div align="left"><em><? echo $data['id_role_user'];?></em></div></td>
-      <td align="center"><div align="left"><em>   </em><em><? $id=$data['id_u']; 	  
+    <tr bgcolor=<?php echo "$bgcolor" ?>>
+      <td height="29" align="center" ><div align="left"><em><?php echo $data['id_role_user'];?></em></div></td>
+      <td align="center"><div align="left"><em>   </em><em><?php $id=$data['id_u']; 	  
 	  $info=affichage_utilisateur($id,$tbl_utilisateur,$linki);
       //$tab = array($info);
 	  $lenom=$info[0];
@@ -105,17 +105,17 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
 	  
 	  
 	  ?></em></div></td>
-      <td width="194" ><? echo $leprenom;?></td>
-      <td width="172"><? echo $lemail;?></td>
+      <td width="194" ><?php echo $leprenom;?></td>
+      <td width="172"><?php echo $lemail;?></td>
       <td width="121">&nbsp;</td>
       <td width="110">&nbsp;</td>
-      <td width="125"><em><?  $data['r_p'];
+      <td width="125"><em><?php  $data['r_p'];
 	  
 	  if ($data['r_p']==1){ echo "Role Principal";} else { ?>
       
-      	<a href="role_cancel.php?ID=<? echo  md5(microtime()).$data['id_role_user']; ?>&Idrole=<? echo $_REQUEST["id_role"]; ?>" onClick="return confirm('Etes-vous s&ucirc;r de vouloir supprimer')" ; style="margin:5px"  class="btn btn-xs btn-danger"> x </a></td>
+      	<a href="role_cancel.php?ID=<?php echo  md5(microtime()).$data['id_role_user']; ?>&Idrole=<?php echo $_REQUEST["id_role"]; ?>" onClick="return confirm('Etes-vous s&ucirc;r de vouloir supprimer')" ; style="margin:5px"  class="btn btn-xs btn-danger"> x </a></td>
 	  
-	    <? }  ?>
+	    <?php }  ?>
       
       </em></td> 
     </tr>

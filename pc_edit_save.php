@@ -61,7 +61,7 @@ actif='$actif',
 utilisateur='$utilisateur', id_nom='$id_nom'  WHERE id='$id' ";
 
 
-$result=mysql_query($sql);
+$result=mysqli_query($linki,$sql);
    if($result){
 	   //SUCCESS
 	   $idr=md5(microtime()).$id;
@@ -70,5 +70,5 @@ $result=mysql_query($sql);
    else {
    echo "ERROR";
    }
-  mysql_close(); 
+  mysqli_close($linki); 
 ?>

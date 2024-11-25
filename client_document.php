@@ -36,7 +36,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
     <h3 class="panel-title">&nbsp;</h3>
   </div>
   <div class="panel-body">
-<? require 'client_user_menu.php';?>
+<?php require 'client_user_menu.php';?>
   </div>
 </div>
 <p>&nbsp;</p>
@@ -58,7 +58,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
         <tr>
           <td width="16%">Code Client </td>
           <td width="1%">&nbsp;</td>
-          <td width="30%"><strong><? echo $datam['id'];?></strong></td>
+          <td width="30%"><strong><?php echo $datam['id'];?></strong></td>
           <td width="1%">&nbsp;</td>
           <td width="12%">&nbsp;</td>
           <td width="40%">&nbsp;</td>
@@ -74,7 +74,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
                 <tr>
           <td><strong><font size="2">Nom</font></strong></td>
           <td>&nbsp;</td>
-          <td><? echo $datam['nomprenom'];?></td>
+          <td><?php echo $datam['nomprenom'];?></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
@@ -92,10 +92,10 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
   <table width="1195" border="0">
     <tr>
       <td width="169"><font color="#FF0000">
-        <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>"/>
-        <input name="idclient" type="hidden" id="idclient" value="<? echo $datam['id'];?>"/>
-        <input name="nom" type="hidden" id="nom" value="<? echo $datam['nomprenom']; ?>"/>
-        <input name="prenom" type="hidden" id="prenom" value="<? echo  $datam['prenom']; ?>"/>
+        <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>"/>
+        <input name="idclient" type="hidden" id="idclient" value="<?php echo $datam['id'];?>"/>
+        <input name="nom" type="hidden" id="nom" value="<?php echo $datam['nomprenom']; ?>"/>
+        <input name="prenom" type="hidden" id="prenom" value="<?php echo  $datam['prenom']; ?>"/>
       </font></td>
       <td width="289">&nbsp;</td>
       <td width="300">&nbsp;</td>
@@ -140,51 +140,51 @@ while($document=mysqli_fetch_array($resultana)){
           <tr bgcolor="#FFFFFF">
           
           <form method="post" enctype="multipart/form-data" action="client_document_file_save.php">
-            <td height="32"><? echo $document['titre']; ?></td>
+            <td height="32"><?php echo $document['titre']; ?></td>
             
             <td height="32"> 
             
-            <? if($document['statut'] == 1) { } else { ?>
+            <?php if($document['statut'] == 1) { } else { ?>
                <input type="file" name="fichier"  size="25"  />           
                        
               <font color="#FF0000">
-              <input name="iddocument" type="hidden" id="iddocument" value="<? echo $document['iddocument']; ?>">
-              <input name="idclient" type="hidden" id="idclient" value="<? echo $idclient ;?>" size="30" readonly/>
+              <input name="iddocument" type="hidden" id="iddocument" value="<?php echo $document['iddocument']; ?>">
+              <input name="idclient" type="hidden" id="idclient" value="<?php echo $idclient ;?>" size="30" readonly/>
               </font>
               
-             <? } ?> 
+             <?php } ?> 
               
              </td>
             
             <td height="32">
             
-            <? $filename = 'upload/document_client/'.$document['iddocument'].'.jpg'; ?>
+            <?php $filename = 'upload/document_client/'.$document['iddocument'].'.jpg'; ?>
             <div class="row">
-            <? if (file_exists($filename) == true) { ?>
+            <?php if (file_exists($filename) == true) { ?>
 
-<a href="client_document_file_apercu.php?doc=<? echo md5(microtime()).$document['iddocument']; ?>&amp;d=<? echo  md5(microtime());?>" onClick="return !window.open(this.href, 'pop', 'width=679,height=679,left=120,top=120');"> <img src="upload/document_client/document_file.jpg" width="57" height="63" class="pix" />
+<a href="client_document_file_apercu.php?doc=<?php echo md5(microtime()).$document['iddocument']; ?>&amp;d=<?php echo  md5(microtime());?>" onClick="return !window.open(this.href, 'pop', 'width=679,height=679,left=120,top=120');"> <img src="upload/document_client/document_file.jpg" width="57" height="63" class="pix" />
             </a>
            
        
             
-            <? } else { ?>
+            <?php } else { ?>
           
-            <? } ?>
+            <?php } ?>
 
              </td>
              
             <td height="32">
             
-            <? if($document['statut'] == 0) { ?>
+            <?php if($document['statut'] == 0) { ?>
             <input type="submit" name="upload" value="Mise à jour" class="btn btn-info">
-            <? } else { ?>
+            <?php } else { ?>
                           
-            <a href="client_document_file_cancel.php?ID=<? echo  md5(microtime()).$document['iddocument'];?>&<? echo  md5(microtime());?>&idc=<? echo  md5(microtime()).$idclient;?>" onClick="return confirm('Etes-vous s&ucirc;r de vouloir supprimer')" ; style="margin:5px"  class="btn btn-sm btn-danger">SUPPRIMER</a>
+            <a href="client_document_file_cancel.php?ID=<?php echo  md5(microtime()).$document['iddocument'];?>&<?php echo  md5(microtime());?>&idc=<?php echo  md5(microtime()).$idclient;?>" onClick="return confirm('Etes-vous s&ucirc;r de vouloir supprimer')" ; style="margin:5px"  class="btn btn-sm btn-danger">SUPPRIMER</a>
              
              
              
              
-            <? } ?>
+            <?php } ?>
             </td>
               </form>
           </tr>

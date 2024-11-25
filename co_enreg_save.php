@@ -18,14 +18,14 @@ $datepose=addslashes($_POST['datepose']);
 
 $T=$Tarif;
 $sql82 = ("SELECT * FROM tarif where idt='$T'");
-$result82 = mysql_query($sql82);
-while ($row82 = mysql_fetch_assoc($result82)) {
+$result82 = mysqli_query($linki,$sql82);
+while ($row82 = mysqli_fetch_assoc($result82)) {
 $typecompteur=$row82['typecom'];
 }
 
 
 $sql="update $tbl_contact  set id_nom='$id_nom' , Police='$Police',  phase='$phase', puissance='$puissance', Tarif='$Tarif', amperage='$amperage' , ncompteur='$ncompteur' , Indexinitial='$Indexinitial', index2='$index2', datepose='$datepose' , miseajours='1' WHERE id LIKE '$_POST[id]' ";
-$result=mysql_query($sql);
+$result=mysqli_query($linki,$sql);
 
 //--------------------------------------------INITIALISATION INDEX --------------
 
@@ -34,26 +34,26 @@ $libelle='Index initial';
 $nfacture='Index';
 
 $sqlmaxf="SELECT MAX(idf) AS Maxa_id FROM $tbl_fact";
-$resultmaxf=mysql_query($sqlmaxf);
-$rowsmaxf=mysql_fetch_array($resultmaxf);
+$resultmaxf=mysqli_query($linki,$sqlmaxf);
+$rowsmaxf=mysqli_fetch_array($resultmaxf);
 $Max_idf = $rowsmaxf['Maxa_id'];
 
 
 
 $valeur_existant = "SELECT COUNT(*) AS nb FROM $tbl_fact  WHERE id='$id' and st='E' and idf='$Max_idf'";
-$sqLvaleur = mysql_query($valeur_existant)or exit(mysql_error()); 
-$nb = mysql_fetch_assoc($sqLvaleur);
+$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error()); 
+$nb = mysqli_fetch_assoc($sqLvaleur);
 
 if($nb['nb'] == 1)
 {
 $sqlp="update  $tbl_fact  set   nf='$Indexinitial' , nf2='$index2' WHERE id LIKE '$_POST[id]' and st='E' and idf='$Max_idf' ";
-$resultp=mysql_query($sqlp);
+$resultp=mysqli_query($linki,$sqlp);
 }
 else 
 {
 $sql2="INSERT INTO $tbl_fact ( id, ci , st, id_nom, fannee, nfacture,  nf, libelle) VALUES
 ( '$id','$ci', '$st', '$id_nom', '$anneec',  '$nfacture', '$Indexinitial', '$libelle')";
-$r=mysql_query($sql2) or die(mysql_error());
+$r=mysqli_query($linki,$sql2) or die(mysqli_error());
 }
 //--------------------------------------------------------------------------------------------------
 
@@ -66,5 +66,5 @@ $r=mysql_query($sql2) or die(mysql_error());
    else {
    echo "ERROR";
    }
-  mysql_close(); 
+  mysqli_close($linki); 
 ?>

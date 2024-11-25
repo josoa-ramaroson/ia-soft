@@ -13,7 +13,7 @@ require 'rh_configuration_fonction.php';
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script language="javascript" src="calendar/calendar.js"></script>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -30,7 +30,7 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
 $annee=$_POST['annee'];
 
 $sql2="SELECT SUM(prixt) AS prixt, direction ,service FROM $tbl_appbonachatp where  YEAR(date_dem)=$annee GROUP by direction, service order by direction ,service  ";
-$result2=mysql_query($sql2);
+$result2=mysqli_query($linki,$sql2);
 ?>
     </h3>
   </div>
@@ -40,7 +40,7 @@ $result2=mysql_query($sql2);
 	    <?php
  $numboucle=0;
  
-while($rows2=mysql_fetch_array($result2)){ 
+while($rows2=mysqli_fetch_array($result2)){ 
 
  if($numboucle %2 == 0) 
  
@@ -50,22 +50,22 @@ while($rows2=mysql_fetch_array($result2)){
 
    $bgcolor = "#FFFFFF";  
 ?>
-        <tr bgcolor=<? echo "$bgcolor" ?>>
-          <td width="20%" height="33"> Annee <? echo $annee;?> </td>
-          <td width="21%"><? echo $rows2['direction'];?></td>
-          <td width="19%"><? echo $rows2['service'];?> 
+        <tr bgcolor=<?php echo "$bgcolor" ?>>
+          <td width="20%" height="33"> Annee <?php echo $annee;?> </td>
+          <td width="21%"><?php echo $rows2['direction'];?></td>
+          <td width="19%"><?php echo $rows2['service'];?> 
                     
           </td>
-          <td width="14%"><? $P=strrev(chunk_split(strrev($rows2['prixt']),3," "));   echo $P;?></td>
+          <td width="14%"><?php $P=strrev(chunk_split(strrev($rows2['prixt']),3," "));   echo $P;?></td>
           <td width="26%">
-          <a href="app_rapport_annee_direction_service_export.php?id=<? echo md5(microtime()).$annee; ?>&dr=<? echo $rows2['direction'];?>&sr=<? echo $rows2['service']; ?>" class="btn btn-xs btn-success" target="_blank"> Exporter </a>
+          <a href="app_rapport_annee_direction_service_export.php?id=<?php echo md5(microtime()).$annee; ?>&dr=<?php echo $rows2['direction'];?>&sr=<?php echo $rows2['service']; ?>" class="btn btn-xs btn-success" target="_blank"> Exporter </a>
           </td>
         </tr>
 		  <?php
 $numboucle++;
 }
-mysql_free_result ($result2);  
-mysql_close ();  
+mysqli_free_result ($result2);  
+mysqli_close ();  
 ?>
       </table>
 

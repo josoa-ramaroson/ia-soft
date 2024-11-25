@@ -46,9 +46,9 @@ $reqt = mysqli_query($linkibk,$sqlt);
 while($datat=mysqli_fetch_array($reqt)){ // Start looping table row 
 ?>
     <tr>
-      <td align="center" bgcolor="#FFFFFF"><? echo  $datat['id_nom']; ?></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo  $datat['date']; ?></td>
-    <td align="center" bgcolor="#FFFFFF"><? $P=strrev(chunk_split(strrev($datat['Paie']),3," "));   echo $P;?></td>
+      <td align="center" bgcolor="#FFFFFF"><?php echo  $datat['id_nom']; ?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo  $datat['date']; ?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php $P=strrev(chunk_split(strrev($datat['Paie']),3," "));   echo $P;?></td>
    </tr>
   <?php
 }
@@ -69,12 +69,12 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
 ?>
    
      
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['id'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['nfacture'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['Nomclient'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['nrecu'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['montant'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['paiement'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['id'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['nfacture'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['Nomclient'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['nrecu'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['montant'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['paiement'];?></em></td>
      </tr>
    <?php
 }

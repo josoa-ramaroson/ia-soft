@@ -13,8 +13,8 @@ exit();
 
 //------------identification du maximun -----------
 $sqlmax="SELECT MAX(idclient) AS Maxa_id FROM $tbl_clientgaz";
-$resultmax=mysql_query($sqlmax);
-$rowsmax=mysql_fetch_array($resultmax);
+$resultmax=mysqli_query($linki,$sqlmax);
+$rowsmax=mysqli_fetch_array($resultmax);
 if ($rowsmax) {
 $Max_id = $rowsmax['Maxa_id']+1;
 }
@@ -44,14 +44,14 @@ $ile=addslashes($_POST['ile']);
 echo $sql="INSERT INTO $tbl_clientgaz ( id_nom , Designation, nomprenom,surnom, email, titre, tel, login, pwd , fax , url , adresse , quartier ,ville,ile)
 VALUES
 ( '$id_nom' ,'$Designation', '$nomprenom', '$surnom', '$email', '$titre', '$tel', '$login', '$pwd', '$fax' , '$url' , '$adresse' , '$quartier' , '$ville', '$ile')";
-$result=mysql_query($sql);
+$result=mysqli_query($linki,$sql);
 
    if($result){
    }
    else {
    echo "ERROR";
    }
-  mysql_close(); 
+  mysqli_close($linki); 
 ?>
 <?php
 header("location:stk_client.php");

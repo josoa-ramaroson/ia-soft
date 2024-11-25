@@ -1,42 +1,50 @@
 <?php
 require 'fonction.php';
 
-$date=addslashes($_POST['date']);
-$blogin=addslashes($_POST['blogin']);
-$verification=addslashes($_POST['verification']);
+// Récupération et nettoyage des données
+$date = mysqli_real_escape_string($linki, $_POST['date']);
+$blogin = mysqli_real_escape_string($linki, $_POST['blogin']);
+$verification = mysqli_real_escape_string($linki, $_POST['verification']);
 
-
-$dfin = explode("-", $date); 
+$dfin = explode("-", $date);
 $debut = explode("-", $verification);
 
-if ($dfin <= $debut)
-{
-header("location: app_caisse.php");
-}
-else
-{
-$valeur_existant = "SELECT COUNT(*) AS nb FROM $tbl_app_caisse ";
-$sqLvaleur = mysql_query($valeur_existant)or exit(mysql_error()); 
-$nb = mysql_fetch_assoc($sqLvaleur);
+if ($dfin <= $debut) {
+    header("location: app_caisse.php");
+    exit();
+} else {
+    // Vérification des entrées existantes
+    $valeur_existant = "SELECT COUNT(*) AS nb FROM $tbl_app_caisse";
+    $sqLvaleur = mysqli_query($linki, $valeur_existant) 
+        or exit(mysqli_error($linki));
+    
+    $nb = mysqli_fetch_assoc($sqLvaleur);
+    mysqli_free_result($sqLvaleur);
 
-if($nb['nb'] == 1)
-{
-$sqlp="update  $tbl_app_caisse  set  datecaisse='$date' , blogin='$blogin' , date_verif='$date' ";
-$resultp=mysql_query($sqlp);
-
-header("location: app_caisse.php");
-}
-else 
-{
-
-$sqlp="INSERT INTO $tbl_app_caisse ( blogin  ,  datecaisse ,date_verif )
-                    VALUES      ('$blogin','$date' , '$date')";								
-$r=mysql_query($sqlp)
-or die(mysql_error());
-
-mysql_close($link);
-
-header("location: app_caisse.php");
-}
+    if($nb['nb'] == 1) {
+        // Mise à jour des données
+        $sqlp = "UPDATE $tbl_app_caisse 
+                 SET datecaisse='$date',
+                     blogin='$blogin',
+                     date_verif='$date'";
+                     
+        mysqli_query($linki, $sqlp) 
+            or exit(mysqli_error($linki));
+            
+        header("location: app_caisse.php");
+        exit();
+    } else {
+        // Insertion de nouvelles données
+        $sqlp = "INSERT INTO $tbl_app_caisse 
+                (blogin, datecaisse, date_verif)
+                VALUES 
+                ('$blogin', '$date', '$date')";
+                
+        mysqli_query($linki, $sqlp) 
+            or exit(mysqli_error($linki));
+            
+        header("location: app_caisse.php");
+        exit();
+    }
 }
 ?>

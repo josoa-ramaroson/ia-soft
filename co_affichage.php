@@ -1,4 +1,4 @@
-<?
+<?php
 require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
@@ -7,10 +7,10 @@ require 'fonction.php';
 <head>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Document sans titre</title>
+<title><?php include "titre.php" ?> - Liste des clients</title>
 </head>
-<?
-Require 'bienvenue.php';    // on appelle la page contenant la fonction
+<?php
+require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <body>
  <table width="99%" border="0">
@@ -103,12 +103,18 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
                    <font color="#000000">
                    <select name="annee" size="1" id="annee">
                      <?php
-$sql81 = ("SELECT * FROM z_annee  ORDER BY annee ASC ");
-$result81 = mysql_query($sql81);
-
-while ($row81 = mysql_fetch_assoc($result81)) {
-echo '<option> '.$row81['annee'].' </option>';
-}
+          $sql81 = ("SELECT * FROM z_annee  ORDER BY annee ASC ");
+          $result81 = mysqli_query($linki, $sql81);
+          // Vérification de l'existence des résultats
+          if ($result81) {
+            // Boucle pour afficher les options dans un <select>
+            while ($row81 = mysqli_fetch_assoc($result81)) {
+                echo '<option value="' . htmlspecialchars($row81['annee']) . '">' . htmlspecialchars($row81['annee']) . '</option>';
+            }
+          } else {
+            // Gestion de l'erreur si la requête échoue
+            echo "Erreur dans la récupération des années : " . mysqli_error($linki);
+          }
 ?>
                    </select>
                    </font>
@@ -141,8 +147,8 @@ echo '<option> '.$row81['annee'].' </option>';
  <p>
    <?php
 $sql = "SELECT count(*) FROM $tbl_contact  where statut='6'";  
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-$nb_total = mysql_fetch_array($resultat);  
+$resultat = mysqli_query($linki, $sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
+$nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
 }  
@@ -150,7 +156,7 @@ else {
 if (!isset($_GET['debut'])) $_GET['debut'] = 0; 
 $nb_affichage_par_page = 50; 
 $sql = "SELECT * FROM $tbl_contact  where statut='6' ORDER BY nomprenom ASC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki, $sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 ?>
  </p>
 <table width="98%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
@@ -164,23 +170,23 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
      <td width="8%" align="center">&nbsp;</td>
    </tr>
    <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
    <tr>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><a href="co_affichage_user.php?id=<? echo md5(microtime()).$data['id']; ?>" class="btn btn-sm btn-default" ><? echo $data['id'];?></a></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['Police'];?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['nomprenom'];?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['tel'];?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['ville'];?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['quartier'];?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><a href="co_affichage_user.php?id=<? echo md5(microtime()).$data['id']; ?>" class="btn btn-sm btn-success" >Aperçu</a></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><a href="co_affichage_user.php?id=<?php echo md5(microtime()).$data['id']; ?>" class="btn btn-sm btn-default" ><?php echo $data['id'];?></a></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['Police'];?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['nomprenom'];?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['tel'];?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['ville'];?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['quartier'];?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><a href="co_affichage_user.php?id=<?php echo md5(microtime()).$data['id']; ?>" class="btn btn-sm btn-success" >Aperçu</a></td>
    <?php
 }
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close ();  
+mysqli_free_result ($resultat);  
+mysqli_close ($linki);  
 ?>
 </table>
 <p>&nbsp;</p>

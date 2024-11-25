@@ -40,9 +40,9 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
     <h3 class="panel-title">&nbsp;</h3>
   </div>
   <div class="panel-body">
-  <? if ($_SESSION['u_niveau']==7){?>
-      <a href="fon_para_edit.php?idfon_sys=<? echo md5(microtime()).$datam['idfon_sys'];?>" class="btn btn-sm btn-warning" >Edit le client</a>
-     |<? } else {} ?>
+  <?php if ($_SESSION['u_niveau']==7){?>
+      <a href="fon_para_edit.php?idfon_sys=<?php echo md5(microtime()).$datam['idfon_sys'];?>" class="btn btn-sm btn-warning" >Edit le client</a>
+     |<?php } else {} ?>
      
     <a href="sw_parametre.php" class="btn btn-sm btn-success" > Précédent  </a> |   
      </div>
@@ -59,7 +59,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
           <td width="11%">&nbsp;</td>
           <td width="1%">&nbsp;</td>
           <td width="35%"><strong>
-          <? echo $datam['idfon_sys'];?>
+          <?php echo $datam['idfon_sys'];?>
           </strong></td>
           <td width="1%">&nbsp;</td>
           <td width="12%">&nbsp;</td>
@@ -69,32 +69,32 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
           <td height="36">annee1</td>
           <td>&nbsp;</td>
           <td><strong>
-           <? echo $datam['annee1'];?>
+           <?php echo $datam['annee1'];?>
           </strong></td>
           <td>&nbsp;</td>
           <td>annee</td>
-          <td><strong><? echo $datam['annee'];?></strong></td>
+          <td><strong><?php echo $datam['annee'];?></strong></td>
         </tr>
         <tr>
           <td height="36">annee2</td>
           <td>&nbsp;</td>
-          <td><? echo $datam['annee2'];?>&nbsp;</td>
+          <td><?php echo $datam['annee2'];?>&nbsp;</td>
           <td>&nbsp;</td>
           <td>annee_facturation</td>
-          <td><strong><? echo $datam['annee_facturation'];?></strong></td>
+          <td><strong><?php echo $datam['annee_facturation'];?></strong></td>
         </tr>
         <tr>
           <td height="40">date1</td>
           <td>&nbsp;</td>
-          <td><? echo $datam['date1'];?></td>
+          <td><?php echo $datam['date1'];?></td>
           <td>&nbsp;</td>
           <td>annee_recouvrement</td>
-          <td><strong><? echo $datam['annee_recouvrement'];?></strong></td>
+          <td><strong><?php echo $datam['annee_recouvrement'];?></strong></td>
         </tr>
         <tr>
           <td height="41">date2</td>
           <td>&nbsp;</td>
-          <td><? echo $datam['date2'];?></td>
+          <td><?php echo $datam['date2'];?></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
@@ -102,7 +102,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
         <tr>
           <td height="32">date3</td>
           <td>&nbsp;</td>
-          <td><strong><? echo $datam['date3'];?></strong></td>
+          <td><strong><?php echo $datam['date3'];?></strong></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
@@ -110,7 +110,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
         <tr>
           <td height="40">annee1A</td>
           <td>&nbsp;</td>
-          <td><strong><? echo $datam['annee1A'];?></strong></td>
+          <td><strong><?php echo $datam['annee1A'];?></strong></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
@@ -118,7 +118,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
         <tr>
           <td>annee2A</td>
           <td>&nbsp;</td>
-          <td><strong><? echo $datam['annee2A'];?></strong></td>
+          <td><strong><?php echo $datam['annee2A'];?></strong></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
@@ -126,7 +126,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
         <tr>
           <td height="40">date1A</td>
           <td>&nbsp;</td>
-          <td><strong><? echo $datam['date1A'];?></strong></td>
+          <td><strong><?php echo $datam['date1A'];?></strong></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
@@ -134,7 +134,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
         <tr>
           <td height="33">date2A</td>
           <td>&nbsp;</td>
-          <td><strong><? echo $datam['date2A'];?></strong></td>
+          <td><strong><?php echo $datam['date2A'];?></strong></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>

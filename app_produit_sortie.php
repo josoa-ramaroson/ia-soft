@@ -20,7 +20,7 @@ if(($_SESSION['u_niveau'] != 7)&& ($_SESSION['u_niveau'] != 40) &&($_SESSION['u_
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>
-<? include("titre.php"); ?></title>
+<?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -129,7 +129,7 @@ require 'bienvenue.php';    // on appelle la page contenant la fonction
         </tr>
         <tr>
           <td><strong><font color="#000000">Date</font><font color="#FF0000">* </font></strong></td>
-          <td><input name="datev" class="form-control" type="text" id="datev" value="<? echo $datecaisse['datecaisse'];?>" size="30" readonly />
+          <td><input name="datev" class="form-control" type="text" id="datev" value="<?php echo $datecaisse['datecaisse'];?>" size="30" readonly />
             <?php
 					 /* $myCalendar = new tc_calendar("datev", true, false);
 					  $myCalendar->setIcon("calendar/images/iconCalendar.gif");
@@ -145,8 +145,8 @@ require 'bienvenue.php';    // on appelle la page contenant la fonction
           <td>&nbsp;</td>
           <td><strong><font color="#000000">Quantit&eacute;</font></strong><font color="#FF0000">*</font><strong><font color="#FF0000"></font></strong></td>
           <td>
-           <? if($_SESSION['u_niveau']==45) {$aff='';} else {$aff='readonly';} ?>
-          <input name="Qvente" class="form-control" type="text" id="Qvente2" value="" size="30" <? echo $aff;?> /></td>
+           <?php if($_SESSION['u_niveau']==45) {$aff='';} else {$aff='readonly';} ?>
+          <input name="Qvente" class="form-control" type="text" id="Qvente2" value="" size="30" <?php echo $aff;?> /></td>
           <td>&nbsp;</td>
           <td>Service </td>
           <td><select name="service" id="service">
@@ -175,8 +175,8 @@ echo '<option> '.$row2s['service'].' </option>';
           <td><select name="nameproduit" id="nameproduit">
             <?php
 $sql2B = ("SELECT DISTINCT(titre) FROM 	$tv_v_app_produit_type_menu where reste>0 ORDER BY titre  ASC ");
-$result2B= mysql_query($sql2B);
-while ($row2B = mysql_fetch_assoc($result2B)) {
+$result2B= mysqli_query($linki,$sql2B);
+while ($row2B = mysqli_fetch_assoc($result2B)) {
 echo '<option> '.$row2B['titre'].' </option>';
 }
 
@@ -184,7 +184,7 @@ echo '<option> '.$row2B['titre'].' </option>';
           </select></td>
           <td>&nbsp;</td>
           <td><strong>Réceptionner par <font color="#FF0000">*</font></strong></td>
-          <td><input name="nc" class="form-control"  type="text" id="Qvente" value="" size="30" <? echo $aff;?> /></td>
+          <td><input name="nc" class="form-control"  type="text" id="Qvente" value="" size="30" <?php echo $aff;?> /></td>
           <td>&nbsp;</td>
           <td><strong>Succursale</strong></td>
           <td><select name="a_nom" id="a_nom">
@@ -232,7 +232,7 @@ echo '<option> '.$row2['titre'].' </option>';
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-            <input name="id_nom" type="hidden" id="id_nom2" value="<? echo $id_nom; ?>" />
+            <input name="id_nom" type="hidden" id="id_nom2" value="<?php echo $id_nom; ?>" />
           </font><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
           <input class="form-control" name="PUnitaire" type="hidden" id="PUnitaire" value="" size="20" readonly>
           </font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></td>
@@ -277,10 +277,10 @@ echo '<option> '.$row2['titre'].' </option>';
 $sql = "SELECT count(*) FROM $tbl_appproduit_sortie ";  
 
 // on ex?cute cette requ?te  
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
 // on r?cup?re le nombre d'?l?ments ? afficher  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
  // on teste si ce nombre de vaut pas 0  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -300,7 +300,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT * FROM $tbl_appproduit_sortie  ORDER BY idvente  DESC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  //ASC
  
 // on ex?cute la requ?te  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 
 ?>
 </p>
@@ -316,7 +316,7 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
   </tr>
   <?php
 $numboucle=0;
-while($data=mysql_fetch_array($req)){ // Start looping table row
+while($data=mysqli_fetch_array($req)){ // Start looping table row
 
  if($numboucle %2 == 0) 
  
@@ -326,25 +326,25 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
 
    $bgcolor = "#FFFFFF";  
 ?>
-  <tr bgcolor=<? echo "$bgcolor" ?>>
+  <tr bgcolor=<?php echo "$bgcolor" ?>>
     <td height="31" align="center"><div align="left"></div>
       <div align="left"></div></td>
-    <td align="center"><? echo $data['datev'];?></td>
-    <td align="center"><div><? echo $data['id_nom'];?></div></td>
-    <td align="center"><div><? echo $data['nc'];?></div></td>
-    <td align="center"><div><em><? echo $data['titre'];?></em></div></td>
-    <td align="center" ><div><em><? echo $data['Qvente'];?></em></div></td>
-    <td align="center"><em><? echo $data['service'];?></em></td>
+    <td align="center"><?php echo $data['datev'];?></td>
+    <td align="center"><div><?php echo $data['id_nom'];?></div></td>
+    <td align="center"><div><?php echo $data['nc'];?></div></td>
+    <td align="center"><div><em><?php echo $data['titre'];?></em></div></td>
+    <td align="center" ><div><em><?php echo $data['Qvente'];?></em></div></td>
+    <td align="center"><em><?php echo $data['service'];?></em></td>
   </tr>
   <?php
  $numboucle++;
 }
 
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close ();  
+mysqli_free_result ($resultat);  
+mysqli_close ();  
 ?>
 </table>
 <p>&nbsp; </p>

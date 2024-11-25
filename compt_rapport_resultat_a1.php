@@ -11,7 +11,7 @@ require 'fonction.php';
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 </head>
 <?
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
@@ -45,32 +45,32 @@ $annee=$_POST['annee'];
 	  from $tb_ecriture where  YEAR(Date)=$annee  GROUP BY Compte " ;
 
 
-  $req=mysql_query($req2);
- while ($data=mysql_fetch_array($req)){ // Start looping table row 
+  $req=mysqli_query($linki,$req2);
+ while ($data=mysqli_fetch_array($req)){ // Start looping table row 
  $de=$data['compt_ecriture'];
  $dee=$data['compt_ecriture1'];
 ?>
               <tr> 
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Compte'];?>
+                    <?php echo $data['Compte'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Description'];?>
+                    <?php echo $data['Description'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? //echo $data['Debit'];?>
-                    <? echo $dee ;?>
+                    <?php //echo $data['Debit'];?>
+                    <?php echo $dee ;?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $de ;?>
+                    <?php echo $de ;?>
                     kmf<BR>
                     <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
                   </div></td>
                 <td width="11%" bgcolor="#FFFFFF"><div align=""></div></td>
@@ -82,8 +82,8 @@ $annee=$_POST['annee'];
   $req2="SELECT  SUM(compt_ecriture.Credit) AS compt_ecriture FROM $tb_ecriture where YEAR(Date)=$annee   " ;
  
  
-  $req=mysql_query($req2);
- while ($data5=mysql_fetch_array($req)){ // Start looping table row 
+  $req=mysqli_query($linki,$req2);
+ while ($data5=mysqli_fetch_array($req)){ // Start looping table row 
  $nb=$data5['compt_ecriture'];
 ?>
                 <td height="27" colspan="7"><div align="center">Total Credit : 
@@ -93,7 +93,7 @@ $annee=$_POST['annee'];
                 <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
               </tr>
 			  
@@ -105,8 +105,8 @@ $annee=$_POST['annee'];
   $req2="SELECT  SUM(compt_ecriture.Debit) AS compt_ecriture FROM $tb_ecriture where YEAR(Date)=$annee   " ;
  
  
-  $req=mysql_query($req2);
- while ($data5=mysql_fetch_array($req)){ // Start looping table row 
+  $req=mysqli_query($linki,$req2);
+ while ($data5=mysqli_fetch_array($req)){ // Start looping table row 
  $nb1=$data5['compt_ecriture'];
 ?>
                 <td height="27" colspan="7"><div align="center">Total Debit : 
@@ -116,7 +116,7 @@ $annee=$_POST['annee'];
                 <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
               </tr>  
 			  
@@ -124,14 +124,14 @@ $annee=$_POST['annee'];
   //$dc1=$_POST['dc1'];
   //$dc2=$_POST['dc2'];
   $req2="select Compte , Description , Credit ,SUM(compt_ecriture.Debit) AS compt_ecriture from $tb_ecriture where  YEAR(Date)=$annee and Type='D' and mo='D' GROUP BY Compte  " ;
-  $req=mysql_query($req2);
- while ($data3=mysql_fetch_array($req)){ // Start looping table row 
+  $req=mysqli_query($linki,$req2);
+ while ($data3=mysqli_fetch_array($req)){ // Start looping table row 
  $cr=$data3['compt_ecriture']; 
 ?>
               <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
             </table>
           </form></td>

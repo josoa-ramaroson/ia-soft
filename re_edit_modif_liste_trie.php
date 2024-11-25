@@ -129,9 +129,9 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
                      <select name="annee" size="1" id="annee">
                        <?php
 $sql81 = ("SELECT * FROM z_annee  ORDER BY annee ASC ");
-$result81 = mysql_query($sql81);
+$result81 = mysqli_query($linki,$sql81);
 
-while ($row81 = mysql_fetch_assoc($result81)) {
+while ($row81 = mysqli_fetch_assoc($result81)) {
 echo '<option> '.$row81['annee'].' </option>';
 }
 ?>
@@ -179,8 +179,8 @@ echo '<option> '.$row81['annee'].' </option>';
 $valeuretat=$_REQUEST['etat'];
 
 $sql = "SELECT count(*) FROM $tbl_fact where st='A' and libelle!='Gaz' and etat='$valeuretat' ";  
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-$nb_total = mysql_fetch_array($resultat);  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
 }  
@@ -188,7 +188,7 @@ else {
 if (!isset($_GET['debut'])) $_GET['debut'] = 0; 
 $nb_affichage_par_page = 100; 
 $sql = "SELECT * FROM $tbl_fact where st='A' and libelle!='Gaz' and etat='$valeuretat' ORDER BY idf desc LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
  </p>
  <table width="98%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
@@ -204,33 +204,33 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
      <td width="9%" align="center"><strong><font color="#FFFFFF">Statut</font></strong></td>
    </tr>
    <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
    ?>
-   <tr bgcolor="<? gettatut($data['etat']); ?>">
-     <td align="center" ><? if (($data['etat']!="facture")and ($data['etat']!="Annuler")){?>
-       <a href="paiement_penalite.php?idf=<? echo md5(microtime()).$data['idf']; ?>" class="btn btn-sm btn-success"> les détails</a>
-       <? } else {} ?>
+   <tr bgcolor="<?php gettatut($data['etat']); ?>">
+     <td align="center" ><?php if (($data['etat']!="facture")and ($data['etat']!="Annuler")){?>
+       <a href="paiement_penalite.php?idf=<?php echo md5(microtime()).$data['idf']; ?>" class="btn btn-sm btn-success"> les détails</a>
+       <?php } else {} ?>
       
        </td>
-     <td align="center" ><em><a href="re_affichage_user.php?id=<? echo md5(microtime()).$data['id']; ?>" class="btn btn-sm btn-default" ><? echo $data['idf'];?></a></em></td>
-     <td align="center" ><em><? echo $data['id_nom'];?></em></td>
-     <td align="center" ><em><? echo $data['date'];?></em></td>
-     <td align="center" ><em><? echo $data['bnom'];?></em></td>
-     <td align="center"><em><? echo $data['libelle'];?></em></td>
-     <td align="center"><em><? echo $data['totalnet'];?></em></td>
-     <td align="center"><em><? echo $data['report'];?></em></td>
-     <td align="center"><em><? echo $data['etat'];?></em></td>
+     <td align="center" ><em><a href="re_affichage_user.php?id=<?php echo md5(microtime()).$data['id']; ?>" class="btn btn-sm btn-default" ><?php echo $data['idf'];?></a></em></td>
+     <td align="center" ><em><?php echo $data['id_nom'];?></em></td>
+     <td align="center" ><em><?php echo $data['date'];?></em></td>
+     <td align="center" ><em><?php echo $data['bnom'];?></em></td>
+     <td align="center"><em><?php echo $data['libelle'];?></em></td>
+     <td align="center"><em><?php echo $data['totalnet'];?></em></td>
+     <td align="center"><em><?php echo $data['report'];?></em></td>
+     <td align="center"><em><?php echo $data['etat'];?></em></td>
    </tr>
    <?php
 
   }
 
 
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'],$valeuretat, 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close ();  
+mysqli_free_result ($resultat);  
+mysqli_close ();  
 	function gettatut($fetat){
 				 if ($fetat=='enregistre')    { echo $couleur="#87e385";}//jaune	
 				 if ($fetat=='paye')          { echo $couleur="#87e385";}//vert fonce

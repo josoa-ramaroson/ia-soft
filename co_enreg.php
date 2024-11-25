@@ -1,13 +1,13 @@
 <div style="padding:10px; width:500px">
-<p><a href="re_affichage_user.php?id=<? echo md5(microtime()).$datam['id'];?>" style="margin:0px; float:right" class="btn btn-xs btn-danger">Fermer</a>
+<p><a href="re_affichage_user.php?id=<?php echo md5(microtime()).$datam['id'];?>" style="margin:0px; float:right" class="btn btn-xs btn-danger">Fermer</a>
 </p>
 <form id="form1" name="form1" method="post" action="co_enreg_save.php">
   <table width="101%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
     <tr>
-      <td width="36%"><input name="id" type="hidden" value="<? echo $datam['id']; ?>">
-      <input name="Police" type="hidden" id="Police" value="<? echo $datam['Police']; ?>">
+      <td width="36%"><input name="id" type="hidden" value="<?php echo $datam['id']; ?>">
+      <input name="Police" type="hidden" id="Police" value="<?php echo $datam['Police']; ?>">
       <font size="2"><strong><font size="2"><strong><font color="#FF0000">
-      <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+      <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
       </font></strong></font></strong></font></td>
       <td width="64%">&nbsp;</td>
     </tr>
@@ -15,7 +15,7 @@
       <td><strong><font size="2">N° Phase</font></strong></td>
       <td><strong>
         <select name="phase" id="phase">
-        <option selected="selected"><? echo $datam['phase']; ?></option>
+        <option selected="selected"><?php echo $datam['phase']; ?></option>
           <option>1</option>
           <option>2</option>
           <option>3</option>
@@ -26,7 +26,7 @@
       <td><strong>Puissance</strong></td>
       <td><strong>
         <select name="puissance" id="puissance">
-        <option selected="selected"><? echo $datam['puissance']; ?></option>
+        <option selected="selected"><?php echo $datam['puissance']; ?></option>
           <option>1</option>
           <option>2</option>
         </select>
@@ -36,11 +36,11 @@
       <td><strong><font color="#000000" size="2">Tarif</font></strong></td>
       <td><strong>
         <select name="Tarif" id="Tarif">
-        <option selected="selected"><? echo $datam['Tarif']; ?></option>
+        <option selected="selected"><?php echo $datam['Tarif']; ?></option>
           <?php
 $sql8 = ("SELECT * FROM tarif ORDER BY idt ASC");
-$result8 = mysql_query($sql8);
-while ($row8 = mysql_fetch_assoc($result8)) {
+$result8 = mysqli_query($linki,$sql8);
+while ($row8 = mysqli_fetch_assoc($result8)) {
 echo '<option value='.$row8['idt'].'> '.$row8['Libelle'].' </option>';
 }
 
@@ -52,7 +52,7 @@ echo '<option value='.$row8['idt'].'> '.$row8['Libelle'].' </option>';
       <td><strong><font size="2">Calibre ( Amperage)</font></strong></td>
       <td><strong>
         <select name="amperage" id="amperage">
-          <option selected="selected"><? echo $datam['amperage']; ?></option>
+          <option selected="selected"><?php echo $datam['amperage']; ?></option>
           <option>10</option>
           <option>15</option>
           <option>20</option>
@@ -89,19 +89,19 @@ echo '<option value='.$row8['idt'].'> '.$row8['Libelle'].' </option>';
     <tr>
       <td><strong><font size="2">Numero Compteur </font></strong></td>
       <td><strong>
-        <input name="ncompteur" type="text" id="ncompteur" value="<? echo $datam['ncompteur']; ?>" size="20" />
+        <input name="ncompteur" type="text" id="ncompteur" value="<?php echo $datam['ncompteur']; ?>" size="20" />
       </strong></td>
     </tr>
     <tr>
       <td><strong><font size="2">Index Jour </font></strong></td>
       <td><strong>
-        <input name="Indexinitial" type="text" id="Indexinitial" value="<? echo $datam['Indexinitial']; ?>" size="20" />
+        <input name="Indexinitial" type="text" id="Indexinitial" value="<?php echo $datam['Indexinitial']; ?>" size="20" />
       </strong></td>
     </tr>
     <tr>
       <td>Index Nuit</td>
       <td><strong>
-        <input name="index2" type="text" id="index2" value="<? echo $datam['index2']; ?>" size="20" />
+        <input name="index2" type="text" id="index2" value="<?php echo $datam['index2']; ?>" size="20" />
       </strong></td>
     </tr>
     <tr>

@@ -26,7 +26,7 @@ id_nom='$id_nom'
   WHERE idfon_sys='$idfon_sys' ";
 
 
-$result=mysql_query($sql);
+$result=mysqli_query($linki,$sql);
    if($result){
 	   //SUCCESS
 	   header("location:fon_para_affichage.php");
@@ -34,5 +34,5 @@ $result=mysql_query($sql);
    else {
    echo "ERROR";
    }
-  mysql_close(); 
+  mysqli_close($linki); 
 ?>

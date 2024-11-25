@@ -5,7 +5,7 @@ require 'fonction.php';
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 
@@ -27,9 +27,9 @@ Require("bienvenue.php");    // on appelle la page contenant la fonction
 //$id=$_GET['id'];
 $id=substr($_REQUEST["id"],32);
 $sql3="SELECT * FROM $tbl_libelle WHERE idL='$id'";
-$result3=mysql_query($sql3);
+$result3=mysqli_query($linki,$sql3);
 
-$rows3=mysql_fetch_array($result3);
+$rows3=mysqli_fetch_array($result3);
 ?>
           </font>
           <form name="form3" method="post" action="libelle_updates.php">
@@ -37,7 +37,7 @@ $rows3=mysql_fetch_array($result3);
               <tr>
                 <td width="19%"><span class="panel-title">Libelle </span></td>
                 <td width="81%"><em>
-                  <input class="form-control" name="libelle" type="text" id="libelle" value="<? echo $rows3['libelle']; ?> " size="50">
+                  <input class="form-control" name="libelle" type="text" id="libelle" value="<?php echo $rows3['libelle']; ?> " size="50">
                 </em></td>
               </tr>
               <tr>
@@ -47,7 +47,7 @@ $rows3=mysql_fetch_array($result3);
               <tr>
                 <td><span class="panel-title">Statut</span></td>
                 <td><select name="categorie" id="categorie">
-				  <option value="<? echo $rows3['categorie']; ?>" selected>  <? $n=$rows3['categorie']; 
+				  <option value="<?php echo $rows3['categorie']; ?>" selected>  <?php $n=$rows3['categorie']; 
                   if ($n=='P') echo 'Police';
                   if ($n=='D') echo 'Devis & Branchement'; 
                   if ($n=='E') echo 'Facturation';
@@ -66,8 +66,8 @@ $rows3=mysql_fetch_array($result3);
               </tr>
               <tr>
                 <td><em>
-                  <input name="id_nom" type="hidden" id="id_nom" value="<? echo $rows3['id_nom'];?>">
-                  <input name="idL" type="hidden" id="idL" value="<? echo $rows3['idL'];?>">
+                  <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $rows3['id_nom'];?>">
+                  <input name="idL" type="hidden" id="idL" value="<?php echo $rows3['idL'];?>">
                 </em></td>
                 <td>&nbsp;</td>
               </tr>
@@ -86,10 +86,10 @@ $rows3=mysql_fetch_array($result3);
   
 $sql = "SELECT count(*) FROM $tbl_libelle";  
 
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
  // on teste si ce nombre de vaut pas 0  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -109,7 +109,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT * FROM $tbl_libelle  ORDER BY idL DESC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  //ASC
  
 // on ex?cute la requ?te  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
 </font></strong></font></font></font></font></font></font></font></font></font></strong></font></font></font></font></font></font></font></font></font></font></p>
 <form name="form2" method="post" action="produit_cancel.php">
@@ -124,13 +124,13 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
       <td width="163" align="center" bgcolor="#3071AA" >&nbsp;</td>
     </tr>
     <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
     <tr>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><? echo $data['idL'];?></div>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><?php echo $data['idL'];?></div>
         <div align="left"></div></td>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['libelle'];?></em></div></td>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? $n=$rows3['categorie']; 
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['libelle'];?></em></div></td>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php $n=$rows3['categorie']; 
                   if ($n=='P') echo 'Police';
                   if ($n=='D') echo 'Devis & Branchement'; 
                   if ($n=='E') echo 'Facturation';
@@ -139,18 +139,18 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
                   ?></em></div></td>
       <td align="center" bgcolor="#FFFFFF"><div align="left"></div></td>
       <td width="162"   style="background-color:#FFF;"><div align="left"></div></td>
-      <td width="163"   style="background-color:#FFF;"><a href="libelle_modifie.php?id=<? echo md5(microtime()).$data['idL']; ?>" class="btn btn-xs btn-success">Modifier</a></td>
-      <td width="163"   style="background-color:#FFF;"><a href="libelle_cancel.php?ID=<? echo md5(microtime()).$data['idL']; ?>" onClick="return confirm('Etes-vous sûr de vouloir supprimer')" ; style="margin:5px"   class="btn btn-xs btn-danger" >Supprimer</a></td>
+      <td width="163"   style="background-color:#FFF;"><a href="libelle_modifie.php?id=<?php echo md5(microtime()).$data['idL']; ?>" class="btn btn-xs btn-success">Modifier</a></td>
+      <td width="163"   style="background-color:#FFF;"><a href="libelle_cancel.php?ID=<?php echo md5(microtime()).$data['idL']; ?>" onClick="return confirm('Etes-vous sûr de vouloir supprimer')" ; style="margin:5px"   class="btn btn-xs btn-danger" >Supprimer</a></td>
     </tr>
     <?php
 
 }
 
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close ();  
+mysqli_free_result ($resultat);  
+mysqli_close ();  
 ?>
   </table>
 </form>

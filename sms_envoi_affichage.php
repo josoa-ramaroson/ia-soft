@@ -43,7 +43,7 @@ if(($_SESSION['u_niveau'] != 30)) {
                     <tr>
                       <td width="17%">Destinaire</td>
                       <td width="6%">&nbsp;</td>
-                      <td width="77%"><input name="GSM" type="text" id="GSM" value="<? echo $GSM;?>" readonly></td>
+                      <td width="77%"><input name="GSM" type="text" id="GSM" value="<?php echo $GSM;?>" readonly></td>
                     </tr>
                     <tr>
                       <td>&nbsp;</td>
@@ -53,7 +53,7 @@ if(($_SESSION['u_niveau'] != 30)) {
                     <tr>
                       <td>Le message</td>
                       <td>&nbsp;</td>
-                      <td><textarea name="SMS" cols="45" rows="4" readonly id="SMS"><? echo $SMS;?></textarea></td>
+                      <td><textarea name="SMS" cols="45" rows="4" readonly id="SMS"><?php echo $SMS;?></textarea></td>
                     </tr>
                     <tr>
                       <td><em>
@@ -64,7 +64,7 @@ if(($_SESSION['u_niveau'] != 30)) {
                     </tr>
                     <tr>
                       <td><em><font color="#FF0000">
-                        <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+                        <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
                         </font></em></td>
                       <td></td>
                       <td>

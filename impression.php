@@ -14,7 +14,7 @@ if(($_SESSION['u_niveau'] != 2)) {
 <html>
 <head>
 
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <script type="text/javascript">
@@ -109,10 +109,10 @@ Require("bienvenue.php");  // on appelle la page contenant la fonction
 <?
 $sql = "SELECT count(*) FROM $tbl_fact  WHERE fannee='$anneec' and nserie='$nserie' and st='E' ";  
 
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
  // on teste si ce nombre de vaut pas 0  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -134,20 +134,20 @@ $sql = "SELECT  f.bstatut, c.quartier, c.ville, f.impression , COUNT(*) AS nbch 
 
    /*//Nombre FACTURE_ par Quartier
     $rqfact = "SELECT COUNT(quartier) AS nbfc FROM $tbl_contact c , $tbl_fact f WHERE c.id=f.id  and  nserie='$nserie' and st='E' GROUP BY  quartier"; 
-	$sqnbf = mysql_query($rqfact);
-	$nbfc= mysql_fetch_assoc($sqnbf);
+	$sqnbf = mysqli_query($linki,$rqfact);
+	$nbfc= mysqli_fetch_assoc($sqnbf);
 	$nfact=$nbfc['nbfc']; 
 
  
     //Nombre total des clients par quartier
     $rqtfact = "SELECT COUNT(quartier) AS nbtfc FROM $tbl_contact GROUP BY  quartier"; 
-	$sqtnbf = mysql_query($rqtfact);
-	$nbtfc= mysql_fetch_assoc($sqtnbf);
+	$sqtnbf = mysqli_query($linki,$rqtfact);
+	$nbtfc= mysqli_fetch_assoc($sqtnbf);
 	$ntclient=$nbtfc['nbtfc']; */
 	
  
 // on ex?cute la requ?te  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());
 ?>
  
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
@@ -220,24 +220,24 @@ echo "<option value=$row[refville]>$row[ville]</option>";
         <td width="427" align="center" bgcolor="#3071AA"><font color="#FFFFFF" size="4"><strong>Suivi des impressions ( MT &amp; AUTRES)</strong></font></td>
       </tr>
       <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
-       <tr bgcolor="<? gettatut($data['bstatut']); ?>">
-        <td align="center"><? echo  $data['ville']; ?></td>
-        <td align="center"><? echo  $data['quartier']; ?></td>
-        <td align="center"><? echo  $data['impression']; ?> (<? echo  $data['nbch']; ?>)</td>
+       <tr bgcolor="<?php gettatut($data['bstatut']); ?>">
+        <td align="center"><?php echo  $data['ville']; ?></td>
+        <td align="center"><?php echo  $data['quartier']; ?></td>
+        <td align="center"><?php echo  $data['impression']; ?> (<?php echo  $data['nbch']; ?>)</td>
       </tr>
       <?php
 
 
 }
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
+mysqli_free_result ($resultat);  
 
 
-mysql_close ();  
+mysqli_close ();  
 
 	                 function gettatut($fetat){
 				   if ($fetat=='imprimé')         { echo $couleur="#fdff00";}//jaune		 

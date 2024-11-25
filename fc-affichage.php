@@ -94,4 +94,3 @@ function barre_navigation ($nb_total,$nb_affichage_par_page,$debut,$nb_liens_dan
  
    return $barre;   
 }  
-?>

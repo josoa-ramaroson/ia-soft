@@ -1,9 +1,9 @@
-<?
+<?php
 require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
 ?>
-<?
+<?php
 if(($_SESSION['u_niveau'] != 4)) {
 	header("location:index.php?error=false");
 	exit;
@@ -15,7 +15,7 @@ if(($_SESSION['u_niveau'] != 4)) {
 <title>Document sans titre</title>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 </head>
-<?
+<?php
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 
 	    //choix d espace de memoire pour les connection.---------------------------------------------------------------- 
@@ -69,10 +69,10 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
 
 $sql = "SELECT count(*) FROM $tbl_paiement where id>500000 ";  
 
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
  // on teste si ce nombre de vaut pas 0  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -92,12 +92,12 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sqfac = "SELECT * FROM $tbl_paiement where id>500000  GROUP BY  idp desc LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;  //ASC  DESC
  
 // on ex?cute la requ?te  
-$resultfac = mysql_query($sqfac) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()); 
+$resultfac = mysqli_query($linki,$sqfac) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error()); 
 
 
 
 	//$sqfac="SELECT * FROM $tbl_paiement ORDER BY idp DESC";
-	//$resultfac=mysql_query($sqfac);
+	//$resultfac=mysqli_query($linki,$sqfac);
 
 ?>
 <p>&nbsp;</p>
@@ -119,40 +119,40 @@ $resultfac = mysql_query($sqfac) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql
     <td width="17%" align="center" bgcolor="#FFFFFF">Reste à payer</td>
   </tr>
   <?php
-while($rowsfac=mysql_fetch_array($resultfac)){ 
+while($rowsfac=mysqli_fetch_array($resultfac)){ 
 ?>
-  <tr bgcolor="<? gettatut($rowsfac['type']); ?>">
-    <td align="center" ><em><? echo $rowsfac['id'];?></em></td>
-    <td align="center" ><div align="left"><em><? echo $rowsfac['id_nom'];?></em></div></td>
-    <td align="center" ><div align="left"><em><? echo $rowsfac['date'];?></em></div></td>
-    <td align="center" ><div align="left"><em><? echo $rowsfac['Nomclient'];?></em></div></td>
-    <td align="center" ><em><? echo $rowsfac['nfacture'];?></em></td>
+  <tr bgcolor="<?php gettatut($rowsfac['type']); ?>">
+    <td align="center" ><em><?php echo $rowsfac['id'];?></em></td>
+    <td align="center" ><div align="left"><em><?php echo $rowsfac['id_nom'];?></em></div></td>
+    <td align="center" ><div align="left"><em><?php echo $rowsfac['date'];?></em></div></td>
+    <td align="center" ><div align="left"><em><?php echo $rowsfac['Nomclient'];?></em></div></td>
+    <td align="center" ><em><?php echo $rowsfac['nfacture'];?></em></td>
     <td align="center" ><em>
     
-<? if ($rowsfac['id']<500000) { ?>
-<a href="paiement_billimp.php?idp=<? echo md5(microtime()).$rowsfac['idp'];?>" target="_blank" > <? echo $rowsfac['idp'];?></a>
-<? } else {?>
-<a href="paiement_billimpG.php?idp=<? echo md5(microtime()).$rowsfac['idp'];?>" target="_blank" > <? echo $rowsfac['idp'];?></a><? } ?>   
+<?php if ($rowsfac['id']<500000) { ?>
+<a href="paiement_billimp.php?idp=<?php echo md5(microtime()).$rowsfac['idp'];?>" target="_blank" > <?php echo $rowsfac['idp'];?></a>
+<?php } else {?>
+<a href="paiement_billimpG.php?idp=<?php echo md5(microtime()).$rowsfac['idp'];?>" target="_blank" > <?php echo $rowsfac['idp'];?></a><?php } ?>   
 
     </em></td>
-    <td align="center" ><em><? echo $rowsfac['montant'];?></em></td>
-    <td align="center" ><em><? echo $rowsfac['paiement'];?></em></td>
-    <td align="center" ><em><? echo $rowsfac['report'];?></em></td>
+    <td align="center" ><em><?php echo $rowsfac['montant'];?></em></td>
+    <td align="center" ><em><?php echo $rowsfac['paiement'];?></em></td>
+    <td align="center" ><em><?php echo $rowsfac['report'];?></em></td>
   </tr>
   <?php
 }
 
-mysql_free_result ($resultfac); 
+mysqli_free_result ($resultfac); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
+mysqli_free_result ($resultat);  
 
 	                 function gettatut($fetat){
 			    // if ($fetat=='P')    { echo $couleur="#ffc88d";}//vert fonce
 				 if ($fetat=='R')    { echo $couleur="#ec9b9b";}//rouge -Declined	
 				 }
 				 
-mysql_close ();  
+mysqli_close ();  
 ?>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

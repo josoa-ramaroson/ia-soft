@@ -26,7 +26,7 @@ body,td,th {
 	color: #000;
 }
 </style>
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 </head>
 <?
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
@@ -67,8 +67,8 @@ $mr1=addslashes($_POST['mr1']);
 $s=explode(" ",$mr1);
 
 $sql = "SELECT count(*) FROM $tb_rhpersonnel";  
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-$nb_total = mysql_fetch_array($resultat);  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
 }  
@@ -89,7 +89,7 @@ foreach($s as $mot) {
 
 $sql.=" 0 ORDER BY matricule ASC ";  
 
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
 <table width="98%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
    <tr bgcolor="#3071AA">
@@ -101,7 +101,7 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
      <td width="10%" align="center">&nbsp;</td>
    </tr>
    <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 
  
 $nomprenom=$data['nomprenom'];
@@ -156,29 +156,29 @@ $nomprenom=$data['nomprenom'];
 	 }
 ?>
    <tr>
-     <td align="center" bgcolor="#FFFFFF"><div align="left">         <? $filename = 'upload/employer/'.$data['idrhp'].'.jpg'; ?>
+     <td align="center" bgcolor="#FFFFFF"><div align="left">         <?php $filename = 'upload/employer/'.$data['idrhp'].'.jpg'; ?>
 									<div class="row">
-										<? if (file_exists($filename) == true) { ?>
-	<img class="pix" width="100" src="<? echo $filename; ?>" alt="<? echo $data['nomprenom']; ?>" />
-										<? } else { ?>
-                             <? if ($data['sex'] == 'Masculin') { $picture='homme.jpg';} else {$picture='femme.jpg';} ?>
+										<?php if (file_exists($filename) == true) { ?>
+	<img class="pix" width="100" src="<?php echo $filename; ?>" alt="<?php echo $data['nomprenom']; ?>" />
+										<?php } else { ?>
+                             <?php if ($data['sex'] == 'Masculin') { $picture='homme.jpg';} else {$picture='femme.jpg';} ?>
                                     
-	<img class="pix" height="100" width="100" src="upload/employer/<? echo $picture; ?>" alt="<? echo $data['nomprenom']; ?> 
+	<img class="pix" height="100" width="100" src="upload/employer/<?php echo $picture; ?>" alt="<?php echo $data['nomprenom']; ?> 
 	" />
-										<? } ?></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $nomprenom;?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $matricule;?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $direction;?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $service;?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><a href="rh_employer_user.php?id=<? echo md5(microtime()).$data['idrhp']; ?>" class="btn btn-sm btn-success" >Aperçu</a></td>
+										<?php } ?></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $nomprenom;?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $matricule;?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $direction;?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $service;?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><a href="rh_employer_user.php?id=<?php echo md5(microtime()).$data['idrhp']; ?>" class="btn btn-sm btn-success" >Aperçu</a></td>
    </tr>
    <?php
 }
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    //echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close (); 
+mysqli_free_result ($resultat);  
+mysqli_close (); 
 }
 else {
 echo " Pas de recherche <br>";

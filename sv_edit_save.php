@@ -12,7 +12,7 @@ $d2=addslashes($_POST['d2']);
 
 
 $sql="update $tbl_plombage  set  id_nom='$id_nom',  c1='$c1' , c2='$c2' ,c3='$c3' ,c4='$c4' ,d1='$d1' ,d2='$d2'  WHERE id='$id'";
-$result=mysql_query($sql);
+$result=mysqli_query($linki,$sql);
    if($result){
 	   $idr=md5(microtime()).$id;
 	   header("location:re_affichage_user.php?id=$idr");
@@ -21,5 +21,5 @@ $result=mysql_query($sql);
 	   $idr=md5(microtime()).$id;
 	   header("location:re_affichage_user.php?id=$idr");
    }
-  mysql_close(); 
+  mysqli_close($linki); 
 ?>

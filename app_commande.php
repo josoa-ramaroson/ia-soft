@@ -13,7 +13,7 @@ require_once('calendar/classes/tc_calendar.php');
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script language="javascript" src="calendar/calendar.js"></script>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -102,14 +102,14 @@ require 'bienvenue.php';
           <td width="1%">&nbsp;</td>
           <td width="12%">&nbsp;</td>
           <td width="40%"><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-            <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+            <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
           </font><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
           </font></strong></font></strong></font></strong></font></strong></font></strong></font></td>
         </tr>
         <tr>
           <td><strong><font size="2">Date</font></strong></td>
           <td>&nbsp;</td>
-          <td><input name="date_dem" type="text" id="date_dem" value="<? echo $datecaisse['datecaisse'];?>" size="30" readonly /></td>
+          <td><input name="date_dem" type="text" id="date_dem" value="<?php echo $datecaisse['datecaisse'];?>" size="30" readonly /></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Direction</font></strong></td>
           <td><?Php
@@ -206,14 +206,14 @@ $req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql
 while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
     <tr>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><? echo $data['id_dem'];?></div>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><?php echo $data['id_dem'];?></div>
         <div align="left"></div></td>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['date_dem'];?></em></div></td>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['nomprenom'];?></em></div></td>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['direction'];?></em></div></td>
-      <td width="162"   style="background-color:#FFF;"><div align="left"><em><? echo $data['service'];?></em></div></td>
-      <td width="163"   style="background-color:#FFF;"><a href="app_commande_produit.php?id=<? echo md5(microtime()).$data['id_dem']; ?>" class="btn btn-xs btn-success">Ajouter des produits</a></td>
-      <td width="163"   style="background-color:#FFF;"><a href="app_commande_archive.php?ID=<? echo md5(microtime()).$data['id_dem']; ?>" onClick="return confirm('Etes-vous sûr de vouloir Archiver ')" ; style="margin:5px"   class="btn btn-xs btn-danger" >Archiver</a></td>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['date_dem'];?></em></div></td>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['nomprenom'];?></em></div></td>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['direction'];?></em></div></td>
+      <td width="162"   style="background-color:#FFF;"><div align="left"><em><?php echo $data['service'];?></em></div></td>
+      <td width="163"   style="background-color:#FFF;"><a href="app_commande_produit.php?id=<?php echo md5(microtime()).$data['id_dem']; ?>" class="btn btn-xs btn-success">Ajouter des produits</a></td>
+      <td width="163"   style="background-color:#FFF;"><a href="app_commande_archive.php?ID=<?php echo md5(microtime()).$data['id_dem']; ?>" onClick="return confirm('Etes-vous sûr de vouloir Archiver ')" ; style="margin:5px"   class="btn btn-xs btn-danger" >Archiver</a></td>
     </tr>
     <?php
 

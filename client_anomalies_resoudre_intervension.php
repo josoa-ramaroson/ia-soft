@@ -41,7 +41,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
   }
 </script>
 
-<? require 'client_anomalies_menu.php';?>
+<?php require 'client_anomalies_menu.php';?>
 
 <table width="100%" border="0" align="center">
   <tr>
@@ -61,10 +61,10 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
         <tr>
           <td width="16%">Code Client </td>
           <td width="1%">&nbsp;</td>
-          <td width="30%"><strong><? echo $datam['idclient'];?></strong></td>
+          <td width="30%"><strong><?php echo $datam['idclient'];?></strong></td>
           <td width="1%">&nbsp;</td>
           <td width="12%">Date </td>
-          <td width="40%"><strong><? echo $datam['datetinfo'];?></strong></td>
+          <td width="40%"><strong><?php echo $datam['datetinfo'];?></strong></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -77,10 +77,10 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
                 <tr>
           <td><strong><font size="2">Nom et Prenom </font></strong></td>
           <td>&nbsp;</td>
-          <td><? $idclient=$datam['idclient']; $nom_prenom=Nom_prenom_client($idclient,$tbl_contact,$linki); echo $nom_prenom;?></td>
+          <td><?php $idclient=$datam['idclient']; $nom_prenom=Nom_prenom_client($idclient,$tbl_contact,$linki); echo $nom_prenom;?></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Niveau</font></strong></td>
-          <td><strong><? echo $datam['niveau'];?></strong></td>
+          <td><strong><?php echo $datam['niveau'];?></strong></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -96,20 +96,20 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Statut</font></strong></td>
-          <td><strong><? echo $datam['statut'];?></strong></td>
+          <td><strong><?php echo $datam['statut'];?></strong></td>
         </tr>
       </table>
       <table width="1039" border="0">
         <tr>
           <td width="172">Description </td>
-          <td width="857"><strong><? echo $datam['description'];?></strong></td>
+          <td width="857"><strong><?php echo $datam['description'];?></strong></td>
         </tr>
       </table>
     </form></td>
   </tr>
 </table>
 
- <? if ($datam['statut']!='Traité') {?>
+ <?php if ($datam['statut']!='Traité') {?>
  
 <div class="panel panel-info">
   <div class="panel-heading">
@@ -124,7 +124,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
           <td width="3%">&nbsp;</td>
           <td width="8%">&nbsp;</td>
           <td width="33%"><font color="#FF0000">
-            <input name="idanomalie" type="hidden" id="idanomalie" value="<? echo $datam['idanomalie'];?>">
+            <input name="idanomalie" type="hidden" id="idanomalie" value="<?php echo $datam['idanomalie'];?>">
           </font></td>
         </tr>
         <tr>
@@ -140,7 +140,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td><font color="#FF0000">
-            <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>">
+            <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>">
           </font></td>
         </tr>
         <tr>
@@ -149,7 +149,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td><font color="#FF0000">
-            <input name="idclient" type="hidden" id="idclient" value="<? echo $datam['idclient'];?>">
+            <input name="idclient" type="hidden" id="idclient" value="<?php echo $datam['idclient'];?>">
           </font></td>
         </tr>
         <tr>
@@ -170,7 +170,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
     </form>
      </div>
 </div>
- <? } else { } ?>
+ <?php } else { } ?>
 <p>&nbsp;</p>
 <div class="panel panel-info">
   <div class="panel-heading">
@@ -195,10 +195,10 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
 while($ord=mysqli_fetch_array($resultactord)){ 
 ?>
             <tr bgcolor="#FFFFFF">
-              <td height="32"><? echo $ord['dateinfo']; ?></td>
-              <td><? echo $ord['realisateur']; ?></td>
-              <td><? echo $ord['taches']; ?></td>
-              <td><? echo $ord['statut']; ?></td>
+              <td height="32"><?php echo $ord['dateinfo']; ?></td>
+              <td><?php echo $ord['realisateur']; ?></td>
+              <td><?php echo $ord['taches']; ?></td>
+              <td><?php echo $ord['statut']; ?></td>
             </tr>
             <?php }
  ?>

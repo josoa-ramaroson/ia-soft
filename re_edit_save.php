@@ -37,7 +37,7 @@ $coefTi=addslashes($_POST['coefTi']);
 
 $sql="update $tbl_contact  set id_nom='$id_nom', Designation='$Designation' , nomprenom='$nomprenom' , surnom='$surnom',
 email='$email',  titre='$titre' , tel='$tel', fax='$fax' ,  url='$url',  adresse='$adresse' , quartier='$quartier' ,  ville='$ville',  ile='$ile', login='$login', pwd='$pwd' , chtaxe='$chtaxe', Tarif='$Tarif', amperage='$amperage' , tmt='$tmt', CodeTypeClts='$CodeTypeClts' , coefTi='$coefTi' WHERE id LIKE '$_POST[id]' ";
-$result=mysql_query($sql);
+$result=mysqli_query($linki,$sql);
 
   if($result){
 	   //SUCCESS
@@ -47,5 +47,5 @@ $result=mysql_query($sql);
    else {
    echo "ERROR";
    }
-  mysql_close(); 
+  mysqli_close($linki); 
 ?>

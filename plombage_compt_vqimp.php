@@ -8,7 +8,7 @@ require 'configuration.php';
 <head>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script type="text/javascript">
 function AjaxFunction()
 {
@@ -93,11 +93,11 @@ httpxml.send(null);
 <p>
   <?php
 $sql = "SELECT * FROM $tbl_contact c, $tbl_plombage p where c.statut='6' and  p.id=c.id and  c.ville='$m1v' and  c.quartier='$m2q' ORDER BY nomprenom ASC ";  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 
 $sqFP="SELECT  COUNT(*) AS nbres FROM $tbl_contact c, $tbl_plombage p where c.statut='6' and  p.id=c.id and  c.ville='$m1v' and  c.quartier='$m2q'"; 
-	$RFP = mysql_query($sqFP); 
-	$AFP = mysql_fetch_assoc($RFP);
+	$RFP = mysqli_query($linki,$sqFP); 
+	$AFP = mysqli_fetch_assoc($RFP);
 	$tFPn=$AFP['nbres'];
 
 ?>
@@ -109,9 +109,9 @@ $sqFP="SELECT  COUNT(*) AS nbres FROM $tbl_contact c, $tbl_plombage p where c.st
     <td width="20%">Nombre des clients</td>
   </tr>
   <tr>
-    <td><em><? echo  $m1v;?></em></td>
-    <td><em><? echo $m2q;?></em></td>
-    <td><em><? echo strrev(chunk_split(strrev($tFPn),3," "));?></em></td>
+    <td><em><?php echo  $m1v;?></em></td>
+    <td><em><?php echo $m2q;?></em></td>
+    <td><em><?php echo strrev(chunk_split(strrev($tFPn),3," "));?></em></td>
   </tr>
 </table>
 <p>&nbsp;</p>
@@ -130,27 +130,27 @@ $sqFP="SELECT  COUNT(*) AS nbres FROM $tbl_contact c, $tbl_plombage p where c.st
      <td width="10%" align="center">&nbsp;</td>
   </tr>
    <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
    <tr>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?  $idv=$data['id']; echo $data['id'];?></em></div></td>
-                 <td align="center" bgcolor="<? gettatut(stat_eda2($tbl_plombcont,$tbl_plombage,$idv)); ?>"><em><? echo stat_eda2($tbl_plombcont,$tbl_plombage,$idv);?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['nomprenom'];?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['ncompteur'];?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['c1'];?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['c2'];?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['c3'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['c4'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['d1'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['d2'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php  $idv=$data['id']; echo $data['id'];?></em></div></td>
+                 <td align="center" bgcolor="<?php gettatut(stat_eda2($tbl_plombcont,$tbl_plombage,$idv)); ?>"><em><?php echo stat_eda2($tbl_plombcont,$tbl_plombage,$idv);?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['nomprenom'];?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['ncompteur'];?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['c1'];?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['c2'];?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['c3'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['c4'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['d1'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['d2'];?></em></td>
      <td align="center" bgcolor="#FFFFFF"></td>
    </tr>
    <?php
 }
 		function stat_eda2($tbl_plombcont,$tbl_plombage,$idv){ 
 		$sqlv="SELECT COUNT(*) AS nombre FROM $tbl_plombcont ct, $tbl_plombage p  WHERE ct.idclient=p.id and ct.idclient='$idv'" ;
-        $rev = mysql_query($sqlv); 
-	    $nqtv = mysql_fetch_array($rev);
+        $rev = mysqli_query($linki,$sqlv); 
+	    $nqtv = mysqli_fetch_array($rev);
         if((!isset($nqtv['nombre'])|| empty($nqtv['nombre']))) { $qt=''; return $qt; } else {$qt=$nqtv['nombre']; return $qt;}
 		} 
 		
@@ -158,7 +158,7 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
 		if ($fetat>0) { echo $couleur="#87e385";} else { echo $couleur="#ffffff";}//vert
 		}
 		
-mysql_close ();  
+mysqli_close ();  
 ?>
 </table>
 <p>&nbsp;</p>

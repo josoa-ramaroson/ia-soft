@@ -174,7 +174,7 @@ $service=addslashes($_POST['service']);
 $sql="update $tb_rhpersonnel  set   id_nom='$id_nom', nconge='$nconge', Tin='$Tin', igrchoix='$igrchoix' , crchoix='$crchoix', indice='$indice', taux='$taux', sbase='$sbase', avancement='$avancement', anciennete='$anciennete',  gratification='$gratification', srappel='$srappel', heuressup='$heuressup', conge='$conge', fonction='$fonction', transport='$transport', logement='$logement', telephone='$telephone', risque='$risque', caisse='$caisse', astreinte='$astreinte', panier='$panier', remboursement='$remboursement', cotisation='$cotisation', avances='$avances', pret='$pret', adeduction='$adeduction',igr='$igr', retraite='$retraite', prevoyance='$prevoyance', aretenue='$aretenue',
 
 SS='$SS', SI='$SI', SD='$SD',SR='$SR',SNET='$SNET'  WHERE idrhp='$idrh'";
-$result=mysql_query($sql);
+$result=mysqli_query($linki,$sql);
 
   if($result){
 	  
@@ -182,7 +182,7 @@ $result=mysql_query($sql);
 $sql2="update $tb_rhpaie  set   id_nom='$id_nom', nconge='$nconge', Tin='$Tin',  igrchoix='$igrchoix' , crchoix='$crchoix', indice='$indice', taux='$taux', sbase='$sbase', avancement='$avancement', anciennete='$anciennete',  gratification='$gratification', srappel='$srappel', heuressup='$heuressup', conge='$conge', fonction='$fonction', transport='$transport', logement='$logement', telephone='$telephone', risque='$risque', caisse='$caisse', astreinte='$astreinte', panier='$panier', remboursement='$remboursement', cotisation='$cotisation', avances='$avances', pret='$pret', adeduction='$adeduction',igr='$igr', retraite='$retraite', prevoyance='$prevoyance', aretenue='$aretenue',
 
 SS='$SS', SI='$SI', SD='$SD',SR='$SR',SNET='$SNET'  WHERE ipaie='$ipaie'";
-$result2=mysql_query($sql2);
+$result2=mysqli_query($linki,$sql2);
 	  
 	  
 	  
@@ -194,5 +194,5 @@ $result2=mysql_query($sql2);
    else {
    echo "ERROR";
    }
-  mysql_close(); 
+  mysqli_close($linki); 
 ?>

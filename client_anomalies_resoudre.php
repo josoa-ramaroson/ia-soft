@@ -15,15 +15,15 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <body>
 
-<? require 'client_anomalies_menu.php';?>
+<?php require 'client_anomalies_menu.php';?>
 
   <?php
 require 'fonction.php';
 $sql = "SELECT count(*) FROM $tbl_client_anom where statut!='Traité'";  
 
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
 
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -37,7 +37,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT * FROM $tbl_client_anom  where statut!='Traité' ORDER BY idanomalie DESC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
  
 // on ex?cute la requ?te  ASC
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 
     function Nom_prenom_client($LE_idclient, $tbl_contact ,$linki){
 	$sqld7 = "SELECT * FROM $tbl_contact where id='$LE_idclient'";
@@ -61,20 +61,20 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
     <td width="204" bgcolor="#3071AA">&nbsp;</td>
   </tr>
   <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
-  <tr bgcolor="<? gettatut($data['statut']); ?>">
-    <td ><a href="client_anomalies_resoudre_intervension.php?id=<? echo md5(microtime()).$data['idanomalie']; ?>" class="btn btn-sm btn-danger" > <? echo $data['idanomalie']; ?></a>
+  <tr bgcolor="<?php gettatut($data['statut']); ?>">
+    <td ><a href="client_anomalies_resoudre_intervension.php?id=<?php echo md5(microtime()).$data['idanomalie']; ?>" class="btn btn-sm btn-danger" > <?php echo $data['idanomalie']; ?></a>
       <div align="left"></div></td>
-    <td ><? echo $data['datetinfo']; ?></span></td>
-    <td ><? $idclient=$data['idclient']; $nom_prenom=Nom_prenom_client($idclient, $tbl_contact,$linki); echo $nom_prenom;?>     - (<? echo $idclient; ?>) </td>
-    <td ><? echo $data['description'];?></td>
-    <td ><? echo $data['service'];?></td>
-    <td ><? echo $data['niveau'];?></td>
-    <td ><? echo $data['statut'];?></td>
+    <td ><?php echo $data['datetinfo']; ?></span></td>
+    <td ><?php $idclient=$data['idclient']; $nom_prenom=Nom_prenom_client($idclient, $tbl_contact,$linki); echo $nom_prenom;?>     - (<?php echo $idclient; ?>) </td>
+    <td ><?php echo $data['description'];?></td>
+    <td ><?php echo $data['service'];?></td>
+    <td ><?php echo $data['niveau'];?></td>
+    <td ><?php echo $data['statut'];?></td>
     <td >
     
-    <a href="client_anomalies_resoudre_intervension.php?id=<? echo md5(microtime()).$data['idanomalie'];?>" class="btn btn-sm btn-danger" > Ajouter une intervension</a>
+    <a href="client_anomalies_resoudre_intervension.php?id=<?php echo md5(microtime()).$data['idanomalie'];?>" class="btn btn-sm btn-danger" > Ajouter une intervension</a>
       <div align="left"></div>
       
     </td>
@@ -83,10 +83,10 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
 
 }
 
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
+mysqli_free_result ($resultat);  
 	                 function gettatut($fetat){
 				 if ($fetat=='En cours') { echo $couleur="#fdff00";}//jaune	
 				 if ($fetat=='Traité')   { echo $couleur="#87e385";}//vert fonce

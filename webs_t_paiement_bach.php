@@ -7,8 +7,8 @@ $id_user = $_REQUEST["id_nom"];
 
 
 $sqlRECH = "SELECT * FROM $tbl_paiement_bachtemp where miseajours!='1' and id_nom='$userchoix'";
-$resultRECH = mysql_query($sqlRECH);
-while ($RECH = mysql_fetch_assoc($resultRECH)) {
+$resultRECH = mysqli_query($linki,$sqlRECH);
+while ($RECH = mysqli_fetch_assoc($resultRECH)) {
   $idpb=$RECH['idpb'];
   $id=$RECH['id'];
   //$id_nom=$RECH['id_nom'];
@@ -22,11 +22,11 @@ while ($RECH = mysql_fetch_assoc($resultRECH)) {
   //-----------------DEBUT ENREGISTREMENT -------------------
 
   $sql="INSERT INTO $tbl_paiement_bach ( id_nom,  id, paiement, miseajours, type ) VALUES ( '$id_user', '$id', '$paiement', '$miseajours', '$type')";
-  $result=mysql_query($sql);
+  $result=mysqli_query($linki,$sql);
 
   
   $sqlmj1="update  $tbl_paiement_bachtemp set  miseajours=1  WHERE  idpb='$idpb'";
-  $resulmj1=mysql_query($sqlmj1);
+  $resulmj1=mysqli_query($linki,$sqlmj1);
 
   //-----------------FIN ENREGISTREMENT-------------------
 	}

@@ -12,7 +12,7 @@ $sqlp="update $tbl_recplomb  set  controle='$controle' , certifier='$id_nom' WHE
 {
 $sqlp="update $tbl_recplomb  set  controle='$controle' , valider='$id_nom' WHERE  idr='$idr'";
 } 
-$resultp=mysql_query($sqlp);
+$resultp=mysqli_query($linki,$sqlp);
 header("location:cov_rectification.php");
-mysql_close($link);
+mysqli_close($link);
 ?>

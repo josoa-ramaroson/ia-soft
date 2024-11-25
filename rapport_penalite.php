@@ -12,7 +12,7 @@ require 'fonction.php';
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -62,9 +62,9 @@ require("bienvenue.php");    // on appelle la page contenant la fonction
                    <select name="annee" size="1" id="annee">
                      <?php
 $sql81 = ("SELECT * FROM annee  ORDER BY annee ASC ");
-$result81 = mysql_query($sql81);
+$result81 = mysqli_query($linki,$sql81);
 
-while ($row81 = mysql_fetch_assoc($result81)) {
+while ($row81 = mysqli_fetch_assoc($result81)) {
 echo '<option> '.$row81['annee'].' </option>';
 }
 ?>
@@ -87,19 +87,16 @@ if ((isset($_POST['mois']))&& (isset($_POST['annee'])))
 {
 $mois=$_POST['mois'];
 $annee=$_POST['annee'];  
-// Connect to server and select databse.
-mysql_connect ($host,$user,$pass)or die("cannot connect"); 
-mysql_select_db($db)or die("cannot select DB");
-  
+
 $sqFS="SELECT  SUM(Pre) AS Pre, RefLocalite , nserie , fannee FROM $tv_facturation where fannee='$annee'  and nserie='$mois' ";  
-	$RFS = mysql_query($sqFS); 
-	$AFFS = mysql_fetch_assoc($RFS);
+	$RFS = mysqli_query($linki,$sqFS); 
+	$AFFS = mysqli_fetch_assoc($RFS);
 	$tFSl=$AFFS['Pre'];
 	$A=$tFSl;
 
 $sqFSN="SELECT  SUM(Pre) AS Pre, totalnet, report, RefLocalite , nserie , fannee FROM $tv_facturation where fannee='$annee'  and nserie='$mois' and totalnet=report";  
-	$RFSN = mysql_query($sqFSN); 
-	$AFFSN = mysql_fetch_assoc($RFSN);
+	$RFSN = mysqli_query($linki,$sqFSN); 
+	$AFFSN = mysqli_fetch_assoc($RFSN);
 	$tFSlN=$AFFSN['Pre'];
 	$B=$tFSlN;
 	
@@ -108,7 +105,7 @@ $sqFSN="SELECT  SUM(Pre) AS Pre, totalnet, report, RefLocalite , nserie , fannee
 ?>
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Rapport d'activité <? echo $annee; ?></h3>
+    <h3 class="panel-title">Rapport d'activité <?php echo $annee; ?></h3>
   </div>
   <div class="panel-body">
     <table width="100%" border="0" cellpadding="0" cellspacing="0" bordercolor="#000000">
@@ -124,9 +121,9 @@ $sqFSN="SELECT  SUM(Pre) AS Pre, totalnet, report, RefLocalite , nserie , fannee
               </tr>
               <tr>
                 <td>Facturation</td>
-                <td><? echo strrev(chunk_split(strrev($tFSl),3," ")) ;?></td>
-                <td><? echo strrev(chunk_split(strrev($C),3," ")) ;?></td>
-                <td><? echo strrev(chunk_split(strrev($tFSlN),3," ")) ;?></td>
+                <td><?php echo strrev(chunk_split(strrev($tFSl),3," ")) ;?></td>
+                <td><?php echo strrev(chunk_split(strrev($C),3," ")) ;?></td>
+                <td><?php echo strrev(chunk_split(strrev($tFSlN),3," ")) ;?></td>
               </tr>
             </table></td>
           </tr>

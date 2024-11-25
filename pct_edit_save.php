@@ -12,7 +12,7 @@ $date=date("y/m/d H:i:s");
 
 
 $sql="update $tbl_pctaches  set realisateur='$realisateur', suivi='$suivi' , date='$date' WHERE id='$id' and idpc='$idpc' ";
-$result=mysql_query($sql);
+$result=mysqli_query($linki,$sql);
    if($result){
 	   //SUCCESS
 	   $idr=md5(microtime()).$id;
@@ -21,5 +21,5 @@ $result=mysql_query($sql);
    else {
    echo "ERROR";
    }
-  mysql_close(); 
+  mysqli_close($linki); 
 ?>

@@ -13,7 +13,7 @@ require 'rh_configuration_fonction.php';
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script language="javascript" src="calendar/calendar.js"></script>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -52,17 +52,17 @@ while($rows2=mysqli_fetch_array($result2)){
 
    $bgcolor = "#FFFFFF";  
 ?>
-        <tr bgcolor=<? echo "$bgcolor" ?>>
-          <td width="9%" height="33"> Annee <? echo $annee;?> </td>
-          <td width="13%"><? echo $rows2['direction'];?></td>
-          <td width="11%"><? echo $rows2['service'];?> 
+        <tr bgcolor=<?php echo "$bgcolor" ?>>
+          <td width="9%" height="33"> Annee <?php echo $annee;?> </td>
+          <td width="13%"><?php echo $rows2['direction'];?></td>
+          <td width="11%"><?php echo $rows2['service'];?> 
                     
           </td>
-          <td width="24%"><? echo $rows2['designation'];?></td>
-          <td width="10%"><? $P=strrev(chunk_split(strrev($rows2['prixu']),3," "));   echo $P;?></td>
-          <td width="7%"><? echo $rows2['quantite'];?></td>
-          <td width="11%"><? $P=strrev(chunk_split(strrev($rows2['prixt']),3," "));   echo $P;?></td>
-          <td width="15%"><? $id_dem2=$rows2['id_dem']; $numero=le_bondeachat($id_dem2,$tbl_appbonachat,$linki); echo $numero; ?></td>
+          <td width="24%"><?php echo $rows2['designation'];?></td>
+          <td width="10%"><?php $P=strrev(chunk_split(strrev($rows2['prixu']),3," "));   echo $P;?></td>
+          <td width="7%"><?php echo $rows2['quantite'];?></td>
+          <td width="11%"><?php $P=strrev(chunk_split(strrev($rows2['prixt']),3," "));   echo $P;?></td>
+          <td width="15%"><?php $id_dem2=$rows2['id_dem']; $numero=le_bondeachat($id_dem2,$tbl_appbonachat,$linki); echo $numero; ?></td>
         </tr>
 		  <?php
 $numboucle++;

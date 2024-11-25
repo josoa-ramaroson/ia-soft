@@ -4,8 +4,6 @@ $csv->setFlags(SplFileObject::READ_CSV);
 $csv->setCsvControl(';', '"', '"');
  
 require 'fonction.php';
-$link = mysql_connect ($host,$user,$pass);
-mysql_select_db($db);
 
 ?>
 <?php
@@ -30,13 +28,13 @@ $Indexinitial=addslashes($ligne[6]);
 $datepose=addslashes($ligne[7]);
 
 $valeur_existant = "SELECT COUNT(*) AS nb FROM clienteda  WHERE Police='$Police'";
-$sqLvaleur = mysql_query($valeur_existant)or exit(mysql_error()); 
-$nb = mysql_fetch_assoc($sqLvaleur);
+$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error()); 
+$nb = mysqli_fetch_assoc($sqLvaleur);
 
 if($nb['nb'] == 1)
 { 	
 $sRequete ="update clienteda  SET   typecompteur='$typecompteur', phase='$phase' , Tarif='$Tarif' , amperage='$amperage' , ncompteur='$ncompteur' , Indexinitial='$Indexinitial' , datepose='$datepose' WHERE Police='$Police'";
-	$sresult1=mysql_query($sRequete);
+	$sresult1=mysqli_query($linki,$sRequete);
 }
 else 
 {

@@ -121,14 +121,14 @@ $iddirection=addslashes($_REQUEST['direction']);
 $idservice=addslashes($_REQUEST['subcat']);
 
 $sql1 = "SELECT * FROM $tb_rhservice where idser=$idservice";
-$result1 = mysql_query($sql1);
-while ($row1 = mysql_fetch_assoc($result1)) {
+$result1 = mysqli_query($linki,$sql1);
+while ($row1 = mysqli_fetch_assoc($result1)) {
 $service=$row1['service'];
 }  
 
 $sql2 = "SELECT * FROM $tb_rhdirection where idrh=$iddirection";
-$result2 = mysql_query($sql2);
-while ($row2 = mysql_fetch_assoc($result2)) {
+$result2 = mysqli_query($linki,$sql2);
+while ($row2 = mysqli_fetch_assoc($result2)) {
 $direction=$row2['direction'];
 } 
     $m1d=$direction;
@@ -145,8 +145,8 @@ $sql2="SELECT SUM(sbase) AS sbase , SUM(SS) AS SS , SUM(SI) AS SI, SUM(SD) AS SD
 
 
 
-$resultat2 = mysql_query($sql2);	
-$data2=mysql_fetch_array($resultat2)
+$resultat2 = mysqli_query($linki,$sql2);	
+$data2=mysqli_fetch_array($resultat2)
 ?>
   </table>
 </p>
@@ -155,8 +155,8 @@ $data2=mysql_fetch_array($resultat2)
   <?php
 
 $sql = "SELECT count(*) FROM $tb_rhpaie where anneepaie='$anneepaie' and moispaie='$moispaie' and direction='$m1d' and  service='$m2s'";  
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-$nb_total = mysql_fetch_array($resultat);  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
 }  
@@ -164,12 +164,12 @@ else {
 if (!isset($_GET['debut'])) $_GET['debut'] = 0; 
 $nb_affichage_par_page =50; 
 $sql = "SELECT * FROM $tb_rhpaie where anneepaie='$anneepaie' and moispaie='$moispaie' and direction='$m1d' and  service='$m2s' ORDER BY matricule ASC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  //DESC
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
 </p>
- <p align="center"><em>RECAPITULATIF POUR DIRECTION  </em> - <em><? echo  $m1d.' SERVICE '.$m2s ;?></em> - <span class="panel-title"><? echo $affichemois.' '.$anneepaie ; ?></span></p>
+ <p align="center"><em>RECAPITULATIF POUR DIRECTION  </em> - <em><?php echo  $m1d.' SERVICE '.$m2s ;?></em> - <span class="panel-title"><?php echo $affichemois.' '.$anneepaie ; ?></span></p>
  <p align="center">&nbsp;</p>
-<p>IMPRIMER LA LISTE <a href="rh_bulletin_type_dsliste.php?<? echo md5(microtime())?>&direction=<? echo $iddirection;?>&subcat=<? echo $idservice;?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a> IMPRIMER LES BULLETINS<a href="rh_bulletinds.php?<? echo md5(microtime())?>&direction=<? echo $iddirection;?>&subcat=<? echo $idservice;?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a>
+<p>IMPRIMER LA LISTE <a href="rh_bulletin_type_dsliste.php?<?php echo md5(microtime())?>&direction=<?php echo $iddirection;?>&subcat=<?php echo $idservice;?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a> IMPRIMER LES BULLETINS<a href="rh_bulletinds.php?<?php echo md5(microtime())?>&direction=<?php echo $iddirection;?>&subcat=<?php echo $idservice;?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a>
    </p>
 </p>
 <table width="100%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
@@ -187,16 +187,16 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
   <tr>
     <td align="center" bgcolor="#FFFFFF">TOTAL </td>
     <td align="center">&nbsp;</td>
-    <td align="center" bgcolor="#FFFFFF"><font color="#000000"><? echo $data2['direction'];?></font></td>
-    <td align="center" bgcolor="#FFFFFF"><font color="#000000"><? echo $data2['service'];?></font></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo strrev(chunk_split(strrev($data2['SS']),3," ")); ?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo strrev(chunk_split(strrev($data2['SI']),3," "));?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo strrev(chunk_split(strrev($data2['SD']),3," "));?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo strrev(chunk_split(strrev($data2['SR']),3," "));?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo strrev(chunk_split(strrev($data2['SNET']),3," "));?><em></td>
+    <td align="center" bgcolor="#FFFFFF"><font color="#000000"><?php echo $data2['direction'];?></font></td>
+    <td align="center" bgcolor="#FFFFFF"><font color="#000000"><?php echo $data2['service'];?></font></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo strrev(chunk_split(strrev($data2['SS']),3," ")); ?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo strrev(chunk_split(strrev($data2['SI']),3," "));?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo strrev(chunk_split(strrev($data2['SD']),3," "));?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo strrev(chunk_split(strrev($data2['SR']),3," "));?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo strrev(chunk_split(strrev($data2['SNET']),3," "));?><em></td>
   </tr>
   <?php
-mysql_close ();  
+mysqli_close ();  
 ?>
 </table>
 <p>&nbsp; </p>
@@ -213,30 +213,30 @@ mysql_close ();
      <td width="12%" align="center"><font color="#FFFFFF"><strong>SALAIRE NET</strong></font></td>
   </tr>
    <?php
-while($datafact=mysql_fetch_array($req)){ // Start looping table row 
+while($datafact=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
-    <tr bgcolor="<? gettatut($datafact['SNET']); ?>">
+    <tr bgcolor="<?php gettatut($datafact['SNET']); ?>">
      <td align="center"><font color="#000000">
      
-	 <a href="rh_bulletinp.php?ipaie=<? echo md5(microtime()).$datafact['ipaie'];?>" class="btn btn-sm btn-warning" target="_blank" ><? echo $datafact['matricule'];?></a>
+	 <a href="rh_bulletinp.php?ipaie=<?php echo md5(microtime()).$datafact['ipaie'];?>" class="btn btn-sm btn-warning" target="_blank" ><?php echo $datafact['matricule'];?></a>
      
 	 </font></td>
-     <td ><font color="#000000"><? echo $datafact['nomprenom'];?></font></td>
-     <td align="center" ><font color="#000000"><? echo $datafact['direction'];?></font></td>
-     <td align="center" ><font color="#000000"><? echo $datafact['service'];?></font></td>
-     <td align="center" ><em><font color="#000000"><? echo $datafact['SS'];?></font></em></td>
-     <td align="center" ><font color="#000000"><? echo $datafact['SI'];?></font></td>
-     <td align="center" ><font color="#000000"><? echo $datafact['SD'];?></font></td>
-     <td align="center" ><font color="#000000"><? echo $datafact['SR'];?></font></td>
-     <td align="center" ><? echo $datafact['SNET'];?></td>
+     <td ><font color="#000000"><?php echo $datafact['nomprenom'];?></font></td>
+     <td align="center" ><font color="#000000"><?php echo $datafact['direction'];?></font></td>
+     <td align="center" ><font color="#000000"><?php echo $datafact['service'];?></font></td>
+     <td align="center" ><em><font color="#000000"><?php echo $datafact['SS'];?></font></em></td>
+     <td align="center" ><font color="#000000"><?php echo $datafact['SI'];?></font></td>
+     <td align="center" ><font color="#000000"><?php echo $datafact['SD'];?></font></td>
+     <td align="center" ><font color="#000000"><?php echo $datafact['SR'];?></font></td>
+     <td align="center" ><?php echo $datafact['SNET'];?></td>
    </tr>
    <?php
 }
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], $iddirection, $idservice,  10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-//mysql_close ();  
+mysqli_free_result ($resultat);  
+//mysqli_close ();  
 				  function gettatut($fetat){
 				  if ($fetat<=1000000 && $fetat>=500000)         { echo $couleur="#ffc88d";}//orange 
 				  if ($fetat>=1000000)                          { echo $couleur="#ec9b9b";}//rouge -Declined

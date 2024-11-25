@@ -13,7 +13,7 @@ require_once('calendar/classes/tc_calendar.php');
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script language="javascript" src="calendar/calendar.js"></script>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -84,8 +84,8 @@ httpxml.send(null);
 <?
 require 'bienvenue.php';    // on appelle la page contenant la fonction
 	$sqldate="SELECT * FROM $tbl_caisse "; //DESC  ASC
-	$resultldate=mysql_query($sqldate);
-	$datecaisse=mysql_fetch_array($resultldate);
+	$resultldate=mysqli_query($linki,$sqldate);
+	$datecaisse=mysqli_fetch_array($resultldate);
 ?>
 <body>
 <div class="panel panel-primary">
@@ -97,15 +97,13 @@ require 'bienvenue.php';    // on appelle la page contenant la fonction
 <p><font size="2"><font size="2"><font size="2">
 <?php
 // Connect to server and select databse.
-mysql_connect ($host,$user,$pass)or die("cannot connect"); 
-mysql_select_db($db)or die("cannot select DB");
-  
+
 $sql = "SELECT count(*) FROM $tbl_appdemande where statut='Finaliser'";  
 
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki, $sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
  // on teste si ce nombre de vaut pas 0  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -125,7 +123,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT * FROM $tbl_appdemande where statut='Finaliser' ORDER BY id_dem DESC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  //ASC
  
 // on ex?cute la requ?te  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki, $sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
 </font></strong></font></font></font></font></font></font></font></font></font></strong></font></font></font></font></font></font></font></font></font></font></p>
 <form name="form2" method="post" action="produit_cancel.php">
@@ -139,16 +137,16 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
       <td width="163" align="center" bgcolor="#3071AA" >&nbsp;</td>
     </tr>
     <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
     <tr>
-      <td height="33" align="center" bgcolor="#FFFFFF"><div align="left"><? echo $data['id_dem'];?></div>
+      <td height="33" align="center" bgcolor="#FFFFFF"><div align="left"><?php echo $data['id_dem'];?></div>
         <div align="left"></div></td>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['date_dem'];?></em></div></td>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['nomprenom'];?></em></div></td>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['direction'];?></em></div></td>
-      <td width="162"   style="background-color:#FFF;"><div align="left"><em><? echo $data['service'];?></em></div></td>
-      <td width="163"   style="background-color:#FFF;"><a href="app_demande_imp.php?<? echo md5(microtime());?>&id=<? echo md5(microtime()).$data['id_dem'];?>" target="_blank" class="btn btn-xs btn-success"> Visualiser les demandes</a>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['date_dem'];?></em></div></td>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['nomprenom'];?></em></div></td>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['direction'];?></em></div></td>
+      <td width="162"   style="background-color:#FFF;"><div align="left"><em><?php echo $data['service'];?></em></div></td>
+      <td width="163"   style="background-color:#FFF;"><a href="app_demande_imp.php?<?php echo md5(microtime());?>&id=<?php echo md5(microtime()).$data['id_dem'];?>" target="_blank" class="btn btn-xs btn-success"> Visualiser les demandes</a>
       
       </td>
     </tr>
@@ -156,11 +154,11 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
 
 }
 
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close ();  
+mysqli_free_result ($resultat);  
+mysqli_close ();  
 ?>
   </table>
 </form>

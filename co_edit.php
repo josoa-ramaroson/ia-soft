@@ -17,12 +17,12 @@ $idco=substr($_REQUEST["idco"],32);
 $_SESSION["idclient"]=substr($_REQUEST["id"],32);
 
 $sqlso="SELECT * FROM $tbl_compteur WHERE idco='$idco'";
-$resulso=mysql_query($sqlso);
-$datso=mysql_fetch_array($resulso);
+$resulso=mysqli_query($linki,$sqlso);
+$datso=mysqli_fetch_array($resulso);
 
 $sqlm="SELECT * FROM $tbl_contact WHERE id='$id'";
-$resultm=mysql_query($sqlm);
-$datam=mysql_fetch_array($resultm);
+$resultm=mysqli_query($linki,$sqlm);
+$datam=mysqli_fetch_array($resultm);
 ?>
 <body>
 <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
@@ -32,7 +32,7 @@ $datam=mysql_fetch_array($resultm);
   <tr>
     <td width="11%">&nbsp;</td>
     <td width="1%">&nbsp;</td>
-    <td width="31%"><strong> <? echo $datam['id'];?> </strong></td>
+    <td width="31%"><strong> <?php echo $datam['id'];?> </strong></td>
     <td width="2%">&nbsp;</td>
     <td width="15%">&nbsp;</td>
     <td width="40%">&nbsp;</td>
@@ -40,50 +40,50 @@ $datam=mysql_fetch_array($resultm);
   <tr>
     <td><strong><font size="2">Designation</font></strong></td>
     <td>&nbsp;</td>
-    <td><strong> <? echo $datam['Designation'];?> </strong></td>
+    <td><strong> <?php echo $datam['Designation'];?> </strong></td>
     <td>&nbsp;</td>
     <td><strong><font size="2">Fax</font></strong></td>
-    <td><strong><? echo $datam['fax'];?></strong></td>
+    <td><strong><?php echo $datam['fax'];?></strong></td>
   </tr>
   <tr>
     <td><strong><font size="2">Nom et Prénom <font size="2"><font color="#FF0000"> *</font></font></font></strong></td>
     <td>&nbsp;</td>
-    <td><? echo $datam['nomprenom'];?>&nbsp;</td>
+    <td><?php echo $datam['nomprenom'];?>&nbsp;</td>
     <td>&nbsp;</td>
     <td><strong><font size="2">Site Web</font></strong></td>
-    <td><strong><? echo $datam['url'];?></strong></td>
+    <td><strong><?php echo $datam['url'];?></strong></td>
   </tr>
   <tr>
     <td><strong><font size="2">Surnom</font></strong></td>
     <td>&nbsp;</td>
-    <td><? echo $datam['surnom'];?></td>
+    <td><?php echo $datam['surnom'];?></td>
     <td>&nbsp;</td>
     <td><strong><font size="2">Adresse</font></strong></td>
-    <td><strong><? echo $datam['adresse'];?></strong></td>
+    <td><strong><?php echo $datam['adresse'];?></strong></td>
   </tr>
   <tr>
     <td><strong><font size="2">Email</font></strong></td>
     <td>&nbsp;</td>
-    <td><? echo $datam['email'];?></td>
+    <td><?php echo $datam['email'];?></td>
     <td>&nbsp;</td>
     <td><strong><font size="2">Ville</font></strong></td>
-    <td><strong><? echo $datam['ville'];?></strong></td>
+    <td><strong><?php echo $datam['ville'];?></strong></td>
   </tr>
   <tr>
     <td><strong>Titre </strong></td>
     <td>&nbsp;</td>
-    <td><strong><? echo $datam['titre'];?></strong></td>
+    <td><strong><?php echo $datam['titre'];?></strong></td>
     <td>&nbsp;</td>
     <td><strong><font size="2"><font size="2">Quartier</font></font></strong></td>
-    <td><strong><? echo $datam['quartier'];?></strong></td>
+    <td><strong><?php echo $datam['quartier'];?></strong></td>
   </tr>
   <tr>
     <td><strong><font size="2">T&eacute;l&eacute;phone</font></strong></td>
     <td>&nbsp;</td>
-    <td><strong><? echo $datam['tel'];?></strong></td>
+    <td><strong><?php echo $datam['tel'];?></strong></td>
     <td>&nbsp;</td>
     <td><strong>Iles</strong></td>
-    <td><strong><? echo $datam['ile'];?></strong></td>
+    <td><strong><?php echo $datam['ile'];?></strong></td>
   </tr>
 </table>
 <p>&nbsp;</p>
@@ -98,26 +98,26 @@ $datam=mysql_fetch_array($resultm);
           <td width="45%"><p>
  <?php
 	 $sqact="SELECT * FROM $tbl_compteur WHERE id='$id'";
-	 $resultact=mysql_query($sqact);
+	 $resultact=mysqli_query($linki,$sqact);
  ?>
       <?php
-while($rowsact=mysql_fetch_array($resultact)){ 
+while($rowsact=mysqli_fetch_array($resultact)){ 
 ?>
           </p>
             <table width="94%" border="0" align="center" cellpadding="0" cellspacing="0">
               <tr>
-                <td width="52%"><li><? echo $rowsact['raisonsociale']; ?> &nbsp;  <? echo $rowsact['quartier']; ?> &nbsp;  <? echo $rowsact['ville']; ?></li></td>
-                <td width="20%"><a href="so_edit.php?id=<? echo md5(microtime()).$datam['id'];?>&amp;iden=<? echo md5(microtime()).$rowsact['iden'];?>" class="btn btn-sm btn-success">Modifier</a><a href="sv_edit.php?id=<? echo $_SESSION["idclient"];?>&amp;idau=<? echo $rowsaut['idau'];?>"> </a></td>
-                <td width="28%"><a href="so_affichage_user.php?id=<? echo md5(microtime()).$datam['id'];?>&iden=<? echo md5(microtime()).$rowsact['iden'];?>" class="btn btn-sm btn-success" >Aperçu</a></td>
+                <td width="52%"><li><?php echo $rowsact['raisonsociale']; ?> &nbsp;  <?php echo $rowsact['quartier']; ?> &nbsp;  <?php echo $rowsact['ville']; ?></li></td>
+                <td width="20%"><a href="so_edit.php?id=<?php echo md5(microtime()).$datam['id'];?>&amp;iden=<?php echo md5(microtime()).$rowsact['iden'];?>" class="btn btn-sm btn-success">Modifier</a><a href="sv_edit.php?id=<?php echo $_SESSION["idclient"];?>&amp;idau=<?php echo $rowsaut['idau'];?>"> </a></td>
+                <td width="28%"><a href="so_affichage_user.php?id=<?php echo md5(microtime()).$datam['id'];?>&iden=<?php echo md5(microtime()).$rowsact['iden'];?>" class="btn btn-sm btn-success" >Aperçu</a></td>
               </tr>
             </table>
             <?php } ?></td>
           <td width="55%"><table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
             <tr>
-              <td><input name="id" type="hidden" value="<? echo $datam['id']; ?>" />
-                <input name="idco" type="hidden" value="<? echo $datso['idco']; ?>" />
+              <td><input name="id" type="hidden" value="<?php echo $datam['id']; ?>" />
+                <input name="idco" type="hidden" value="<?php echo $datso['idco']; ?>" />
                 <font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+                <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
                 </font></strong></font></strong></font></td>
               <td>&nbsp;</td>
             </tr>
@@ -125,7 +125,7 @@ while($rowsact=mysql_fetch_array($resultact)){
               <td><strong><font size="2">Type compteur</font></strong></td>
               <td><strong>
                 <select name="typecompteur" id="select4">
-                <option> <? echo $datso['typecompteur'];?></option>
+                <option> <?php echo $datso['typecompteur'];?></option>
                   <option>Monophase</option>
                   <option>Triphase</option>
                 </select>
@@ -134,14 +134,14 @@ while($rowsact=mysql_fetch_array($resultact)){
             <tr>
               <td><strong><font size="2">N° Phase</font></strong></td>
               <td><strong>
-                <input name="raisonsociale" type="text" id="nom2" value="<? echo $datso['raisonsociale'];?>" size="40" />
+                <input name="raisonsociale" type="text" id="nom2" value="<?php echo $datso['raisonsociale'];?>" size="40" />
               </strong></td>
             </tr>
             <tr>
               <td><strong>Puissance</strong></td>
               <td><strong>
                 <select name="puissance" id="puissance">
-                <option> <? echo $datso['puissance'];?></option>
+                <option> <?php echo $datso['puissance'];?></option>
                   <option>1</option>
                   <option>2</option>
                 </select>
@@ -150,31 +150,31 @@ while($rowsact=mysql_fetch_array($resultact)){
             <tr>
               <td><strong><font color="#000000" size="2">Tarif</font></strong></td>
               <td><strong>
-                <input name="Tarif" type="text" id="utilisateur2" value="<? echo $datso['Tarif'];?>" size="10" />
+                <input name="Tarif" type="text" id="utilisateur2" value="<?php echo $datso['Tarif'];?>" size="10" />
               </strong></td>
             </tr>
             <tr>
               <td><strong><font size="2">Calibre ( Amperage)</font></strong></td>
               <td><strong>
-                <input name="amperage" type="text" id="nom" value="<? echo $datso['amperage'];?>" size="20" />
+                <input name="amperage" type="text" id="nom" value="<?php echo $datso['amperage'];?>" size="20" />
               </strong></td>
             </tr>
             <tr>
               <td><strong><font size="2">Numero Compteur </font></strong></td>
               <td><strong>
-                <input name="ncompteur" type="text" id="ncompteur" value="<? echo $datso['ncompteur'];?>" size="20" />
+                <input name="ncompteur" type="text" id="ncompteur" value="<?php echo $datso['ncompteur'];?>" size="20" />
               </strong></td>
             </tr>
             <tr>
               <td><strong><font size="2">Index de depart</font></strong></td>
               <td><strong>
-                <input name="Indexinitial" type="text" id="Indexinitial" value="<? echo $datso['Indexinitial'];?>" size="20" />
+                <input name="Indexinitial" type="text" id="Indexinitial" value="<?php echo $datso['Indexinitial'];?>" size="20" />
               </strong></td>
             </tr>
             <tr>
               <td><strong><font size="2">Date de pose </font></strong></td>
               <td><strong>
-                <input name="datepose" type="text" id="datepose" value="<? echo $datso['datepose'];?>" size="20" />
+                <input name="datepose" type="text" id="datepose" value="<?php echo $datso['datepose'];?>" size="20" />
               </strong></td>
             </tr>
             <tr>
@@ -183,9 +183,9 @@ while($rowsact=mysql_fetch_array($resultact)){
                 <select name="secteur2" id="secteur">
                   <?php
 $sql8 = ("SELECT soussecteur FROM soussecteur ORDER BY soussecteur ASC");
-$result8 = mysql_query($sql8);
+$result8 = mysqli_query($linki,$sql8);
 
-while ($row8 = mysql_fetch_assoc($result8)) {
+while ($row8 = mysqli_fetch_assoc($result8)) {
 echo '<option> '.$row8['soussecteur'].' </option>';
 }
 
@@ -199,9 +199,9 @@ echo '<option> '.$row8['soussecteur'].' </option>';
                 <select name="localite" id="localite">
                   <?php
 $sql2 = ("SELECT annee FROM annee ORDER BY annee ASC ");
-$result2 = mysql_query($sql2);
+$result2 = mysqli_query($linki,$sql2);
 
-while ($row2 = mysql_fetch_assoc($result2)) {
+while ($row2 = mysqli_fetch_assoc($result2)) {
 echo '<option> '.$row2['annee'].' </option>';
 }
 
@@ -215,9 +215,9 @@ echo '<option> '.$row2['annee'].' </option>';
                 <select name="quartier" id="select2">
                   <?php
 $sql9 = ("SELECT nombre FROM nombre ORDER BY id ASC ");
-$result9 = mysql_query($sql9);
+$result9 = mysqli_query($linki,$sql9);
 
-while ($row9 = mysql_fetch_assoc($result9)) {
+while ($row9 = mysqli_fetch_assoc($result9)) {
 echo '<option> '.$row9['nombre'].' </option>';
 }
 
@@ -228,19 +228,19 @@ echo '<option> '.$row9['nombre'].' </option>';
             <tr>
               <td><strong><font size="2">Bloc</font></strong></td>
               <td><strong>
-                <input name="bloc" type="text" id="bloc" value="<? echo $datso['bloc'];?>" size="20" />
+                <input name="bloc" type="text" id="bloc" value="<?php echo $datso['bloc'];?>" size="20" />
               </strong></td>
             </tr>
             <tr>
               <td><strong><font size="2">Position</font></strong></td>
               <td><strong>
-                <input name="position" type="text" id="position" value="<? echo $datso['position'];?>" size="15" />
+                <input name="position" type="text" id="position" value="<?php echo $datso['position'];?>" size="15" />
               </strong></td>
             </tr>
             <tr>
               <td><strong><font size="2">Rang</font></strong></td>
               <td><strong><span style="font-size:8.5pt;font-family:Arial">
-                <input name="rang" type="text" id="rang" value="<? echo $datso['rang'];?>" size="15" />
+                <input name="rang" type="text" id="rang" value="<?php echo $datso['rang'];?>" size="15" />
               </span></strong></td>
             </tr>
             <tr>

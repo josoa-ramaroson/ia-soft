@@ -116,14 +116,14 @@ $RefCommune=substr($RefQuartier,0,3);
 $refville=addslashes($_REQUEST['refville']);
 
 $sql1 = "SELECT * FROM quartier where id_quartier=$RefQuartier";
-$result1 = mysql_query($sql1);
-while ($row1 = mysql_fetch_assoc($result1)) {
+$result1 = mysqli_query($linki,$sql1);
+while ($row1 = mysqli_fetch_assoc($result1)) {
 $quartier=$row1['quartier'];
 }  
 
 $sql2 = "SELECT * FROM ville where refville=$refville";
-$result2 = mysql_query($sql2);
-while ($row2 = mysql_fetch_assoc($result2)) {
+$result2 = mysqli_query($linki,$sql2);
+while ($row2 = mysqli_fetch_assoc($result2)) {
 $ville=$row2['ville'];
 } 
     $m1v=$ville;
@@ -133,9 +133,9 @@ $ville=$row2['ville'];
 	//$m2q=addslashes($_REQUEST['m2q']);
 ?>
 <body>
-<a href="coupure_listeimp.php?m1v=<? echo md5(microtime()).$m1v;?>&m2q=<? echo md5(microtime()).$m2q;?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a> Coupure des impayees 
+<a href="coupure_listeimp.php?m1v=<?php echo md5(microtime()).$m1v;?>&m2q=<?php echo md5(microtime()).$m2q;?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a> Coupure des impayees 
 
-<a href="coupure_qrcode.php?m1v=<? echo md5(microtime()).$m1v;?>&m2q=<? echo md5(microtime()).$m2q;?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a> Liste en  QRCODE
+<a href="coupure_qrcode.php?m1v=<?php echo md5(microtime()).$m1v;?>&m2q=<?php echo md5(microtime()).$m2q;?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a> Liste en  QRCODE
 
  <p><?php
 require 'configuration.php';
@@ -144,8 +144,8 @@ $anneec=$annee_recouvrement;
 
 
 $sql = "SELECT count(*) FROM $tbl_fact f, $tbl_contact c  where f.fannee='$anneec' and f.st='E' and nserie='$cserie' and c.id=f.id and c.ville='$m1v' and  c.quartier='$m2q' and  f.totalnet > 1000  and idf NOT IN(SELECT idf FROM $tbl_paiement where YEAR(date)='$anneec')";  
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-$nb_total = mysql_fetch_array($resultat);  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
 }  
@@ -154,20 +154,20 @@ if (!isset($_GET['debut']))
 $_GET['debut'] = 0; 
 $nb_affichage_par_page = 50; 
 $sql = "SELECT * FROM $tbl_fact f, $tbl_contact c  where f.fannee='$anneec' and f.st='E' and nserie='$cserie' and c.id=f.id and c.ville='$m1v' and  c.quartier='$m2q' and  f.totalnet > 1000  and idf NOT IN(SELECT idf FROM $tbl_paiement where YEAR(date)='$anneec') ORDER BY f.id ASC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
-$req=mysql_query($sql);
+$req=mysqli_query($linki,$sql);
 
 
 
 $sqFP="SELECT  COUNT(*) AS nbres, SUM(f.totalnet) AS totalnet , SUM(f.totalttc) AS totalttc, SUM(f.impayee) AS impayee, SUM(f.ortc) AS ortc,  f.fannee , f.st , f.nserie, c.ville, c.quartier FROM $tbl_fact f, $tbl_contact c  where f.fannee='$anneec' and f.st='E' and nserie='$cserie' and c.id=f.id and c.ville='$m1v' and  c.quartier='$m2q' and  f.totalnet > 1000 and idf NOT IN(SELECT idf FROM $tbl_paiement where YEAR(date)='$anneec')"; 
-	$RFP = mysql_query($sqFP); 
-	$AFP = mysql_fetch_assoc($RFP);
+	$RFP = mysqli_query($linki,$sqFP); 
+	$AFP = mysqli_fetch_assoc($RFP);
 	$tFP=$AFP['totalttc'];
 	$tFPt=$AFP['totalnet']; 
 	$tFPn=$AFP['nbres'];
 	$tFPi=$AFP['impayee'];
 	$tFPo=$AFP['ortc'];
 
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
     LISTE DE COUPURE
 : </p>
@@ -182,13 +182,13 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
      <td width="18%">Somme Total Net</td>
    </tr>
    <tr>
-     <td><em><? echo  $m1v;?></em></td>
-     <td><em><? echo $m2q;?></em></td>
-     <td><em><? echo strrev(chunk_split(strrev($tFPn),3," "));?></em></td>
-     <td><em><? echo strrev(chunk_split(strrev($tFP),3," "));?></em></td>
-     <td><em><? echo strrev(chunk_split(strrev($tFPo),3," "));?></em></td>
-     <td><em><? echo strrev(chunk_split(strrev($tFPi),3," "));?></em></td>
-     <td><em><? echo strrev(chunk_split(strrev($tFPt),3," "));?></em></td>
+     <td><em><?php echo  $m1v;?></em></td>
+     <td><em><?php echo $m2q;?></em></td>
+     <td><em><?php echo strrev(chunk_split(strrev($tFPn),3," "));?></em></td>
+     <td><em><?php echo strrev(chunk_split(strrev($tFP),3," "));?></em></td>
+     <td><em><?php echo strrev(chunk_split(strrev($tFPo),3," "));?></em></td>
+     <td><em><?php echo strrev(chunk_split(strrev($tFPi),3," "));?></em></td>
+     <td><em><?php echo strrev(chunk_split(strrev($tFPt),3," "));?></em></td>
    </tr>
  </table>
  <p>&nbsp;</p>
@@ -203,25 +203,25 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
      <td width="17%" align="center"><font color="#FFFFFF"><strong>Total net</strong></font></td>
   </tr>
    <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
 
-   <tr bgcolor="<? gettatut($data['bstatut']); ?>">
-     <td align="center" ><em><? echo $data['id'];?></em></td>
-     <td ><em><? echo $data['nomprenom'];?></em></td>
-     <td align="center" ><em><? echo $data['totalttc'];?></em></td>
-     <td align="center" ><em><? echo $data['ortc'];?></em></td>
-     <td align="center" ><em><? echo $data['impayee'];?></em></td>
-     <td align="center" ><em><? echo $data['Pre'];?></em></td>
-     <td align="center" ><em><? echo $data['totalnet'];?></em></td>
+   <tr bgcolor="<?php gettatut($data['bstatut']); ?>">
+     <td align="center" ><em><?php echo $data['id'];?></em></td>
+     <td ><em><?php echo $data['nomprenom'];?></em></td>
+     <td align="center" ><em><?php echo $data['totalttc'];?></em></td>
+     <td align="center" ><em><?php echo $data['ortc'];?></em></td>
+     <td align="center" ><em><?php echo $data['impayee'];?></em></td>
+     <td align="center" ><em><?php echo $data['Pre'];?></em></td>
+     <td align="center" ><em><?php echo $data['totalnet'];?></em></td>
    </tr>
    <?php
 }
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], $refville , $RefQuartier,  10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close ();  
+mysqli_free_result ($resultat);  
+mysqli_close ();  
 				  function gettatut($fetat){
 				  if ($fetat=='remise')         { echo $couleur="#fdff00";}//jaune	
 				  if ($fetat=='couper')         { echo $couleur="#ec9b9b";}//rouge -Declined

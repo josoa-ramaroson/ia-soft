@@ -25,9 +25,9 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
 require 'fonction.php';
 $sql = "SELECT count(*) FROM $tbl_pctaches where suivi!='Traité' and  realisateur='$id_nom'";  
 
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
 
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -41,7 +41,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT * FROM $tbl_pctaches  where suivi!='Traité' and  realisateur='$id_nom' ORDER BY idpc DESC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
  
 // on ex?cute la requ?te  ASC
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
 </span></strong></font></font></font></font></font></font></font></font></font></strong></font></font></font></font></font></font></font></font></font></font></p>
 <table width="100%" border="1" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC">
@@ -58,29 +58,29 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
     <td width="99" bgcolor="#3071AA"><strong><font color="#FFFFFF">TI Resp.</font></strong></td>
   </tr>
   <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
-  <tr bgcolor="<? gettatut($data['suivi']); ?>">
-    <td ><a href="pc_affichage_user.php?id=<? echo md5(microtime()).$data['id']; ?>" class="btn btn-sm btn-danger" > <? echo $data['idpc']; ?></a>
+  <tr bgcolor="<?php gettatut($data['suivi']); ?>">
+    <td ><a href="pc_affichage_user.php?id=<?php echo md5(microtime()).$data['id']; ?>" class="btn btn-sm btn-danger" > <?php echo $data['idpc']; ?></a>
       <div align="left"></div></td>
-    <td ><? echo $data['date']; ?></span></td>
-    <td ><? echo $data['ile']; ?></span></td>
-    <td ><? echo $data['agence']; ?></span></td>
-    <td ><? echo $data['utilisateur'];?></td>
-    <td ><? echo $data['nom'];?></td>
-    <td ><? echo $data['taches'];?></td>
-    <td ><? echo $data['statut'];?></td>
-    <td ><? echo $data['suivi'];?></td>
-    <td ><? echo $data['realisateur'];?></td>
+    <td ><?php echo $data['date']; ?></span></td>
+    <td ><?php echo $data['ile']; ?></span></td>
+    <td ><?php echo $data['agence']; ?></span></td>
+    <td ><?php echo $data['utilisateur'];?></td>
+    <td ><?php echo $data['nom'];?></td>
+    <td ><?php echo $data['taches'];?></td>
+    <td ><?php echo $data['statut'];?></td>
+    <td ><?php echo $data['suivi'];?></td>
+    <td ><?php echo $data['realisateur'];?></td>
   </tr>
   <?php
 
 }
 
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
+mysqli_free_result ($resultat);  
 	                 function gettatut($fetat){
 				 if ($fetat=='En cours') { echo $couleur="#fdff00";}//jaune	
 				 if ($fetat=='Traité')   { echo $couleur="#87e385";}//vert fonce

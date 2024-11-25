@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title><? include 'titre.php'; ?></title>
-<? include 'inc/head.php'; ?>
+<title><?php include 'titre.php'; ?></title>
+<?php include 'inc/head.php'; ?>
 <style type="text/css">
 .centre {
 	text-align: center;
@@ -23,20 +23,20 @@ require 'rh_configuration_fonction.php';
 $iddirection=addslashes($_REQUEST['direction']);
 
 $sql2 = "SELECT * FROM $tb_rhdirection where idrh=$iddirection";
-$result2 = mysql_query($sql2);
-while ($row2 = mysql_fetch_assoc($result2)) {
+$result2 = mysqli_query($linki,$sql2);
+while ($row2 = mysqli_fetch_assoc($result2)) {
 $direction=$row2['direction'];
 } 
     $m1d=$direction;
 
 $sql5="SELECT * FROM $tb_rhpaie where anneepaie='$anneepaie' and moispaie='$moispaie' and direction='$m1d' ORDER BY matricule ASC";
-$req5=mysql_query($sql5);
+$req5=mysqli_query($linki,$sql5);
 
-while($datam=mysql_fetch_array($req5)){ // Start looping table row
+while($datam=mysqli_fetch_array($req5)){ // Start looping table row
 $idrh=$datam['idrh'];
 $sqlconnect="SELECT * FROM $tb_rhpersonnel  WHERE idrhp=$idrh";
-$resultconnect=mysql_query($sqlconnect);
-$rmat=mysql_fetch_array($resultconnect);
+$resultconnect=mysqli_query($linki,$sqlconnect);
+$rmat=mysqli_fetch_array($resultconnect);
 //$nconge= $rmat['nconge'];
 $nCPP= $rmat['CPP'];
 ?>
@@ -58,36 +58,36 @@ $nCPP= $rmat['CPP'];
         <td><table width="93%" border="0.5" align="center" cellpadding="0" cellspacing="0">
           <tr>
             <td width="36%">Nom et prenom</td>
-            <td width="64%"><font color="#000000"><strong><? echo $datam['Designation'];?></strong> 
-			<? $nomprenom=substr($datam['nomprenom'],0,22); echo $nomprenom;?> </font></td>
+            <td width="64%"><font color="#000000"><strong><?php echo $datam['Designation'];?></strong> 
+			<?php $nomprenom=substr($datam['nomprenom'],0,22); echo $nomprenom;?> </font></td>
           </tr>
           <tr>
             <td>Fonction</td>
-            <td><strong><? echo $datam['titre'];?></strong></td>
+            <td><strong><?php echo $datam['titre'];?></strong></td>
           </tr>
           <tr>
             <td>Matricule </td>
-            <td><strong><? echo $datam['matricule'];?></strong></td>
+            <td><strong><?php echo $datam['matricule'];?></strong></td>
           </tr>
           <tr>
             <td>Direction</td>
-            <td><strong><? echo $datam['direction'];?></strong></td>
+            <td><strong><?php echo $datam['direction'];?></strong></td>
           </tr>
           <tr>
             <td>Service </td>
-            <td><strong><? echo $datam['service'];?></strong></td>
+            <td><strong><?php echo $datam['service'];?></strong></td>
           </tr>
           <tr>
             <td><span style="width:36%">Date d'embauche</span></td>
             <td><strong>
-            <? $dembauche=$datam['dembauche'];  echo  date("d-m-Y", strtotime($dembauche));?></strong></td>
+            <?php $dembauche=$datam['dembauche'];  echo  date("d-m-Y", strtotime($dembauche));?></strong></td>
           </tr>
         </table></td>
       </tr>
     </table></td>
   </tr>
 </table>
-<p align="center">PERIODE DE PAIEMENT :&nbsp;&nbsp;<b> <? $n1=$datam['moispaie']; 
+<p align="center">PERIODE DE PAIEMENT :&nbsp;&nbsp;<b> <?php $n1=$datam['moispaie']; 
 	  if ($n1==1) echo 'janvier';
 	  if ($n1==2) echo 'février'; 
 	  if ($n1==3) echo 'Mars';
@@ -102,7 +102,7 @@ $nCPP= $rmat['CPP'];
 	  if ($n1==12) echo 'Decembre';  
 	  ?>
 
-<? echo $datam['anneepaie']; ?></b></p>
+<?php echo $datam['anneepaie']; ?></b></p>
 <div class="panel panel-info">
   <div class="panel-heading">
     <h3 class="panel-title">Salaire base &amp; Indemnités</h3>
@@ -119,92 +119,92 @@ $nCPP= $rmat['CPP'];
             </tr>
           <tr>
             <td>Indice de Base </td>
-            <td><? echo $datam['indice']; ?></td>
+            <td><?php echo $datam['indice']; ?></td>
             <td width="31%">
               Fonction              </td>
-            <td width="20%"><? echo $datam['fonction']; ?>
+            <td width="20%"><?php echo $datam['fonction']; ?>
              </td>
             </tr>
           <tr>
             <td>Taux </td>
-            <td><? echo $datam['taux']; ?></td>
+            <td><?php echo $datam['taux']; ?></td>
             <td>
               Transport</td>
-            <td><? echo $datam['transport']; ?></td>
+            <td><?php echo $datam['transport']; ?></td>
             </tr>
           <tr>
-            <td>Salaire de Base (<? echo $datam['Tin']; ?>)%</td>
-            <td><? echo $datam['sbase']; ?></td>
+            <td>Salaire de Base (<?php echo $datam['Tin']; ?>)%</td>
+            <td><?php echo $datam['sbase']; ?></td>
             <td>
        Logement</td>
-            <td><? echo $datam['logement']; ?></td>
+            <td><?php echo $datam['logement']; ?></td>
             </tr>
             
           <tr>
      <td>
 	  Avancement au marité</td>
-            <td><? echo $datam['avancement']; ?></td>
+            <td><?php echo $datam['avancement']; ?></td>
             
             
             <td> Téléphone </td>
             <td>
-              <? echo $datam['telephone']; ?></td>
+              <?php echo $datam['telephone']; ?></td>
             </tr>
           <tr>
             <td>
               Prime d'anciennete              </td>
-            <td><? echo $datam['anciennete']; ?></td>
+            <td><?php echo $datam['anciennete']; ?></td>
             
             <td> 
               Risque / Autres Indemnite              </td>
-             <td><? echo $datam['risque'];?></td>
+             <td><?php echo $datam['risque'];?></td>
             </tr>
             
           <tr>
             <td>
               Gratification              </td>
-            <td><? echo $datam['gratification']; ?></td>
+            <td><?php echo $datam['gratification']; ?></td>
             
             
             <td>
               Caisse              </td>
-            <td><? echo $datam['caisse'];?></td>
+            <td><?php echo $datam['caisse'];?></td>
             </tr>
             
             
           <tr>
             <td>
               Rappel              </td>
-            <td><? echo $datam['srappel'];?></td>
+            <td><?php echo $datam['srappel'];?></td>
             
             
             <td>
               Prime Nuit (Astreinte)              </td>
-            <td><? echo $datam['astreinte'];?></td>
+            <td><?php echo $datam['astreinte'];?></td>
             </tr>
             
             
           <tr>
             <td>
               Heures supplementaire              </td>
-            <td><? echo $datam['heuressup']; ?></td>
+            <td><?php echo $datam['heuressup']; ?></td>
             
             
             <td>
               Prime de panier              </td>
-            <td><? echo $datam['panier']; ?></td>
+            <td><?php echo $datam['panier']; ?></td>
             </tr>
             
             
           <tr>
             <td>
               Congé payé              </td>
-            <td><? echo $datam['conge']; ?></td>
+            <td><?php echo $datam['conge']; ?></td>
             
             
             <td>
               Remboursement de frais              </td>
-            <td><? echo $datam['remboursement']; ?></td>
+            <td><?php echo $datam['remboursement']; ?></td>
             </tr>
             
           <tr>
@@ -216,11 +216,11 @@ $nCPP= $rmat['CPP'];
           <tr>
             <td>TOTAL DE BASE </td>
             <td><strong>
-              <? $SS=$datam['SS']; echo $datam['SS']; ?>
+              <?php $SS=$datam['SS']; echo $datam['SS']; ?>
             KMF</strong></td>
             <td>TOTAL INDEMNITES </td>
             <td><strong>
-              <? $SI=$datam['SI']; echo $datam['SI']; ?>
+              <?php $SI=$datam['SI']; echo $datam['SI']; ?>
             KMF</strong></td>
           </tr>
           <tr>
@@ -234,7 +234,7 @@ $nCPP= $rmat['CPP'];
             <td>&nbsp;</td>
             <td>SALAIRE BRUT</td>
             <td><strong>
-              <? $SB=$SS+$SI; echo $SB; ?>
+              <?php $SB=$SS+$SI; echo $SB; ?>
             KMF</strong></td>
           </tr>
         </table></td>
@@ -252,43 +252,43 @@ $nCPP= $rmat['CPP'];
         <td width="47%"><table width="100%" border="0.5" cellspacing="0" cellpadding="0">
           <tr>
             <td width="26%">Caisse mutuelle</td>
-            <td width="29%"><? echo $datam['cotisation']; ?></td>
+            <td width="29%"><?php echo $datam['cotisation']; ?></td>
             
             <td width="25%">
               IGR              </td>
-            <td width="20%"><? echo $datam['igr']; ?></td>
+            <td width="20%"><?php echo $datam['igr']; ?></td>
           </tr>
           
           <tr>
             <td>              Avance sur Salaire              </td>
-            <td><? echo $datam['avances'];?></td>
+            <td><?php echo $datam['avances'];?></td>
             
             
             <td>
               Caisse de retraite              </td>
-            <td><? echo $datam['retraite'];?></td>
+            <td><?php echo $datam['retraite'];?></td>
           </tr>
           
           
           <tr>
             <td>
               Pret              </td>
-            <td><? echo $datam['pret'];?></td>
+            <td><?php echo $datam['pret'];?></td>
             
             
             <td>
               Caisse de prevoyances              </td>
-            <td><? echo $datam['prevoyance'];?></td>
+            <td><?php echo $datam['prevoyance'];?></td>
           </tr>
           
           <tr>
             <td>              Autre deduction              </td>
-            <td><? echo $datam['adeduction'];?></td>
+            <td><?php echo $datam['adeduction'];?></td>
             
             
             <td>
               Autres retenue              </td>
-            <td><? echo $datam['aretenue'];?></td>
+            <td><?php echo $datam['aretenue'];?></td>
           </tr>
           
           <tr>
@@ -299,9 +299,9 @@ $nCPP= $rmat['CPP'];
           </tr>
           <tr>
             <td>TOTAL DEDUCTIONS</td>
-            <td><strong><? echo $datam['SD'];?> KMF</strong></td>
+            <td><strong><?php echo $datam['SD'];?> KMF</strong></td>
             <td>TOTAL RETENUES</td>
-            <td><strong><? echo $datam['SR'];?> KMF</strong></td>
+            <td><strong><?php echo $datam['SR'];?> KMF</strong></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
@@ -314,7 +314,7 @@ $nCPP= $rmat['CPP'];
             <td>&nbsp;</td>
             <td>SALAIRE NET </td>
             <td><strong>
-              <? echo $datam['SNET']; ?>
+              <?php echo $datam['SNET']; ?>
             KMF</strong></td>
           </tr>
         </table></td>

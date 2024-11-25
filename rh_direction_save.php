@@ -6,7 +6,7 @@ $direction=addslashes($_POST['direction']);
 
 #---------------------------------------------------3 
 $sqlp="INSERT INTO $tb_rhdirection (id_nom, direction) VALUES ('$id_nom', '$direction' )";
-$resultp=mysql_query($sqlp);
+$resultp=mysqli_query($linki,$sqlp);
 if($resultp){
 }
 else {

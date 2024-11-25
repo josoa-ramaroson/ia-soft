@@ -62,8 +62,8 @@ $mr1=addslashes($_REQUEST['mr1']);
 $s=explode(" ",$mr1);
 
 $sql = "SELECT count(*) FROM $tbl_contact";  
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-$nb_total = mysql_fetch_array($resultat);  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
 }  
@@ -84,7 +84,7 @@ foreach($s as $mot) {
 
 $sql.=" 0 )  ORDER BY nomprenom ASC ";  
 
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
 </p>
 <table width="100%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
@@ -101,7 +101,7 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
      <td width="11%" align="center"><font color="#FFFFFF"><strong>Suivi </strong></font></td>
   </tr>
    <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 
 $nomprenom=$data['nomprenom'];
 	$i=0;
@@ -165,33 +165,33 @@ $nomprenom=$data['nomprenom'];
 	 }
 	 
 ?>
-   <tr bgcolor="<? gettatut($data['bstatut']); ?>">
-     <td align="center" ><em><? echo $data['id'];?></em></td>
-     <td align="center" ><em><? echo $data['ville'];?></em></td>
-     <td align="center" ><em><? echo $data['quartier'];?></em></td>
-     <td align="center" ><em><? echo $data['nomprenom'];?></em></td>
-     <td align="center" ><em><? echo $data['totalttc'];?></em></td>
-     <td align="center" ><em><? echo $data['ortc'];?></em></td>
-     <td align="center" ><em><? echo $data['impayee'];?></em></td>
-     <td align="center" ><em><? echo $data['Pre'];?></em></td>
-     <td align="center" ><em><? echo $data['totalnet'];?></em></td>
+   <tr bgcolor="<?php gettatut($data['bstatut']); ?>">
+     <td align="center" ><em><?php echo $data['id'];?></em></td>
+     <td align="center" ><em><?php echo $data['ville'];?></em></td>
+     <td align="center" ><em><?php echo $data['quartier'];?></em></td>
+     <td align="center" ><em><?php echo $data['nomprenom'];?></em></td>
+     <td align="center" ><em><?php echo $data['totalttc'];?></em></td>
+     <td align="center" ><em><?php echo $data['ortc'];?></em></td>
+     <td align="center" ><em><?php echo $data['impayee'];?></em></td>
+     <td align="center" ><em><?php echo $data['Pre'];?></em></td>
+     <td align="center" ><em><?php echo $data['totalnet'];?></em></td>
      <td align="center" ><em>
      
-             <? if ($data['bstatut']!='couper' ) {?>
+             <?php if ($data['bstatut']!='couper' ) {?>
         
-        <a href="coupure_releveur_save.php?idf=<? echo md5(microtime()).$data['idf']; ?>&mr1=<? echo $mr1; ?>&bstatut=couper" class="btn btn-danger"> COUPER </a>
-        <? } else { echo $data['bstatut']; } ?> 
+        <a href="coupure_releveur_save.php?idf=<?php echo md5(microtime()).$data['idf']; ?>&mr1=<?php echo $mr1; ?>&bstatut=couper" class="btn btn-danger"> COUPER </a>
+        <?php } else { echo $data['bstatut']; } ?> 
      
      
      </em></td>
    </tr>
    <?php
 }
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    //echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close (); 
+mysqli_free_result ($resultat);  
+mysqli_close (); 
 }
 else {
 echo " Pas de recherche <br>";

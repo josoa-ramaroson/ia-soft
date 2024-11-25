@@ -13,7 +13,7 @@ require 'rh_configuration_fonction.php';
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script language="javascript" src="calendar/calendar.js"></script>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -33,11 +33,11 @@ $annee=substr($_REQUEST["m"],32);
 
 
 $sql2="SELECT SUM(prixt) AS prixt FROM $tbl_appachat where MONTH(date_dem)=$mois and YEAR(date_dem)=$annee";
-$result2=mysql_query($sql2);
-$rows2=mysql_fetch_array($result2);
+$result2=mysqli_query($linki,$sql2);
+$rows2=mysqli_fetch_array($result2);
 
 $sql = "SELECT * FROM $tbl_appachat where  MONTH(date_dem)=$mois and YEAR(date_dem)=$annee ORDER BY id_da ASC";  
-$req = mysql_query($sql); 
+$req = mysqli_query($linki,$sql); 
 
 ?>
     </h3>
@@ -46,9 +46,9 @@ $req = mysql_query($sql);
    
       <table width="100%" border="0">
         <tr>
-          <td width="49%">Mois <? echo $mois.' / '.$annee;?></td>
+          <td width="49%">Mois <?php echo $mois.' / '.$annee;?></td>
           <td width="51%">MONTANT TOTAL : 
-          <? $P=strrev(chunk_split(strrev($rows2['prixt']),3," "));   echo $P;?></td>
+          <?php $P=strrev(chunk_split(strrev($rows2['prixt']),3," "));   echo $P;?></td>
           <td width="51%">&nbsp;</td>
         </tr>
       </table>
@@ -69,22 +69,22 @@ $req = mysql_query($sql);
     
   </tr>
   <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
     <tr>
-      <td align="center" bgcolor="#FFFFFF"><em><? echo $data['codecompte'];?></em></td>
-      <td align="center" bgcolor="#FFFFFF"><em><? echo $data['date_dem'];?></em></td>
-      <td align="center" bgcolor="#FFFFFF"><em><? echo $data['direction'];?></em></td>
-      <td align="center" bgcolor="#FFFFFF"><em><? echo $data['designation'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data['quantite'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data['prixu'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data['prixt'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data['fournisseur'];?></em></td>
+      <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['codecompte'];?></em></td>
+      <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['date_dem'];?></em></td>
+      <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['direction'];?></em></td>
+      <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['designation'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['quantite'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['prixu'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['prixt'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['fournisseur'];?></em></td>
     </tr>
   <?php
 }
  
-mysql_close ();  
+mysqli_close ();  
 ?>
 </table>
 </body>

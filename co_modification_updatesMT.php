@@ -29,8 +29,8 @@ exit;
 
 $Tarif=addslashes($_POST['Tarif']);
 $sql82 ="SELECT * FROM tarif where idt='$Tarif'";
-$result82 = mysql_query($sql82);
-while ($row82 = mysql_fetch_assoc($result82)) {
+$result82 = mysqli_query($linki,$sql82);
+while ($row82 = mysqli_fetch_assoc($result82)) {
 $t1=$row82['t1'];
 $t2=$row82['t2'];
 $q=$row82['q'];
@@ -106,16 +106,16 @@ $etat='facture';
 #-----------------------------------------------------------3 
 
 echo $sqlp="update $tbl_fact  set  id_nom='$id_nom', date='$date', nf='$nf', nf2='$nf2', cons='$c', cons1='$c1', cons2='$c2', t1='$t1', t2='$t2',mont1='$mtt1', mont2='$mtt2',  totalht='$totalht' , tax='$tax' , totalttc='$totalttc', totalnet='$totalnet', report='$totalnet' ,  coefTi='$coefTi',  miseajours=1 WHERE  idf='$idf'";
-$resultp=mysql_query($sqlp);
+$resultp=mysqli_query($linki,$sqlp);
 
 $sqlindex="update $tbl_contact  set Indexinitial='$nf' , index2='$nf2'  WHERE id='$id'";
-$resultindex=mysql_query($sqlindex);
+$resultindex=mysqli_query($linki,$sqlindex);
 
 if($resultp){
 //----------------------------------------------------------3
 if($st=='E'){
 $sqlbs="INSERT INTO $tbl_recact (idf, id, st, id_nom , stlib, ni, nf, ni2, nf2, impayee, total, obs, date , controle) VALUES ('$idf', '$id', '$st', '$id_nom','', '$nfi', '$nf','$nfi2', '$nf2', '$imp', '$totalnet', '$obs', '$date', 1)";
-$resultbs=mysql_query($sqlbs);
+$resultbs=mysqli_query($linki,$sqlbs);
 }
 
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

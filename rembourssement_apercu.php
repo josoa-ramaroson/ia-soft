@@ -25,8 +25,8 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
 $idr=$_POST['idr'];
 
 $sqlreservation="SELECT * FROM $tbl_paiement WHERE id='$idr' ORDER BY idp desc limit 0,1";
-$resultatreserv=mysql_query($sqlreservation);
-$ident=mysql_fetch_array($resultatreserv);
+$resultatreserv=mysqli_query($linki,$sqlreservation);
+$ident=mysqli_fetch_array($resultatreserv);
 
 if ($ident) {
 $idr=$ident['idp'];
@@ -40,11 +40,11 @@ $date=$ident['date'];
 }
 
 	$sqfac="SELECT * FROM $tbl_paiement WHERE id='$id'  ORDER BY idp DESC "; //DESC  ASC
-	$resultfac=mysql_query($sqfac);
+	$resultfac=mysqli_query($linki,$sqfac);
 	
 	$sqldate="SELECT * FROM $tbl_caisse "; //DESC  ASC
-	$resultldate=mysql_query($sqldate);
-	$datecaisse=mysql_fetch_array($resultldate);
+	$resultldate=mysqli_query($linki,$sqldate);
+	$datecaisse=mysqli_fetch_array($resultldate);
 
 if ($ident) {
 }
@@ -63,63 +63,63 @@ else {
       <table width="100%" border="0">
         <tr>
           <td width="16%">ID_client</td>
-          <td width="28%"><em><? echo $ident['id'];?></em></td>
+          <td width="28%"><em><?php echo $ident['id'];?></em></td>
           <td width="21%">&nbsp;</td>
           <td width="35%">&nbsp;</td>
         </tr>
         <tr>
           <td>Nom client</td>
-          <td><em><? echo $ident['Nomclient'];?></em></td>
+          <td><em><?php echo $ident['Nomclient'];?></em></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
           <td>N° Facture </td>
-          <td><em><? echo $ident['nfacture'];?></em></td>
+          <td><em><?php echo $ident['nfacture'];?></em></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
           <td>Date Facturation</td>
-          <td><em><? echo $ident['date'];?></em></td>
+          <td><em><?php echo $ident['date'];?></em></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
           <td>Montant facturé</td>
-          <td><em><? echo $ident['montant'];?></em></td>
+          <td><em><?php echo $ident['montant'];?></em></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
           <td>Paiement</td>
-          <td><em><? echo $ident['paiement'];?></em></td>
+          <td><em><?php echo $ident['paiement'];?></em></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
           <td height="26">Montant restant</td>
-          <td><em><? echo $ident['report'];?></em></td>
+          <td><em><?php echo $ident['report'];?></em></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
           <td height="26">Date de paiement </td>
-          <td><? echo $datecaisse['datecaisse'];?></td>
+          <td><?php echo $datecaisse['datecaisse'];?></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
           <td height="26">&nbsp;</td>
-          <td><? if ($ident['date']!=$datecaisse['datecaisse']) { } else { ?>  <input type="submit" name="Paiement" id="Paiement" value="Rembourser" /> <? } ?> </td>
+          <td><?php if ($ident['date']!=$datecaisse['datecaisse']) { } else { ?>  <input type="submit" name="Paiement" id="Paiement" value="Rembourser" /> <?php } ?> </td>
           <td><em><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-            <input name="idf" type="hidden" id="idf" value="<? echo $idf; ?>" />
+            <input name="idf" type="hidden" id="idf" value="<?php echo $idf; ?>" />
           </font><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-          <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
-          <input name="Nomclient" type="hidden" id="Nomclient" value="<? echo $ident['Nomclient']; ?>" />
-          <input name="nserie" type="hidden" id="nserie" value="<? echo $ident['nserie']; ?>" />
-          <input name="idp" type="hidden" id="idp" value="<? echo $ident['idp']; ?>" />
-          <input name="paiement" type="hidden" id="paiement" value="<? echo $ident['paiement']; ?>" />
+          <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
+          <input name="Nomclient" type="hidden" id="Nomclient" value="<?php echo $ident['Nomclient']; ?>" />
+          <input name="nserie" type="hidden" id="nserie" value="<?php echo $ident['nserie']; ?>" />
+          <input name="idp" type="hidden" id="idp" value="<?php echo $ident['idp']; ?>" />
+          <input name="paiement" type="hidden" id="paiement" value="<?php echo $ident['paiement']; ?>" />
           </font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></em></td>
           <td>&nbsp;</td>
         </tr>
@@ -145,17 +145,17 @@ else {
     <td width="17%" align="center" bgcolor="#FFFFFF">Reste à payer</td>
   </tr>
   <?php
-while($rowsfac=mysql_fetch_array($resultfac)){ 
+while($rowsfac=mysqli_fetch_array($resultfac)){ 
 ?>
   <tr>
-    <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $rowsfac['idp'];?></em></div></td>
-    <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $rowsfac['date'];?></em></div></td>
-    <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $rowsfac['Nomclient'];?></em></div></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $rowsfac['nfacture'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $rowsfac['nrecu'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $rowsfac['montant'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $rowsfac['paiement'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $rowsfac['report'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $rowsfac['idp'];?></em></div></td>
+    <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $rowsfac['date'];?></em></div></td>
+    <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $rowsfac['Nomclient'];?></em></div></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowsfac['nfacture'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowsfac['nrecu'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowsfac['montant'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowsfac['paiement'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowsfac['report'];?></em></td>
   </tr>
   <?php
 }

@@ -1,7 +1,6 @@
 <?php
     require 'fonction.php';
-    $link = mysql_connect ($host,$user,$pass);
-    mysql_select_db($db);
+
 	
 $id_nom=addslashes($_POST['id_nom']);	
 $titre=addslashes($_POST['titre']);
@@ -15,7 +14,7 @@ exit();
 $prix=addslashes($_POST['prix']);
 
 $sqlp="INSERT INTO $tbl_produit (titre , prix ,id_nom, type ) VALUES ('$titre','$prix','$id_nom', '$type' )";
-$resultp=mysql_query($sqlp);
+$resultp=mysqli_query($linki,$sqlp);
 if($resultp){
 }
 else {

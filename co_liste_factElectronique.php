@@ -23,8 +23,8 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
   <?php
 require 'configuration.php';
 $sql = "SELECT count(*) FROM $tbl_contact c , $tbl_fact f  where c.email!='' and f.id=c.id  ";  
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-$nb_total = mysql_fetch_array($resultat);  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
 }  
@@ -32,10 +32,10 @@ else {
 if (!isset($_GET['debut'])) $_GET['debut'] = 0; 
 $nb_affichage_par_page = 50; 
 $sql = " SELECT * FROM $tbl_fact f , $tbl_contact c  where  c.email!='' and f.id=c.id and f.nserie=$nserie and f.fannee=$anneec ORDER BY f.id ASC  LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
 </p>
-<H1>ENVOI DES COURRIELS : <a href="#?&<? echo md5(microtime()); ?>" onClick="return !window.open(this.href, 'pop',  'width=600,height=370,left=120,top=120');" class="btn btn-sm btn-success"  target=_blank  >MASS-EMAIL </a></H1>
+<H1>ENVOI DES COURRIELS : <a href="#?&<?php echo md5(microtime()); ?>" onClick="return !window.open(this.href, 'pop',  'width=600,height=370,left=120,top=120');" class="btn btn-sm btn-success"  target=_blank  >MASS-EMAIL </a></H1>
 <p>&nbsp; </p>
 <table width="100%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
    <tr bgcolor="#3071AA">
@@ -48,32 +48,32 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
      <td width="11%" align="center"><font color="#FFFFFF"><strong>Montant Total</strong></font></td>
    </tr>
    <?php
-while($datafact=mysql_fetch_array($req)){ // Start looping table row 
+while($datafact=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
    <tr>
      <td align="center" bgcolor="#FFFFFF"><font color="#000000">
 	   
     
-  <a href="http://client.sonelecanjouan.com/email_envoi.php?id=<? echo md5(microtime());?>&nomclient=<? echo $datafact['nomprenom'];?>&email=<? echo $datafact['email'];?>&montant=<? echo $datafact['totalnet'];?>&date=<? echo $datcoupure;?>" 
+  <a href="http://client.sonelecanjouan.com/email_envoi.php?id=<?php echo md5(microtime());?>&nomclient=<?php echo $datafact['nomprenom'];?>&email=<?php echo $datafact['email'];?>&montant=<?php echo $datafact['totalnet'];?>&date=<?php echo $datcoupure;?>" 
   onclick="return !window.open(this.href, 'pop',  'width=600,height=370,left=120,top=120');"
   class="btn btn-sm btn-default" target="_blank" >
    
      <img src="images/email.gif" width="20" height="20"></a></font></td>
      
-     <td  bgcolor="#FFFFFF"><font color="#000000"><? echo $datafact['nomprenom'];?></font></td>
-     <td align="center" bgcolor="#FFFFFF"><font color="#000000"><? echo $datafact['ville'];?></font></td>
-     <td align="center" bgcolor="#FFFFFF"><font color="#000000"><? echo $datafact['quartier'];?></font></td>
-     <td align="center" bgcolor="#FFFFFF"><font color="#000000"><? echo $datafact['idf'];?></font></td>
-     <td align="center" bgcolor="#FFFFFF"><em><font color="#000000"><? echo $datafact['email'];?></font></em></td>
-     <td align="center" bgcolor="#FFFFFF"><font color="#000000"><? echo $datafact['totalnet'];?></font></td>
+     <td  bgcolor="#FFFFFF"><font color="#000000"><?php echo $datafact['nomprenom'];?></font></td>
+     <td align="center" bgcolor="#FFFFFF"><font color="#000000"><?php echo $datafact['ville'];?></font></td>
+     <td align="center" bgcolor="#FFFFFF"><font color="#000000"><?php echo $datafact['quartier'];?></font></td>
+     <td align="center" bgcolor="#FFFFFF"><font color="#000000"><?php echo $datafact['idf'];?></font></td>
+     <td align="center" bgcolor="#FFFFFF"><em><font color="#000000"><?php echo $datafact['email'];?></font></em></td>
+     <td align="center" bgcolor="#FFFFFF"><font color="#000000"><?php echo $datafact['totalnet'];?></font></td>
    </tr>
    <?php
 }
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close ();  
+mysqli_free_result ($resultat);  
+mysqli_close ();  
 ?>
 </table>
 <p>&nbsp;</p>

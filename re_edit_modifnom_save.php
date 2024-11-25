@@ -12,8 +12,8 @@ $date=addslashes($_POST['date']);
 //-----------------------------------------------------
 
 $sqlmaxf="SELECT MAX(idf) AS Maxa_id FROM $tbl_fact";
-$resultmaxf=mysql_query($sqlmaxf);
-$rowsmaxf=mysql_fetch_array($resultmaxf);
+$resultmaxf=mysqli_query($linki,$sqlmaxf);
+$rowsmaxf=mysqli_fetch_array($resultmaxf);
 if ($rowsmaxf) {
 $Max_idf = $rowsmaxf['Maxa_id']+1;
 }
@@ -32,12 +32,12 @@ $totalttc=$changementdenom;
 $totalnet=$changementdenom;
 
 echo $sql="update $tbl_contact  set id_nom='$id_nom', Designation='$Designation' , nomprenom='$nomprenom', miseajours='1'  WHERE id='$id'";
-$result=mysql_query($sql);
+$result=mysqli_query($linki,$sql);
 
 $sql2="INSERT INTO $tbl_fact 
 ( id, ci , st, id_nom, bnom, bquartier, nfacture, fannee, date, libelle, totalttc, totalnet, report, etat) VALUES
 ( '$id','$ci', '$st', '$id_nom', '$nomprenom', '$quartier', '$nfacture', '$fannee', '$date', '$libelle','$totalttc', '$totalnet', '$totalnet', '$etat')";
-$result2=mysql_query($sql2);
+$result2=mysqli_query($linki,$sql2);
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ini_set('SMTP','smtp.comorestelecom.km');
 $destinataires = $emailinfo; 
@@ -46,7 +46,7 @@ $texte = " l'agent : $id_nom a realisé une changement de nom  de $Designation $
 mail($destinataires,$sujet,$texte,"From:contact@edaanjouan.com");
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-   mysql_close(); 
+   mysqli_close($linki); 
 ?>
 <?php
 	header("location:re_edit_modifnom.php?id=$id");

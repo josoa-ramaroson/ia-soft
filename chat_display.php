@@ -1,4 +1,4 @@
- <? // Verification de la presence du login - et les ID des utilisateurs	
+ <?php // Verification de la presence du login - et les ID des utilisateurs	
       session_start();
 	 /* if(!isset($_SESSION['SID1'])|| empty($_SESSION['SID1'])) {
 		include('index.php');
@@ -21,21 +21,21 @@
 	
 	// affichage des informations personnel de la personne  
 	$sqlSID2 = "SELECT * FROM $tbl_utilisateur where id_u=$sd";
-	$reqSID2 = mysql_query($sqlSID2); 
-	while($dataSID2=mysql_fetch_array($reqSID2)){
+	$reqSID2 = mysqli_query($linki,$sqlSID2); 
+	while($dataSID2=mysqli_fetch_array($reqSID2)){
 ?>
 		<div class="row header">
 			<h3>Vous dialoguez à / You interact with</h3>
 		</div>
 		
 		<div class="row">
-<? /* <img class="pix" height="100" width="100" src="<? echo $filename2 ?>" alt="<? echo $dataSID2['u_nom'].' '.$dataSID2['u_prenom']; ?>"/> */?>
+<?php /* <img class="pix" height="100" width="100" src="<?php echo $filename2 ?>" alt="<?php echo $dataSID2['u_nom'].' '.$dataSID2['u_prenom']; ?>"/> */?>
 			<div class="wrap">
-				<p class="name"><? echo $dataSID2['u_nom'].', '.$dataSID2['u_prenom']; ?></p>
-				<p class="title"><? echo $dataSID2['titre']; ?></p>
+				<p class="name"><?php echo $dataSID2['u_nom'].', '.$dataSID2['u_prenom']; ?></p>
+				<p class="title"><?php echo $dataSID2['titre']; ?></p>
 			</div>
 		</div>
-	<? } ?>
+	<?php } ?>
 
 <div id="chat-display" class="row">
 	<div id="" class="well">		
@@ -52,74 +52,74 @@ $_SESSION['SID2']=$_GET['sid2'];
 $sql = "SELECT count(*) FROM $tbl_message ";  
 
 
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
    
 $sql = "SELECT * FROM $tbl_message  where (SID1=$sid1 and SID2=$sid2) or (SID1=$sid2 and SID2=$sid1) ORDER BY id_chat  ASC ";  //ASC DESC
 
    
 //$sql = "SELECT * FROM $tbl_message  where (SID1=$sid1 and SID2=$sid2) or (SID1=$sid2 and SID2=$sid1) ORDER BY id_chat   DESC  LIMIT 20";  //ASC DESC
  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-while($data=mysql_fetch_array($req)){ 
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+while($data=mysqli_fetch_array($req)){ 
 ?>  
 
 <?php
 // Afficher les noms des personnes qui dialoguent 
 $SID=$data['SID1'];
 $sqlSID = "SELECT * FROM $tbl_utilisateur where id_u=$SID";
-$reqSID = mysql_query($sqlSID);
-while($dataSID=mysql_fetch_array($reqSID)){
+$reqSID = mysqli_query($linki,$sqlSID);
+while($dataSID=mysqli_fetch_array($reqSID)){
 ?>
 				<div class="sub-row">	
-					<? if ($SID==$_SESSION['SID1']){ ?>
+					<?php if ($SID==$_SESSION['SID1']){ ?>
 					
 						<div id="" class="user panel panel-default">
 							<div class="panel-body">
-                           <? $filenameA = 'upload/utilisateurs/'.$_SESSION['SID1'].'.jpg'; ?>
+                           <?php $filenameA = 'upload/utilisateurs/'.$_SESSION['SID1'].'.jpg'; ?>
                             
-                            <? if (file_exists($filenameA) == true) { ?>
-							<img class="pix"  src="<? echo $filenameA; ?>" />  <? } else { ?>
+                            <?php if (file_exists($filenameA) == true) { ?>
+							<img class="pix"  src="<?php echo $filenameA; ?>" />  <?php } else { ?>
 							<img class="pix"  src="upload/utilisateurs/no-picture.jpg" />
-							<? } ?>
+							<?php } ?>
                            
-							<? /*	<img class="pix" src="upload/utilisateur/<? echo $_SESSION['SID1'] ?>.jpg" alt=""/>*/?>
+							<?php /*	<img class="pix" src="upload/utilisateur/<?php echo $_SESSION['SID1'] ?>.jpg" alt=""/>*/?>
 							    	<div class="wrap">
-									<? echo $dataSID['u_prenom']; ?>
-									<p class="date"><? echo $data['datetime']; ?></p>
+									<?php echo $dataSID['u_prenom']; ?>
+									<p class="date"><?php echo $data['datetime']; ?></p>
 									<p>
-									<? if ($SID==$_SESSION['SID1']){ ?>
-									<a href="chat_display_cancel.php?sid1=<? echo $data['SID1'];?>&sid2=<? echo $data['SID2'];?>&ID=<? echo  md5(microtime()).$data['id_chat']; ?>" class="btn-xs btn-danger">X</a>
-									<? } ?>
+									<?php if ($SID==$_SESSION['SID1']){ ?>
+									<a href="chat_display_cancel.php?sid1=<?php echo $data['SID1'];?>&sid2=<?php echo $data['SID2'];?>&ID=<?php echo  md5(microtime()).$data['id_chat']; ?>" class="btn-xs btn-danger">X</a>
+									<?php } ?>
 									
-									<? echo $data['message'];?></p>
+									<?php echo $data['message'];?></p>
 							        </div>
 							</div>
 						</div>
 						
-					<? } else { ?> 
+					<?php } else { ?> 
 					
 						<div id="" class="panel panel-default">
 							<div class="panel-body">
                             
-                            <? $filenameB = 'upload/utilisateurs/'.$_SESSION['SID2'].'.jpg'; ?>
+                            <?php $filenameB = 'upload/utilisateurs/'.$_SESSION['SID2'].'.jpg'; ?>
                             
-                            <? if (file_exists($filenameB) == true) { ?>
-							<img class="pix"  src="<? echo $filenameB; ?>" />  <? } else { ?>
+                            <?php if (file_exists($filenameB) == true) { ?>
+							<img class="pix"  src="<?php echo $filenameB; ?>" />  <?php } else { ?>
 							<img class="pix"  src="upload/utilisateurs/no-picture.jpg" />
-							<? } ?>
+							<?php } ?>
                             
-							<? /* <img class="pix" src="upload/utilisateur/<? echo $_SESSION['SID2'] ?>.jpg" alt=""/>*/?>
+							<?php /* <img class="pix" src="upload/utilisateur/<?php echo $_SESSION['SID2'] ?>.jpg" alt=""/>*/?>
 								    <div class="wrap">
-									<? echo $dataSID['u_prenom']; ?>
-									<p class="date"><? echo $data['datetime']; ?></p>
-									<p><? echo $data['message'];?></p>
+									<?php echo $dataSID['u_prenom']; ?>
+									<p class="date"><?php echo $data['datetime']; ?></p>
+									<p><?php echo $data['message'];?></p>
 									</div>
 							</div>
 						</div>
 						
-					<? } ?> 
+					<?php } ?> 
 				</div>
 	 
 	 

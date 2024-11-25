@@ -12,7 +12,7 @@ require_once('calendar/classes/tc_calendar.php');
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -53,9 +53,9 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
                       <select name="annee" size="1" id="annee">
                         <?php
 $sql81 = ("SELECT * FROM annee  ORDER BY annee ASC ");
-$result81 = mysql_query($sql81);
+$result81 = mysqli_query($linki,$sql81);
 
-while ($row81 = mysql_fetch_assoc($result81)) {
+while ($row81 = mysqli_fetch_assoc($result81)) {
 echo '<option> '.$row81['annee'].' </option>';
 }
 ?>
@@ -84,9 +84,9 @@ echo '<option> '.$row81['annee'].' </option>';
                       <select name="annee" size="1" id="annee">
                         <?php
 $sql81 = ("SELECT * FROM annee  ORDER BY annee ASC ");
-$result81 = mysql_query($sql81);
+$result81 = mysqli_query($linki,$sql81);
 
-while ($row81 = mysql_fetch_assoc($result81)) {
+while ($row81 = mysqli_fetch_assoc($result81)) {
 echo '<option> '.$row81['annee'].' </option>';
 }
 ?>
@@ -115,9 +115,9 @@ echo '<option> '.$row81['annee'].' </option>';
                       <select name="annee" size="1" id="annee">
                         <?php
 $sql81 = ("SELECT * FROM annee  ORDER BY annee ASC ");
-$result81 = mysql_query($sql81);
+$result81 = mysqli_query($linki,$sql81);
 
-while ($row81 = mysql_fetch_assoc($result81)) {
+while ($row81 = mysqli_fetch_assoc($result81)) {
 echo '<option> '.$row81['annee'].' </option>';
 }
 ?>
@@ -154,9 +154,9 @@ echo '<option> '.$row81['annee'].' </option>';
                       <select name="annee" size="1" id="annee">
                         <?php
 $sql81 = ("SELECT * FROM annee  ORDER BY annee ASC ");
-$result81 = mysql_query($sql81);
+$result81 = mysqli_query($linki,$sql81);
 
-while ($row81 = mysql_fetch_assoc($result81)) {
+while ($row81 = mysqli_fetch_assoc($result81)) {
 echo '<option> '.$row81['annee'].' </option>';
 }
 ?>
@@ -185,9 +185,9 @@ echo '<option> '.$row81['annee'].' </option>';
                       <select name="annee" size="1" id="annee">
                         <?php
 $sql81 = ("SELECT * FROM annee  ORDER BY annee ASC ");
-$result81 = mysql_query($sql81);
+$result81 = mysqli_query($linki,$sql81);
 
-while ($row81 = mysql_fetch_assoc($result81)) {
+while ($row81 = mysqli_fetch_assoc($result81)) {
 echo '<option> '.$row81['annee'].' </option>';
 }
 ?>

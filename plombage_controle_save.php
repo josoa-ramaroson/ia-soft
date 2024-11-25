@@ -6,8 +6,8 @@ $obs=addslashes($_POST['obs']);
 $datep=addslashes($_POST['date']);
 
 $sql="SELECT MAX(nombre) AS Maxa_n FROM $tbl_plombcont WHERE idclient='$idclient'";
-$result=mysql_query($sql);
-$rows=mysql_fetch_array($result);
+$result=mysqli_query($linki,$sql);
+$rows=mysqli_fetch_array($result);
 if ($rows) {
 $Max_n = $rows['Maxa_n']+1;
 }
@@ -21,8 +21,8 @@ $sqlp="INSERT INTO $tbl_plombcont  ( id_nom   , idclient   ,agents,   obs   , da
                     VALUES       ('$id_nom','$idclient', '$agents', '$obs' ,'$datep', '$Max_n')";
 					
 													
-$r=mysql_query($sqlp);
-mysql_close($link);
+$r=mysqli_query($linki,$sqlp);
+mysqli_close($link);
 
 ?>
 <?php

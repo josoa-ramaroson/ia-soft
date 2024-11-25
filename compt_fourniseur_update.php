@@ -12,7 +12,7 @@ require_once('calendar/classes/tc_calendar.php');
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script language="javascript" src="calendar/calendar.js"></script>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -26,7 +26,7 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
     <h3 class="panel-title">Modifier un fourniseur 
       <?php
 $req1="SELECT * FROM $tb_comptf  ";
-$req=mysql_query($req1);
+$req=mysqli_query($linki,$req1);
 ?>
     </h3>
     </div>
@@ -39,15 +39,15 @@ $req=mysql_query($req1);
             <?php
 $idf=substr($_REQUEST["idf"],32);
 $sql="SELECT *  FROM $tb_comptf where idf='$idf' "; 
-$result=mysql_query($sql);
-$rows=mysql_fetch_array($result);
+$result=mysqli_query($linki,$sql);
+$rows=mysqli_fetch_array($result);
    
-mysql_close();
+mysqli_close($linki);
 			
 			?>
             <input  class="form-control" name="Numf"  readonly="readonly" type="text" id="nucl" value="<?php echo $rows['Numf'] ?>">
             <em>
-            <input class="form-control" name="idf" type="hidden" id="idf" value="<? echo $rows['idf'];?>">
+            <input class="form-control" name="idf" type="hidden" id="idf" value="<?php echo $rows['idf'];?>">
             </em></strong></td>
           <td width="7%">&nbsp;</td>
           <td width="17%">Email</td>
@@ -147,27 +147,27 @@ mysql_close();
     <td width="" align="center">&nbsp;</td>
   </tr>
   <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
   <tr>
-    <td bgcolor="#FFFFFF"><div align="left"> <? echo $data['Numf'];?> <BR>
+    <td bgcolor="#FFFFFF"><div align="left"> <?php echo $data['Numf'];?> <BR>
     </div></td>
-    <td bgcolor="#FFFFFF"><div align="left"> <? echo $data['Societef'];?> <BR>
+    <td bgcolor="#FFFFFF"><div align="left"> <?php echo $data['Societef'];?> <BR>
     </div></td>
-    <td bgcolor="#FFFFFF"><div align="left"> <? echo $data['Adressef'];?> <BR>
+    <td bgcolor="#FFFFFF"><div align="left"> <?php echo $data['Adressef'];?> <BR>
     </div></td>
-    <td bgcolor="#FFFFFF"><div align="left"> <? echo $data['Telephonef'];?> <BR>
+    <td bgcolor="#FFFFFF"><div align="left"> <?php echo $data['Telephonef'];?> <BR>
     </div></td>
-    <td bgcolor="#FFFFFF"><div align="left"> <? echo $data['Statutf'];?> <BR>
+    <td bgcolor="#FFFFFF"><div align="left"> <?php echo $data['Statutf'];?> <BR>
     </div></td>
-    <td bgcolor="#FFFFFF"><div align="left"> <? echo $data['Date'];?> <BR>
+    <td bgcolor="#FFFFFF"><div align="left"> <?php echo $data['Date'];?> <BR>
     </div></td>
-    <td bgcolor="#FFFFFF"><div align="left"><a href="compt_fourniseur_update.php?idf=<? echo md5(microtime()).$data['idf']; ?>" class="btn btn-sm btn-success" >Aperçu</a></div></td>
+    <td bgcolor="#FFFFFF"><div align="left"><a href="compt_fourniseur_update.php?idf=<?php echo md5(microtime()).$data['idf']; ?>" class="btn btn-sm btn-success" >Aperçu</a></div></td>
   </tr>
   <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
 </table>
 <p>&nbsp;</p>

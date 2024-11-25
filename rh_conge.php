@@ -24,7 +24,7 @@ require 'rh_configuration_fonction.php';
 </style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 </head>
 <?
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
@@ -33,8 +33,8 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
 <p>
  <?php
 $sql = "SELECT count(*) FROM $tb_rhpersonnel where statut='Operationnel'";  
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-$nb_total = mysql_fetch_array($resultat);  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
 }  
@@ -42,7 +42,7 @@ else {
 if (!isset($_GET['debut'])) $_GET['debut'] = 0; 
 $nb_affichage_par_page = 50; 
 $sql = "SELECT * FROM  $tb_rhpersonnel where statut='Operationnel' ORDER BY matricule ASC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 
 	//recherche du repport  
 ?>
@@ -87,7 +87,7 @@ echo '<option> '.$row81['annee'].' </option>';
     </table>
   </div>
 </div>
-<p class="centre">Suivi des planifications  pour l'année  <? echo $anneepaie;?> . Cliquez ici pour filtrer la liste  <a href="rh_conge_restant.php">&gt;&gt;</a></p>
+<p class="centre">Suivi des planifications  pour l'année  <?php echo $anneepaie;?> . Cliquez ici pour filtrer la liste  <a href="rh_conge_restant.php">&gt;&gt;</a></p>
 <table width="100%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
    <tr bgcolor="#3071AA">
      <td width="8%" align="center"><font color="#FFFFFF" size="4"><strong>Matricule </strong></font></td>
@@ -98,33 +98,33 @@ echo '<option> '.$row81['annee'].' </option>';
      <td width="13%" align="center">&nbsp;</td>
   </tr>
    <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 $idrh=$data['idrhp'];
 ?>
-   <tr bgcolor="<? gettatut(stat_eda3($tb_rhconge, $anneepaie, $idrh)); ?>">
-     <td height="33" align="center"><em><? echo $data['matricule'];?></em></td>
-     <td height="33" ><em><? echo $data['direction'];?></em></td>
-     <td height="33" ><em><? echo $data['service'];?></em></td>
-     <td align="center"><div align="left"><em><? echo $data['nomprenom'];?></em></div></td>
-     <td align="center" ><em><? echo $anneepaie;?></em></td>
+   <tr bgcolor="<?php gettatut(stat_eda3($tb_rhconge, $anneepaie, $idrh)); ?>">
+     <td height="33" align="center"><em><?php echo $data['matricule'];?></em></td>
+     <td height="33" ><em><?php echo $data['direction'];?></em></td>
+     <td height="33" ><em><?php echo $data['service'];?></em></td>
+     <td align="center"><div align="left"><em><?php echo $data['nomprenom'];?></em></div></td>
+     <td align="center" ><em><?php echo $anneepaie;?></em></td>
      <td align="center" bgcolor="#FFFFFF">
-     <? if ($_SESSION['u_niveau']==50){?>
-     <a href="rh_conge_save.php?id=<? echo md5(microtime()).$data['idrhp']; ?>&@i=<? echo md5(microtime()).$id_nom; ?>" class="btn btn-sm btn-success" >Enregistre </a>
+     <?php if ($_SESSION['u_niveau']==50){?>
+     <a href="rh_conge_save.php?id=<?php echo md5(microtime()).$data['idrhp']; ?>&@i=<?php echo md5(microtime()).$id_nom; ?>" class="btn btn-sm btn-success" >Enregistre </a>
      <?php } else {} ?>
      </td>
    </tr>
    <?php
 }
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat); 
+mysqli_free_result ($resultat); 
 
 
 		function stat_eda3($tb_rhconge, $anneepaie, $idrh){ 
 		$sqlv="SELECT COUNT(*) AS nombre FROM $tb_rhconge  WHERE idrh='$idrh'  and anneeconge='$anneepaie'" ;
-        $rev = mysql_query($sqlv); 
-	    $nqtv = mysql_fetch_array($rev);
+        $rev = mysqli_query($linki,$sqlv); 
+	    $nqtv = mysqli_fetch_array($rev);
         if((!isset($nqtv['nombre'])|| empty($nqtv['nombre']))) { $qt=''; return $qt; } else {$qt=$nqtv['nombre']; return $qt;}
 		} 
 		
@@ -132,7 +132,7 @@ mysql_free_result ($resultat);
 		if ($fetat>0) { echo $couleur="#87e385";} else { echo $couleur="#FFFFFF";}//vert
 		}
 		 
-mysql_close ();  
+mysqli_close ();  
 ?>
 </table>
 <p>&nbsp;</p>

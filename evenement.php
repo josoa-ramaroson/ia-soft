@@ -1,5 +1,7 @@
-<?
+<?php
 require 'session.php';
+require_once('calendar/classes/tc_calendar.php');
+
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -18,10 +20,10 @@ require 'session.php';
 </style>
 <script language="javascript" src="calendar/calendar.js"></script>
 
-<title><? include 'titre.php' ?></title>
-<? include 'inc/head.php'; ?>
+<title><?php include 'titre.php' ?></title>
+<?php include 'inc/head.php'; ?>
 </head>
-<?
+<?php
 require("bienvenue.php");    // on appelle la page contenant la fonction
 ?>
 <body>

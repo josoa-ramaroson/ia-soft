@@ -20,9 +20,9 @@ $sql="INSERT INTO $tbl_appbonachatp ( id_dem, id_nom , date_dem, fournisseur, di
 
 VALUES
 (  '$id_dem',  '$id_nom' ,  '$date_dem', '$fournisseur', '$direction', '$service', '$designation', '$quantite', '$prixu', '$prixt')";
-$result=mysql_query($sql);
+$result=mysqli_query($linki, $sql);
 
-mysql_close(); 
+mysqli_close($linki); 
 ?>
 <?php
 $idr=md5(microtime()).$id_dem;

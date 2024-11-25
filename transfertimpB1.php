@@ -4,8 +4,8 @@ $csv->setFlags(SplFileObject::READ_CSV);
 $csv->setCsvControl(';', '"', '"');
  
 require 'fonction.php';
-$link = mysql_connect ($host,$user,$pass);
-mysql_select_db($db);
+$link = mysqli_connect ($host,$user,$pass);
+mysqli_select_db($db);
 
 ?>
 <?php
@@ -23,7 +23,7 @@ foreach(new LimitIterator($csv, 1) as $ligne)
 <?php
 
 $sql="INSERT INTO impayee (police, solde) VALUES ( '$Police', '$solde')";
-$result=mysql_query($sql); 
+$result=mysqli_query($linki,$sql); 
 
 }
 

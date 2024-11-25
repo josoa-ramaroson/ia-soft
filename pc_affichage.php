@@ -1,4 +1,4 @@
-<?
+<?php
 require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
@@ -10,7 +10,7 @@ require 'fonction.php';
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Document sans titre</title>
 </head>
-<?
+<?php
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <body>
@@ -19,9 +19,9 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
 require 'fonction.php';
 $sql = "SELECT count(*) FROM $tbl_pc where id_u='$id_user'";  
 
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
 
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -35,7 +35,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT * FROM $tbl_pc  where id_u='$id_user' ORDER BY id ASC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
  
 // on ex?cute la requ?te  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 ?>
 </span></strong></font></font></font></font></font></font></font></font></font></strong></font></font></font></font></font></font></font></font></font></font></p>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
@@ -49,27 +49,27 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
     <td width="166" bgcolor="#3071AA">&nbsp;</td>
   </tr>
   <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
   <tr>
-    <td  bgcolor="#FFFFFF"><? echo $data['id']; ?>
+    <td  bgcolor="#FFFFFF"><?php echo $data['id']; ?>
       <div align="left"></div></td>
-    <td  bgcolor="#FFFFFF"><span style="background-color:#FFF;"><? echo $data['ile'].'-'.$data['ville']; ?></span></td>
-    <td  bgcolor="#FFFFFF"><span style="background-color:#FFF;"><? echo $data['agence']; ?></span></td>
-    <td width="176"   style="background-color:#FFF;"><? echo $data['nom'];?></td>
-    <td width="157"   style="background-color:#FFF;"><? echo $data['utilisation'];?></td>
-    <td width="124"   style="background-color:#FFF;"><? echo $data['utilisateur'];?></td>
-    <td width="166"   style="background-color:#FFF;"><a href="pc_affichage_user.php?id=<? echo md5(microtime()).$data['id']; ?>" class="btn btn-sm btn-success" >Apperçu</a></td>
+    <td  bgcolor="#FFFFFF"><span style="background-color:#FFF;"><?php echo $data['ile'].'-'.$data['ville']; ?></span></td>
+    <td  bgcolor="#FFFFFF"><span style="background-color:#FFF;"><?php echo $data['agence']; ?></span></td>
+    <td width="176"   style="background-color:#FFF;"><?php echo $data['nom'];?></td>
+    <td width="157"   style="background-color:#FFF;"><?php echo $data['utilisation'];?></td>
+    <td width="124"   style="background-color:#FFF;"><?php echo $data['utilisateur'];?></td>
+    <td width="166"   style="background-color:#FFF;"><a href="pc_affichage_user.php?id=<?php echo md5(microtime()).$data['id']; ?>" class="btn btn-sm btn-success" >Apperçu</a></td>
   </tr>
   <?php
 
 }
 
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close ();  
+mysqli_free_result ($resultat);  
+mysqli_close ();  
 ?>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

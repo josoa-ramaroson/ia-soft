@@ -11,7 +11,7 @@ require 'fonction.php';
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 </head>
 <?
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
@@ -41,8 +41,8 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
  // $dc1=$_POST['dc1'];
  // $dc2=$_POST['dc2'];
   $req2="select Compte , Description , Debit , SUM(compt_ecriture.Credit) AS compt_ecriture from $tb_ecriture where Date BETWEEN '$dc1'  and '$dc2' and Type='C' and  mo='C' GROUP BY Compte " ;
-  $req=mysql_query($req2);
- while ($data=mysql_fetch_array($req)){ // Start looping table row 
+  $req=mysqli_query($linki,$req2);
+ while ($data=mysqli_fetch_array($req)){ // Start looping table row 
  $de=$data['compt_ecriture'];
 ?>
 
@@ -50,24 +50,24 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
 
               <tr> 
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Compte'];?>
+                    <?php echo $data['Compte'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Description'];?>
+                    <?php echo $data['Description'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Debit'];?>
+                    <?php echo $data['Debit'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $de ;?>
+                    <?php echo $de ;?>
                     kmf<BR>
                     <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
                   </div></td>
                 <td width="11%" bgcolor="#FFFFFF"><div align=""></div></td>
@@ -77,8 +77,8 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
   //$dc1=$_POST['dc1'];
   //$dc2=$_POST['dc2'];
   $req2="SELECT  SUM(compt_ecriture.Credit) AS compt_ecriture FROM $tb_ecriture where Date BETWEEN '$dc1'  and '$dc2' and Type='C' and mo='C'  " ;
-  $req=mysql_query($req2);
- while ($data5=mysql_fetch_array($req)){ // Start looping table row 
+  $req=mysqli_query($linki,$req2);
+ while ($data5=mysqli_fetch_array($req)){ // Start looping table row 
  $nb=$data5['compt_ecriture'];
 ?>
 
@@ -90,7 +90,7 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
                 <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
               </tr>
               <tr> 
@@ -100,25 +100,25 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
   //$dc1=$_POST['dc1'];
   //$dc2=$_POST['dc2'];
   $req2="select Compte , Description , Credit ,SUM(compt_ecriture.Debit) AS compt_ecriture from $tb_ecriture where Date BETWEEN '$dc1'  and '$dc2' and Type='D' and mo='D' GROUP BY Compte  " ;
-  $req=mysql_query($req2);
- while ($data3=mysql_fetch_array($req)){ // Start looping table row 
+  $req=mysqli_query($linki,$req2);
+ while ($data3=mysqli_fetch_array($req)){ // Start looping table row 
  $cr=$data3['compt_ecriture']; 
 ?>
               <tr> 
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data3['Compte'];?>
+                    <?php echo $data3['Compte'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data3['Description'];?>
+                    <?php echo $data3['Description'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $cr ;?>
+                    <?php echo $cr ;?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data3['Credit'];?>
+                    <?php echo $data3['Credit'];?>
                     kmf<BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""></div></td>
@@ -126,15 +126,15 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
               <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
               <tr> 
 <?php
   //$dc1=$_POST['dc1'];
   //$dc2=$_POST['dc2'];
   $req2="SELECT  SUM(compt_ecriture.Debit) AS compt_ecriture FROM $tb_ecriture where Date BETWEEN '$dc1'  and '$dc2' and Type='D' and mo='D'   " ;
-  $req=mysql_query($req2);
- while ($data6=mysql_fetch_array($req)){ // Start looping table row 
+  $req=mysqli_query($linki,$req2);
+ while ($data6=mysqli_fetch_array($req)){ // Start looping table row 
  $nb1=$data6['compt_ecriture'];
 ?>
 
@@ -145,7 +145,7 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
                 <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
               </tr>
               <tr> 

@@ -19,14 +19,14 @@ $RefCommune=substr($RefQuartier,0,3);
 $refville=addslashes($_POST['refville']);
 
 $sql1 = "SELECT * FROM quartier where id_quartier=$RefQuartier";
-$result1 = mysql_query($sql1);
-while ($row1 = mysql_fetch_assoc($result1)) {
+$result1 = mysqli_query($linki,$sql1);
+while ($row1 = mysqli_fetch_assoc($result1)) {
 $quartier=$row1['quartier'];
 }  
 
 $sql2 = "SELECT * FROM ville where refville=$refville";
-$result2 = mysql_query($sql2);
-while ($row2 = mysql_fetch_assoc($result2)) {
+$result2 = mysqli_query($linki,$sql2);
+while ($row2 = mysqli_fetch_assoc($result2)) {
 $ville=$row2['ville'];
 } 
     $m1v=$ville;
@@ -51,20 +51,20 @@ $ville=$row2['ville'];
   </div>
 </div>
 
-<a href="releve_listeimpMT.php?m1v=<? echo md5(microtime()).$m1v;?>&m2q=<? echo md5(microtime()).$m2q;?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a>
+<a href="releve_listeimpMT.php?m1v=<?php echo md5(microtime()).$m1v;?>&m2q=<?php echo md5(microtime()).$m2q;?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a>
  <p>
    <?php
 require 'configuration.php';
 $sql = "SELECT * FROM  $tbl_contact c  where c.ville='$m1v'  and statut='6' and Tarif='10'  ORDER BY c.id ASC";  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 
 $sql7 = "SELECT COUNT(*) AS bt FROM $tbl_contact c  where c.ville='$m1v'  and statut='6' and Tarif='10' ";   
-$req7=mysql_query($sql7);
-$data7= mysql_fetch_assoc($req7);
+$req7=mysqli_query($linki,$sql7);
+$data7= mysqli_fetch_assoc($req7);
 $cbt=$data7['bt']; 
 
 ?>
-CARNET DE RELEVES: Ville : <em><? echo  $m1v;?></em> Quartier : <em><? //echo $m2q;?></em> -  Nombre des clients est : <? echo $cbt;?></p>
+CARNET DE RELEVES: Ville : <em><?php echo  $m1v;?></em> Quartier : <em><?php //echo $m2q;?></em> -  Nombre des clients est : <?php echo $cbt;?></p>
 <table width="100%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
    <tr bgcolor="#3071AA">
      <td width="6%" align="center"><strong><font color="#FFFFFF">RANG</font></strong></td>
@@ -77,21 +77,21 @@ CARNET DE RELEVES: Ville : <em><? echo  $m1v;?></em> Quartier : <em><? //echo $m
      <td width="20%" align="center"><strong><font color="#FFFFFF">OBSERVATION</font></strong></td>
   </tr>
    <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
    <tr>
      <td align="center" >&nbsp;</td>
-     <td align="center" ><em><? echo $data['id'];?></em></td>
-     <td><em><? echo $data['nomprenom'];?></em></td>
-     <td align="center" ><em><? echo $data['ncompteur'];?></em></td>
-     <td align="center" ><em><? echo $data['Indexinitial'];?></em></td>
+     <td align="center" ><em><?php echo $data['id'];?></em></td>
+     <td><em><?php echo $data['nomprenom'];?></em></td>
+     <td align="center" ><em><?php echo $data['ncompteur'];?></em></td>
+     <td align="center" ><em><?php echo $data['Indexinitial'];?></em></td>
      <td align="center" >&nbsp;</td>
      <td align="center" >&nbsp;</td>
      <td align="center" >&nbsp;</td>
    </tr>
    <?php
 }
-mysql_close ();  
+mysqli_close ();  
 			 
 ?>
 </table>

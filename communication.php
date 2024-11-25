@@ -13,7 +13,7 @@ if(($_SESSION['u_niveau'] != 30) && ($_SESSION['u_niveau'] != 7)) {
 
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -84,7 +84,7 @@ Require("bienvenue.php");    // on appelle la page contenant la fonction
           </tr>
           <tr>
             <td><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-              <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom;?>">
+              <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom;?>">
             </font></strong></font></strong></font></td>
             <td><input type="submit" name="upload" value="Enregistre"></td>
           </tr>
@@ -98,15 +98,13 @@ Require("bienvenue.php");    // on appelle la page contenant la fonction
 require 'fonction.php';
 
 // Connect to server and select databse.
-mysql_connect ($host,$user,$pass)or die("cannot connect"); 
-mysql_select_db($db)or die("cannot select DB");
-  
+
 $sql = "SELECT count(*) FROM $tbl_com ";  
 
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
  // on teste si ce nombre de vaut pas 0  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -126,7 +124,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT * FROM $tbl_com  ORDER BY idcom DESC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  //ASC
  
 // on execute la requete  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
 </font></strong></font></font></font></font></font></font></font></font></font></strong></font></font></font></font></font></font></font></font></font></font></p>
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
@@ -138,25 +136,25 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
       <td width="126" align="center" bgcolor="#3071AA" >&nbsp;</td>
     </tr>
     <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
     <tr>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><? echo $data['idcom'];?></div>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><?php echo $data['idcom'];?></div>
         <div align="left"></div></td>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['date'];?></em></div></td>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['titre'];?></em></div></td>
- <td width="114"   style="background-color:#FFF;"><a href="communication_modifie.php?id=<? echo md5(microtime()).$data['idcom']; ?>" class="btn btn-xs btn-success">Modifier</a></td>
-      <td width="126"   style="background-color:#FFF;"><a href="communication_cancel.php?ID=<? echo md5(microtime()).$data['idcom']; ?>" onClick="return confirm('Etes-vous sûr de vouloir supprimer')" ; style="margin:5px"   class="btn btn-xs btn-danger" >Supprimer</a></td>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['date'];?></em></div></td>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['titre'];?></em></div></td>
+ <td width="114"   style="background-color:#FFF;"><a href="communication_modifie.php?id=<?php echo md5(microtime()).$data['idcom']; ?>" class="btn btn-xs btn-success">Modifier</a></td>
+      <td width="126"   style="background-color:#FFF;"><a href="communication_cancel.php?ID=<?php echo md5(microtime()).$data['idcom']; ?>" onClick="return confirm('Etes-vous sûr de vouloir supprimer')" ; style="margin:5px"   class="btn btn-xs btn-danger" >Supprimer</a></td>
     </tr>
     <?php
 
 }
 
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close ();  
+mysqli_free_result ($resultat);  
+mysqli_close ();  
 ?>
   </table>
 </form>

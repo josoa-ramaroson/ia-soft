@@ -170,7 +170,7 @@ $service=addslashes($_POST['service']);
 $sql="update $tb_rhpersonnel  set   id_nom='$id_nom', Tin='$Tin', igrchoix='$igrchoix' , crchoix='$crchoix', indice='$indice', taux='$taux', sbase='$sbase', avancement='$avancement', anciennete='$anciennete',  gratification='$gratification', srappel='$srappel', heuressup='$heuressup', conge='$conge', fonction='$fonction', transport='$transport', logement='$logement', telephone='$telephone', risque='$risque', caisse='$caisse', astreinte='$astreinte', panier='$panier', remboursement='$remboursement', cotisation='$cotisation', avances='$avances', pret='$pret', adeduction='$adeduction',igr='$igr', retraite='$retraite', prevoyance='$prevoyance', aretenue='$aretenue',
 
 SS='$SS', SI='$SI', SD='$SD',SR='$SR',SNET='$SNET'  WHERE idrhp='$id'";
-$result=mysql_query($sql);
+$result=mysqli_query($linki,$sql);
 
   if($result){
 	  
@@ -180,7 +180,7 @@ $sql2="INSERT INTO $tb_rhpaie ( idrh, id_nom , moispaie , anneepaie, Designation
 
 VALUES
 ('$id','$id_nom' , '$moispaie',  '$anneepaie', '$Designation', '$nomprenom', '$ville', '$matricule', '$dembauche','$titre', '$direction', '$service', '$nconge', '$Tin',  '$igrchoix', '$crchoix', '$indice', '$taux', '$sbase', '$avancement', '$anciennete',  '$gratification', '$srappel', '$heuressup', '$conge','$fonction', '$transport', '$logement', '$telephone', '$risque','$caisse', '$astreinte', '$panier', '$remboursement', '$cotisation', '$avances', '$pret', '$adeduction','$igr', '$retraite', '$prevoyance', '$aretenue','$SS', '$SI','$SD','$SR','$SNET')";
-$result2=mysql_query($sql2);
+$result2=mysqli_query($linki,$sql2);
 	  
 	  
 	  
@@ -192,5 +192,5 @@ $result2=mysql_query($sql2);
    else {
    echo "ERROR";
    }
-  mysql_close(); 
+  mysqli_close($linki); 
 ?>

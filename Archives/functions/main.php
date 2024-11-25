@@ -1,4 +1,4 @@
-<?	
+<?php
 		
 		$host = 'localhost';
 		$user = 'root';
@@ -6,9 +6,6 @@
 		$db = 'webrevenue';
 		
 	
-		$link = mysql_connect ($host,$user,$pass);
-		mysql_set_charset('utf8',$link);
-		mysql_select_db($db);
 		
 		$tbl_agence="a_agence"; 
 		$tbl_utilisateur="utilisateur";

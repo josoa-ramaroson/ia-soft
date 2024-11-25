@@ -12,7 +12,7 @@ if(($_SESSION['u_niveau'] != 30) && ($_SESSION['u_niveau'] != 7)) {
 ?>
 <html>
 <head>
-<title><? include 'titre.php'; ?></title>
+<title><?php include 'titre.php'; ?></title>
 <style type="text/css">
 .tah10 {	font-family: Tahoma;
 	font-size: 10px;
@@ -35,16 +35,13 @@ Require("bienvenue.php");    // on appelle la page contenant la fonction
      <?php
 require 'fonction.php';
 
-// Connect to server and select databse.
-mysql_connect ($host,$user,$pass)or die("cannot connect"); 
-mysql_select_db($db)or die("cannot select DB");
-  
+
 $sql = "SELECT count(*) FROM $tbl_com ";  
 
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
  // on teste si ce nombre de vaut pas 0  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -64,29 +61,29 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT * FROM $tbl_com  ORDER BY idcom DESC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  //ASC
  
 // on ex?cute la requ?te  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
    </font></strong></font></font></font></font></font></font></font></font></font></strong></font></font></font></font></font></font></font></font></font></font></p>
    <form name="form2" method="post" action="produit_cancel.php">
      <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
        <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
        <tr>
-         <td width="136" bgcolor="#FFFFFF"><em><? echo $data['date'];?></em></td>
-         <td width="715" bgcolor="#FFFFFF"><em><? echo $data['titre'];?></em></td>
-         <td width="209" bgcolor="#FFFFFF"> <p><a href="communicationdetail.php?id=<? echo  md5(microtime()).$data['idcom']; ?>" class="btn btn-xs btn-success">lire la suite &gt;&gt;</a></p>
+         <td width="136" bgcolor="#FFFFFF"><em><?php echo $data['date'];?></em></td>
+         <td width="715" bgcolor="#FFFFFF"><em><?php echo $data['titre'];?></em></td>
+         <td width="209" bgcolor="#FFFFFF"> <p><a href="communicationdetail.php?id=<?php echo  md5(microtime()).$data['idcom']; ?>" class="btn btn-xs btn-success">lire la suite &gt;&gt;</a></p>
          </td>
         </tr>
        <?php
 
 }
 
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close ();  
+mysqli_free_result ($resultat);  
+mysqli_close ();  
 ?>
      </table>
    </form>

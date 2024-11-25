@@ -2,54 +2,53 @@
 require 'fonction.php';
 require 'rh_configuration_fonction.php';
 
-$id_nom=addslashes($_POST['id_nom']);
+// Récupération et nettoyage des données
+$id_nom = mysqli_real_escape_string($linki, $_POST['id_nom']);
+$date_dem = mysqli_real_escape_string($linki, $_POST['date_dem']);
+$fournisseur = mysqli_real_escape_string($linki, $_POST['fournisseur']);
+$fournisseur = str_replace("'", '', $fournisseur);
+$fournisseur = ucfirst(strtolower($fournisseur));
 
-$date_dem=addslashes($_POST['date_dem']);
+// Vérification des identifiants direction et service
+$iddirection = mysqli_real_escape_string($linki, $_POST['direction']);
+$idservice = mysqli_real_escape_string($linki, $_POST['subcat']);
 
-$fournisseur=addslashes($_POST['fournisseur']);
-$fournisseur=str_replace("'", '', ($fournisseur));
-$fournisseur=ucfirst(strtolower($fournisseur));
+// Validation des données
+if(!isset($iddirection) || empty($iddirection)) {
+    header("location:app_bonachat.php");
+    exit;
+}
+if(!isset($idservice) || empty($idservice)) {
+    header("location:app_bonachat.php");
+    exit;
+}
 
+// Récupération du service
+$sql1 = "SELECT * FROM $tb_rhservice WHERE idser=$idservice";
+$result1 = mysqli_query($linki, $sql1);
+$service = '';
+while ($row1 = mysqli_fetch_assoc($result1)) {
+    $service = $row1['service'];
+}
+mysqli_free_result($result1);
 
-//IDENTIFICATION CODE QUARTIER """""""""""""""""""""""""""""""""
-$iddirection=addslashes($_POST['direction']);
-$idservice=addslashes($_POST['subcat']);
+// Récupération de la direction
+$sql2 = "SELECT * FROM $tb_rhdirection WHERE idrh=$iddirection";
+$result2 = mysqli_query($linki, $sql2);
+$direction = '';
+while ($row2 = mysqli_fetch_assoc($result2)) {
+    $direction = $row2['direction'];
+}
+mysqli_free_result($result2);
 
+$statut = 'Traitement';
 
-	if(!isset($iddirection)|| empty($iddirection)) {
-	header("location:app_bonachat.php");
-	exit;
- }
-  
- 	if(!isset($idservice)|| empty($idservice)) {
-	header("location:app_bonachat.php");
-	exit;
- }
- 
+// Insertion des données
+$sql = "INSERT INTO $tbl_appbonachat (id_nom, date_dem, fournisseur, direction, service, statut) 
+        VALUES ('$id_nom', '$date_dem', '$fournisseur', '$direction', '$service', '$statut')";
 
-$sql1 = "SELECT * FROM $tb_rhservice where idser=$idservice";
-$result1 = mysql_query($sql1);
-while ($row1 = mysql_fetch_assoc($result1)) {
-$service=$row1['service'];
-}  
+$result = mysqli_query($linki, $sql) or die(mysqli_error($linki));
 
-$sql2 = "SELECT * FROM $tb_rhdirection where idrh=$iddirection";
-$result2 = mysql_query($sql2);
-while ($row2 = mysql_fetch_assoc($result2)) {
-$direction=$row2['direction'];
-} 
-
-$statut='Traitement';
-
-//---------------------------------------------------------------------
-$sql="INSERT INTO $tbl_appbonachat ( id_nom , date_dem, fournisseur, direction, service, statut)
-
-VALUES
-('$id_nom' ,  '$date_dem', '$fournisseur', '$direction', '$service', '$statut')";
-$result=mysql_query($sql);
-
-mysql_close(); 
-?>
-<?php
+// Redirection
 header("location:app_bonachat.php");
 ?>

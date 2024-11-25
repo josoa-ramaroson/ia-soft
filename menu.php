@@ -1,4 +1,6 @@
 ﻿<?php
+session_start();
+require_once 'fonction.php';
 $class='nav-link text-white';
 $class2='nav-link  text-white';
 $class3='nav-link  text-white';
@@ -10,7 +12,7 @@ $class6='nav-link  text-white';
 // $class4='btn btn-info';
 // $class5='btn btn-default';
 // $class6='btn btn-danger';
-
+$id_user = $_SESSION['id_user'];
 
 $sqlv = "SELECT COUNT(*) AS nombre 
 FROM $tbl_utilisateur u, $tbl_ind n  

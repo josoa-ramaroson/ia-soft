@@ -41,5 +41,5 @@ mail($destinataires,$sujet,$texte,"From:contact@boltosoft.com");*/
 
 header("location:app_transfert_etape3.php");
 }
-mysql_close($link);
+mysqli_close($link);
 ?>

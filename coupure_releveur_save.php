@@ -1,15 +1,13 @@
 <?php
 	require 'fonction.php';
-    $link = mysql_connect ($host,$user,$pass);
-    mysql_select_db($db);
 
 $mr1=addslashes($_REQUEST['mr1']);
 $bstatut=addslashes($_REQUEST['bstatut']);
 $idf=substr($_REQUEST["idf"],32);
 
 $sql1 = "SELECT * FROM $tbl_fact where idf=$idf";
-$result1 = mysql_query($sql1);
-while ($row1 = mysql_fetch_assoc($result1)) {
+$result1 = mysqli_query($linki,$sql1);
+while ($row1 = mysqli_fetch_assoc($result1)) {
 $totalneti=$row1['totalnet'];
 $reporti=$row1['report'];
 $bstatuti= $row1['bstatut'];
@@ -29,11 +27,11 @@ $report=$reporti;
 
 #---------------------------------------------------3 
 $sqlp="update  $tbl_fact  set   bstatut='$bstatut' , Pre='$Pre' , totalnet='$totalnet' , report='$report' WHERE  idf='$idf'";
-$resultp=mysql_query($sqlp);
+$resultp=mysqli_query($linki,$sqlp);
 if($resultp){
 }
 else {
 }
-mysql_close();
+mysqli_close($linki);
 header("location: coupure_releveur.php?mr1=$mr1");
 ?>

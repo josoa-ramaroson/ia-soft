@@ -12,7 +12,7 @@ if( ($_SESSION['u_niveau'] != 7)&&($_SESSION['u_niveau'] != 40)&&($_SESSION['u_n
 <html>
 <head>
 <title>
-<? include("titre.php"); ?></title>
+<?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -67,7 +67,7 @@ $np=substr($_REQUEST["np"],32);
 $req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
   <strong> SUIVI DES SORTIE AU MAGASIN PAR PRODUIT </strong></font></font></font></p>
-<p><a href="app_produit_stock_detail_validite.php?np=<? echo md5(microtime()).$np; ?>" class="btn btn-xs btn-success">Detail du stock par date de validite ( <? echo $np; ?>) </a></p>
+<p><a href="app_produit_stock_detail_validite.php?np=<?php echo md5(microtime()).$np; ?>" class="btn btn-xs btn-success">Detail du stock par date de validite ( <?php echo $np; ?>) </a></p>
 <table width="100%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
   <tr bgcolor="#0000FF"> 
     <td width="17%" align="center" bgcolor="#0066FF"><font color="#CCCCCC" size="3"><strong>Produit 
@@ -87,12 +87,12 @@ $req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql
 while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
    <tr bgcolor="FFFFFF">
-   <td> <div align="left"><em><? echo $data['titre'];?></em></div> <div align="left"></div></td>
-   <td> <div align="center"><em><? echo $data['datev'];?></em></div></td>
-   <td><div align="center"><em><? echo $data['Qvente'];?></em></div></td>
-   <td><div align="center"><em><? echo $data['id_nom'];?></em></div></td>
-   <td> <div align="center"><em><? echo $data['nc'];?></em></div></td>
-   <td> <div align="center"><em><? echo $data['service'];?></em></div></td>
+   <td> <div align="left"><em><?php echo $data['titre'];?></em></div> <div align="left"></div></td>
+   <td> <div align="center"><em><?php echo $data['datev'];?></em></div></td>
+   <td><div align="center"><em><?php echo $data['Qvente'];?></em></div></td>
+   <td><div align="center"><em><?php echo $data['id_nom'];?></em></div></td>
+   <td> <div align="center"><em><?php echo $data['nc'];?></em></div></td>
+   <td> <div align="center"><em><?php echo $data['service'];?></em></div></td>
   </tr>
   <?php
   

@@ -12,7 +12,7 @@ require_once('calendar/classes/tc_calendar.php');
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script language="javascript" src="calendar/calendar.js"></script>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -23,8 +23,8 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
 
     //choix d espace de memoire pour les connection.---------------------------------------------------------------- 
 	$valeur_existant = "SELECT COUNT(*) AS nb FROM $tb_comptconf  WHERE idcomp='$id_nom' ";
-	$sqLvaleur = mysql_query($valeur_existant)or exit(mysql_error()); 
-	$nb = mysql_fetch_assoc($sqLvaleur);
+	$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error()); 
+	$nb = mysqli_fetch_assoc($sqLvaleur);
 	
 	if($nb['nb'] == 1)
    {
@@ -34,7 +34,7 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
    {
 	   	
 	$sqlcon="INSERT INTO $tb_comptconf (idcomp)VALUES('$id_nom')";
-    $connection=mysql_query($sqlcon);
+    $connection=mysqli_query($linki,$sqlcon);
     }
     //------------------------FIn du Programme ---------------------------------------------------------
 	
@@ -45,14 +45,14 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
     <h3 class="panel-title">Passer à l'ecriture des dépenses 
       <?php
 $req1="SELECT * FROM compt_ecriture ";
-$req=mysql_query($req1);
+$req=mysqli_query($linki,$req1);
 ?>
 
 <?php
 $Code=$_GET['Code'];
 $res="select * From $plan where Code='$Code'";
-$resu=mysql_query($res);
-$row22=mysql_fetch_array($resu);
+$resu=mysqli_query($linki,$res);
+$row22=mysqli_fetch_array($resu);
 
 
 
@@ -118,8 +118,8 @@ $row22=mysql_fetch_array($resu);
             <select name="Modep" id="Modep">
               <?php
 $req="select Code ,Description from $plan WHERE Code='52' or Code='57' ";
-$resultat4=mysql_query($req);
-while ($row3 = mysql_fetch_assoc($resultat4)) {
+$resultat4=mysqli_query($linki,$req);
+while ($row3 = mysqli_fetch_assoc($resultat4)) {
 //echo '<option> '.$row3['Code'].' </option>' ;
 echo '<option value='.$row3['Code'].'> '.$row3['Code'].' '.$row3['Description'].' </option>';
 }
@@ -170,9 +170,9 @@ echo '<option value='.$row3['Code'].'> '.$row3['Code'].' '.$row3['Description'].
             <select name="Fourniseur" size="1" id="Fourniseur">
               <?php
 $sqlS = ("SELECT * FROM $tb_comptf  ORDER BY Societef ASC ");
-$resultS = mysql_query($sqlS);
+$resultS = mysqli_query($linki,$sqlS);
 
-while ($rowS = mysql_fetch_assoc($resultS)) {
+while ($rowS = mysqli_fetch_assoc($resultS)) {
 echo '<option> '.$rowS['Societef'].' </option>';
 }
 ?>
@@ -186,7 +186,7 @@ echo '<option> '.$rowS['Societef'].' </option>';
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td><em><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-            <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+            <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
           </font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></em></td>
         </tr>
         <tr>

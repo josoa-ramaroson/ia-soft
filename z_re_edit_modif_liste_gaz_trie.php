@@ -217,20 +217,20 @@ $req = mysqli_query($linkibk,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mys
    <?php
 while($data=mysqli_fetch_array($req)){ // Start looping table row 
    ?>
-   <tr bgcolor="<? gettatut($data['etat']); ?>">
-     <td align="center" ><? if (($data['etat']!="facture")and ($data['etat']!="Annuler")){?>
-       <a href="z_paiement_penalite.php?idf=<? echo md5(microtime()).$data['idf']; ?>&a=<? echo md5(microtime()).$ARCH;?>" class="btn btn-sm btn-success"> les détails</a>
-       <? } else {} ?>
+   <tr bgcolor="<?php gettatut($data['etat']); ?>">
+     <td align="center" ><?php if (($data['etat']!="facture")and ($data['etat']!="Annuler")){?>
+       <a href="z_paiement_penalite.php?idf=<?php echo md5(microtime()).$data['idf']; ?>&a=<?php echo md5(microtime()).$ARCH;?>" class="btn btn-sm btn-success"> les détails</a>
+       <?php } else {} ?>
       
        </td>
-     <td align="center" ><em><a href="re_affichage_user.php?id=<? echo md5(microtime()).$data['id']; ?>" class="btn btn-sm btn-default" ><? echo $data['idf'];?></a></em></td>
-     <td align="center" ><em><? echo $data['id_nom'];?></em></td>
-     <td align="center" ><em><? echo $data['date'];?></em></td>
-     <td align="center" ><em><? echo $data['bnom'];?></em></td>
-     <td align="center"><em><? echo $data['libelle'];?></em></td>
-     <td align="center"><em><? echo $data['totalnet'];?></em></td>
-     <td align="center"><em><? echo $data['report'];?></em></td>
-     <td align="center"><em><? echo $data['etat'];?></em></td>
+     <td align="center" ><em><a href="re_affichage_user.php?id=<?php echo md5(microtime()).$data['id']; ?>" class="btn btn-sm btn-default" ><?php echo $data['idf'];?></a></em></td>
+     <td align="center" ><em><?php echo $data['id_nom'];?></em></td>
+     <td align="center" ><em><?php echo $data['date'];?></em></td>
+     <td align="center" ><em><?php echo $data['bnom'];?></em></td>
+     <td align="center"><em><?php echo $data['libelle'];?></em></td>
+     <td align="center"><em><?php echo $data['totalnet'];?></em></td>
+     <td align="center"><em><?php echo $data['report'];?></em></td>
+     <td align="center"><em><?php echo $data['etat'];?></em></td>
    </tr>
    <?php
 

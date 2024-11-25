@@ -45,7 +45,7 @@ $req11=mysqli_query($linki,$sql11);
 ?>
 </p>
 <H2>
-  <p align="center" >Facturation ( <? echo $nserie1.'/'.$annee1f; ?>) supérieur à <? echo $CA; ?> KMF et inférieur à <? echo $CB; ?> KMF</p>
+  <p align="center" >Facturation ( <?php echo $nserie1.'/'.$annee1f; ?>) supérieur à <?php echo $CA; ?> KMF et inférieur à <?php echo $CB; ?> KMF</p>
 </H2>
 <table width="104%" border="1" align="center" cellpadding="1" cellspacing="0" bgcolor="#CCCCCC">
   <tr bgcolor="#96d947">
@@ -66,9 +66,9 @@ $req11=mysqli_query($linki,$sql11);
 while($data11=mysqli_fetch_array($req11)){ // Start looping table row 
 ?>
   <tr>
-    <td  bgcolor="#FFFFFF"><em><? echo $data11['id'];?></em></td>
+    <td  bgcolor="#FFFFFF"><em><?php echo $data11['id'];?></em></td>
     <td  bgcolor="#FFFFFF"><em>
-      <? $RefLocalite=$data11['RefLocalite'];
+      <?php $RefLocalite=$data11['RefLocalite'];
 	 
 	 $sql322 = "SELECT * FROM ville where refville=$RefLocalite";
 $result322 = mysqli_query($linki,$sql322);
@@ -78,16 +78,16 @@ echo $ville=$row322['ville'];
 	 
 	 ?>
     </em></td>
-    <td  bgcolor="#FFFFFF"><em><? echo $data11['nomprenom'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data11['cons'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data11['cons1'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data11['cons2'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data11['mont1'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data11['mont2'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data11['puisct'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data11['totalht'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data11['tax'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data11['totalttc'];?></em></td>
+    <td  bgcolor="#FFFFFF"><em><?php echo $data11['nomprenom'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data11['cons'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data11['cons1'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data11['cons2'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data11['mont1'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data11['mont2'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data11['puisct'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data11['totalht'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data11['tax'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data11['totalttc'];?></em></td>
   </tr>
   <?php
 }  
@@ -120,7 +120,7 @@ while($data4=mysqli_fetch_array($req4)){$nbt=$data4['nbtotal'];}
 ?>
 </p>
 <H2>
-  <p align="center" >Facturation ( <? echo $nserie1.'/'.$annee1f; ?>) supérieur à <? echo $CA; ?> KMF et inférieur à <? echo $CB; ?> KMF</p>
+  <p align="center" >Facturation ( <?php echo $nserie1.'/'.$annee1f; ?>) supérieur à <?php echo $CA; ?> KMF et inférieur à <?php echo $CB; ?> KMF</p>
 </H2>
 <table width="100%" border="1" align="center" cellpadding="1" cellspacing="0" bgcolor="#CCCCCC">
   <tr bgcolor="#96d947">
@@ -142,16 +142,16 @@ $nb= $data33['nbres'];
 ?>
   <tr>
     <td  bgcolor="#FFFFFF">&nbsp;</td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data33['nbres'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data33['cons'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data33['cons1'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data33['cons2'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data33['mont1'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data33['mont2'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data33['puisct'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data33['totalht'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data33['tax'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data33['totalttc'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data33['nbres'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data33['cons'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data33['cons1'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data33['cons2'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data33['mont1'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data33['mont2'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data33['puisct'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data33['totalht'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data33['tax'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data33['totalttc'];?></em></td>
   </tr>
   <?php
 }  

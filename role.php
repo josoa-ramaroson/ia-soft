@@ -9,7 +9,7 @@ require("session_niveau_role.php");
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 
@@ -17,7 +17,7 @@ require("session_niveau_role.php");
 <?
 require("bienvenue.php"); // on appelle la page contenant la fonction
 ?>
-<? if($_SESSION['u_niveau']==70) {$aff='';} else {$aff='readonly';} ?>
+<?php if($_SESSION['u_niveau']==70) {$aff='';} else {$aff='readonly';} ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
 <div class="panel panel-primary">
             <div class="panel-heading">
@@ -58,7 +58,7 @@ echo '<option value='.$row2A['id_u'].'> '.$row2A['u_nom'].' '.$row2A['u_prenom']
                       </tr>
                       <tr>
                         <td><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                          <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>">
+                          <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>">
                         </font></strong></font></strong></font></td>
                         <td><input type="submit" name="Submit" value="Enregistrer role principal" class="btn btn-primary" ></td>
                       </tr>
@@ -107,7 +107,7 @@ echo '<option value='.$row2B['id_role'].'> '.$row2B['nom_role'].' </option>';
                       </tr>
                       <tr>
                         <td><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                          <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>">
+                          <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>">
                         </font></strong></font></strong></font></td>
                         <td><input type="submit" name="Submit" value="Enregistrer" class="btn btn-primary" ></td>
                       </tr>
@@ -130,7 +130,7 @@ echo '<option value='.$row2B['id_role'].'> '.$row2B['nom_role'].' </option>';
                       <td></td>
                     </tr>
                     <tr>
-                      <td><a href="role_principale.php?id_role=<? echo md5(microtime()).$data['id_role']; ?>" class="btn btn-primary">Utilisateur ayant un role </a></td>
+                      <td><a href="role_principale.php?id_role=<?php echo md5(microtime()).$data['id_role']; ?>" class="btn btn-primary">Utilisateur ayant un role </a></td>
                     </tr>
                   </table></td>
                 </tr>
@@ -188,20 +188,20 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
 
    $bgcolor = "#FFFFFF";
 ?>
-    <tr bgcolor=<? echo "$bgcolor" ?>>
-      <td height="41" align="center" > <div align="left"><? echo $data['id_role'];?></div>
+    <tr bgcolor=<?php echo "$bgcolor" ?>>
+      <td height="41" align="center" > <div align="left"><?php echo $data['id_role'];?></div>
         <div align="left"></div></td>
-      <td align="center"><div align="left"><em><? echo $data['nom_role'];?></em></div></td>
-      <td width="176" ><em><? $sta=$data['id_statut']; $statut=le_statut($sta,$tb_role_statut,$linki);  echo $statut;?>
+      <td align="center"><div align="left"><em><?php echo $data['nom_role'];?></em></div></td>
+      <td width="176" ><em><?php $sta=$data['id_statut']; $statut=le_statut($sta,$tb_role_statut,$linki);  echo $statut;?>
       
       </em></td>
    
       <td width="303">
       
-      <? if ($sta==1){ ?>
+      <?php if ($sta==1){ ?>
       
-   <a href="role_detail.php?id_role=<? echo md5(microtime()).$data['id_role']; ?>" class="btn btn btn-success">Les utilisateurs   </a>
-      <? } else { } ?> 
+   <a href="role_detail.php?id_role=<?php echo md5(microtime()).$data['id_role']; ?>" class="btn btn btn-success">Les utilisateurs   </a>
+      <?php } else { } ?> 
       
       </td> 
     </tr>

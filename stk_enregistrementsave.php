@@ -12,10 +12,10 @@ require 'fonction.php';
 $sqlp="INSERT INTO $tbl_enreg ( date  , titre  , Quantite  ,  Validite   , PrixUnitaire , a_nom, id_nom )
                     VALUES    ('$date','$titre','$Quantite', '$Validite', '',          '$a_nom','$id_nom' )";
 					
-$r=mysql_query($sqlp)
+$r=mysqli_query($linki,$sqlp)
 
-or die(mysql_error());
-mysql_close($link);
+or die(mysqli_error());
+mysqli_close($link);
 ?>
 <?php
 header("location: stk_enregistrement.php");

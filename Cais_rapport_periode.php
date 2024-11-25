@@ -117,7 +117,7 @@ function barre_navigation ($nb_total,$nb_affichage_par_page,$debut,$nb_liens_dan
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -166,7 +166,7 @@ $rows2=mysqli_fetch_array($result2);
 while($rows1=mysqli_fetch_array($result1)){ // Start looping table row 
 ?>     
     <tr bgcolor="#FFFFFF">
-      <td align="center"><?       $n=$rows1['MONTH(date)']; 
+      <td align="center"><?php       $n=$rows1['MONTH(date)']; 
 	  if ($n==1) echo 'Janvier';
 	  if ($n==2) echo 'Février'; 
 	  if ($n==3) echo 'Mars';
@@ -179,7 +179,7 @@ while($rows1=mysqli_fetch_array($result1)){ // Start looping table row
 	  if ($n==10) echo 'Octobre';
 	  if ($n==11) echo 'Novembre'; 
 	  if ($n==12) echo 'Decembre'; ?></td>
-      <td align="center"><? $P=strrev(chunk_split(strrev($rows1['Paie']),3," "));   echo $P;?></td>
+      <td align="center"><?php $P=strrev(chunk_split(strrev($rows1['Paie']),3," "));   echo $P;?></td>
     </tr>
     <?php
 
@@ -195,7 +195,7 @@ while($rows1=mysqli_fetch_array($result1)){ // Start looping table row
   </tr>
   <tr bgcolor="#FFFFFF">
     <td align="center"></td>
-    <td align="center"><? $P=strrev(chunk_split(strrev($rows2['Paie']),3," "));   echo $P;?></td>
+    <td align="center"><?php $P=strrev(chunk_split(strrev($rows2['Paie']),3," "));   echo $P;?></td>
   </tr>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

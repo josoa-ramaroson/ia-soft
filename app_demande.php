@@ -1,10 +1,10 @@
-<?
+<?php 
 require 'session.php';
 require 'fonction.php';
 require 'fc-affichage.php';
 require_once('calendar/classes/tc_calendar.php');
 ?>
-<?
+<?php 
 	if($_SESSION['u_niveau'] != 40) {
 	header("location:index.php?error=false");
 	exit;
@@ -13,7 +13,7 @@ require_once('calendar/classes/tc_calendar.php');
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php php include 'titre.php' ?></title>
 <script language="javascript" src="calendar/calendar.js"></script>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -81,11 +81,11 @@ httpxml.send(null);
 </script>
 
 </head>
-<?
+<?php
 require 'bienvenue.php';  
 	$sqldate="SELECT * FROM $tbl_app_caisse "; //DESC  ASC
-	$resultldate=mysql_query($sqldate);
-	$datecaisse=mysql_fetch_array($resultldate);
+	$resultldate=mysqli_query($linki, $sqldate);
+	$datecaisse=mysqli_fetch_array($resultldate);
 ?>
 <body>
 <div class="panel panel-primary">
@@ -102,14 +102,14 @@ require 'bienvenue.php';
           <td width="1%">&nbsp;</td>
           <td width="12%">&nbsp;</td>
           <td width="40%"><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-            <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+            <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
           </font><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
           </font></strong></font></strong></font></strong></font></strong></font></strong></font></td>
         </tr>
         <tr>
           <td><strong><font size="2">Date</font></strong></td>
           <td>&nbsp;</td>
-          <td><input name="date_dem" type="text" id="date_dem" value="<? echo $datecaisse['datecaisse'];?>" size="30" readonly /></td>
+          <td><input name="date_dem" type="text" id="date_dem" value="<?php echo $datecaisse['datecaisse'];?>" size="30" readonly /></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Direction</font></strong></td>
           <td><?Php
@@ -167,15 +167,12 @@ echo "<option value=$row[idrh]>$row[direction]</option>";
 <p><font size="2"><font size="2"><font size="2">
 <?php
 
-mysql_connect ($host,$user,$pass)or die("cannot connect"); 
-mysql_select_db($db)or die("cannot select DB");
-  
 $sql = "SELECT count(*) FROM $tbl_appdemande where statut='Traitement' ";  
 
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki, $sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
 
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -191,7 +188,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT * FROM $tbl_appdemande  where statut='Traitement' ORDER BY id_dem DESC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  //ASC
  
 
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki, $sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
 </font></strong></font></font></font></font></font></font></font></font></font></strong></font></font></font></font></font></font></font></font></font></font></p>
 <form name="form2" method="post" action="produit_cancel.php">
@@ -206,27 +203,27 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
       <td width="163" align="center" bgcolor="#3071AA" >&nbsp;</td>
     </tr>
     <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
     <tr>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><? echo $data['id_dem'];?></div>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><?php echo $data['id_dem'];?></div>
         <div align="left"></div></td>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['date_dem'];?></em></div></td>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['nomprenom'];?></em></div></td>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['direction'];?></em></div></td>
-      <td width="162"   style="background-color:#FFF;"><div align="left"><em><? echo $data['service'];?></em></div></td>
-      <td width="163"   style="background-color:#FFF;"><a href="app_demande_produit.php?id=<? echo md5(microtime()).$data['id_dem']; ?>" class="btn btn-xs btn-success">Ajouter des produits</a></td>
-      <td width="163"   style="background-color:#FFF;"><a href="app_demande_archive.php?ID=<? echo md5(microtime()).$data['id_dem']; ?>" onClick="return confirm('Etes-vous sûr de vouloir Archiver ')" ; style="margin:5px"   class="btn btn-xs btn-danger" >Archiver</a></td>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['date_dem'];?></em></div></td>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['nomprenom'];?></em></div></td>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['direction'];?></em></div></td>
+      <td width="162"   style="background-color:#FFF;"><div align="left"><em><?php echo $data['service'];?></em></div></td>
+      <td width="163"   style="background-color:#FFF;"><a href="app_demande_produit.php?id=<?php echo md5(microtime()).$data['id_dem']; ?>" class="btn btn-xs btn-success">Ajouter des produits</a></td>
+      <td width="163"   style="background-color:#FFF;"><a href="app_demande_archive.php?ID=<?php echo md5(microtime()).$data['id_dem']; ?>" onClick="return confirm('Etes-vous sûr de vouloir Archiver ')" ; style="margin:5px"   class="btn btn-xs btn-danger" >Archiver</a></td>
     </tr>
     <?php
 
 }
 
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close ();  
+mysqli_free_result ($resultat);  
+mysqli_close ($linki);  
 ?>
   </table>
 </form>

@@ -3,8 +3,8 @@ require 'session.php';
 ?>
 <html>
 <head>
-<title><? include 'titre.php'; ?></title>
-<? include 'inc/head.php'; ?>
+<title><?php include 'titre.php'; ?></title>
+<?php include 'inc/head.php'; ?>
 <style type="text/css">
 .centre {
 	text-align: center;
@@ -79,19 +79,19 @@ $datamT=mysqli_fetch_array($reqT);
             <td width="47%"><table width="93%" border="0.5" align="center" cellpadding="0" cellspacing="0">
               <tr>
                 <td width="36%">Nom du fournisseur </td>
-                <td width="64%"><font color="#000000"><strong><? echo $datam['fournisseur'];?></strong></font></td>
+                <td width="64%"><font color="#000000"><strong><?php echo $datam['fournisseur'];?></strong></font></td>
               </tr>
               <tr>
                 <td>Adresse</td>
-                <td><font color="#000000"><strong><? echo $datamT['Adressef'];?></strong></font></td>
+                <td><font color="#000000"><strong><?php echo $datamT['Adressef'];?></strong></font></td>
               </tr>
               <tr>
                 <td>&nbsp;</td>
-                <td><font color="#000000"><strong><? echo $datamT['ville'];?> - <? echo $datamT['pays'];?></strong></font></td>
+                <td><font color="#000000"><strong><?php echo $datamT['ville'];?> - <?php echo $datamT['pays'];?></strong></font></td>
               </tr>
               <tr>
                 <td>&nbsp;</td>
-                <td><font color="#000000"><strong><? echo $datamT['Telephonef'];?></strong></font> -<font color="#000000"><strong><? echo $datamT['Telephonem'];?></strong></font></td>
+                <td><font color="#000000"><strong><?php echo $datamT['Telephonef'];?></strong></font> -<font color="#000000"><strong><?php echo $datamT['Telephonem'];?></strong></font></td>
               </tr>
             </table></td>
           </tr>
@@ -101,14 +101,14 @@ $datamT=mysqli_fetch_array($reqT);
   </tr>
 </table>
 <table width="100%" border="0">
-<p align="left"> <font color="#000000"><strong><? $Codebare=$numero;?> <img src="codeBarre.php?Code=<?=$Codebare?>"></strong></font></p>
+<p align="left"> <font color="#000000"><strong><?php $Codebare=$numero;?> <img src="codeBarre.php?Code=<?=$Codebare?>"></strong></font></p>
   <tr>
     <td width="5%">&nbsp;</td>
     
-    <td width="25%"><strong> N° de commande : <? echo $numero;?></strong></td>
-    <td width="35%"><strong><? echo $datam['direction'];?> - <? echo $datam['service'];?></strong></td>
+    <td width="25%"><strong> N° de commande : <?php echo $numero;?></strong></td>
+    <td width="35%"><strong><?php echo $datam['direction'];?> - <?php echo $datam['service'];?></strong></td>
     <td width="35%">Date de la demande :<strong>
-      <? $date_dem=$datam['date_dem'];  echo  date("d-m-Y", strtotime($date_dem));?>
+      <?php $date_dem=$datam['date_dem'];  echo  date("d-m-Y", strtotime($date_dem));?>
     </strong></td>
   </tr>
 </table>
@@ -130,20 +130,20 @@ while($rowsact=mysqli_fetch_array($resultact)){
 ?>
      
           <tr>
-            <td><? echo $rowsact['designation'];?></td>
-			<td align="center"><? echo strrev(chunk_split(strrev($rowsact['quantite']),3," "));?></td>
-    		 <td align="center"><? echo strrev(chunk_split(strrev($rowsact['prixu']),3," "));?></td>
-            <td align="center"><? echo strrev(chunk_split(strrev($rowsact['prixt']),3," "));?></td>
+            <td><?php echo $rowsact['designation'];?></td>
+			<td align="center"><?php echo strrev(chunk_split(strrev($rowsact['quantite']),3," "));?></td>
+    		 <td align="center"><?php echo strrev(chunk_split(strrev($rowsact['prixu']),3," "));?></td>
+            <td align="center"><?php echo strrev(chunk_split(strrev($rowsact['prixt']),3," "));?></td>
           </tr>
-        <? } ?>
+        <?php } ?>
         
             <tr>
             <td></td>
             <td></td>
             <td align="center">Montant Total </td>
-           <? while($datasomme=mysqli_fetch_array($resomme)){?>
-            <td align="center"><? echo strrev(chunk_split(strrev($datasomme['prixtt']),3," ")) ;?></td>
-           <? } ?>
+           <?php while($datasomme=mysqli_fetch_array($resomme)){?>
+            <td align="center"><?php echo strrev(chunk_split(strrev($datasomme['prixtt']),3," ")) ;?></td>
+           <?php } ?>
           </tr>
           
         </table></td>

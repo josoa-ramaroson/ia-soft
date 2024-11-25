@@ -11,7 +11,7 @@ if(($_SESSION['u_niveau'] != 7)) {
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 
@@ -65,12 +65,12 @@ while($data=mysqli_fetch_array($req)){
 ?>
                 <tr>
                   <td height="40" align="center" bgcolor="#FFFFFF"><div align="left"></div></td>
-                  <td  bgcolor="#FFFFFF"><? echo $data['Libelle'];?></td>
-                  <td width="170" align="center"  style="background-color:#FFF;"><em><? echo $data['t1'];?></em></td>
-                  <td width="179" align="center"  style="background-color:#FFF;"><em><? echo $data['t2'];?></em></td>
-                  <td width="173" align="center"  style="background-color:#FFF;"><em><? echo $data['q'];?></em></td>
-                  <td width="173" align="center"  style="background-color:#FFF;"><em><? echo $data['typecom'];?></em></td>
-                  <td width="90"   style="background-color:#FFF;"><a href="tarif_modifie.php?id=<? echo  md5(microtime()).$data['idt']; ?>"  class="btn btn-xs btn-success"><? echo 'Modifier' ?></a></td>
+                  <td  bgcolor="#FFFFFF"><?php echo $data['Libelle'];?></td>
+                  <td width="170" align="center"  style="background-color:#FFF;"><em><?php echo $data['t1'];?></em></td>
+                  <td width="179" align="center"  style="background-color:#FFF;"><em><?php echo $data['t2'];?></em></td>
+                  <td width="173" align="center"  style="background-color:#FFF;"><em><?php echo $data['q'];?></em></td>
+                  <td width="173" align="center"  style="background-color:#FFF;"><em><?php echo $data['typecom'];?></em></td>
+                  <td width="90"   style="background-color:#FFF;"><a href="tarif_modifie.php?id=<?php echo  md5(microtime()).$data['idt']; ?>"  class="btn btn-xs btn-success"><?php echo 'Modifier' ?></a></td>
                 </tr>
                 <?php
 

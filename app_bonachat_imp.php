@@ -3,8 +3,8 @@ require 'session.php';
 ?>
 <html>
 <head>
-<title><? include 'titre.php'; ?></title>
-<? include 'inc/head.php'; ?>
+<title><?php include 'titre.php'; ?></title>
+<?php include 'inc/head.php'; ?>
 <style type="text/css">
 .centre {
 	text-align: center;
@@ -53,21 +53,21 @@ $datam=mysqli_fetch_array($req5);
             <td width="47%"><table width="93%" border="0.5" align="center" cellpadding="0" cellspacing="0">
               <tr>
                 <td width="36%">Direction</td>
-                <td width="64%"><strong><? echo $datam['direction'];?></strong></td>
+                <td width="64%"><strong><?php echo $datam['direction'];?></strong></td>
               </tr>
               <tr>
                 <td>Service </td>
-                <td><strong><? echo $datam['service'];?></strong></td>
+                <td><strong><?php echo $datam['service'];?></strong></td>
               </tr>
               <tr>
                 <td><span style="width:36%">Date de la demande </span></td>
                 <td><strong>
-                  <? $date_dem=$datam['date_dem'];  echo  date("d-m-Y", strtotime($date_dem));?>
+                  <?php $date_dem=$datam['date_dem'];  echo  date("d-m-Y", strtotime($date_dem));?>
                 </strong></td>
               </tr>
               <tr>
                 <td>Nom du fournisseur </td>
-                <td><font color="#000000"><strong><? echo $datam['fournisseur'];?></strong></font></td>
+                <td><font color="#000000"><strong><?php echo $datam['fournisseur'];?></strong></font></td>
               </tr>
             </table></td>
           </tr>
@@ -84,7 +84,7 @@ $datam=mysqli_fetch_array($req5);
 	 $resomme=mysqli_query($linki,$sqsomme);
 
 ?>
-<p align="left"> <font color="#000000"><strong><? $Codebare=$datam['id_dem'];?> <img src="codeBarre.php?Code=<?=$Codebare?>"></strong></font></p>
+<p align="left"> <font color="#000000"><strong><?php $Codebare=$datam['id_dem'];?> <img src="codeBarre.php?Code=<?=$Codebare?>"></strong></font></p>
 <p align="center">&nbsp;</p>
 <div class="panel panel-info">
   <div class="panel-body">
@@ -103,22 +103,22 @@ while($rowsact=mysqli_fetch_array($resultact)){
 ?>
      
           <tr>
-            <td><? echo $rowsact['designation'];?></td>
-		   <td align="center"><? echo strrev(chunk_split(strrev($rowsact['quantite']),3," "));?></td>
-    		<td align="center"><? echo strrev(chunk_split(strrev($rowsact['prixu']),3," "));?></td>
-           <td align="center"><? echo strrev(chunk_split(strrev($rowsact['prixt']),3," "));?></td>
+            <td><?php echo $rowsact['designation'];?></td>
+		   <td align="center"><?php echo strrev(chunk_split(strrev($rowsact['quantite']),3," "));?></td>
+    		<td align="center"><?php echo strrev(chunk_split(strrev($rowsact['prixu']),3," "));?></td>
+           <td align="center"><?php echo strrev(chunk_split(strrev($rowsact['prixt']),3," "));?></td>
 			
 			
           </tr>
-        <? } ?>
+        <?php } ?>
         
             <tr>
             <td></td>
             <td></td>
             <td align="center">Montant Total </td>
-           <? while($datasomme=mysqli_fetch_array($resomme)){?>
-            <td align="center"><? echo $datasomme['prixtt'];?></td>
-           <? } ?>
+           <?php while($datasomme=mysqli_fetch_array($resomme)){?>
+            <td align="center"><?php echo $datasomme['prixtt'];?></td>
+           <?php } ?>
           </tr>
           
         </table></td>

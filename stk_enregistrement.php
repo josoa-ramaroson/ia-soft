@@ -13,7 +13,7 @@ if(($_SESSION['u_niveau'] != 7)&& ($_SESSION['u_niveau'] != 40) && ($_SESSION['u
 <html>
 <head>
 <title>
-<? include("titre.php"); ?></title>
+<?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -35,7 +35,7 @@ require("bienvenue.php");
             <td width="9%">&nbsp;</td>
             <td width="35%">&nbsp;</td>
             <td width="14%">&nbsp;</td>
-            <td width="28%"><? if($_SESSION['u_niveau']==40) {$aff='';} else {$aff='readonly';} ?></td>
+            <td width="28%"><?php if($_SESSION['u_niveau']==40) {$aff='';} else {$aff='readonly';} ?></td>
             <td width="14%">&nbsp;</td>
           </tr>
           <tr> 
@@ -56,7 +56,7 @@ require("bienvenue.php");
               <div align="center"></div></td>
 			
             <td><strong><font color="#000000">Quantit&eacute;</font></strong><font color="#FF0000">*</font></td>
-            <td><input name="Quantite"  class="form-control" type="text" id="Quantite" value="" size="30" <? echo $aff;?>></td>
+            <td><input name="Quantite"  class="form-control" type="text" id="Quantite" value="" size="30" <?php echo $aff;?>></td>
             <td>&nbsp;</td>
           </tr>
           <tr> 
@@ -71,8 +71,8 @@ require("bienvenue.php");
             <td><select name="titre" id="titre">
                 <?php
 $sql2 = ("SELECT titre  FROM $tbl_produit ORDER BY titre  ASC ");
-$result2 = mysql_query($sql2);
-while ($row2 = mysql_fetch_assoc($result2)) {
+$result2 = mysqli_query($linki,$sql2);
+while ($row2 = mysqli_fetch_assoc($result2)) {
 echo '<option> '.$row2['titre'].' </option>';
 }
 
@@ -117,7 +117,7 @@ echo '<option> '.$row2['titre'].' </option>';
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-              <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>">
+              <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>">
             </font></strong></font></strong></font></td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -132,10 +132,10 @@ echo '<option> '.$row2['titre'].' </option>';
 $sql = "SELECT count(*) FROM $tbl_enreg ";  
 
 // on ex?cute cette requ?te  
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
 // on r?cup?re le nombre d'?l?ments ? afficher  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
  // on teste si ce nombre de vaut pas 0  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -155,7 +155,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT * FROM $tbl_enreg  ORDER BY date  DESC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  //ASC
  
 // on ex?cute la requ?te  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
   </font></strong></font></font></font></font></font></font></font></font></font></strong></font></font></font></font></font></font></font></font></font></font></p>
 <table width="100%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
@@ -170,7 +170,7 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
   </tr>
   <?php
     $numboucle=0;
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
  if($numboucle %2 == 0) 
  
    $bgcolor = "#00CCFF"; 
@@ -179,13 +179,13 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
 
    $bgcolor = "#FFFFFF";
 ?>
-    <tr bgcolor=<? echo "$bgcolor" ?>>
-   <td height="36" align="center"> <div align="left"><? echo $data['date'];?></div>
+    <tr bgcolor=<?php echo "$bgcolor" ?>>
+   <td height="36" align="center"> <div align="left"><?php echo $data['date'];?></div>
       <div align="left"></div></td>
-    <td align="center"><div align="left"><em><? echo $data['titre'];?></em></div></td>
-    <td align="center"><div align="left"><em><? echo $data['a_nom'];?></em></div></td>
-    <td align="center"><div align="center"><em><? echo $data['Validite'];?></em></div></td>
-    <td align="center"><div align="center"><em><? echo $data['Quantite'];?></em></div></td>
+    <td align="center"><div align="left"><em><?php echo $data['titre'];?></em></div></td>
+    <td align="center"><div align="left"><em><?php echo $data['a_nom'];?></em></div></td>
+    <td align="center"><div align="center"><em><?php echo $data['Validite'];?></em></div></td>
+    <td align="center"><div align="center"><em><?php echo $data['Quantite'];?></em></div></td>
     <td align="center"><div align="center"></div></td>
   </tr>
   <?php
@@ -193,15 +193,15 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
 // Exit looping and close connection 
 }
 // on lib?re l'espace m?moire allou? pour cette requ?te  
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
  
    // on affiche enfin notre barre 20 avant de passer a l autre page
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
 // on lib?re l'espace m?moire allou? pour cette requ?te  
-mysql_free_result ($resultat);  
+mysqli_free_result ($resultat);  
 // on ferme la connexion ? la base de donn?es.  
-mysql_close ();  
+mysqli_close ();  
 ?>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

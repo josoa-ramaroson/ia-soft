@@ -13,7 +13,7 @@ require_once('calendar/classes/tc_calendar.php');
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script language="javascript" src="calendar/calendar.js"></script>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -84,8 +84,8 @@ httpxml.send(null);
 <?
 require 'bienvenue.php';  
 	$sqldate="SELECT * FROM $tbl_app_caisse "; //DESC  ASC
-	$resultldate=mysql_query($sqldate);
-	$datecaisse=mysql_fetch_array($resultldate);
+	$resultldate=mysqli_query($linki, $sqldate);
+	$datecaisse=mysqli_fetch_array($resultldate);
 ?>
 <body>
 <div class="panel panel-primary">
@@ -98,7 +98,7 @@ require 'bienvenue.php';
         <tr>
           <td width="11%"><strong><font size="2">Date</font></strong></td>
           <td width="1%">&nbsp;</td>
-          <td width="35%"><input name="date_dem" type="text" id="date_dem" value="<? echo $datecaisse['datecaisse'];?>" size="30" readonly /></td>
+          <td width="35%"><input name="date_dem" type="text" id="date_dem" value="<?php echo $datecaisse['datecaisse'];?>" size="30" readonly /></td>
           <td width="1%">&nbsp;</td>
           <td width="12%"><strong><font size="2">Direction</font></strong></td>
           <td width="40%"><?Php
@@ -151,9 +151,9 @@ echo "<option value=$row[idrh]>$row[direction]</option>";
             <select name="fournisseur" size="1" id="fournisseur">
               <?php
 $sqlS = ("SELECT * FROM $tb_comptf  ORDER BY Societef ASC ");
-$resultS = mysql_query($sqlS);
+$resultS = mysqli_query($linki, $sqlS);
 
-while ($rowS = mysql_fetch_assoc($resultS)) {
+while ($rowS = mysqli_fetch_assoc($resultS)) {
 echo '<option> '.$rowS['Societef'].' </option>';
 }
 ?>
@@ -180,9 +180,9 @@ echo '<option> '.$rowS['Societef'].' </option>';
             <select name="codecompte" size="1" id="codecompte">
               <?php
 $sqlPC = ("SELECT * FROM $plan  ORDER BY Code ASC ");
-$resultPC = mysql_query($sqlPC);
+$resultPC = mysqli_query($linki, $sqlPC);
 
-while ($rowPC = mysql_fetch_assoc($resultPC)) {
+while ($rowPC = mysqli_fetch_assoc($resultPC)) {
 echo '<option value='.$rowPC['Code'].'> '.$rowPC['Code'].' '.$rowPC['Description'].' </option>';
 }
 ?>
@@ -203,7 +203,7 @@ echo '<option value='.$rowPC['Code'].'> '.$rowPC['Code'].' '.$rowPC['Description
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-            <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+            <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
           </font></strong></font></strong></font></td>
           <td><strong><span style="font-size:8.5pt;font-family:Arial">
             <input type="submit" name="Submit" value="Enregistrer" class="btn btn-sm btn-primary"/>
@@ -216,15 +216,13 @@ echo '<option value='.$rowPC['Code'].'> '.$rowPC['Code'].' '.$rowPC['Description
 <p><font size="2"><font size="2"><font size="2">
 <?php
 
-mysql_connect ($host,$user,$pass)or die("cannot connect"); 
-mysql_select_db($db)or die("cannot select DB");
-  
+
 $sql = "SELECT count(*) FROM $tbl_appachat  ";  
 
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki, $sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -240,7 +238,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT * FROM $tbl_appachat   ORDER BY id_da DESC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  //ASC
  
 
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki, $sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 ?>
 </font></strong></font></font></font></font></font></font></font></font></font></strong></font></font></font></font></font></font></font></font></font></font></p>
 <form name="form2" method="post" action="produit_cancel.php">
@@ -256,28 +254,28 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
       <td width="107" align="center" bgcolor="#3071AA" ><font color="#FFFFFF">Prix Total</font></td>
     </tr>
     <?php
-while($data=mysql_fetch_array($req)){ 
+while($data=mysqli_fetch_array($req)){ 
 ?>
     <tr>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><? echo $data['codecompte'];?></div>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><?php echo $data['codecompte'];?></div>
         <div align="left"></div></td>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['date_dem'];?></em></div></td>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['fournisseur'];?></em></div></td>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['direction'];?></em></div></td>
-      <td width="179"   style="background-color:#FFF;"><div align="left"><em><? echo $data['designation'];?></em></div></td>
-      <td align="center" width="101"   style="background-color:#FFF;"><? echo $data['quantite'];?></td>
-      <td align="center" width="107"   style="background-color:#FFF;"><? echo $data['prixu'];?></td>
-      <td align="center" width="107"   style="background-color:#FFF;"><? echo $data['prixt'];?></td>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['date_dem'];?></em></div></td>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['fournisseur'];?></em></div></td>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['direction'];?></em></div></td>
+      <td width="179"   style="background-color:#FFF;"><div align="left"><em><?php echo $data['designation'];?></em></div></td>
+      <td align="center" width="101"   style="background-color:#FFF;"><?php echo $data['quantite'];?></td>
+      <td align="center" width="107"   style="background-color:#FFF;"><?php echo $data['prixu'];?></td>
+      <td align="center" width="107"   style="background-color:#FFF;"><?php echo $data['prixt'];?></td>
     </tr>
     <?php
 
 }
 
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close ();  
+mysqli_free_result ($resultat);  
+mysqli_close ($linki);  
 ?>
   </table>
 </form>

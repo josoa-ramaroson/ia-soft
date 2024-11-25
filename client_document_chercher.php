@@ -135,27 +135,27 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
 ?>
     <tr>
     
-    <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $idclient;?></em></div></td>
+    <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $idclient;?></em></div></td>
     <td align="center" bgcolor="#FFFFFF"><div align="left">
-      <? $nom_prenom=Nom_prenom_client($idclient, $tbl_contact,$linki); echo $nom_prenom;?>
+      <?php $nom_prenom=Nom_prenom_client($idclient, $tbl_contact,$linki); echo $nom_prenom;?>
     </div></td>
-    <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['titre'];?></em></div></td>
+    <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['titre'];?></em></div></td>
     <td align="center" bgcolor="#FFFFFF"><div align="left"></div></td>
     <td align="center" bgcolor="#FFFFFF">
     
                 
-            <? $filename = 'upload/document_client/'.$data['iddocument'].'.jpg'; ?>
+            <?php $filename = 'upload/document_client/'.$data['iddocument'].'.jpg'; ?>
             <div class="row">
-            <? if (file_exists($filename) == true) { ?>
+            <?php if (file_exists($filename) == true) { ?>
 
-<a href="client_document_file_apercu.php?doc=<? echo md5(microtime()).$data['iddocument']; ?>&amp;d=<? echo  md5(microtime());?>" onClick="return !window.open(this.href, 'pop', 'width=679,height=679,left=120,top=120');"> <img src="upload/document_client/document_file.jpg" width="38" height="42" class="pix" />
+<a href="client_document_file_apercu.php?doc=<?php echo md5(microtime()).$data['iddocument']; ?>&amp;d=<?php echo  md5(microtime());?>" onClick="return !window.open(this.href, 'pop', 'width=679,height=679,left=120,top=120');"> <img src="upload/document_client/document_file.jpg" width="38" height="42" class="pix" />
             </a>
            
        
             
-            <? } else { ?>
+            <?php } else { ?>
           
-            <? } ?>
+            <?php } ?>
     
     
     </td>

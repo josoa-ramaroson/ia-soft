@@ -83,7 +83,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
                   <form method="post" enctype="multipart/form-data" action="paiement_bach_transfert_save.php">
                   <td width="32%" height="32"><input type="file" name="fichier"  size="25"  />
                     <font color="#FF0000">
-                      <input name="id_user" type="hidden" id="id_user" value="<? echo $id_nom ;?>" size="30" readonly/>
+                      <input name="id_user" type="hidden" id="id_user" value="<?php echo $id_nom ;?>" size="30" readonly/>
                     </font></td>
                   <td width="13%" height="32"><input type="submit" name="upload" value="Mise à jour" class="btn btn-info"></td>
                 </form>
@@ -103,10 +103,10 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
             <table width="100%" border="0" align="center" cellpadding="3" cellspacing="0" bgcolor="#FFFFFF">
 
 
-                  <td width="54%" height="32"><a href="webs_t_paiement_choix.php?id_nom=<? echo $id_nom;?>&<? echo md5(microtime()); ?>"  class="btn btn-sm btn-info" onClick="return !window.open(this.href, 'pop', 'width=450,height=450,left=120,top=120');"> PROCESSUS DE REPARTISION </a></td>
+                  <td width="54%" height="32"><a href="webs_t_paiement_choix.php?id_nom=<?php echo $id_nom;?>&<?php echo md5(microtime()); ?>"  class="btn btn-sm btn-info" onClick="return !window.open(this.href, 'pop', 'width=450,height=450,left=120,top=120');"> PROCESSUS DE REPARTISION </a></td>
                   <td width="46%" height="32">
                   
-                  <? /*$Hcontrole=date("H"); $Icontrole=date("i");
+                  <?php /*$Hcontrole=date("H"); $Icontrole=date("i");
   				     if (( 
 					   ($Hcontrole==2)  or($Hcontrole==3)  or($Hcontrole==4)  or($Hcontrole==5)  or($Hcontrole==6)
 					 or($Hcontrole==7)  or($Hcontrole==8)  or($Hcontrole==9)  or($Hcontrole==10) or($Hcontrole==11)
@@ -119,9 +119,9 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
 					 )  {*/
 		   
 				  ?>
-                  <a href="webs_t_paiement_lecture.php?<? echo md5(microtime()); ?>"  class="btn btn-sm btn-info" onClick="return !window.open(this.href, 'pop', 'width=450,height=450,left=120,top=120');"> SERVICE D EXTRACTION </a>
+                  <a href="webs_t_paiement_lecture.php?<?php echo md5(microtime()); ?>"  class="btn btn-sm btn-info" onClick="return !window.open(this.href, 'pop', 'width=450,height=450,left=120,top=120');"> SERVICE D EXTRACTION </a>
                   
-                  <? // } else {}
+                  <?php // } else {}
 				  ?>
                   
                   </td>
@@ -142,7 +142,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
             <table width="100%" border="0" align="center" cellpadding="3" cellspacing="0" bgcolor="#FFFFFF">
               <tr bgcolor="#FFFFFF">
                 <form method="post" enctype="multipart/form-data" action="paiement_bach_transfert_save.php">
-                  <td width="32%" height="32"><? echo $affichedate['periode'];?></td>
+                  <td width="32%" height="32"><?php echo $affichedate['periode'];?></td>
                   <td width="13%" height="32">&nbsp;</td>
                 </form>
               </tr>
@@ -178,20 +178,20 @@ while($document=mysqli_fetch_array($resultana)){
             <form action="paiement_bach_confirmation.php" method="post" name="form1" id="form1">
             
                           <td align="center" ><div align="left">
-  <a href="webs_t_paiement_bach_cancel.php?ID=<? echo  md5(microtime()).$document['idpb']; ?>"  class="btn btn-danger">X</a>
+  <a href="webs_t_paiement_bach_cancel.php?ID=<?php echo  md5(microtime()).$document['idpb']; ?>"  class="btn btn-danger">X</a>
         
         </div></td>
             
-              <td height="39"><? echo $document['id']; ?> <font color="#FF0000">
-                <input name="id" type="hidden" id="id" value="<? echo $document['id'];?>" size="30" readonly/>
+              <td height="39"><?php echo $document['id']; ?> <font color="#FF0000">
+                <input name="id" type="hidden" id="id" value="<?php echo $document['id'];?>" size="30" readonly/>
               </font></td>
-              <td height="39"><input class="form-control" name="dt" type="text" id="dt" value="<? echo $datecaisse['datecaisse'];?>" size="10" /></td>
+              <td height="39"><input class="form-control" name="dt" type="text" id="dt" value="<?php echo $datecaisse['datecaisse'];?>" size="10" /></td>
               <td height="39">&nbsp;</td>
-              <td height="39"><? echo $document['paiement']; ?></td>
+              <td height="39"><?php echo $document['paiement']; ?></td>
               <td><em><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
                 <input name="clique" type="hidden" id="clique" value="0" />
-                <input name="idn" type="hidden" id="idn" value="<? echo $id_nom; ?>" />
-                <input name="pt" type="hidden" id="pt" value="<? echo $document['paiement'];?>" size="30" readonly/>
+                <input name="idn" type="hidden" id="idn" value="<?php echo $id_nom; ?>" />
+                <input name="pt" type="hidden" id="pt" value="<?php echo $document['paiement'];?>" size="30" readonly/>
               </font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></em></td>
               <td><input name="upload" type="submit" class="btn btn-info" id="upload" value="Validation"></td>
             </form>

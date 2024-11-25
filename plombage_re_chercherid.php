@@ -35,7 +35,7 @@ body,td,th {
 	color: #000;
 }
 </style>
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script type="text/javascript">
 function AjaxFunction()
 {
@@ -182,7 +182,7 @@ $sql = "SELECT * FROM $tbl_contact c, $tbl_plombage p where c.statut='6' and  p.
 
 $sql.=" ORDER BY nomprenom ASC ";  
 
-$req = mysql_query($sql); 
+$req = mysqli_query($linki,$sql); 
 
  
 ?>
@@ -203,26 +203,26 @@ $req = mysql_query($sql);
      <td width="8%" align="center">&nbsp;</td>
    </tr>
    <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 
 	$id=$data['id'];
 
 ?>
    <tr>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><a href="re_affichage_user.php?id=<? echo md5(microtime()).$data['id']; ?>" class="btn btn-sm btn-default" ><? $idv=$data['id'];  echo $data['id'];?></a></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><a href="re_affichage_user.php?id=<?php echo md5(microtime()).$data['id']; ?>" class="btn btn-sm btn-default" ><?php $idv=$data['id'];  echo $data['id'];?></a></em></div></td>
      
-     <td align="center" bgcolor="<? gettatut(stat_eda2($tbl_plombcont,$tbl_plombage,$idv)); ?>"><em><? echo stat_eda2($tbl_plombcont,$tbl_plombage,$idv);?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['nomprenom'];?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['ncompteur'];?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['c1'];?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['c2'];?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['c3'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['c4'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['d1'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['d2'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><a href="re_affichage_user.php?id=<? echo md5(microtime()).$data['id']; ?>" 
+     <td align="center" bgcolor="<?php gettatut(stat_eda2($tbl_plombcont,$tbl_plombage,$idv)); ?>"><em><?php echo stat_eda2($tbl_plombcont,$tbl_plombage,$idv);?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['nomprenom'];?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['ncompteur'];?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['c1'];?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['c2'];?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['c3'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['c4'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['d1'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['d2'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><a href="re_affichage_user.php?id=<?php echo md5(microtime()).$data['id']; ?>" 
      
-      <? $n=$data['statut']; 
+      <?php $n=$data['statut']; 
 	  if ($n==1) $codecouleur='btn btn-sm btn-default';
 	  if ($n==2) $codecouleur='btn btn-sm btn-warning'; 
 	  if ($n==3) $codecouleur='btn btn-sm btn-info';
@@ -232,7 +232,7 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
 	  if ($n==7) $codecouleur='btn btn-sm btn-danger';
 	  ?>
         
-     class="<? echo $codecouleur; ?>" >Aperçu</a></td>
+     class="<?php echo $codecouleur; ?>" >Aperçu</a></td>
    </tr>
    <?php
 }
@@ -250,17 +250,17 @@ $mr2=addslashes($_REQUEST['mr2']);
 	
 $sql3 = "SELECT * FROM $tbl_plombcont  where idclient='$mr2' ORDER BY idpp DESC ";  //ASC
 
-$req3 = mysql_query($sql3); 
-while($data2=mysql_fetch_assoc($req3)){ // Start looping table row 
+$req3 = mysqli_query($linki,$sql3); 
+while($data2=mysqli_fetch_assoc($req3)){ // Start looping table row 
 ?>
 </p>
   <table width="99%" border="0">
     <tr>
       <td width="8%">&nbsp;</td>
-      <td width="11%"><em><? echo $data2['id_nom'];?></em></td>
-      <td width="17%"><em><? echo $data2['datep'];?></em></td>
-      <td width="34%"><em><? echo $data2['agents'];?></em></td>
-      <td width="30%"><em><? echo $data2['obs'];?></em></td>
+      <td width="11%"><em><?php echo $data2['id_nom'];?></em></td>
+      <td width="17%"><em><?php echo $data2['datep'];?></em></td>
+      <td width="34%"><em><?php echo $data2['agents'];?></em></td>
+      <td width="30%"><em><?php echo $data2['obs'];?></em></td>
     </tr>
   </table>
   <p>&nbsp; </p>
@@ -273,8 +273,8 @@ echo " ce compteur n'est pas encore verifier <br>";
 
 		function stat_eda2($tbl_plombcont,$tbl_plombage,$idv){ 
 		$sqlv="SELECT COUNT(*) AS nombre FROM $tbl_plombcont ct, $tbl_plombage p  WHERE ct.idclient=p.id and ct.idclient='$idv'" ;
-        $rev = mysql_query($sqlv); 
-	    $nqtv = mysql_fetch_array($rev);
+        $rev = mysqli_query($linki,$sqlv); 
+	    $nqtv = mysqli_fetch_array($rev);
         if((!isset($nqtv['nombre'])|| empty($nqtv['nombre']))) { $qt=''; return $qt; } else {$qt=$nqtv['nombre']; return $qt;}
 		} 
 		
@@ -282,7 +282,7 @@ echo " ce compteur n'est pas encore verifier <br>";
 		if ($fetat>0) { echo $couleur="#87e385";} else { echo $couleur="#ffc88d";}//vert
 		}
 		
-mysql_close ();  
+mysqli_close ();  
 ?>
 </body>
 </html>

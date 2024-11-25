@@ -23,8 +23,8 @@ $d=$Ht;
 //}
 
 $sqlconnect="SELECT * FROM $tb_comptconf  WHERE idcomp='$id_nom' ";
-$resultconnect=mysql_query($sqlconnect);
-$rowsc=mysql_fetch_array($resultconnect);
+$resultconnect=mysqli_query($linki,$sqlconnect);
+$rowsc=mysqli_fetch_array($resultconnect);
 $Maxa_id = $rowsc['idc'];
 
 	if(!isset($Maxa_id)|| empty($Maxa_id)) {
@@ -32,28 +32,28 @@ $Maxa_id = $rowsc['idc'];
 	exit;
  }
  
-mysql_query("INSERT INTO  $tb_ecriture (Date,idc,Compte,Description,Credit,Debit,Tva,TTC,Fourniseur,Pieces,Type,mo) 
+mysqli_query("INSERT INTO  $tb_ecriture (Date,idc,Compte,Description,Credit,Debit,Tva,TTC,Fourniseur,Pieces,Type,mo) 
 VALUE ('$Date','$Maxa_id','$Compte','$Description','$d','0','0','$d','$Fourniseur','$Pieces','C','C')");
 
 
 
 
 $req="select * from $plan where Code='$Modep'";
-$resul=mysql_query($req);
-while($row=mysql_fetch_array($resul)) {
+$resul=mysqli_query($linki,$req);
+while($row=mysqli_fetch_array($resul)) {
 $mdd=$row['Code'];
 $md=$row['Description'];
 }
 
 
-mysql_query("INSERT INTO $tb_ecriture(Date,idc,Compte,Description,Credit,Debit,Tva,TTC,Fourniseur,Pieces,Type,mo) 
+mysqli_query("INSERT INTO $tb_ecriture(Date,idc,Compte,Description,Credit,Debit,Tva,TTC,Fourniseur,Pieces,Type,mo) 
 VALUE ('$Date','$Maxa_id','$Modep','$md','0','$Ht','0','$Ht','$Fourniseur','$Pieces','D','C')");
 
 $sqlcon="update $tb_comptconf set idcomp='$Compte' where idc='$Maxa_id'";
-$connection=mysql_query($sqlcon);
+$connection=mysqli_query($linki,$sqlcon);
 
 
-mysql_close();
+mysqli_close($linki);
 
 
 include ("compt_recette_crediter.php");

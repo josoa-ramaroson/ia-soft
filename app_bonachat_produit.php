@@ -13,7 +13,7 @@ require_once('calendar/classes/tc_calendar.php');
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <script language="javascript" src="calendar/calendar.js"></script>
@@ -35,8 +35,8 @@ require_once('calendar/classes/tc_calendar.php');
 Require("bienvenue.php");    // on appelle la page contenant la fonction
 $id=substr($_REQUEST["id"],32);
 $sqlm="SELECT * FROM $tbl_appbonachat WHERE id_dem='$id'";
-$resultm=mysql_query($sqlm);
-$datam=mysql_fetch_array($resultm);
+$resultm=mysqli_query($linki, $sqlm);
+$datam=mysqli_fetch_array($resultm);
 ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
 <table width="100%" border="0">
@@ -51,7 +51,7 @@ $datam=mysql_fetch_array($resultm);
             <td width="47%"><table width="100%" border="0.5" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="52%"><strong><font size="2">Date</font></strong></td>
-                <td width="48%"><strong><? echo $datam['date_dem'];?></strong></td>
+                <td width="48%"><strong><?php echo $datam['date_dem'];?></strong></td>
               </tr>
               <tr>
                 <td>&nbsp;</td>
@@ -59,7 +59,7 @@ $datam=mysql_fetch_array($resultm);
               </tr>
               <tr>
                 <td><strong><font size="2">Fournisseur </font></strong></td>
-                <td><strong><? echo $datam['fournisseur'];?></strong></td>
+                <td><strong><?php echo $datam['fournisseur'];?></strong></td>
               </tr>
               <tr>
                 <td>&nbsp;</td>
@@ -86,7 +86,7 @@ $datam=mysql_fetch_array($resultm);
               </tr>
               <tr>
                 <td><strong>Direction</strong></td>
-                <td><strong><? echo $datam['direction'];?></strong></td>
+                <td><strong><?php echo $datam['direction'];?></strong></td>
                 <td>&nbsp;</td>
               </tr>
               <tr>
@@ -96,7 +96,7 @@ $datam=mysql_fetch_array($resultm);
               </tr>
               <tr>
                 <td>Service</td>
-                <td><strong><? echo $datam['service'];?></strong></td>
+                <td><strong><?php echo $datam['service'];?></strong></td>
                 <td>&nbsp;</td>
               </tr>
             </table></td>
@@ -115,16 +115,16 @@ $datam=mysql_fetch_array($resultm);
   <form name="form1" method="post" action="app_bonachat_produit_save.php">
       <table width="101%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
         <tr>
-          <td width="16%"><input name="id_dem" type="hidden" value="<? echo $datam['id_dem']; ?>">
+          <td width="16%"><input name="id_dem" type="hidden" value="<?php echo $datam['id_dem']; ?>">
             <font size="2"><strong><font size="2"><strong><font color="#FF0000">
-              <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
-              <input name="fournisseur" type="hidden" value="<? echo $datam['fournisseur']; ?>" />
+              <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
+              <input name="fournisseur" type="hidden" value="<?php echo $datam['fournisseur']; ?>" />
             </font><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-            <input name="direction" type="hidden" value="<? echo $datam['direction']; ?>" />
+            <input name="direction" type="hidden" value="<?php echo $datam['direction']; ?>" />
             </font></strong></font></strong></font><font size="2"><strong><font color="#FF0000">
-            <input name="service" type="hidden" id="service" value="<? echo $datam['service']; ?>" />
+            <input name="service" type="hidden" id="service" value="<?php echo $datam['service']; ?>" />
             </font><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-            <input name="date_dem" type="hidden" id="date_dem" value="<? echo $datam['date_dem']; ?>" />
+            <input name="date_dem" type="hidden" id="date_dem" value="<?php echo $datam['date_dem']; ?>" />
             </font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></td>
           <td width="24%">&nbsp;</td>
           <td width="6%">&nbsp;</td>
@@ -168,12 +168,12 @@ $datam=mysql_fetch_array($resultm);
     </form>
   </div>
 <div class="panel-heading">
-  <h3 class="panel-title">LISTE DES COMMANDES  <a href="app_bonachat_imp.php?<? echo md5(microtime());?>&id=<? echo md5(microtime()).$datam['id_dem'];?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a></h3>
+  <h3 class="panel-title">LISTE DES COMMANDES  <a href="app_bonachat_imp.php?<?php echo md5(microtime());?>&id=<?php echo md5(microtime()).$datam['id_dem'];?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a></h3>
 </div>
 <p>
   <?php
 	 $sqact="SELECT * FROM $tbl_appbonachatp WHERE id_dem='$id'";
-	 $resultact=mysql_query($sqact);
+	 $resultact=mysqli_query($linki, $sqact);
 
 ?>
 <table width="100%" border="1" cellpadding="0" cellspacing="0">
@@ -187,18 +187,18 @@ $datam=mysql_fetch_array($resultm);
   </tr>
 </table>
   <?php
-while($rowsact=mysql_fetch_array($resultact)){
+while($rowsact=mysqli_fetch_array($resultact)){
 	 
 ?>
 </p>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr bgcolor="#ffffff">
-    <td width="42%"><li><? echo $rowsact['designation']; ?> &nbsp;&nbsp;</li></td>
-    <td width="13%"><? echo $rowsact['quantite']; ?></td>
-    <td width="11%"><? echo $rowsact['prixu']; ?></td>
-    <td width="11%"><? echo $rowsact['prixt']; ?></td>
+    <td width="42%"><li><?php echo $rowsact['designation']; ?> &nbsp;&nbsp;</li></td>
+    <td width="13%"><?php echo $rowsact['quantite']; ?></td>
+    <td width="11%"><?php echo $rowsact['prixu']; ?></td>
+    <td width="11%"><?php echo $rowsact['prixt']; ?></td>
     <td width="12%"></td>
-    <td width="11%"><a href="app_bonachat_produit_cancel.php?id=<? echo md5(microtime()).$rowsact['id_dp'];?>&ids=<? echo md5(microtime()).$rowsact['id_dem'];?>" class="btn btn-xs btn-danger" onClick="return confirm('Etes-vous sûr de vouloir supprimer ')" ; style="margin:5px" >Supprimer</a></td> 
+    <td width="11%"><a href="app_bonachat_produit_cancel.php?id=<?php echo md5(microtime()).$rowsact['id_dp'];?>&ids=<?php echo md5(microtime()).$rowsact['id_dem'];?>" class="btn btn-xs btn-danger" onClick="return confirm('Etes-vous sûr de vouloir supprimer ')" ; style="margin:5px" >Supprimer</a></td> 
   </tr>
 </table>
 <p>

@@ -10,7 +10,7 @@ $sqlp="INSERT INTO $tb_echangagent  (id_client   , nom_client   ,service,  Probl
                     VALUES       ('$id_client','$nom_client',  '$service' ,'$Probleme', '$dated' , '$note')";
 					
 													
-$r=mysql_query($sqlp);
+$r=mysqli_query($linki,$sqlp);
 
 
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -21,7 +21,7 @@ $texte = " le client :  $nom_client ayant comme N° ID : $id_client a un problem
 mail($destinataires,$sujet,$texte,"From:$emailinfo");
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-mysql_close($link);
+mysqli_close($link);
 
 ?>
 <?php

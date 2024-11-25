@@ -20,13 +20,13 @@ $sql="INSERT INTO $tbl_pctaches ( id, id_nom , taches, statut , suivi, realisate
 VALUES
 ( '$id', '$id_nom' , '$taches','$statut', '$suivi','$realisateur','$nom','$ile', '$ville', '$agence' ,'$utilisateur','$date')";
 
-$result=mysql_query($sql);
+$result=mysqli_query($linki,$sql);
    if($result){
    }
    else {
    echo "ERROR";
    }
-  mysql_close(); 
+  mysqli_close($linki); 
 ?>
 <?php
 $idr=md5(microtime()).$id;

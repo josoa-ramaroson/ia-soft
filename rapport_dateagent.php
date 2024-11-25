@@ -7,7 +7,7 @@ require_once('calendar/classes/tc_calendar.php');
 
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -28,20 +28,17 @@ require_once('calendar/classes/tc_calendar.php');
 Require("bienvenue.php");    // on appelle la page contenant la fonction
 ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
- <? require 'rapport_lien.php'; ?>
+ <?php require 'rapport_lien.php'; ?>
 <p><font size="2"><font size="2"><font size="2">
   <?php
  $date=$_POST['dateA']; 
-// Connect to server and select databse.
-mysql_connect ($host,$user,$pass)or die("cannot connect"); 
-mysql_select_db($db)or die("cannot select DB");
-  
+
 $sql = "SELECT count(*) FROM $tbl_paiement  GROUP BY  id_nom";  
 
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
  // on teste si ce nombre de vaut pas 0  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -61,12 +58,12 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT SUM(paiement) AS Paie, id_nom , date FROM $tbl_paiement where date='$date' GROUP BY  id_nom  LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;  //ASC  DESC
 
 // on ex?cute la requ?te  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()); 
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error()); 
 
 ?>
   </font></strong></font></font></font></font></font></font></font></font></font></strong></font></font></font></font></font></font></font></font></font></font></p>
   
-  <a href="rapport_dateagentimp.php?dateA=<? echo md5(microtime()).$date;?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a></p>
+  <a href="rapport_dateagentimp.php?dateA=<?php echo md5(microtime()).$date;?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a></p>
   
   <table width="100%" border="1" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC">
     <tr bgcolor="#0000FF"> 
@@ -76,25 +73,25 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
       <td width="217" align="center" bgcolor="#3071AA">&nbsp;</td>
     </tr>
     <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
     <tr bgcolor="#FFFFFF">
-      <td align="center"><? echo $data['date'];?></td>
-      <td align="center"> <? echo  $data['id_nom']; ?></td>
-      <td align="center"><? $P=strrev(chunk_split(strrev($data['Paie']),3," "));   echo $P;?></td>
+      <td align="center"><?php echo $data['date'];?></td>
+      <td align="center"> <?php echo  $data['id_nom']; ?></td>
+      <td align="center"><?php $P=strrev(chunk_split(strrev($data['Paie']),3," "));   echo $P;?></td>
       <td align="center">&nbsp;</td>
     </tr>
     <?php
 
 }
 
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
   // echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
+mysqli_free_result ($resultat);  
 
 
-mysql_close ();  
+mysqli_close ();  
 ?>
   </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

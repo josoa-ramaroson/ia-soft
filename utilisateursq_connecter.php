@@ -11,7 +11,7 @@ if(($_SESSION['u_niveau'] != 7)) {
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 
@@ -25,10 +25,10 @@ Require("bienvenue.php");    // on appelle la page contenant la fonction
   
 $sql = "SELECT count(*) FROM $tbl_utilisateur";  
 
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
  // on teste si ce nombre de vaut pas 0  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -48,7 +48,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT * FROM $tbl_utilisateur  where session='1' ORDER BY u_nom ASC LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;  //ASC
  
 // on ex?cute la requ?te  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
  <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr> 
@@ -61,14 +61,14 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
         <td width="143" align="center" bgcolor="#3071AA">&nbsp;</td>
         </tr>
       <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
       <tr bgcolor=<?php gettatut2($data['u_niveau']); ?>>
-        <td align="center" ><? echo $data['agence'];?></td>
-        <td width="213"   ><em><? echo $data['u_nom'].' '.$data['u_prenom'];?></em></td>
-        <td width="148"   ><em><? echo $data['mobile'];?></em></td>
+        <td align="center" ><?php echo $data['agence'];?></td>
+        <td width="213"   ><em><?php echo $data['u_nom'].' '.$data['u_prenom'];?></em></td>
+        <td width="148"   ><em><?php echo $data['mobile'];?></em></td>
         <td width="143"   ><em>
-          <? require 'fonction_niveau_affichage.php'; ?>
+          <?php require 'fonction_niveau_affichage.php'; ?>
         </em></td>
         <td width="143"   >&nbsp;</td>
         </tr>
@@ -76,10 +76,10 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
 
 }
 
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat); 
+mysqli_free_result ($resultat); 
 
 
 
@@ -90,7 +90,7 @@ mysql_free_result ($resultat);
 				 echo "$couleur";
 				 }
 				  
-mysql_close ();  
+mysqli_close ();  
 ?>
     </table>      <div align="center"></div></td>
   </tr>

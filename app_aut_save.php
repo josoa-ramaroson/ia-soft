@@ -1,24 +1,21 @@
 <?php
-$date=addslashes($_POST['date']);
-$service=addslashes($_POST['service']);
-$Nature=addslashes($_POST['Nature']);
-$Motif=addslashes($_POST['Motif']);
-$Montant=addslashes($_POST['Montant']);
-$id_nom=addslashes($_POST['id_nom']);
+// Récupération et nettoyage des données POST
+$date = mysqli_real_escape_string($linki, $_POST['date']);
+$service = mysqli_real_escape_string($linki, $_POST['service']);
+$Nature = mysqli_real_escape_string($linki, $_POST['Nature']);
+$Motif = mysqli_real_escape_string($linki, $_POST['Motif']);
+$Montant = mysqli_real_escape_string($linki, $_POST['Montant']);
+$id_nom = mysqli_real_escape_string($linki, $_POST['id_nom']);
 
 require 'fonction.php';
-$link = mysql_connect ($host,$user,$pass);
-mysql_select_db($db);
 
-$sqlp="INSERT INTO $tbl_appaut   ( id_nom   , service    ,  Nature   , Motif  , Montant ,date )
-                    VALUES       ('$id_nom','$service',  '$Nature' ,'$Motif' ,'$Montant','$date')";
-					
-													
-$r=mysql_query($sqlp)
-or die(mysql_error());
-mysql_close($link);
+// Insertion dans la base de données
+$sqlp = "INSERT INTO $tbl_appaut (id_nom, service, Nature, Motif, Montant, date) 
+         VALUES ('$id_nom', '$service', '$Nature', '$Motif', '$Montant', '$date')";
 
-?>
-<?php
+$r = mysqli_query($linki, $sqlp)
+    or die(mysqli_error($linki));
+
+// Redirection
 header("location: app_aut.php");
 ?>

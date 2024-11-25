@@ -4,7 +4,7 @@
 
 	$ipaie=substr($_REQUEST["ipaie"],32);
 	$sql5="DELETE FROM $tb_rhpaie WHERE ipaie='$ipaie'";
-    $result5=mysql_query($sql5);
+    $result5=mysqli_query($linki,$sql5);
     if($result5){
     //echo " cancel ";
     }

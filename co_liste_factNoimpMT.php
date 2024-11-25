@@ -20,7 +20,7 @@ require 'fonction.php';
 require 'configuration.php';
 
 $sqfact="SELECT * FROM $tbl_contact where statut='6'  and Tarif=10 and id NOT IN(SELECT id FROM $tbl_factsave where annee='$anneec'  and nserie='$nserie') ORDER BY id  ASC";
-$reqfact=mysql_query($sqfact);
+$reqfact=mysqli_query($linki,$sqfact);
 ?>
     </font></font></font><br>
     </p>
@@ -36,22 +36,22 @@ $reqfact=mysql_query($sqfact);
           <td width="12%" align="center"><font color="#FFFFFF"><strong>INDEX NUIT</strong></font></td>
         </tr>
         <?php
-while($data=mysql_fetch_array($reqfact)){ // Start looping table row 
+while($data=mysqli_fetch_array($reqfact)){ // Start looping table row 
 ?>
         <tr>
           <td align="center" bgcolor="#FFFFFF"><strong>
-            <? echo $data['id'];?>
+            <?php echo $data['id'];?>
           </strong></td>
-          <td align="center" bgcolor="#FFFFFF"><font color="#000000"><? echo $data['nomprenom'];?></font></td>
-          <td align="center" bgcolor="#FFFFFF"><strong><? echo $data['ville'];?></strong></td>
-          <td align="center" bgcolor="#FFFFFF"><strong><? echo $data['quartier'];?></strong></td>
+          <td align="center" bgcolor="#FFFFFF"><font color="#000000"><?php echo $data['nomprenom'];?></font></td>
+          <td align="center" bgcolor="#FFFFFF"><strong><?php echo $data['ville'];?></strong></td>
+          <td align="center" bgcolor="#FFFFFF"><strong><?php echo $data['quartier'];?></strong></td>
           <td align="center" bgcolor="#FFFFFF">&nbsp;</td>
           <td align="center" bgcolor="#FFFFFF">&nbsp;</td>
         </tr>
         <?php
 }
  
-mysql_close ();  
+mysqli_close ();  
 ?>
       </table>
       <p>&nbsp;</p>

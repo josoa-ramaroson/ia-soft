@@ -53,10 +53,10 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
 
 $sql = "SELECT count(*) FROM $tbl_paiement where type='R'";  
 
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
  // on teste si ce nombre de vaut pas 0  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -76,12 +76,12 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sqfac = "SELECT * FROM $tbl_paiement where type='R' GROUP BY  idp desc LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;  //ASC  DESC
  
 // on ex?cute la requ?te  
-$resultfac = mysql_query($sqfac) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()); 
+$resultfac = mysqli_query($linki,$sqfac) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error()); 
 
 
 
 	//$sqfac="SELECT * FROM $tbl_paiement ORDER BY idp DESC";
-	//$resultfac=mysql_query($sqfac);
+	//$resultfac=mysqli_query($linki,$sqfac);
 
 ?>
 </p>
@@ -104,29 +104,29 @@ $resultfac = mysql_query($sqfac) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql
     <td width="16%" align="center" bgcolor="#FFFFFF">Reste à payer actuel</td>
   </tr>
   <?php
-while($rowsfac=mysql_fetch_array($resultfac)){ 
+while($rowsfac=mysqli_fetch_array($resultfac)){ 
 ?>
   <tr>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $rowsfac['id'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $rowsfac['id_nom'];?></em></div></td>
-    <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $rowsfac['date'];?></em></div></td>
-    <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $rowsfac['Nomclient'];?></em></div></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $rowsfac['nfacture'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em> <a href="rembourssement_billimp.php?idp=<? echo md5(microtime()).$rowsfac['idp'];?>" target="_blank" > <? echo $rowsfac['nrecu'];?></a> </em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo ($rowsfac['montant']-$rowsfac['rembourser']);?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $rowsfac['rembourser'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $rowsfac['montant'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowsfac['id'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $rowsfac['id_nom'];?></em></div></td>
+    <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $rowsfac['date'];?></em></div></td>
+    <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $rowsfac['Nomclient'];?></em></div></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowsfac['nfacture'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em> <a href="rembourssement_billimp.php?idp=<?php echo md5(microtime()).$rowsfac['idp'];?>" target="_blank" > <?php echo $rowsfac['nrecu'];?></a> </em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo ($rowsfac['montant']-$rowsfac['rembourser']);?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowsfac['rembourser'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowsfac['montant'];?></em></td>
   </tr>
   <?php
 }
 
-mysql_free_result ($resultfac); 
+mysqli_free_result ($resultfac); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
+mysqli_free_result ($resultat);  
 
 
-mysql_close ();  
+mysqli_close ();  
 ?>
 </table>
 <p>&nbsp;</p>

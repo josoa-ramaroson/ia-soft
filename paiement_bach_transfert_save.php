@@ -48,7 +48,7 @@ $paiement=addslashes($ligne[1]);
 $type='f';
 
 $sql="INSERT INTO $tbl_paiement_bach ( id_nom,  id, paiement, type) VALUES ( '$id_user', '$id', '$paiement', '$type')";
-$result=mysql_query($sql);  
+$result=mysqli_query($linki,$sql);  
  
 
 header("location:paiement_bach_transfert.php");

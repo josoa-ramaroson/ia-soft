@@ -16,8 +16,8 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
  <p>
 <?php
 $sql = "SELECT count(*) FROM $tbl_fact";  
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-$nb_total = mysql_fetch_array($resultat);  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
 }  
@@ -25,7 +25,7 @@ else {
 if (!isset($_GET['debut'])) $_GET['debut'] = 0; 
 $nb_affichage_par_page = 50; 
 $sql = "SELECT * FROM $tbl_fact where st='Ti' ORDER BY idf desc LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
  </p>
  <p>&nbsp;</p>
@@ -42,35 +42,35 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
      <td width="10%" align="center"><strong><font color="#FFFFFF">Statut</font></strong></td>
    </tr>
    <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
    ?>
-   <tr bgcolor="<? gettatut($data['etat']); ?>">
+   <tr bgcolor="<?php gettatut($data['etat']); ?>">
      <td align="center" >
-     <? if (($data['etat']!="facturé")and ($data['etat']!="Annuler")){?>
-     <a href="paiement_v.php?idf=<? echo md5(microtime()).$data['idf']; ?>" class="btn btn-sm btn-success">les détails</a><? } else {} ?>
+     <?php if (($data['etat']!="facturé")and ($data['etat']!="Annuler")){?>
+     <a href="paiement_v.php?idf=<?php echo md5(microtime()).$data['idf']; ?>" class="btn btn-sm btn-success">les détails</a><?php } else {} ?>
      
-            <? if (($data['etat']=="facturé") and ($_SESSION['u_niveau']==9)){?> <a href="sov_rectification.php?idf=<? echo md5(microtime()).$data['idf'];?>" class="btn btn-sm btn-warning" >Modification</a><? } else {} ?>
+            <?php if (($data['etat']=="facturé") and ($_SESSION['u_niveau']==9)){?> <a href="sov_rectification.php?idf=<?php echo md5(microtime()).$data['idf'];?>" class="btn btn-sm btn-warning" >Modification</a><?php } else {} ?>
             
      </td>
-     <td align="center" ><em><? echo $data['idf'];?></em></td>
-     <td align="center" ><em><? echo $data['id_nom'];?></em></td>
-     <td align="center" ><em><? echo $data['date'];?></em></td>
-     <td align="center" ><em><? echo $data['stlib'];?></em></td>
-     <td align="center"><em><? echo $data['libelle'];?></em></td>
-     <td align="center"><em><? echo $data['montant'];?></em></td>
-     <td align="center"><em><? echo $data['report'];?></em></td>
-     <td align="center"><em><? echo $data['etat'];?></em></td>
+     <td align="center" ><em><?php echo $data['idf'];?></em></td>
+     <td align="center" ><em><?php echo $data['id_nom'];?></em></td>
+     <td align="center" ><em><?php echo $data['date'];?></em></td>
+     <td align="center" ><em><?php echo $data['stlib'];?></em></td>
+     <td align="center"><em><?php echo $data['libelle'];?></em></td>
+     <td align="center"><em><?php echo $data['montant'];?></em></td>
+     <td align="center"><em><?php echo $data['report'];?></em></td>
+     <td align="center"><em><?php echo $data['etat'];?></em></td>
    </tr>
    <?php
 
   }
 
 
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close ();  
+mysqli_free_result ($resultat);  
+mysqli_close ();  
 	function gettatut($fetat){
 				 if ($fetat=='enregistre')    { echo $couleur="#87e385";}//jaune	
 				 if ($fetat=='paye')          { echo $couleur="#87e385";}//vert fonce

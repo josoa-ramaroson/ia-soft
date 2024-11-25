@@ -26,12 +26,12 @@ require 'configuration.php';
 $anneec=$annee_recouvrement;
 
 $sql = "SELECT * FROM $tbl_fact f, $tbl_contact c  where f.fannee='$anneec' and f.st='E' and nserie='$cserie' and c.id=f.id and c.ville='$m1v' and  f.totalnet > 1000 and  Tarif='$tarif' and idf NOT IN(SELECT idf FROM $tbl_paiement where YEAR(date)='$anneec') ORDER BY  c.quartier ASC  ";  
-$req=mysql_query($sql);
+$req=mysqli_query($linki,$sql);
 
 
 $sqFP="SELECT  COUNT(*) AS nbres, SUM(f.totalnet) AS totalnet , SUM(f.totalttc) AS totalttc, SUM(f.impayee) AS impayee, f.fannee ,SUM(f.ortc) AS ortc, f.st , f.nserie, c.ville, c.quartier FROM $tbl_fact f, $tbl_contact c  where f.fannee='$anneec' and f.st='E' and nserie='$cserie' and c.id=f.id and c.ville='$m1v' and  f.totalnet > 1000 and  Tarif='$tarif'  and idf NOT IN(SELECT idf FROM $tbl_paiement where YEAR(date)='$anneec')"; 
-	$RFP = mysql_query($sqFP); 
-	$AFP = mysql_fetch_assoc($RFP);
+	$RFP = mysqli_query($linki,$sqFP); 
+	$AFP = mysqli_fetch_assoc($RFP);
 	$tFP=$AFP['totalttc'];
 	$tFPt=$AFP['totalnet']; 
 	$tFPn=$AFP['nbres'];
@@ -39,7 +39,7 @@ $sqFP="SELECT  COUNT(*) AS nbres, SUM(f.totalnet) AS totalnet , SUM(f.totalttc) 
 	$tFPo=$AFP['ortc'];
 	
 ?>
- <H2> <p align="center" >  LISTE DES COUPURES </p>  <? echo la_tarification($tarif,$linki)?> </H2>
+ <H2> <p align="center" >  LISTE DES COUPURES </p>  <?php echo la_tarification($tarif,$linki)?> </H2>
 <table width="100%" border="0">
    <tr>
      <td width="15%">VILLE</td>
@@ -51,13 +51,13 @@ $sqFP="SELECT  COUNT(*) AS nbres, SUM(f.totalnet) AS totalnet , SUM(f.totalttc) 
      <td width="19%">Somme Total Net</td>
    </tr>
    <tr>
-     <td><em><? echo  $m1v;?></em></td>
+     <td><em><?php echo  $m1v;?></em></td>
      <td>&nbsp;</td>
-     <td><em><? echo strrev(chunk_split(strrev($tFPn),3," "));?></em></td>
-     <td><em><? echo strrev(chunk_split(strrev($tFP),3," "));?></em></td>
-     <td><em><? echo strrev(chunk_split(strrev($tFPo),3," "));?></em></td>
-     <td><em><? echo strrev(chunk_split(strrev($tFPi),3," "));?></em></td>
-     <td><em><? echo strrev(chunk_split(strrev($tFPt),3," "));?></em></td>
+     <td><em><?php echo strrev(chunk_split(strrev($tFPn),3," "));?></em></td>
+     <td><em><?php echo strrev(chunk_split(strrev($tFP),3," "));?></em></td>
+     <td><em><?php echo strrev(chunk_split(strrev($tFPo),3," "));?></em></td>
+     <td><em><?php echo strrev(chunk_split(strrev($tFPi),3," "));?></em></td>
+     <td><em><?php echo strrev(chunk_split(strrev($tFPt),3," "));?></em></td>
    </tr>
 </table>
 <p>&nbsp;</p>
@@ -72,16 +72,16 @@ $sqFP="SELECT  COUNT(*) AS nbres, SUM(f.totalnet) AS totalnet , SUM(f.totalttc) 
      <td width="21%" align="center"><font color="#FFFFFF"><strong>Observation</strong></font></td>
   </tr>
    <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
-    <tr bgcolor="<? gettatut($data['bstatut']); ?>">
-     <td  bgcolor="#FFFFFF"><em><? echo $data['id'];?></em></td>
-     <td  bgcolor="#FFFFFF"><em><? echo $data['nomprenom'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['totalttc'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['ortc'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['impayee'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['totalnet'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><? echo $data['quartier'];?></td>
+    <tr bgcolor="<?php gettatut($data['bstatut']); ?>">
+     <td  bgcolor="#FFFFFF"><em><?php echo $data['id'];?></em></td>
+     <td  bgcolor="#FFFFFF"><em><?php echo $data['nomprenom'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['totalttc'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['ortc'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['impayee'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['totalnet'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><?php echo $data['quartier'];?></td>
    </tr>
    <?php
 }  
@@ -97,7 +97,7 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
 				// if ($fetat=='Annuler')       { echo $couleur="#ec9b9b";}//orange
 				  }
 				 
-mysql_close ();  
+mysqli_close ();  
 ?>
 </table>
 <p>&nbsp;</p>

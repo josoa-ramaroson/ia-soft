@@ -10,7 +10,7 @@ require 'session.php';
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script type="text/javascript">
 function AjaxFunction()
 {
@@ -92,13 +92,13 @@ require 'fonction.php';
 //$id=$_GET['id'];
 $id=substr($_REQUEST["id"],32);
 $sqlm="SELECT * FROM $tbl_contact WHERE id='$id'";
-$resultm=mysql_query($sqlm);
-$datam=mysql_fetch_array($resultm);
+$resultm=mysqli_query($linki,$sqlm);
+$datam=mysqli_fetch_array($resultm);
 ?>
 <body>
 <table width="100%" border="0">
    <tr>
-     <td width="39%"><a href="re_affichage_user.php?id=<? echo md5(microtime()).$datam['id'];?>" class="btn btn-sm btn-success">Aperçu du client</a></td>
+     <td width="39%"><a href="re_affichage_user.php?id=<?php echo md5(microtime()).$datam['id'];?>" class="btn btn-sm btn-success">Aperçu du client</a></td>
      <td width="9%">&nbsp;</td>
      <td width="14%">&nbsp;</td>
      <td width="10%">&nbsp;</td>
@@ -116,12 +116,12 @@ $datam=mysql_fetch_array($resultm);
           <td width="11%">&nbsp;</td>
           <td width="1%">&nbsp;</td>
           <td width="35%"><strong>
-            <input name="id" type="hidden" id="id" value="<? echo $datam['id'];?>" size="10" readonly />
+            <input name="id" type="hidden" id="id" value="<?php echo $datam['id'];?>" size="10" readonly />
             </strong></td>
           <td width="1%">&nbsp;</td>
           <td width="12%">&nbsp;</td>
           <td width="40%"><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-            <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+            <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
           </font></strong></font></strong></font></td>
         </tr>
         <tr>
@@ -129,7 +129,7 @@ $datam=mysql_fetch_array($resultm);
           <td>&nbsp;</td>
           <td><strong>
             <select name="Designation" id="Designation">
-            <option selected="selected"><? echo $datam['Designation'];?></option>
+            <option selected="selected"><?php echo $datam['Designation'];?></option>
               <option>Mr</option>
               <option>Mme</option>
               <option>Mlle</option>
@@ -139,79 +139,79 @@ $datam=mysql_fetch_array($resultm);
           <td>&nbsp;</td>
           <td><strong><font size="2">T&eacute;l&eacute;phone</font></strong></td>
           <td><strong>
-            <input name="tel" type="text" id="tel" value="<? echo $datam['tel'];?>" size="40" />
+            <input name="tel" type="text" id="tel" value="<?php echo $datam['tel'];?>" size="40" />
           </strong></td>
         </tr>
         <tr>
           <td><strong><font size="2">Nom et Prénom <font size="2"><font color="#000000"> *</font></font></font></strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input name="nomprenom" type="text" id="nomprenom" value="<? echo $datam['nomprenom'];?>" size="40" readonly />
+            <input name="nomprenom" type="text" id="nomprenom" value="<?php echo $datam['nomprenom'];?>" size="40" readonly />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Fax</font></strong></td>
           <td><strong>
-            <input name="fax" type="text" id="fax" value="<? echo $datam['fax'];?>" size="40" />
+            <input name="fax" type="text" id="fax" value="<?php echo $datam['fax'];?>" size="40" />
           </strong></td>
         </tr>
         <tr>
           <td>Surnom</td>
           <td>&nbsp;</td>
           <td><strong>
-            <input name="surnom" type="text" id="surnom" value="<? echo $datam['surnom'];?>" size="40" />
+            <input name="surnom" type="text" id="surnom" value="<?php echo $datam['surnom'];?>" size="40" />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Site Web</font></strong></td>
           <td><strong>
-            <input name="url" type="text" id="url" value="<? echo $datam['url'];?>" size="40" />
+            <input name="url" type="text" id="url" value="<?php echo $datam['url'];?>" size="40" />
           </strong></td>
         </tr>
         <tr>
           <td><strong><font size="2">Email</font></strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input name="email" type="text" id="email" value="<? echo $datam['email'];?>" size="40" />
+            <input name="email" type="text" id="email" value="<?php echo $datam['email'];?>" size="40" />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Adresse</font></strong></td>
           <td><strong>
-            <input name="adresse" type="text" id="adresse" value="<? echo $datam['adresse'];?>" size="40" />
+            <input name="adresse" type="text" id="adresse" value="<?php echo $datam['adresse'];?>" size="40" />
           </strong></td>
         </tr>
         <tr>
           <td><strong>Titre </strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input name="titre" type="text" id="titre" value="<? echo $datam['titre'];?>" size="40" />
+            <input name="titre" type="text" id="titre" value="<?php echo $datam['titre'];?>" size="40" />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong>Ile <font size="2"> <font size="2"><font color="#000000"> *</font></font></font></strong></td>
           <td><strong>
-            <input name="ile" type="text" id="ile" value="<? echo $datam['ile'];?>" size="40" readonly />
+            <input name="ile" type="text" id="ile" value="<?php echo $datam['ile'];?>" size="40" readonly />
           </strong></td>
         </tr>
         <tr>
           <td>Login<strong><font size="2"> <font size="2"><font color="#000000"> *</font></font></font></strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input name="login" type="text" id="login" value="<? echo $datam['login'];?>" size="40" readonly />
+            <input name="login" type="text" id="login" value="<?php echo $datam['login'];?>" size="40" readonly />
           </strong></td>
           <td>&nbsp;</td>
           <td>Secteur <strong><font size="2"> <font size="2"><font color="#000000"> *</font></font></font></strong></td>
           <td><strong>
-            <input name="secteur" type="text" id="secteur" value="<? echo $datam['secteur'];?>" size="40" readonly />
+            <input name="secteur" type="text" id="secteur" value="<?php echo $datam['secteur'];?>" size="40" readonly />
           </strong></td>
         </tr>
         <tr>
           <td>Pwd</td>
           <td>&nbsp;</td>
           <td><strong>
-            <input name="pwd" type="text" id="pwd" value="<? echo $datam['pwd'];?>" size="40" readonly />
+            <input name="pwd" type="text" id="pwd" value="<?php echo $datam['pwd'];?>" size="40" readonly />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Ville  <font size="2"><font color="#000000"> *</font></font></font></strong></td>
           <td><strong>
-            <input name="ville" type="text" id="ville" value="<? echo $datam['ville'];?>" size="40" readonly />
+            <input name="ville" type="text" id="ville" value="<?php echo $datam['ville'];?>" size="40" readonly />
           </strong></td>
         </tr>
         <tr>
@@ -219,26 +219,26 @@ $datam=mysql_fetch_array($resultm);
           <td>&nbsp;</td>
           <td><strong>
             <select name="CodeTypeClts" id="CodeTypeClts">
-            <option value="<? 
+            <option value="<?php 
 			
 $CodeTypeClts=$datam['CodeTypeClts']; 
 $sqltclient = "SELECT * FROM $tbl_client where idtclient='$CodeTypeClts'";
-$resulttclient = mysql_query($sqltclient);
-$rowtclient = mysql_fetch_assoc($resulttclient);
+$resulttclient = mysqli_query($linki,$sqltclient);
+$rowtclient = mysqli_fetch_assoc($resulttclient);
 if ($rowtclient===FALSE) {}
 else 
  {
 echo $TypeClts=$rowtclient['idtclient'];
  }
-?>" selected="selected"> <? echo $TypeClts=$rowtclient['TypeClts']; 	  
+?>" selected="selected"> <?php echo $TypeClts=$rowtclient['TypeClts']; 	  
 			 ?>
               
               </option>
               <?php
 $sql84 = ("SELECT * FROM $tbl_client ORDER BY idtclient ASC");
-$result84 = mysql_query($sql84);
+$result84 = mysqli_query($linki,$sql84);
 
-while ($row84 = mysql_fetch_assoc($result84)) {
+while ($row84 = mysqli_fetch_assoc($result84)) {
 echo '<option value='.$row84['idtclient'].'> '.$row84['TypeClts'].' </option>';
 }
 
@@ -248,7 +248,7 @@ echo '<option value='.$row84['idtclient'].'> '.$row84['TypeClts'].' </option>';
           <td>&nbsp;</td>
           <td><strong><font size="2"><font size="2">Quartier </font> <font size="2"><font color="#000000"> *</font></font></font></strong></td>
           <td><strong>
-            <input name="quartier" type="text" id="quartier" value="<? echo $datam['quartier'];?>" size="40" readonly />
+            <input name="quartier" type="text" id="quartier" value="<?php echo $datam['quartier'];?>" size="40" readonly />
           </strong></td>
         </tr>
         <tr>
@@ -256,8 +256,8 @@ echo '<option value='.$row84['idtclient'].'> '.$row84['TypeClts'].' </option>';
           <td>&nbsp;</td>
           <td><strong>
             <select name="chtaxe" id="chtaxe">
-              <option value="<? echo $datam['chtaxe'];?>" selected="selected">
-                <? $chtaxe=$datam['chtaxe']; 
+              <option value="<?php echo $datam['chtaxe'];?>" selected="selected">
+                <?php $chtaxe=$datam['chtaxe']; 
 		  
 		  if ($chtaxe==0) echo 'Avec Taxe';
 	      if ($chtaxe==1) echo 'Sans Taxe'; 
@@ -272,7 +272,7 @@ echo '<option value='.$row84['idtclient'].'> '.$row84['TypeClts'].' </option>';
           <td><strong><font size="2">Calibre ( Amperage)</font></strong></td>
           <td><strong>
             <select name="amperage" id="amperage">
-              <option selected="selected"><? echo $datam['amperage']; ?></option>
+              <option selected="selected"><?php echo $datam['amperage']; ?></option>
               <option>10</option>
               <option>15</option>
               <option>20</option>
@@ -311,8 +311,8 @@ echo '<option value='.$row84['idtclient'].'> '.$row84['TypeClts'].' </option>';
           <td>&nbsp;</td>
           <td><strong>
             <select name="tmt" id="tmt">
-              <option value="<? echo $datam['tmt'];?>" selected="selected">
-                <? $tmt=$datam['tmt']; 
+              <option value="<?php echo $datam['tmt'];?>" selected="selected">
+                <?php $tmt=$datam['tmt']; 
 		  
 		  if ($tmt==0) echo '';
 	      if ($tmt==1) echo 'SimpleMT'; 
@@ -328,7 +328,7 @@ echo '<option value='.$row84['idtclient'].'> '.$row84['TypeClts'].' </option>';
           <td><strong><font color="#000000" size="2">Tarif</font></strong></td>
           <td><strong>
             <select name="Tarif" id="Tarif">
-            <option value="<? echo $datam['Tarif'];?>" selected="selected"> <? $Tarif=$datam['Tarif'];
+            <option value="<?php echo $datam['Tarif'];?>" selected="selected"> <?php $Tarif=$datam['Tarif'];
 			
 		  if ($Tarif==1) echo 'Elec BT Triphasé';
 	      if ($Tarif==2) echo 'Elec BT Monophasé Domestique'; 
@@ -350,8 +350,8 @@ echo '<option value='.$row84['idtclient'].'> '.$row84['TypeClts'].' </option>';
               </option>
               <?php
 $sql8 = ("SELECT * FROM tarif ORDER BY idt ASC");
-$result8 = mysql_query($sql8);
-while ($row8 = mysql_fetch_assoc($result8)) {
+$result8 = mysqli_query($linki,$sql8);
+while ($row8 = mysqli_fetch_assoc($result8)) {
 echo '<option value='.$row8['idt'].'> '.$row8['Libelle'].' </option>';
 }
 
@@ -364,7 +364,7 @@ echo '<option value='.$row8['idt'].'> '.$row8['Libelle'].' </option>';
           <td>&nbsp;</td>
           <td><strong>
             <select name="coefTi" id="coefTi">
-              <option selected="selected"><? echo $datam['coefTi'];?></option>
+              <option selected="selected"><?php echo $datam['coefTi'];?></option>
               <option>1</option>
               <option>5</option>
               <option>10</option>

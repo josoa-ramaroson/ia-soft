@@ -4,7 +4,7 @@ require 'fonction.php';
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <script language="javascript" src="calendar/calendar.js"></script>
@@ -48,10 +48,10 @@ $result=mysqli_query($linki,$sql);
 while($rows=mysqli_fetch_array($result)){ // Start looping table row 
 ?>
       <tr>
-        <td bgcolor="#FFFFFF"><? echo $rows['u_nom']; ?></td>
-        <td bgcolor="#FFFFFF"><? echo $rows['u_prenom']; ?><br></td>
-        <td bgcolor="#FFFFFF"><? echo $rows['u_email']; ?></td>
-        <td bgcolor="#FFFFFF"><? echo $rows['mobile']; ?></td>
+        <td bgcolor="#FFFFFF"><?php echo $rows['u_nom']; ?></td>
+        <td bgcolor="#FFFFFF"><?php echo $rows['u_prenom']; ?><br></td>
+        <td bgcolor="#FFFFFF"><?php echo $rows['u_email']; ?></td>
+        <td bgcolor="#FFFFFF"><?php echo $rows['mobile']; ?></td>
       </tr>
       <?php
 // Exit looping and close connection 

@@ -10,7 +10,7 @@ require 'session.php';
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <script type="text/javascript">
 function AjaxFunction()
@@ -84,13 +84,13 @@ require 'fonction.php';
 //$id=$_GET['id'];
 $id=substr($_REQUEST["id"],32);
 $sqlm="SELECT * FROM $tb_rhpersonnel WHERE idrhp='$id'";
-$resultm=mysql_query($sqlm);
-$datam=mysql_fetch_array($resultm);
+$resultm=mysqli_query($linki,$sqlm);
+$datam=mysqli_fetch_array($resultm);
 ?>
 <body>
 <table width="100%" border="0">
    <tr>
-     <td width="39%"><a href="rh_employer_user.php?id=<? echo md5(microtime()).$datam['idrhp'];?>" class="btn btn-danger">Fermer sans enregistre</a></td>
+     <td width="39%"><a href="rh_employer_user.php?id=<?php echo md5(microtime()).$datam['idrhp'];?>" class="btn btn-danger">Fermer sans enregistre</a></td>
      
      <td width="9%">&nbsp;</td>
      <td width="14%">&nbsp;</td>
@@ -108,12 +108,12 @@ $datam=mysql_fetch_array($resultm);
         </tr>
         <tr>
           <td width="11%"><strong>
-            <input name="id" type="hidden" id="id" value="<? echo $datam['idrhp'];?>" size="10" readonly />
+            <input name="id" type="hidden" id="id" value="<?php echo $datam['idrhp'];?>" size="10" readonly />
             <font size="2">Designation</font></strong></td>
           <td width="1%">&nbsp;</td>
           <td width="35%"><strong>
             <select name="Designation" id="Designation">
-              <option selected="selected"><? echo $datam['Designation'];?></option>
+              <option selected="selected"><?php echo $datam['Designation'];?></option>
               <option>Mr</option>
               <option>Mme</option>
               <option>Mlle</option>
@@ -121,18 +121,18 @@ $datam=mysql_fetch_array($resultm);
             </select>
           Sex 
             <select name="sex" id="sex">
-              <option selected="selected"><? echo $datam['sex'];?></option>
+              <option selected="selected"><?php echo $datam['sex'];?></option>
               <option>Masculin</option>
               <option>Féminin</option>
             </select>
           </strong></td>
           <td width="1%">&nbsp;</td>
           <td width="12%"><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-            <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+            <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
           </font><font size="2">Niveau d'etude</font></strong></font></strong></font></td>
           <td width="40%"><span style="font-size:8.5pt;font-family:Arial">
             <select name="niveau" id="niveau">
-              <option selected="selected"><? echo $datam['niveau'];?></option>
+              <option selected="selected"><?php echo $datam['niveau'];?></option>
               <option>NEANT</option>
 			  <option>DEP</option>
               <option>AFP</option>
@@ -159,12 +159,12 @@ $datam=mysql_fetch_array($resultm);
           <td><strong><font size="2">Nom et Prénom<font size="2"><font color="#FF0000">(*)</font></font></font></strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input class="form-control" name="nomprenom" type="text" id="nomprenom" value="<? echo $datam['nomprenom'];?>" size="40" />
+            <input class="form-control" name="nomprenom" type="text" id="nomprenom" value="<?php echo $datam['nomprenom'];?>" size="40" />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Specialisation</font></strong></td>
           <td><strong>
-            <input class="form-control" name="specialisation" type="text" id="specialisation" value="<? echo $datam['specialisation'];?>" size="40" />
+            <input class="form-control" name="specialisation" type="text" id="specialisation" value="<?php echo $datam['specialisation'];?>" size="40" />
           </strong></td>
         </tr>
         <tr>
@@ -174,23 +174,23 @@ $datam=mysql_fetch_array($resultm);
           <td>&nbsp;</td>
           <td><strong><font size="2">Matricule <font size="2"><font color="#FF0000">(*)</font></font></font></strong></td>
           <td><strong>
-            <input name="matricule" type="text" id="matricule" value="<? echo $datam['matricule'];?>" size="10" />
+            <input name="matricule" type="text" id="matricule" value="<?php echo $datam['matricule'];?>" size="10" />
           Indice <font size="2"><font size="2"><font color="#FF0000">(*)</font></font></font>
-          <input name="indice" type="text" id="indice" value="<? echo $datam['indice']; ?>" size="10" />
+          <input name="indice" type="text" id="indice" value="<?php echo $datam['indice']; ?>" size="10" />
           </strong></td>
         </tr>
         <tr>
           <td><strong><font size="2">Situation familiale</font></strong></td>
           <td>&nbsp;</td>
           <td><select  name="stfamille" id="stfamille">
-            <option selected="selected"><? echo $datam['stfamille'];?></option>
+            <option selected="selected"><?php echo $datam['stfamille'];?></option>
             <option>Célibataire</option>
             <option>Marié(e)</option>
             <option>Divorcé(e)</option>
             <option>Veuf(ve)</option>
           </select>
             <font size="2">Nombre d'enfant
-            <input name="nenfant" type="text" id="nenfant" value="<? echo $datam['nenfant'];?>" size="5" maxlength="5" />
+            <input name="nenfant" type="text" id="nenfant" value="<?php echo $datam['nenfant'];?>" size="5" maxlength="5" />
             </font></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
@@ -203,19 +203,19 @@ $datam=mysql_fetch_array($resultm);
           <td>&nbsp;</td>
           <td><strong><font size="2">Date de naissance</font></strong></td>
           <td><strong>
-            <input name="sdnaissance" type="text" id="sdnaissance" value="<? echo $datam['dnaissance'];?>" size="40" />
+            <input name="sdnaissance" type="text" id="sdnaissance" value="<?php echo $datam['dnaissance'];?>" size="40" />
           YEAR - MOTH - DAY</strong></td>
         </tr>
         <tr>
           <td><strong>Titre </strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input  class="form-control" name="titre" type="text" id="titre" value="<? echo $datam['titre'];?>" size="40" />
+            <input  class="form-control" name="titre" type="text" id="titre" value="<?php echo $datam['titre'];?>" size="40" />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Date d'embauche</font></strong></td>
           <td><strong>
-            <input name="sdembauche" type="text" id="sdembauche" value="<? echo $datam['dembauche'];?>" size="40" />
+            <input name="sdembauche" type="text" id="sdembauche" value="<?php echo $datam['dembauche'];?>" size="40" />
           YYYY- MM - DD</strong></td>
         </tr>
         <tr>
@@ -236,7 +236,7 @@ echo "<option>$row[ville]</option>";
           <td>&nbsp;</td>
           <td><strong><font size="2">Date d'inactivité</font></strong></td>
           <td><strong>
-            <input  name="dinactivite" type="text" id="dinactivite" value="<? echo $datam['dinactivite'];?>" size="40" />
+            <input  name="dinactivite" type="text" id="dinactivite" value="<?php echo $datam['dinactivite'];?>" size="40" />
             2015 - 12 - 14 </strong></td>
         </tr>
         <tr>
@@ -251,12 +251,12 @@ echo "<option>$row[ville]</option>";
           <td><strong><font size="2">T&eacute;l&eacute;phone</font></strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input class="form-control" name="tel" type="text" id="tel" value="<? echo $datam['tel'];?>" size="40" />
+            <input class="form-control" name="tel" type="text" id="tel" value="<?php echo $datam['tel'];?>" size="40" />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Categorie</font></strong></td>
           <td><select name="categorie" id="categorie">
-            <option selected="selected"><? echo $datam['categorie'];?></option>
+            <option selected="selected"><?php echo $datam['categorie'];?></option>
             <option>Cadre A5 </option>
             <option>Cadre A4 </option>
             <option>Cadre A3 </option>
@@ -316,11 +316,11 @@ echo "<option>$row[ville]</option>";
           <td><strong><font size="2">Email</font></strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input class="form-control" name="email" type="text" id="email" value="<? echo $datam['email'];?>" size="40" />
+            <input class="form-control" name="email" type="text" id="email" value="<?php echo $datam['email'];?>" size="40" />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Direction <font size="2"><font color="#FF0000">(*)</font></font></font></strong></td>
-          <td><strong><? echo $datam['direction'];?></strong></td>
+          <td><strong><?php echo $datam['direction'];?></strong></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -334,11 +334,11 @@ echo "<option>$row[ville]</option>";
           <td>login</td>
           <td>&nbsp;</td>
           <td><strong>
-            <input class="form-control" name="login" type="text" id="login" value="<? echo $datam['login'];?>" size="40" readonly />
+            <input class="form-control" name="login" type="text" id="login" value="<?php echo $datam['login'];?>" size="40" readonly />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Service</font></strong></td>
-          <td><strong><? echo $datam['service'];?></strong></td>
+          <td><strong><?php echo $datam['service'];?></strong></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -352,7 +352,7 @@ echo "<option>$row[ville]</option>";
           <td>pwd</td>
           <td>&nbsp;</td>
           <td><strong>
-            <input class="form-control" name="pwd" type="text" id="pwd" value="<? echo $datam['pwd'];?>" size="40" readonly />
+            <input class="form-control" name="pwd" type="text" id="pwd" value="<?php echo $datam['pwd'];?>" size="40" readonly />
           </strong></td>
           <td>&nbsp;</td>
           <td>Lien ( SYSTEME)</td>
@@ -364,8 +364,8 @@ $cmr=$datam['cm'];
 
 if($datam['cm']!=0){
 $sql8="SELECT * FROM $tbl_utilisateur WHERE id_u='$cmr'";
-$result8=mysql_query($sql8);
-$data8=mysql_fetch_array($result8);
+$result8=mysqli_query($linki,$sql8);
+$data8=mysqli_fetch_array($result8);
 echo '<option value='.$data8['id_u'].'> '.$data8['u_nom'].' '.$data8['u_prenom'].' ( '.$data8['u_login'].')</option>';
 } else 
 {
@@ -374,9 +374,9 @@ echo '<option value='.$vide.' selected> Realisez la connexion </option>';
 ?> 
             <?php
 $sql9 = ("SELECT id_u, id_nom , u_nom , u_prenom, u_login  FROM $tbl_utilisateur  ORDER BY id_u ASC ");
-$result9 = mysql_query($sql9);
+$result9 = mysqli_query($linki,$sql9);
 
-while ($row9 = mysql_fetch_assoc($result9)) {
+while ($row9 = mysqli_fetch_assoc($result9)) {
 echo '<option value='.$row9['id_u'].'> '.$row9['u_nom'].' '.$row9['u_prenom'].' ( '.$row9['u_login'].')</option>';
 }
 
@@ -384,7 +384,7 @@ echo '<option value='.$row9['id_u'].'> '.$row9['u_nom'].' '.$row9['u_prenom'].' 
           </select>
 Statut
 <select name="statut" id="statut">
-  <option selected><? echo $datam['statut'];?></option>
+  <option selected><?php echo $datam['statut'];?></option>
   <option>Operationnel</option>
   <option>Disponibilité</option>
   <option>Fermer</option>
@@ -402,12 +402,12 @@ Statut
           <td>COMPTE CPP</td>
           <td>&nbsp;</td>
           <td><strong>
-            <input class="form-control" name="CPP" type="text" id="CPP" value="<? echo $datam['CPP'];?>" size="40" />
+            <input class="form-control" name="CPP" type="text" id="CPP" value="<?php echo $datam['CPP'];?>" size="40" />
           </strong></td>
           <td>&nbsp;</td>
           <td>PAYE  A </td>
           <td><select name="Tin" id="Tin">
-            <option selected="selected"><? echo $datam['Tin'];?></option>
+            <option selected="selected"><?php echo $datam['Tin'];?></option>
             <option>100</option>
             <option>90</option>
             <option>80</option>
@@ -433,17 +433,17 @@ Statut
           <td>NTC</td>
           <td>&nbsp;</td>
           <td><strong>
-            <input class="form-control" name="NTC" type="text" id="NTC" value="<? echo $datam['NTC'];?>" size="40" />
+            <input class="form-control" name="NTC" type="text" id="NTC" value="<?php echo $datam['NTC'];?>" size="40" />
           </strong></td>
           <td>&nbsp;</td>
           <td>IGR</td>
           <td><select name="igrchoix" size="1" id="igrchoix">
-<option selected="selected" value="<? $igrchoix=$datam['igrchoix'];?>"><? if ($igrchoix==0){echo 'Non';} else {echo 'OUI';}?></option>
+<option selected="selected" value="<?php $igrchoix=$datam['igrchoix'];?>"><?php if ($igrchoix==0){echo 'Non';} else {echo 'OUI';}?></option>
             <option value="0">Non</option>
             <option value="1">Oui</option>
           </select>            
              Caisse de retraite <select name="crchoix" size="1" id="crchoix">
-<option selected="selected" value="<? $crchoix=$datam['crchoix'];?>"><? if ($crchoix==0){echo 'Non';} else {echo 'OUI';}?></option>
+<option selected="selected" value="<?php $crchoix=$datam['crchoix'];?>"><?php if ($crchoix==0){echo 'Non';} else {echo 'OUI';}?></option>
                <option value="0">Non</option>
                <option value="1">Oui</option>
             </select></td>
@@ -464,7 +464,7 @@ Statut
           <td>&nbsp;</td>
           <td><strong><span style="font-size:8.5pt;font-family:Arial">
             <input type="submit" name="Submit" value="Enregistrer les mises à jours" class="btn btn-primary" />
-            <a href="rh_employer_user.php?id=<? echo md5(microtime()).$datam['idrhp'];?>" class="btn btn-danger">Fermer sans enregistre</a></span></strong></td>
+            <a href="rh_employer_user.php?id=<?php echo md5(microtime()).$datam['idrhp'];?>" class="btn btn-danger">Fermer sans enregistre</a></span></strong></td>
         </tr>
         </table>
     </form></td>
@@ -478,8 +478,8 @@ Statut
 	
 	$sql = "SELECT * FROM $tb_rhdirection where  idrh=$iddr ";
 
-	$resultat = mysql_query($sql) or exit(mysql_error()); 
-	$nqt = mysql_fetch_assoc($resultat);
+	$resultat = mysqli_query($linki,$sql) or exit(mysqli_error()); 
+	$nqt = mysqli_fetch_assoc($resultat);
 
 	if((!isset($nqt['direction'])|| empty($nqt['direction']))) { $qt=''; return $qt;}
 	else {$qt=$nqt['direction']; return $qt;}

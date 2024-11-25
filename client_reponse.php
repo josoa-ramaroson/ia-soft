@@ -6,7 +6,7 @@ require_once('calendar/classes/tc_calendar.php');
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <script language="javascript" src="calendar/calendar.js"></script>
@@ -53,20 +53,20 @@ require("bienvenue.php");    // on appelle la page contenant la fonction
                       <tr>
                         <td>N° Tache</td>
                         <td><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                          <input name="idv" class="form-control" type="text" id="idv" value="<? echo $idv; ?>" readonly>
+                          <input name="idv" class="form-control" type="text" id="idv" value="<?php echo $idv; ?>" readonly>
                         </font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></td>
                       </tr>
                       <tr>
                         <td>&nbsp;</td>
                         <td><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                          <input name="id_nom" type="text" id="id_nom" value="<? echo $id_user; ?>">
+                          <input name="id_nom" type="text" id="id_nom" value="<?php echo $id_user; ?>">
                         </font><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                        <input name="niveau" type="text" id="niveau" value="<? echo $u_niveau; ?>">
+                        <input name="niveau" type="text" id="niveau" value="<?php echo $u_niveau; ?>">
                         </font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></td>
                       </tr>
                       <tr>
                         <td>Prise en charge </td>
-                        <td><input name="nom" type="text" class="form-control" id="nom" value="<? echo $nom.' '.$prenom; ?>" size="50" readonly></td>
+                        <td><input name="nom" type="text" class="form-control" id="nom" value="<?php echo $nom.' '.$prenom; ?>" size="50" readonly></td>
                       </tr>
                       <tr>
                         <td>&nbsp;</td>

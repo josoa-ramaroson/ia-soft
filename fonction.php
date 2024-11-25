@@ -1,15 +1,15 @@
 <?php	
 		
 		$host = 'localhost';
-		$user = 'root';
-		$pass = 'I7I4I2-70&o@';
-		$db = 'eda';
-		$dbbk='edabk';
+		$user = 'iaT00ls';
+		$pass = 'jrpsrRMBXP#73';
+		$db = 'c2iaT00lsDb';
+		$dbbk='c2iaT00lsDb';
 		
 	
-		// $link = mysql_connect ($host,$user,$pass);
-		// mysql_set_charset('utf8',$link);
-		// mysql_select_db($db);
+		// $link = mysqli_connect ($host,$user,$pass);
+		// mysqli_set_charset('utf8',$link);
+		// mysqli_select_db($db);
 		
 		// $linkibk = mysqli_connect($host,$user,$pass,$dbbk ) or die(mysqli_error($linkibk));
 		// mysqli_set_charset($linkibk, 'utf8');

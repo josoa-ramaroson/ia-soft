@@ -6,13 +6,13 @@ $iddr=addslashes($_POST['iddr']);
 $service=addslashes($_POST['service']);
 
 $sqlp="update  $tb_rhservice set service='$service', iddr='$iddr'  WHERE  idser='$idser'";
-$resultp=mysql_query($sqlp);
+$resultp=mysqli_query($linki,$sqlp);
 if($resultp){
 }
 else {
 echo "ERROR";
 }
-mysql_close();
+mysqli_close($linki);
 ?>
 <?php
 header("location: rh_service.php");

@@ -1,18 +1,18 @@
-<div style="padding:10px; width:440px"><a href="pc_affichage_user.php?id=<? echo md5(microtime()).$datam['id'];?>" style="margin:0px; float:right" class="btn btn-xs btn-danger">Fermer</a>
+<div style="padding:10px; width:440px"><a href="pc_affichage_user.php?id=<?php echo md5(microtime()).$datam['id'];?>" style="margin:0px; float:right" class="btn btn-xs btn-danger">Fermer</a>
 <form id="form1" name="form1" method="post" action="pc_enreg_save.php">
   <table width="101%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
     <tr>
-      <td width="36%"><input name="id" type="hidden" value="<? echo $datam['id']; ?>">
+      <td width="36%"><input name="id" type="hidden" value="<?php echo $datam['id']; ?>">
         <font size="2"><strong><font size="2"><strong><font color="#FF0000">
-      <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
-      <input name="nomprenom" type="hidden" value="<? echo $datam['nomprenom']; ?>" />
+      <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
+      <input name="nomprenom" type="hidden" value="<?php echo $datam['nomprenom']; ?>" />
       </font><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-      <input name="nom" type="hidden" id="nom" value="<? echo $datam['nom']; ?>" />
-      <input name="ile" type="hidden" id="ile" value="<? echo $datam['ile']; ?>" />
-      <input name="ville" type="hidden" id="ville" value="<? echo $datam['id']; ?>" />
-      <input name="agence" type="hidden" id="agence" value="<? echo $datam['agence']; ?>" />
+      <input name="nom" type="hidden" id="nom" value="<?php echo $datam['nom']; ?>" />
+      <input name="ile" type="hidden" id="ile" value="<?php echo $datam['ile']; ?>" />
+      <input name="ville" type="hidden" id="ville" value="<?php echo $datam['id']; ?>" />
+      <input name="agence" type="hidden" id="agence" value="<?php echo $datam['agence']; ?>" />
       </font><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-      <input name="utilisateur" type="hidden" id="utilisateur" value="<? echo $datam['utilisateur']; ?>" />
+      <input name="utilisateur" type="hidden" id="utilisateur" value="<?php echo $datam['utilisateur']; ?>" />
       </font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></td>
       <td width="64%">&nbsp;</td>
     </tr>

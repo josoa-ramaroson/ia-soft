@@ -1,4 +1,4 @@
-<?
+<?php
 require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
@@ -20,9 +20,9 @@ body,td,th {
 	color: #000;
 }
 </style>
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?> - Résultat de recherche </title>
 </head>
-<?
+<?php
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <body>
@@ -49,8 +49,8 @@ if (isset($_POST['mr2']))
 $mr2=addslashes($_POST['mr2']);
 
 $sql = "SELECT count(*) FROM $tbl_contact";  
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-$nb_total = mysql_fetch_array($resultat);  
+$resultat = mysqli_query($linki, $sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
+$nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
 }  
@@ -63,7 +63,7 @@ $sql = "SELECT * FROM $tbl_contact where id='$mr2'";
 
 $sql.=" ORDER BY nomprenom ASC ";  
 
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki, $sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 ?>
 <table width="98%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
    <tr bgcolor="#3071AA">
@@ -76,7 +76,7 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
      <td width="8%" align="center">&nbsp;</td>
    </tr>
    <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 
 	$id=$data['id'];
 
@@ -94,15 +94,15 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
 
 ?>
    <tr>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $id;?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $nomprenom;?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $Police;?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $adresse;?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $ville;?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $quartier;?></em></div></td>
-     <td align="center" bgcolor="#FFFFFF"><a href="re_affichage_user.php?id=<? echo md5(microtime()).$data['id']; ?>" 
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $id;?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $nomprenom;?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $Police;?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $adresse;?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $ville;?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $quartier;?></em></div></td>
+     <td align="center" bgcolor="#FFFFFF"><a href="re_affichage_user.php?id=<?php echo md5(microtime()).$data['id']; ?>" 
      
-      <? $n=$data['statut']; 
+      <?php $n=$data['statut']; 
 	  if ($n==1) $codecouleur='btn btn-sm btn-default';
 	  if ($n==2) $codecouleur='btn btn-sm btn-warning'; 
 	  if ($n==3) $codecouleur='btn btn-sm btn-info';
@@ -112,15 +112,15 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
 	  if ($n==7) $codecouleur='btn btn-sm btn-danger';
 	  ?>
         
-     class="<? echo $codecouleur; ?>" >Aperçu</a></td>
+     class="<?php echo $codecouleur; ?>" >Aperçu</a></td>
    </tr>
    <?php
 }
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    //echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close (); 
+mysqli_free_result ($resultat);  
+mysqli_close ($linki); 
 }
 else {
 echo " Pas de recherche <br>";

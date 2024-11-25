@@ -33,14 +33,14 @@ $id=0;
 require 'configuration.php';
 
 $sql5="SELECT matricule , idau FROM $tbl_automobile  ORDER BY matricule ASC";
-$result5 = mysql_query($sql5);
-while ($row5 = mysql_fetch_assoc($result5)) {
+$result5 = mysqli_query($linki,$sql5);
+while ($row5 = mysqli_fetch_assoc($result5)) {
 echo '<option value='.$row5['idau'].'>'.$row5['matricule'].'</option>';
 }
 $idau=$_POST['idau'];
 $sql4 = "SELECT * FROM $tbl_automobile  where idau='$idau'";
-$result4 = mysql_query($sql4);
-while ($row4 = mysql_fetch_assoc($result4)) {
+$result4 = mysqli_query($linki,$sql4);
+while ($row4 = mysqli_fetch_assoc($result4)) {
 $id=$row4['id'];
 }  
 ?>
@@ -66,16 +66,16 @@ $sqlm="SELECT  co.Designation as coDesignation, co.nomprenom as conomprenom, co.
 au.matricule as  aumatricule, au.marque as aumarque, au.modèle as aumodèle, au.annee as auannee, au.cylindre as aucylindre, au.utilisation as auutilisation , au.statut as austatut
 
  FROM $tbl_contact co , $tbl_automobile au WHERE au.id='$id' and au.idau='$idau' and au.id=co.id";
-$resultm=mysql_query($sqlm);
-$datam=mysql_fetch_array($resultm);
+$resultm=mysqli_query($linki,$sqlm);
+$datam=mysqli_fetch_array($resultm);
 
 	// affichage des transport
 	 $sqact="SELECT * FROM $tbl_automobile WHERE id='$id'";
-	 $resultact=mysql_query($sqact);
+	 $resultact=mysqli_query($linki,$sqact);
 	 
 	 	 
 	$sqfac="SELECT * FROM $tbl_fact WHERE id='$id' and idso='$idau' ORDER BY idf desc";
-	$resultfac=mysql_query($sqfac);
+	$resultfac=mysqli_query($linki,$sqfac);
 	 
 ?>
 <table width="100%" border="0" align="center">
@@ -99,22 +99,22 @@ $datam=mysql_fetch_array($resultm);
           <td>SIDCLIENT</td>
           <td>&nbsp;</td>
           <td><strong>
-            <? echo $datam['auid'];?>
+            <?php echo $datam['auid'];?>
           </strong></td>
           <td>&nbsp;</td>
           <td>SIDTransport</td>
-          <td><strong><? echo $datam['auidau'];?></strong></td>
+          <td><strong><?php echo $datam['auidau'];?></strong></td>
         </tr>
         <tr>
           <td><strong><font size="2">Nom et Prénom <font size="2"><font color="#FF0000"> *</font></font></font></strong></td>
           <td>&nbsp;</td>
-          <td><? echo $datam['conomprenom'];?></td>
+          <td><?php echo $datam['conomprenom'];?></td>
           <td>&nbsp;</td>
           <td><strong>
             <label for="checkbox_row_4">Matricule</label>
           </strong></td>
           <td><strong>
-           <? echo $datam['aumatricule'];?>
+           <?php echo $datam['aumatricule'];?>
           </strong></td>
         </tr>
       </table>
@@ -145,8 +145,8 @@ $datam=mysql_fetch_array($resultm);
     <td width="14%"><select name="libelle" id="libelle">
       <?php
 $sql2 = ("SELECT *  FROM $tbl_libelle where categorie='Ti' ORDER BY libelle  ASC ");
-$result2 = mysql_query($sql2);
-while ($row2 = mysql_fetch_assoc($result2)) {
+$result2 = mysqli_query($linki,$sql2);
+while ($row2 = mysqli_fetch_assoc($result2)) {
 echo '<option> '.$row2['libelle'].' </option>';
 }
 
@@ -162,12 +162,12 @@ echo '<option> '.$row2['libelle'].' </option>';
     <td width="12%">&nbsp;</td>
     <td width="1%">&nbsp;</td>
     <td width="22%"><input type="submit" name="button" id="button" value="Enregistre le montant " />
-      <input name="id" type="hidden" value="<? echo $datam['auid']; ?>" />
-      <input name="idso" type="hidden" value="<? echo $datam['auidau']; ?>" />
+      <input name="id" type="hidden" value="<?php echo $datam['auid']; ?>" />
+      <input name="idso" type="hidden" value="<?php echo $datam['auidau']; ?>" />
       <input name="st" type="hidden" value="Ti" />
-      <input name="stlib" type="hidden" value="<? echo $datam['aumatricule']; ?>" />
+      <input name="stlib" type="hidden" value="<?php echo $datam['aumatricule']; ?>" />
       <font size="2"><strong><font size="2"><strong><font color="#FF0000">
-      <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+      <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
       </font></strong></font></strong></font></td>
   </tr>
 </table>
@@ -210,8 +210,8 @@ echo '<option> '.$row2['libelle'].' </option>';
       <td width="12%"><select name="libelle" id="libelle">
         <?php
 $sql2 = ("SELECT *  FROM $tbl_libelle where categorie='Ti' ORDER BY libelle  ASC ");
-$result2 = mysql_query($sql2);
-while ($row2 = mysql_fetch_assoc($result2)) {
+$result2 = mysqli_query($linki,$sql2);
+while ($row2 = mysqli_fetch_assoc($result2)) {
 echo '<option> '.$row2['libelle'].' </option>';
 }
 
@@ -226,7 +226,7 @@ echo '<option> '.$row2['libelle'].' </option>';
       <td width="22%"><input type="submit" name="button2" id="button2" value="Enregistre le montant " />
         <input name="st" type="hidden" id="st" value="Ti" />
         <font size="2"><strong><font size="2"><strong><font color="#FF0000">
-          <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+          <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
         </font></strong></font></strong></font></td>
     </tr>
   </table>

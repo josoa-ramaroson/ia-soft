@@ -19,8 +19,8 @@ require 'configuration.php';
 	$agent=substr($_REQUEST["agentv"],32);
 	
 $sql = "SELECT count(*) FROM $tbl_paiement where id_nom='$agent' and date='$date'";  
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-$nb_total = mysql_fetch_array($resultat);  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
 }  
@@ -28,15 +28,15 @@ else {
 if (!isset($_GET['debut'])) $_GET['debut'] = 0; 
 $nb_affichage_par_page = 400; 
 $sql = "SELECT * FROM $tbl_paiement where id_nom='$agent' and date='$date' ORDER BY idp ASC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 
 
 $sqlt = "SELECT SUM(paiement) AS Paie, SUM(ortc_dp) AS ortc_dp, SUM(tax_dp) AS tax_dp, SUM(totalht_dp) AS totalht_dp, id_nom , date , st , nserie FROM $tbl_paiement where  id_nom='$agent' and date='$date'";  //ASC  DESC
-$reqt = mysql_query($sqlt);  
+$reqt = mysqli_query($linki,$sqlt);  
 
 $sqltE = "SELECT SUM(paiement) AS PaieE, id_nom , date , st , nserie FROM $tbl_paiement where  st='E'  and id_nom='$agent' and date='$date'";  //ASC  DESC
-$reqtE = mysql_query($sqltE); 
-$datatE=mysql_fetch_array($reqtE);
+$reqtE = mysqli_query($linki,$sqltE); 
+$datatE=mysqli_fetch_array($reqtE);
 ?>
  </p>
  <table width="100%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
@@ -50,17 +50,17 @@ $datatE=mysql_fetch_array($reqtE);
      <td width="12%" align="center"><font color="#FFFFFF"><strong>TOTAL M S ortc/tax</strong></font></td> 
    </tr>
    <?php
-while($datat=mysql_fetch_array($reqt)){ // Start looping table row 
+while($datat=mysqli_fetch_array($reqt)){ // Start looping table row 
 ?>
     <tr>
-      <td align="center" bgcolor="#FFFFFF"><? echo  $datat['id_nom']; ?></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo  $datat['date']; ?></td>
-    <td align="center" bgcolor="#FFFFFF"><? $P=strrev(chunk_split(strrev($datat['Paie']),3," "));   echo $P;?></td>
-         <td align="center" bgcolor="#FFFFFF"><? $PE=strrev(chunk_split(strrev($datatE['PaieE']),3," "));   echo $PE;?></td>
-    <td align="center" bgcolor="#FFFFFF"><?  $P1=strrev(chunk_split(strrev($datat['ortc_dp']),3," "));   echo $P1;?></td>
+      <td align="center" bgcolor="#FFFFFF"><?php echo  $datat['id_nom']; ?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo  $datat['date']; ?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php $P=strrev(chunk_split(strrev($datat['Paie']),3," "));   echo $P;?></td>
+         <td align="center" bgcolor="#FFFFFF"><?php $PE=strrev(chunk_split(strrev($datatE['PaieE']),3," "));   echo $PE;?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php  $P1=strrev(chunk_split(strrev($datat['ortc_dp']),3," "));   echo $P1;?></td>
    <td align="center" bgcolor="#FFFFFF">
-     <?  $P2=$datatE['PaieE']-$datat['ortc_dp']; $tax_dp=(round(0.03 *($P2),0)); echo $tax_dp; ?></td>
-	<td align="center" bgcolor="#FFFFFF"><? $P3=$datatE['PaieE']-$datat['ortc_dp']-$tax_dp;   echo $P3;?></td>
+     <?php  $P2=$datatE['PaieE']-$datat['ortc_dp']; $tax_dp=(round(0.03 *($P2),0)); echo $tax_dp; ?></td>
+	<td align="center" bgcolor="#FFFFFF"><?php $P3=$datatE['PaieE']-$datat['ortc_dp']-$tax_dp;   echo $P3;?></td>
    </tr>
   <?php
 }
@@ -80,27 +80,27 @@ while($datat=mysql_fetch_array($reqt)){ // Start looping table row
      <td width="10%" align="center"><font color="#FFFFFF"><strong>M.Fact</strong></font></td>
 	 </tr>
    <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
    
      
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['id'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['nfacture'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['Nomclient'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['nrecu'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['montant'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo strrev(chunk_split(strrev($data['paiement']),3," "));?></em></td>
-	 <td align="center" bgcolor="#FFFFFF"><em><? echo $data['ortc_dp'];?></em></td>
-     <td align="center" bgcolor="#FFFFFF"><em><? echo $data['tax_dp'];?></em></td>
-	 <td align="center" bgcolor="#FFFFFF"><em><? echo strrev(chunk_split(strrev($data['totalht_dp']),3," "));?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['id'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['nfacture'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['Nomclient'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['nrecu'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['montant'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo strrev(chunk_split(strrev($data['paiement']),3," "));?></em></td>
+	 <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['ortc_dp'];?></em></td>
+     <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['tax_dp'];?></em></td>
+	 <td align="center" bgcolor="#FFFFFF"><em><?php echo strrev(chunk_split(strrev($data['totalht_dp']),3," "));?></em></td>
      </tr>
    <?php
 }
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
   // echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close ();  
+mysqli_free_result ($resultat);  
+mysqli_close ();  
 ?>
 </table>
 <p>&nbsp;</p>

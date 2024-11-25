@@ -2,7 +2,7 @@
 require 'session.php';
 require_once('calendar/classes/tc_calendar.php');
 require 'fc-affichage.php';
-require 'fonction.php';
+require_once 'fonction.php';
 require 'rh_configuration_fonction.php';
 ?>
 <?php
@@ -14,10 +14,6 @@ require 'rh_configuration_fonction.php';
 <html>
 <head>
 
-<title><?php include("titre.php"); ?></title>
-<meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
-<script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
-<link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 .centrevaleur {
 	text-align: center;
@@ -26,6 +22,12 @@ require 'rh_configuration_fonction.php';
 	text-align: center;
 }
 .taille16 {	font-size: 16px;
+}
+.nav-gap li {
+    margin-right: 14px; /* 8px */
+}
+.nav-gap li:last-child {
+    margin-right: 0;
 }
 </style>
 <script language="javascript" src="calendar/calendar.js"></script>
@@ -36,34 +38,25 @@ Require("bienvenue.php");  // on appelle la page contenant la fonction
 ?>
  
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title">&nbsp;</h3>
-  </div>
-  <div class="panel-body">
- 
-  </div>
-</div>
 
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container-fluid">
-          <a class="navbar-brand" href="/dashboard">
+          <!-- <a class="navbar-brand" href="/dashboard">
               <i class="fas fa-laptop-code"></i> IaSoft
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
               <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-              <li class="nav-item"><a href="paiement.php" class="btn btn-sm btn-success" > Paiement </a> </li>
-              <li class="nav-item"><a href="paiementcb.php"><img src="images/barre.png" width="100" height="34"/></a></li>
-              <li class="nav-item"><a href="#" class="btn btn-sm btn-success" > Paiement par Importation </a></li>
-              <li class="nav-item"><a href="paiement_gaz.php" class="btn btn-sm btn-warning" > Paiement par Gaz </a></li>
-              <li class="nav-item"><a href="re_edit_modif_liste_gaz.php" class="btn btn-sm btn-warning" > Suivi GAZ  </a></li>
-              <li class="nav-item"><a href="coi_facturation_liste.php" class="btn btn-sm btn-success" > Les penalités </a></li>
-              <li class="nav-item"><a href="re_edit_modif_liste.php" class="btn btn-sm btn-success" >Tansfert & Changement de nom </a></li>  
-              </ul>
+          </button> -->
+          <div class="" id="navbarNav">
+            <ul class="navbar-nav nav-gap">
+                <li class="nav-item"><a href="paiement.php" class="btn btn-sm btn-success">Paiement</a></li>
+                <li class="nav-item"><a href="paiementcb.php"><img src="images/barre.png" width="100" height="34"/></a></li>
+                <li class="nav-item"><a href="#" class="btn btn-sm btn-success">Paiement par Importation</a></li>
+                <li class="nav-item"><a href="paiement_gaz.php" class="btn btn-sm btn-warning">Paiement par Gaz</a></li>
+                <li class="nav-item"><a href="re_edit_modif_liste_gaz.php" class="btn btn-sm btn-warning">Suivi GAZ</a></li>
+                <li class="nav-item"><a href="coi_facturation_liste.php" class="btn btn-sm btn-success">Les pénalités</a></li>
+                <li class="nav-item"><a href="re_edit_modif_liste.php" class="btn btn-sm btn-success">Transfert & Changement de nom</a></li>
+            </ul>
           </div>
       </div>
   </nav>
@@ -79,8 +72,8 @@ Require("bienvenue.php");  // on appelle la page contenant la fonction
     <td height="21"> 
     
       <?php
-include_once('pied.php');
-?>
+      include_once('pied.php');
+      ?>
     </td>
   </tr>
 </table>

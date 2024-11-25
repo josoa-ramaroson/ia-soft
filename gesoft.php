@@ -1,7 +1,7 @@
 <html>
 <head>
-<title><? include 'titre.php'; ?></title>
-<? 
+<title><?php include 'titre.php'; ?></title>
+<?php 
 include 'inc/head.php'; ?>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
@@ -56,7 +56,7 @@ include 'inc/head.php'; ?>
                 <td width="2%">&nbsp;</td>
               </tr>
               <tr>
-                <td align="center"><? 
+                <td align="center"><?php 
 require 'fonction.php';
 $valeur_existant = "SELECT * FROM $tbl_paiement order by date desc LIMIT 0,1 ";
 $sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error()); 

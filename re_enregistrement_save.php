@@ -15,8 +15,8 @@ exit();
 
 //------------identification du maximun Client-------------
 $sqlmax="SELECT MAX(id) AS Maxa_id FROM $tbl_contact";
-$resultmax=mysql_query($sqlmax);
-$rowsmax=mysql_fetch_array($resultmax);
+$resultmax=mysqli_query($linki,$sqlmax);
+$rowsmax=mysqli_fetch_array($resultmax);
 if ($rowsmax) {
 $Max_id = $rowsmax['Maxa_id']+1;
 }
@@ -26,8 +26,8 @@ $Max_id = 1;
 //-----------------------------------------------------
 
 $sqlmaxf="SELECT MAX(idf) AS Maxa_id FROM $tbl_fact";
-$resultmaxf=mysql_query($sqlmaxf);
-$rowsmaxf=mysql_fetch_array($resultmaxf);
+$resultmaxf=mysqli_query($linki,$sqlmaxf);
+$rowsmaxf=mysqli_fetch_array($resultmaxf);
 if ($rowsmaxf) {
 $Max_idf = $rowsmaxf['Maxa_id']+1;
 }
@@ -66,26 +66,26 @@ $RefCommune=substr($RefQuartier,0,3);
 $refville=addslashes($_POST['refville']);
 
 $sql1 = "SELECT * FROM quartier where id_quartier=$RefQuartier";
-$result1 = mysql_query($sql1);
-while ($row1 = mysql_fetch_assoc($result1)) {
+$result1 = mysqli_query($linki,$sql1);
+while ($row1 = mysqli_fetch_assoc($result1)) {
 $quartier=$row1['quartier'];
 }  
 
 $sql2 = "SELECT * FROM ville where refville=$refville";
-$result2 = mysql_query($sql2);
-while ($row2 = mysql_fetch_assoc($result2)) {
+$result2 = mysqli_query($linki,$sql2);
+while ($row2 = mysqli_fetch_assoc($result2)) {
 $ville=$row2['ville'];
 } 
 
 $sql3 = "SELECT * FROM commune where ref_com=$RefCommune";
-$result3 = mysql_query($sql3);
-while ($row3 = mysql_fetch_assoc($result3)) {
+$result3 = mysqli_query($linki,$sql3);
+while ($row3 = mysqli_fetch_assoc($result3)) {
 $secteur=$row3['commune'];
 } 
 
 	$sqldate="SELECT * FROM $tbl_caisse "; //DESC  ASC
-	$resultldate=mysql_query($sqldate);
-	$datecaisse=mysql_fetch_array($resultldate);
+	$resultldate=mysqli_query($linki,$sqldate);
+	$datecaisse=mysqli_fetch_array($resultldate);
 	$DateCreation=$datecaisse['datecaisse'];
 //$secteur=addslashes($_POST['commune']);
 //"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -109,7 +109,7 @@ $statut='1';
 $sql="INSERT INTO $tbl_contact ( id_nom , Designation, nomprenom,surnom, email, titre, tel, login, pwd , fax , url , adresse , quartier, ville, secteur, ile, Police,  RefCommune, RefLocalite, RefQuartier, AdresseLivraison, BoitePostale,  DateCreation, CodeTypeClts, CodeTypePiece, NumPieces,  statut,chtaxe,Tarif,coefTi)
 VALUES
 ('$id_nom' ,'$Designation', '$nomprenom', '$surnom', '$email', '$titre', '$tel', '$login', '$pwd', '$fax' , '$url' , '$adresse' , '$quartier' , '$ville', '$secteur', '$ile', '$Max_id', '$RefCommune', '$RefLocalite', '$RefQuartier' , '$AdresseLivraison', '$BoitePostale', '$DateCreation', '$CodeTypeClts', '$CodeTypePiece', '$NumPieces',  '$statut' , '$chtaxe' , '$Tarif','$coefTi')";
-$result=mysql_query($sql);
+$result=mysqli_query($linki,$sql);
 
 //---------FACTURATION DU MONTANT POLICE D ABONNEMENT---------------------------------
 $st='P';
@@ -124,7 +124,7 @@ $totalnet='7000';
 $sql2="INSERT INTO $tbl_fact 
 ( id,  ci , st, id_nom, bnom, bquartier, nfacture, fannee, date, libelle, totalttc, totalnet, report, etat) VALUES
 ( '$Max_id',  '$ci', '$st', '$id_nom', '$nomprenom', '$quartier', '$nfacture', '$fannee', '$date', '$libelle','$totalttc', '$totalnet', '$totalnet' , 'facture')";
-$result2=mysql_query($sql2);
+$result2=mysqli_query($linki,$sql2);
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ini_set('SMTP','smtp.comorestelecom.km');
 $destinataires = $emailinfo; 
@@ -132,7 +132,7 @@ $sujet = "Demande d'Abonnement ID_Client : $Max_id ";
 $texte = " l'agent : $id_nom a realisé la demande d'abonnement de $Designation $nomprenom son ID_Client : $Max_id , ville : $ville, Quartier : $quartier  "; 
 mail($destinataires,$sujet,$texte,"From:$emailinfo");
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-   mysql_close(); 
+   mysqli_close($linki); 
 ?>
 <?php
 header("location:re_affichage_n.php");

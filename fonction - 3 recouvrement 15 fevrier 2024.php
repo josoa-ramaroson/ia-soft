@@ -1,4 +1,4 @@
-<?	
+<?php
 		
 		$host = 'localhost';
 		$user = 'root';
@@ -7,20 +7,7 @@
 		$dbbk='edabk';
 		
 	
-		$link = mysql_connect ($host,$user,$pass);
-		mysql_set_charset('utf8',$link);
-		mysql_select_db($db);
-		
-		$linkibk = mysqli_connect($host,$user,$pass,$dbbk ) or die(mysqli_error($linkibk));
-		mysqli_set_charset($linkibk, 'utf8');
-		global $linkibk;
-		
-		
-		//immigration vers Mysqli
-		$linki=mysqli_connect($host,$user,$pass,$db) or die(mysqli_error($linki));
-		mysqli_set_charset($linki, 'utf8');
-		global $linki;
-		
+
 		
 		//MENU_DEROULANTE_VILLE ET QUARTIER____
 		try {

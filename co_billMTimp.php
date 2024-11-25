@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title><? include 'titre.php'; ?></title>
-<? include 'inc/head.php'; ?>
+<title><?php include 'titre.php'; ?></title>
+<?php include 'inc/head.php'; ?>
 <style type="text/css">
 .centre {
 	text-align: center;
@@ -21,19 +21,17 @@ $idf=substr($_REQUEST["idf"],32);
 require 'fonction.php';
 require 'configuration.php';
 
-$link = mysql_connect ($host,$user,$pass); 
-mysql_select_db($db);
 //$idf=substr($_REQUEST["idf"],32);
 $sql5="SELECT * FROM $tbl_contact c , $tbl_fact f WHERE c.id=f.id and f.idf='$idf' and st='E'";
-$req5=mysql_query($sql5);
+$req5=mysqli_query($linki,$sql5);
 
 	$sqlp="update  $tbl_fact  set impression='imprimé' WHERE idf='$idf' and st='E'";
-    $resultp=mysql_query($sqlp);
+    $resultp=mysqli_query($linki,$sqlp);
 
-while($data5=mysql_fetch_array($req5)){
+while($data5=mysqli_fetch_array($req5)){
 ?>
     </span></h1>
-    <p align="center"> <b><? echo $data5['nserie'].'/'.$data5['fannee']; ?></b></p></td></td>
+    <p align="center"> <b><?php echo $data5['nserie'].'/'.$data5['fannee']; ?></b></p></td></td>
   </tr>
 </table>
 <table width="100%" border="0">
@@ -49,16 +47,16 @@ while($data5=mysql_fetch_array($req5)){
           <tr>
             <td width="31%">Nom du client :</td>
             <td width="69%"><font color="#000000">
-              <? $client=substr($data5['nomprenom'],0,18); echo $client;?>
+              <?php $client=substr($data5['nomprenom'],0,18); echo $client;?>
             </font></td>
           </tr>
           <tr>
             <td>Adresse :</td>
-            <td><span style="width: 40%; text-align: left"><span style="width:36%"><? echo $data5['ville'];?></span> <span style="width:36%"><? echo $data5['quartier'];?></span></span></td>
+            <td><span style="width: 40%; text-align: left"><span style="width:36%"><?php echo $data5['ville'];?></span> <span style="width:36%"><?php echo $data5['quartier'];?></span></span></td>
           </tr>
           <tr>
             <td>ID Client :</td>
-            <td><span style="width:36%"><? $Codebare=$data5['id']; echo $data5['id'];?></span></td>
+            <td><span style="width:36%"><?php $Codebare=$data5['id']; echo $data5['id'];?></span></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
@@ -69,7 +67,7 @@ while($data5=mysql_fetch_array($req5)){
     </table></td>
   </tr>
 </table>
-<p align="center">DATE LIMITE DE PAIEMENT : <b><? $datelimite=$data5['datelimite'];  echo  date("d-m-Y", strtotime($datelimite));?> </b></p>
+<p align="center">DATE LIMITE DE PAIEMENT : <b><?php $datelimite=$data5['datelimite'];  echo  date("d-m-Y", strtotime($datelimite));?> </b></p>
 <div class="panel panel-info">
   <div class="panel-heading">
     <h3 class="panel-title">Information du compteur </h3>
@@ -88,11 +86,11 @@ while($data5=mysql_fetch_array($req5)){
             </tr>
           <tr>
             <td><strong> JOUR</strong></td>
-            <td><span style="width:36%"><? echo $data5['nf'];?> KWH</span></td>
-            <td><span style="width:36%"><? echo $data5['n'];?> KWH</span></td>
-            <td><span style="width:36%"><? echo $data5['cons'];?> KWH</span></td>
-            <td><span style="width:36%"><? echo $data5['nfacture'];$nfacture=$data5['nfacture']; ?></span></td>
-            <td><span style="width:36%"><? echo $data5['ncompteur'];?></span></td>
+            <td><span style="width:36%"><?php echo $data5['nf'];?> KWH</span></td>
+            <td><span style="width:36%"><?php echo $data5['n'];?> KWH</span></td>
+            <td><span style="width:36%"><?php echo $data5['cons'];?> KWH</span></td>
+            <td><span style="width:36%"><?php echo $data5['nfacture'];$nfacture=$data5['nfacture']; ?></span></td>
+            <td><span style="width:36%"><?php echo $data5['ncompteur'];?></span></td>
             </tr>
           <tr>
             <td>&nbsp;</td>
@@ -104,11 +102,11 @@ while($data5=mysql_fetch_array($req5)){
           </tr>
           <tr>
             <td><strong>NUIT</strong></td>
-            <td><span style="width:36%"><? echo $data5['nf2'];?> KWH</span></td>
-            <td><span style="width:36%"><? echo $data5['n2'];?> KWH</span></td>
-            <td><span style="width:36%"><? echo $data5['coefTi'];?></span></td>
+            <td><span style="width:36%"><?php echo $data5['nf2'];?> KWH</span></td>
+            <td><span style="width:36%"><?php echo $data5['n2'];?> KWH</span></td>
+            <td><span style="width:36%"><?php echo $data5['coefTi'];?></span></td>
             <td>&nbsp;</td>
-            <td><span style="width:36%"><? echo $data5['amperage'];?></span></td>
+            <td><span style="width:36%"><?php echo $data5['amperage'];?></span></td>
           </tr>
         </table></td>
       </tr>
@@ -127,74 +125,74 @@ while($data5=mysql_fetch_array($req5)){
       </tr>
       <tr>
         <td><span style="width: 40%; text-align: left">Consommation Jour</span></td>
-        <td><span style="width: 13%"><span style="width:36%"><? echo $data5['cons1'];?></span> KWH</span></td>
-        <td><span style="width: 10%"><span style="width:36%"><? echo $data5['t1'];?></span>KMF</span></td>
-        <td><span style="width:36%"><? echo $data5['mont1'];?></span></td>
+        <td><span style="width: 13%"><span style="width:36%"><?php echo $data5['cons1'];?></span> KWH</span></td>
+        <td><span style="width: 10%"><span style="width:36%"><?php echo $data5['t1'];?></span>KMF</span></td>
+        <td><span style="width:36%"><?php echo $data5['mont1'];?></span></td>
         <td><span style="width: 10%">KMF</span></td>
       </tr>
       <tr>
         <td><span style="width: 40%; text-align: left">Consommation Nuit</span></td>
-        <td><span style="width: 13%"><span style="width:36%"><? echo $data5['cons2'];?></span> KWH</span></td>
-        <td><span style="width: 10%"><span style="width:36%"><? echo $data5['t2'];?></span>KMF</span></td>
-        <td><span style="width:36%"><? echo $data5['mont2'];?></span></td>
+        <td><span style="width: 13%"><span style="width:36%"><?php echo $data5['cons2'];?></span> KWH</span></td>
+        <td><span style="width: 10%"><span style="width:36%"><?php echo $data5['t2'];?></span>KMF</span></td>
+        <td><span style="width:36%"><?php echo $data5['mont2'];?></span></td>
         <td><span style="width: 10%">KMF</span></td>
       </tr>
       <tr>
         <td><span style="width: 40%; text-align: left">Puissance Souscrite &amp; Location Compteur</span></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td><span style="width:36%"><? echo $data5['puisct'];?></span></td>
+        <td><span style="width:36%"><?php echo $data5['puisct'];?></span></td>
         <td><span style="width: 10%">KMF</span></td>
       </tr>
       <tr>
         <td><span style="width: 40%; text-align: left">Montant HT</span></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td><span style="width:36%"><? echo $data5['totalht'];?></span></td>
+        <td><span style="width:36%"><?php echo $data5['totalht'];?></span></td>
         <td><span style="width: 10%">KMF</span></td>
       </tr>
       <tr>
         <td><span style="width: 40%; text-align: left">Montant TCA</span></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td><span style="width:36%"><? echo $data5['tax'];?></span></td>
+        <td><span style="width:36%"><?php echo $data5['tax'];?></span></td>
         <td><span style="width: 10%">KMF</span></td>
       </tr>
       <tr>
         <td><span style="width: 40%; text-align: left">Montant TTC</span></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td><span style="width:36%"><? echo $data5['totalttc'];?></span></td>
+        <td><span style="width:36%"><?php echo $data5['totalttc'];?></span></td>
         <td><span style="width: 10%">KMF</span></td>
       </tr>
       <tr>
         <td><span style="width: 40%; text-align: left">Contribution ORTC</span></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td><span style="width:36%"><? echo $data5['ortc'];?></span></td>
+        <td><span style="width:36%"><?php echo $data5['ortc'];?></span></td>
         <td><span style="width: 10%">KMF</span></td>
       </tr>
       <tr>
         <td><span style="width: 40%; text-align: left">Impayee</span></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td><span style="width:36%"><? echo $data5['impayee'];?></span></td>
+        <td><span style="width:36%"><?php echo $data5['impayee'];?></span></td>
         <td><span style="width: 10%">KMF</span></td>
       </tr>
-      <? if ($data5['Pre']!=0){?>
+      <?php if ($data5['Pre']!=0){?>
       <tr>
         <td>Frais de remise </td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td><span style="width:36%"><? echo $data5['Pre'];?></span></td>
+        <td><span style="width:36%"><?php echo $data5['Pre'];?></span></td>
         <td><span style="width: 10%">KMF</span></td>
       </tr>
-      <? } else {} ?>
+      <?php } else {} ?>
       <tr>
         <td><span style="width:36%">MONTANT TOTAL A PAYER </span></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td><span style="width:36%"><? echo $data5['totalnet'];?></span></td>
+        <td><span style="width:36%"><?php echo $data5['totalnet'];?></span></td>
         <td>KMF</td>
       </tr>
     </table></td>
@@ -202,7 +200,7 @@ while($data5=mysql_fetch_array($req5)){
 </table>
 <div class="panel panel-info">
   <div class="panel-heading">
-    <h3 class="panel-title">RECU DE : <font color="#000000"><? echo $data5['nomprenom'];?></font></h3>
+    <h3 class="panel-title">RECU DE : <font color="#000000"><?php echo $data5['nomprenom'];?></font></h3>
   </div>
   <div class="panel-body">
     <table width="100%" border="0" cellpadding="0" cellspacing="0" bordercolor="#000000">
@@ -250,11 +248,11 @@ while($data5=mysql_fetch_array($req5)){
           </tr>
           <tr>
             <td><strong> JOUR</strong></td>
-            <td><span style="width:36%"><? echo $data5['nf'];?> KWH</span></td>
-            <td><span style="width:36%"><? echo $data5['n'];?> KWH</span></td>
-            <td><span style="width:36%"><? echo $data5['cons'];?> KWH</span></td>
-            <td><span style="width:36%"><? echo $data5['nfacture'];$nfacture=$data5['nfacture']; ?></span></td>
-            <td><span style="width:36%"><? echo $data5['ncompteur'];?></span></td>
+            <td><span style="width:36%"><?php echo $data5['nf'];?> KWH</span></td>
+            <td><span style="width:36%"><?php echo $data5['n'];?> KWH</span></td>
+            <td><span style="width:36%"><?php echo $data5['cons'];?> KWH</span></td>
+            <td><span style="width:36%"><?php echo $data5['nfacture'];$nfacture=$data5['nfacture']; ?></span></td>
+            <td><span style="width:36%"><?php echo $data5['ncompteur'];?></span></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
@@ -266,11 +264,11 @@ while($data5=mysql_fetch_array($req5)){
           </tr>
           <tr>
             <td><strong>NUIT</strong></td>
-            <td><span style="width:36%"><? echo $data5['nf2'];?> KWH</span></td>
-            <td><span style="width:36%"><? echo $data5['n2'];?> KWH</span></td>
+            <td><span style="width:36%"><?php echo $data5['nf2'];?> KWH</span></td>
+            <td><span style="width:36%"><?php echo $data5['n2'];?> KWH</span></td>
             <td>&nbsp;</td>
-            <td><span style="width:36%"><? echo $data5['id'];?></span></td>
-            <td><span style="width:36%"><? echo $data5['amperage'];?></span></td>
+            <td><span style="width:36%"><?php echo $data5['id'];?></span></td>
+            <td><span style="width:36%"><?php echo $data5['amperage'];?></span></td>
           </tr>
         </table></td>
       </tr>
@@ -278,10 +276,10 @@ while($data5=mysql_fetch_array($req5)){
     <p>&nbsp;</p>
     <table width="100%" border="0">
       <tr>
-        <td width="57%"><p>Nom / Raison Sociale : <font color="#000000"><? echo $data5['nomprenom'];?></font></p>
-        <p>ADRESSE : <span style="width: 40%; text-align: left"><span style="width:36%"><? echo $data5['ville'];?></span> - <span style="width:36%"><? echo $data5['quartier'];?></span></span></p>
+        <td width="57%"><p>Nom / Raison Sociale : <font color="#000000"><?php echo $data5['nomprenom'];?></font></p>
+        <p>ADRESSE : <span style="width: 40%; text-align: left"><span style="width:36%"><?php echo $data5['ville'];?></span> - <span style="width:36%"><?php echo $data5['quartier'];?></span></span></p>
         <p>  <img src="codeBarre.php?Code=<?=$Codebare?>" /> DATE : </p></td>
-        <td width="43%"><p><span style="width:36%">Montant total à payer </span>: <span style="width:36%"><? echo $data5['totalnet'];?></span> KMF</p>
+        <td width="43%"><p><span style="width:36%">Montant total à payer </span>: <span style="width:36%"><?php echo $data5['totalnet'];?></span> KMF</p>
         <p>Montant paye: ...................KMF</p>
         <p>Solde à reporter:................KMF</p></td>
       </tr>

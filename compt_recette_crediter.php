@@ -11,7 +11,7 @@ require 'fonction.php';
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 
 </head>
 <?
@@ -23,7 +23,7 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
     <h3 class="panel-title">RECETTES (choisir le compte a Crediter 
       <?php
 $req1="SELECT * FROM $plan  ";
-$req=mysql_query($req1);
+$req=mysqli_query($linki,$req1);
 ?>
       ) </h3>
   </div>
@@ -33,7 +33,7 @@ $req=mysql_query($req1);
       <tr> 
         <td width="84%"> <div align=""> 
             <form action="compt_plan_chercher_crediter.php" method="post" name="testform" id="form2">
-                   <? require 'compt_plan_listecompte.php'; ?>
+                   <?php require 'compt_plan_listecompte.php'; ?>
             </form>
           </div></td>
       </tr>

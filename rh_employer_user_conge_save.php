@@ -41,7 +41,7 @@ echo $sqlpf="INSERT INTO $tb_rhconge_date
  VALUES
 ('$nomprenom', '$matricule','$date_entre','$date_sortie', '$nbJours', '$type')";
 	 
-$rf=mysql_query($sqlpf);
+$rf=mysqli_query($linki,$sqlpf);
 }
 
 ?>

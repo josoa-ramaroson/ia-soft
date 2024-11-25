@@ -19,9 +19,9 @@ $sql="INSERT INTO $tbl_appdeproduit ( id_dem, id_nom , date_dem, nomprenom, dire
 
 VALUES
 (  '$id_dem',  '$id_nom' ,  '$date_dem', '$nomprenom', '$direction', '$service', '$designation', '$quantite', '$fournisseur')";
-$result=mysql_query($sql);
+$result=mysqli_query($linki,$sql);
 
-mysql_close(); 
+mysqli_close($linki); 
 ?>
 <?php
 $idr=md5(microtime()).$id_dem;

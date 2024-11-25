@@ -48,14 +48,14 @@ $idservice=addslashes($_POST['subcat']);
  
 
 $sql1 = "SELECT * FROM $tb_rhservice where idser=$idservice";
-$result1 = mysql_query($sql1);
-while ($row1 = mysql_fetch_assoc($result1)) {
+$result1 = mysqli_query($linki,$sql1);
+while ($row1 = mysqli_fetch_assoc($result1)) {
 $service=$row1['service'];
 }  
 
 $sql2 = "SELECT * FROM $tb_rhdirection where idrh=$iddirection";
-$result2 = mysql_query($sql2);
-while ($row2 = mysql_fetch_assoc($result2)) {
+$result2 = mysqli_query($linki,$sql2);
+while ($row2 = mysqli_fetch_assoc($result2)) {
 $direction=$row2['direction'];
 } */
 
@@ -120,8 +120,8 @@ $NTC=addslashes($_POST['NTC']);
 
 
 $sqlRECH = "SELECT * FROM $tb_rhpersonnel where idrhp=$id";
-$resultRECH = mysql_query($sqlRECH);
-while ($RECH = mysql_fetch_assoc($resultRECH)) {
+$resultRECH = mysqli_query($linki,$sqlRECH);
+while ($RECH = mysqli_fetch_assoc($resultRECH)) {
 
   $avancement=$RECH['avancement'];
   $anciennete=$RECH['anciennete'];
@@ -167,7 +167,7 @@ while ($RECH = mysql_fetch_assoc($resultRECH)) {
 $sql="update $tb_rhpersonnel  set 
 
  id_nom='$id_nom' , Designation='$Designation', nomprenom='$nomprenom', sex='$sex', stfamille='$stfamille', nenfant='$nenfant', ville='$ville', tel='$tel', email='$email', matricule='$matricule', niveau='$niveau', specialisation='$specialisation', login='$login', pwd='$pwd', dnaissance='$dnaissance',  dembauche='$dembauche', dinactivite='$dinactivite', titre='$titre', categorie='$categorie',  cm='$cm', statut='$statut', indice='$indice', taux='$tauxsalaire', sbase='$sbase', igr='$igr', retraite='$retraite', SS='$SS', SI='$SI', SD='$SD',SR='$SR',SNET='$SNET' , NTC='$NTC', CPP='$CPP', Tin='$Tin',  igrchoix='$igrchoix' , crchoix='$crchoix'  WHERE idrhp LIKE '$_POST[id]' ";
-$result=mysql_query($sql);
+$result=mysqli_query($linki,$sql);
 
   if($result){
 	   //SUCCESS
@@ -177,5 +177,5 @@ $result=mysql_query($sql);
    else {
    echo "ERROR";
    }
-  mysql_close(); 
+  mysqli_close($linki); 
 ?>

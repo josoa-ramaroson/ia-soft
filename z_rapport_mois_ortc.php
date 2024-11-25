@@ -6,7 +6,7 @@ require 'fonction.php';
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -27,7 +27,7 @@ require 'fonction.php';
 require("bienvenue.php");    // on appelle la page contenant la fonction
 ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
- <? require 'z_rapport_lien.php'; ?>
+ <?php require 'z_rapport_lien.php'; ?>
   <?php
 $mois=$_POST['mois'];
 $annee=$_POST['annee']; 
@@ -162,13 +162,13 @@ $req = mysqli_query($linkibk,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mys
               </tr>
               <tr>
                 <td>Facturation</td>
-                <td><? echo strrev(chunk_split(strrev($tFS),3," ")) ;?></td>
-                <td><? echo strrev(chunk_split(strrev($tFSO),3," ")) ;?></td>
-                <td><? echo strrev(chunk_split(strrev($tFSi),3," ")) ;?></td>
-                <td><? echo strrev(chunk_split(strrev($tFSl),3," ")) ;?></td>
-                <td><? $E1=$tFSt; echo strrev(chunk_split(strrev($tFSt),3," ")) ;?></td>
-                <td><? $E2=$tPS;  echo strrev(chunk_split(strrev($tPS),3," ")) ;?></td>
-                <td><? echo $Nombpaye;?></td>
+                <td><?php echo strrev(chunk_split(strrev($tFS),3," ")) ;?></td>
+                <td><?php echo strrev(chunk_split(strrev($tFSO),3," ")) ;?></td>
+                <td><?php echo strrev(chunk_split(strrev($tFSi),3," ")) ;?></td>
+                <td><?php echo strrev(chunk_split(strrev($tFSl),3," ")) ;?></td>
+                <td><?php $E1=$tFSt; echo strrev(chunk_split(strrev($tFSt),3," ")) ;?></td>
+                <td><?php $E2=$tPS;  echo strrev(chunk_split(strrev($tPS),3," ")) ;?></td>
+                <td><?php echo $Nombpaye;?></td>
               </tr>
             </table></td>
           </tr>
@@ -210,9 +210,9 @@ mysqli_close ($linkibk);
 
         <tr bgcolor="#FFFFFF">
           <td>&nbsp;</td>
-          <td align="center"><? echo $Nombpaye;?></td>
+          <td align="center"><?php echo $Nombpaye;?></td>
           <td align="center">250 KMF</td>
-          <td align="center"><? $ortcmontant=250*$Nombpaye; echo strrev(chunk_split(strrev($ortcmontant),3," "));?> KMF</td>
+          <td align="center"><?php $ortcmontant=250*$Nombpaye; echo strrev(chunk_split(strrev($ortcmontant),3," "));?> KMF</td>
         </tr>
 
       </table>

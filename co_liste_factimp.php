@@ -21,7 +21,7 @@ require 'fonction.php';
 require 'configuration.php';
 
 $sqfact=" SELECT * FROM $tbl_fact f , $tbl_contact c  where f.id=c.id and f.nserie=$nserie and f.fannee=$anneec ORDER BY f.id ASC ";
-$reqfact=mysql_query($sqfact);
+$reqfact=mysqli_query($linki,$sqfact);
 ?>
     </font></font></font><br>
     </p>
@@ -39,22 +39,22 @@ $reqfact=mysql_query($sqfact);
           <td width="12%" align="center"><font color="#FFFFFF"><strong>Montant net</strong></font></td>
         </tr>
         <?php
-while($datafact=mysql_fetch_array($reqfact)){ // Start looping table row 
+while($datafact=mysqli_fetch_array($reqfact)){ // Start looping table row 
 ?>
         <tr>
-          <td align="center" bgcolor="#FFFFFF"><font color="#000000"><? echo $datafact['id'];?></font></td>
-          <td  bgcolor="#FFFFFF"><font color="#000000"><? echo $datafact['nomprenom'];?></font></td>
-          <td align="center" bgcolor="#FFFFFF"><font color="#000000"><? echo $datafact['ville'];?></font></td>
-          <td align="center" bgcolor="#FFFFFF"><font color="#000000"><? echo $datafact['quartier'];?></font></td>
-          <td align="center" bgcolor="#FFFFFF"><em><font color="#000000"><? echo $datafact['totalttc'];?></font></em></td>
-          <td align="center" bgcolor="#FFFFFF"><em><font color="#000000"><? echo $datafact['ortc'];?></font></em></td>
-          <td align="center" bgcolor="#FFFFFF"><font color="#000000"><? echo $datafact['impayee'];?></font></td>
-          <td align="center" bgcolor="#FFFFFF"><font color="#000000"><? echo $datafact['Pre'];?></font></td>
-          <td align="center" bgcolor="#FFFFFF"><font color="#000000"><? echo $datafact['totalnet'];?></font></td>
+          <td align="center" bgcolor="#FFFFFF"><font color="#000000"><?php echo $datafact['id'];?></font></td>
+          <td  bgcolor="#FFFFFF"><font color="#000000"><?php echo $datafact['nomprenom'];?></font></td>
+          <td align="center" bgcolor="#FFFFFF"><font color="#000000"><?php echo $datafact['ville'];?></font></td>
+          <td align="center" bgcolor="#FFFFFF"><font color="#000000"><?php echo $datafact['quartier'];?></font></td>
+          <td align="center" bgcolor="#FFFFFF"><em><font color="#000000"><?php echo $datafact['totalttc'];?></font></em></td>
+          <td align="center" bgcolor="#FFFFFF"><em><font color="#000000"><?php echo $datafact['ortc'];?></font></em></td>
+          <td align="center" bgcolor="#FFFFFF"><font color="#000000"><?php echo $datafact['impayee'];?></font></td>
+          <td align="center" bgcolor="#FFFFFF"><font color="#000000"><?php echo $datafact['Pre'];?></font></td>
+          <td align="center" bgcolor="#FFFFFF"><font color="#000000"><?php echo $datafact['totalnet'];?></font></td>
         </tr>
         <?php
 }
-mysql_close ();  
+mysqli_close ();  
 ?>
       </table>
       <p>&nbsp;</p>

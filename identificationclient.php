@@ -4,8 +4,8 @@
 	$pwd=addslashes($_POST['m2']);
 	require 'fonction.php';
 	$sql="SELECT * FROM $tbl_contact WHERE login='$login' and pwd='$pwd'" ;
-	$resultat= mysql_query($sql);
-	$u_utilisateur=mysql_fetch_array($resultat);
+	$resultat= mysqli_query($linki,$sql);
+	$u_utilisateur=mysqli_fetch_array($resultat);
 
 	if ($u_utilisateur===FALSE)
 	{

@@ -118,7 +118,7 @@ function barre_navigation ($nb_total,$nb_affichage_par_page,$debut,$nb_liens_dan
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <script type="text/javascript">
@@ -213,7 +213,7 @@ Require("bienvenue.php"); // on appelle la page contenant la fonction
                       </tr>
                       <tr>
                         <td>Login</td>
-                        <td><input name="id_nom" type="text" class="form-control" id="id_nom" value="<? echo $id_nom; ?>" size="50" readonly></td>
+                        <td><input name="id_nom" type="text" class="form-control" id="id_nom" value="<?php echo $id_nom; ?>" size="50" readonly></td>
                       </tr>
                       <tr>
                         <td>&nbsp;</td>
@@ -282,9 +282,9 @@ $req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql
 while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
     <tr> 
-      <td align="center" bgcolor="#FFFFFF"><? echo $data['idl'];?> <div align="left"></div></td>
-      <td align="center" bgcolor="#FFFFFF"><em><? echo $data['id_nom'];?></em></td>
-      <td align="center" bgcolor="#FFFFFF"><em><? echo $data['organisme'];?></em></td>
+      <td align="center" bgcolor="#FFFFFF"><?php echo $data['idl'];?> <div align="left"></div></td>
+      <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['id_nom'];?></em></td>
+      <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['organisme'];?></em></td>
       <td align="center" bgcolor="#FFFFFF">&nbsp;</td>
     </tr>
     <?php

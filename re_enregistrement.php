@@ -11,7 +11,7 @@ require 'fonction.php';
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script type="text/javascript">
 function AjaxFunction()
 {
@@ -103,7 +103,7 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
           <td width="1%">&nbsp;</td>
           <td width="12%">&nbsp;</td>
           <td width="40%"><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-            <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+            <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
           </font><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
           </font></strong></font></strong></font></strong></font></strong></font></strong></font></td>
         </tr>
@@ -126,9 +126,9 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
             <select name="Tarif" id="Tarif">
               <?php
 $sql8 = ("SELECT * FROM tarif ORDER BY idt ASC");
-$result8 = mysql_query($sql8);
+$result8 = mysqli_query($linki,$sql8);
 
-while ($row8 = mysql_fetch_assoc($result8)) {
+while ($row8 = mysqli_fetch_assoc($result8)) {
 echo '<option value='.$row8['idt'].'> '.$row8['Libelle'].' </option>';
 }
 
@@ -148,9 +148,9 @@ echo '<option value='.$row8['idt'].'> '.$row8['Libelle'].' </option>';
             <select name="CodeTypeClts" id="CodeTypeClts">
               <?php
 $sql81 = ("SELECT * FROM $tbl_client ORDER BY idtclient ASC");
-$result81 = mysql_query($sql81);
+$result81 = mysqli_query($linki,$sql81);
 
-while ($row81 = mysql_fetch_assoc($result81)) {
+while ($row81 = mysqli_fetch_assoc($result81)) {
 echo '<option value='.$row81['idtclient'].'> '.$row81['TypeClts'].' </option>';
 }
 
@@ -170,9 +170,9 @@ echo '<option value='.$row81['idtclient'].'> '.$row81['TypeClts'].' </option>';
             <select name="CodeTypePiece" id="CodeTypePiece">
               <?php
 $sql82 = "SELECT * FROM $tbl_piece ORDER BY idtyp ASC";
-$result82 = mysql_query($sql82);
+$result82 = mysqli_query($linki,$sql82);
 
-while ($row82 = mysql_fetch_assoc($result82)) {
+while ($row82 = mysqli_fetch_assoc($result82)) {
 echo '<option value='.$row82['CodeTypePiece'].'> '.$row82['Pieces'].' </option>';
 }
 
@@ -202,9 +202,9 @@ echo '<option value='.$row82['CodeTypePiece'].'> '.$row82['Pieces'].' </option>'
             <select name="ile" id="select7">
               <?php
 $sql8 = ("SELECT ile FROM ile ORDER BY ile ASC");
-$result8 = mysql_query($sql8);
+$result8 = mysqli_query($linki,$sql8);
 
-while ($row8 = mysql_fetch_assoc($result8)) {
+while ($row8 = mysqli_fetch_assoc($result8)) {
 echo '<option> '.$row8['ile'].' </option>';
 }
 

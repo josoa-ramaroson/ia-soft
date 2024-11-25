@@ -6,7 +6,7 @@ require 'fonction.php';
 <html>
 <head>
 <title>
-<? include("titre.php"); ?></title>
+<?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -26,7 +26,7 @@ require('stk_Rapport_lien.php');
 </table>
   <?php
 $sql1="SELECT MONTHNAME(datev)AS mois, YEAR(datev) AS annee , SUM(PTotal) AS prix  FROM $tbl_vente GROUP BY YEAR(datev),MONTHNAME(datev) ";
-$req=mysql_query($sql1);
+$req=mysqli_query($linki,$sql1);
 ?>
   </font></strong></font></font></font></font></p>
 <p>&nbsp;</p>
@@ -45,18 +45,18 @@ $req=mysql_query($sql1);
             <td width="18%" align="center" bgcolor="#0033FF"><font color="#CCCCCC" size="3"><strong>MONTANT</strong></font></td>
           </tr>
           <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
           <tr> 
-            <td align="center" bgcolor="#FFFFFF"><? echo $data['annee'];?></td>
-            <td align="center" bgcolor="#FFFFFF"><? echo $data['mois'];?> </td>
+            <td align="center" bgcolor="#FFFFFF"><?php echo $data['annee'];?></td>
+            <td align="center" bgcolor="#FFFFFF"><?php echo $data['mois'];?> </td>
             <td align="center" bgcolor="#FFFFFF">&nbsp; </td>
-            <td align="center" bgcolor="#FFFFFF"><? echo strrev(chunk_split(strrev($data['prix']),3," "));  ?></td>
+            <td align="center" bgcolor="#FFFFFF"><?php echo strrev(chunk_split(strrev($data['prix']),3," "));  ?></td>
           </tr>
           <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
         </table>
       </form></td>

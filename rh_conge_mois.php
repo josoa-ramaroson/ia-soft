@@ -13,7 +13,7 @@ require 'fc-affichage.php';
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script language="javascript" src="calendar/calendar.js"></script>
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <script type="text/javascript">
 function AjaxFunction()
@@ -102,8 +102,8 @@ require 'fonction.php';
 $annee=$_POST['annee']; 
 
 $sql = "SELECT count(*) FROM $tb_rhconge_date where MONTH(date_entre)=$mois and YEAR(date_entre)=$annee ";  
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-$nb_total = mysql_fetch_array($resultat);  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
 }  
@@ -111,7 +111,7 @@ else {
 if (!isset($_GET['debut'])) $_GET['debut'] = 0; 
 $nb_affichage_par_page = 50; 
 $sql = "SELECT * FROM $tb_rhconge_date  where MONTH(date_entre)=$mois and YEAR(date_entre)=$annee ORDER BY matricule ASC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
 </p>
 <div class="panel panel-primary">
@@ -166,23 +166,23 @@ echo '<option> '.$row81['annee'].' </option>';
     <td width="16%" align="center"><font color="#FFFFFF"><strong>Type d'absence</strong></font></td>
   </tr>
   <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
   <tr>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data['matricule'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['nomprenom'];?></em></div></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data['date_entre'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data['date_sortie'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data['nbJours'];?></em></td>
-    <td align="center" bgcolor="#FFFFFF"><em><? echo $data['type'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['matricule'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['nomprenom'];?></em></div></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['date_entre'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['date_sortie'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['nbJours'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><em><?php echo $data['type'];?></em></td>
   </tr>
   <?php
 }
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close ();  
+mysqli_free_result ($resultat);  
+mysqli_close ();  
 ?>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

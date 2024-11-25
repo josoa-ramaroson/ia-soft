@@ -1,8 +1,8 @@
-<?
+<?php
 require 'session.php';
 require 'fonction.php';
 ?>
-<?
+<?php
 if(($_SESSION['u_niveau'] != 4) && ($_SESSION['u_niveau'] != 6)  && ($_SESSION['u_niveau'] != 7) ) {
 	header("location:index.php?error=false");
 	exit;
@@ -10,7 +10,7 @@ if(($_SESSION['u_niveau'] != 4) && ($_SESSION['u_niveau'] != 6)  && ($_SESSION['
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <script language="javascript" src="calendar/calendar.js"></script>
@@ -25,7 +25,7 @@ if(($_SESSION['u_niveau'] != 4) && ($_SESSION['u_niveau'] != 6)  && ($_SESSION['
 }
 </style>
 </head>
-<?
+<?php
 Require("bienvenue.php");    // on appelle la page contenant la fonction
 ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
@@ -77,16 +77,16 @@ while($LesDoublons=mysqli_fetch_array($reqdoub)){ // Start looping table row
 ?>
   <tr>
     <td align="center" bgcolor="#FFFFFF"><div align="left"></div></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo $LesDoublons['nbr_doublon'];?></td>
-    <td  bgcolor="#FFFFFF"><? echo $LesDoublons['idf'];?></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo $LesDoublons['id'];?></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo $LesDoublons['date'];?></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo $LesDoublons['Nomclient'];?></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo $LesDoublons['montant'];?></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo $LesDoublons['paiement'];?></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo $LesDoublons['report'];?></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo $LesDoublons['id_nom'];?></td>
-    <td align="center" bgcolor="#FFFFFF"><a href="paiement_doublon_sup.php?ID=<? echo md5(microtime()).$LesDoublons['idp']; ?>" onClick="return confirm('Etes-vous sur de vouloir supprimer ce doublon')" ; style="margin:5px"  class="btn btn btn-danger"> Supprimer doublon</a></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $LesDoublons['nbr_doublon'];?></td>
+    <td  bgcolor="#FFFFFF"><?php echo $LesDoublons['idf'];?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $LesDoublons['id'];?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $LesDoublons['date'];?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $LesDoublons['Nomclient'];?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $LesDoublons['montant'];?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $LesDoublons['paiement'];?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $LesDoublons['report'];?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $LesDoublons['id_nom'];?></td>
+    <td align="center" bgcolor="#FFFFFF"><a href="paiement_doublon_sup.php?ID=<?php echo md5(microtime()).$LesDoublons['idp']; ?>" onClick="return confirm('Etes-vous sur de vouloir supprimer ce doublon')" ; style="margin:5px"  class="btn btn btn-danger"> Supprimer doublon</a></td>
   </tr>
   <?php
 

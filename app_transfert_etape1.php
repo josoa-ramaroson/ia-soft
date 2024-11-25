@@ -18,15 +18,15 @@ require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <body>
 
-<? require 'app_transfert_menu.php';?>
+<?php require 'app_transfert_menu.php';?>
 
   <?php
 require 'fonction.php';
 $sql = "SELECT count(*) FROM $tbl_apptransfert where statut='1'";  
 
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
 
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -40,7 +40,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT * FROM $tbl_apptransfert  where statut='1' ORDER BY idtansft DESC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
  
 // on ex?cute la requ?te  ASC
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 
 	$sqldate="SELECT * FROM $tbl_caisse"; //DESC  ASC
 	$resultldate=mysqli_query($linki,$sqldate);
@@ -62,38 +62,38 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
     <td width="150" bgcolor="#3071AA"><strong><font color="#FFFFFF">Agent(C)</font></strong></td>
   </tr>
   <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
-  <tr bgcolor="<? gettatut($data['statut']); ?>">
-    <td ><? echo $data['idtansft']; ?>
+  <tr bgcolor="<?php gettatut($data['statut']); ?>">
+    <td ><?php echo $data['idtansft']; ?>
       <div align="left"></div></td>
-    <td ><? echo $data['Sdate']; ?></span></td>
-    <td ><? echo $data['Stitre'];?></td>
-    <td ><? echo $data['Qvente'];?></td>
-    <td ><? echo $data['Snumero'];?></td>
-    <td ><? echo $data['Sid_nom'];?></td>
-    <td ><? echo $data['Edate']; ?></span></td>
-    <td ><? echo $data['Etitre'];?></td>
+    <td ><?php echo $data['Sdate']; ?></span></td>
+    <td ><?php echo $data['Stitre'];?></td>
+    <td ><?php echo $data['Qvente'];?></td>
+    <td ><?php echo $data['Snumero'];?></td>
+    <td ><?php echo $data['Sid_nom'];?></td>
+    <td ><?php echo $data['Edate']; ?></span></td>
+    <td ><?php echo $data['Etitre'];?></td>
     <td >  
- <? if ((($_SESSION['u_niveau']==40)||($_SESSION['u_niveau']==40)) and ($data['statut']==1)) {?>
+ <?php if ((($_SESSION['u_niveau']==40)||($_SESSION['u_niveau']==40)) and ($data['statut']==1)) {?>
       
- <a href="app_transfert_etape_confstatut.php?id=<? echo md5(microtime()).$data['idtansft']; ?>&satut=<? $a='2';echo md5(microtime()).$a;?>&d=<? echo  md5(microtime()).$datecaisse['datecaisse'];?>&ti=<? echo  md5(microtime()).$data['Etitre'];?>&q=<? echo  $data['Qvente'];?>&id_nom=<? echo  $id_nom;?>&agence=<? echo  md5(microtime()).$data['agence'];?>" onClick="return confirm('Etes-vous sûr d'avoir receptioner cette quantité de stock )" ; style="margin:5px"   class="btn btn-sm btn-danger" >Confirmation</a><? } else { } ?>
+ <a href="app_transfert_etape_confstatut.php?id=<?php echo md5(microtime()).$data['idtansft']; ?>&satut=<?php $a='2';echo md5(microtime()).$a;?>&d=<?php echo  md5(microtime()).$datecaisse['datecaisse'];?>&ti=<?php echo  md5(microtime()).$data['Etitre'];?>&q=<?php echo  $data['Qvente'];?>&id_nom=<?php echo  $id_nom;?>&agence=<?php echo  md5(microtime()).$data['agence'];?>" onClick="return confirm('Etes-vous sûr d'avoir receptioner cette quantité de stock )" ; style="margin:5px"   class="btn btn-sm btn-danger" >Confirmation</a><?php } else { } ?>
  </td>
     <td >&nbsp;</td>
-    <td width="50" ><? if (($data['Sid_nom']==$id_nom) and ($data['statut']==1)) {?>
+    <td width="50" ><?php if (($data['Sid_nom']==$id_nom) and ($data['statut']==1)) {?>
       
- <a href="app_produit_sortie_cancel.php?ID=<? echo md5(microtime()).$data['idcsortie']; ?>&d=<? echo  md5(microtime());?>" 
- onClick="return confirm('Etes-vous sûr d'avoir RETOURNER cette quantité de stock )" ; style="margin:5px"   class="btn btn-sm btn-danger">Retour</a><? } else { } ?>
+ <a href="app_produit_sortie_cancel.php?ID=<?php echo md5(microtime()).$data['idcsortie']; ?>&d=<?php echo  md5(microtime());?>" 
+ onClick="return confirm('Etes-vous sûr d'avoir RETOURNER cette quantité de stock )" ; style="margin:5px"   class="btn btn-sm btn-danger">Retour</a><?php } else { } ?>
     </td>
   </tr>
   <?php
 
 }
 
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
+mysqli_free_result ($resultat);  
 	                 function gettatut($fetat){
 				 if ($fetat=='1') { echo $couleur="#fdff00";}//jaune	
 				 if ($fetat=='2') { echo $couleur="#87e385";}//vert fonce

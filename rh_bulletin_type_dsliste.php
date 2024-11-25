@@ -17,14 +17,14 @@ $iddirection=addslashes($_REQUEST['direction']);
 $idservice=addslashes($_REQUEST['subcat']);
 
 $sql1 = "SELECT * FROM $tb_rhservice where idser=$idservice";
-$result1 = mysql_query($sql1);
-while ($row1 = mysql_fetch_assoc($result1)) {
+$result1 = mysqli_query($linki,$sql1);
+while ($row1 = mysqli_fetch_assoc($result1)) {
 $service=$row1['service'];
 }  
 
 $sql2 = "SELECT * FROM $tb_rhdirection where idrh=$iddirection";
-$result2 = mysql_query($sql2);
-while ($row2 = mysql_fetch_assoc($result2)) {
+$result2 = mysqli_query($linki,$sql2);
+while ($row2 = mysqli_fetch_assoc($result2)) {
 $direction=$row2['direction'];
 } 
     $m1d=$direction;
@@ -37,18 +37,18 @@ $direction=$row2['direction'];
 <p>
 <?php
 $sql = "SELECT * FROM $tb_rhpaie where anneepaie='$anneepaie' and moispaie='$moispaie' and direction='$m1d' and  service='$m2s' ORDER BY matricule ASC ";  //DESC
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
  <?php
 $sql2="SELECT SUM(sbase) AS sbase , SUM(SS) AS SS , SUM(SI) AS SI, SUM(SD) AS SD, SUM(SR) AS SR, SUM(SNET) AS SNET, moispaie ,anneepaie , direction, service,  SUM(igr) AS igr ,  SUM(retraite) AS retraite   FROM $tb_rhpaie   where anneepaie='$anneepaie' and moispaie='$moispaie' and direction='$m1d' and  service='$m2s'"; 
 
 
 
-$resultat2 = mysql_query($sql2);	
-$data2=mysql_fetch_array($resultat2)
+$resultat2 = mysqli_query($linki,$sql2);	
+$data2=mysqli_fetch_array($resultat2)
 ?>
 </p>
-  <p align="center"><em>RECAPITULATIF POUR DIRECTION  </em> - <em><? echo  $m1d.' SERVICE '.$m2s ;?></em> - <span class="panel-title"><? echo $affichemois.' '.$anneepaie ; ?></span></p>
+  <p align="center"><em>RECAPITULATIF POUR DIRECTION  </em> - <em><?php echo  $m1d.' SERVICE '.$m2s ;?></em> - <span class="panel-title"><?php echo $affichemois.' '.$anneepaie ; ?></span></p>
   <p>&nbsp;</p>
   <table width="100%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
     <tr bgcolor="#3071AA">
@@ -65,13 +65,13 @@ $data2=mysql_fetch_array($resultat2)
     <tr>
       <td align="center" bgcolor="#FFFFFF">TOTAL </td>
       <td align="center">&nbsp;</td>
-      <td align="center" bgcolor="#FFFFFF"><font color="#000000"><? echo $data2['direction'];?></font></td>
-      <td align="center" bgcolor="#FFFFFF"><font color="#000000"><? echo $data2['service'];?></font></td>
-      <td align="center" bgcolor="#FFFFFF"><em><? echo strrev(chunk_split(strrev($data2['SS']),3," ")); ?></em></td>
-      <td align="center" bgcolor="#FFFFFF"><em><? echo strrev(chunk_split(strrev($data2['SI']),3," "));?></em></td>
-      <td align="center" bgcolor="#FFFFFF"><em><? echo strrev(chunk_split(strrev($data2['SD']),3," "));?></em></td>
-      <td align="center" bgcolor="#FFFFFF"><em><? echo strrev(chunk_split(strrev($data2['SR']),3," "));?></em></td>
-      <td align="center" bgcolor="#FFFFFF"><em><? echo strrev(chunk_split(strrev($data2['SNET']),3," "));?><em></td>
+      <td align="center" bgcolor="#FFFFFF"><font color="#000000"><?php echo $data2['direction'];?></font></td>
+      <td align="center" bgcolor="#FFFFFF"><font color="#000000"><?php echo $data2['service'];?></font></td>
+      <td align="center" bgcolor="#FFFFFF"><em><?php echo strrev(chunk_split(strrev($data2['SS']),3," ")); ?></em></td>
+      <td align="center" bgcolor="#FFFFFF"><em><?php echo strrev(chunk_split(strrev($data2['SI']),3," "));?></em></td>
+      <td align="center" bgcolor="#FFFFFF"><em><?php echo strrev(chunk_split(strrev($data2['SD']),3," "));?></em></td>
+      <td align="center" bgcolor="#FFFFFF"><em><?php echo strrev(chunk_split(strrev($data2['SR']),3," "));?></em></td>
+      <td align="center" bgcolor="#FFFFFF"><em><?php echo strrev(chunk_split(strrev($data2['SNET']),3," "));?><em></td>
     </tr>
 
   </table>
@@ -89,27 +89,27 @@ $data2=mysql_fetch_array($resultat2)
      <td width="12%" align="center"><font color="#FFFFFF"><strong>SALAIRE NET</strong></font></td>
    </tr>
    <?php
-while($datafact=mysql_fetch_array($req)){ // Start looping table row 
+while($datafact=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
     <tr bgcolor="#FFFFFF">
      <td align="center"><font color="#000000">
      
-	 <? echo $datafact['matricule'];?>
+	 <?php echo $datafact['matricule'];?>
      
 	 </font></td>
-     <td ><font color="#000000"><? echo $datafact['nomprenom'];?></font></td>
-     <td align="center" ><font color="#000000"><? echo $datafact['direction'];?></font></td>
-     <td align="center" ><font color="#000000"><? echo $datafact['service'];?></font></td>
-     <td align="center" ><em><font color="#000000"><? echo $datafact['SS'];?></font></em></td>
-     <td align="center" ><font color="#000000"><? echo $datafact['SI'];?></font></td>
-     <td align="center" ><font color="#000000"><? echo $datafact['SD'];?></font></td>
-     <td align="center" ><font color="#000000"><? echo $datafact['SR'];?></font></td>
-     <td align="center" ><? echo $datafact['SNET'];?></td>
+     <td ><font color="#000000"><?php echo $datafact['nomprenom'];?></font></td>
+     <td align="center" ><font color="#000000"><?php echo $datafact['direction'];?></font></td>
+     <td align="center" ><font color="#000000"><?php echo $datafact['service'];?></font></td>
+     <td align="center" ><em><font color="#000000"><?php echo $datafact['SS'];?></font></em></td>
+     <td align="center" ><font color="#000000"><?php echo $datafact['SI'];?></font></td>
+     <td align="center" ><font color="#000000"><?php echo $datafact['SD'];?></font></td>
+     <td align="center" ><font color="#000000"><?php echo $datafact['SR'];?></font></td>
+     <td align="center" ><?php echo $datafact['SNET'];?></td>
    </tr>
    <?php
 }
 
-mysql_close ();  
+mysqli_close ();  
 				  function gettatut($fetat){
 				  if ($fetat<=1000000 && $fetat>=500000)         { echo $couleur="#ffc88d";}//orange 
 				  if ($fetat>=1000000)                          { echo $couleur="#ec9b9b";}//rouge -Declined

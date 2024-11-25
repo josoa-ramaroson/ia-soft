@@ -12,7 +12,7 @@ if( ($_SESSION['u_niveau'] != 7)&&($_SESSION['u_niveau'] != 40)&&($_SESSION['u_n
 <html>
 <head>
 <title>
-<? include("titre.php"); ?></title>
+<?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -66,13 +66,13 @@ $np=substr($_REQUEST["np"],32);
 $req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
   <strong> SUIVI DE STOCK au magasin</p>
- <p><a href="app_produit_stock_detail.php?np=<? echo md5(microtime()).$np; ?>" class="btn btn-xs btn-success">Detail des sorties : ( <? echo $np; ?>) </a></p>
+ <p><a href="app_produit_stock_detail.php?np=<?php echo md5(microtime()).$np; ?>" class="btn btn-xs btn-success">Detail des sorties : ( <?php echo $np; ?>) </a></p>
 <table width="100%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
   <tr bgcolor="#0000FF"> 
     <td width="26%" align="center" bgcolor="#0066FF"><font color="#CCCCCC" size="3"><strong>Produit 
       </strong></font><font color="#CCCCCC" size="4">&nbsp;</font></td>
     
-    <td width="15%" align="center" bgcolor="#0066FF"><font color="#CCCCCC" size="3"><strong>Date Validité</strong></font></td>
+    <td width="15%" align="center" bgcolor="#0066FF"><font color="#CCCCCC" size="3"><strong>Date Validitï¿½</strong></font></td>
     
     <td width="17%" align="center" bgcolor="#0066FF"><font color="#CCCCCC" size="3"><strong>Quantite 
       Enregistre </strong></font></td>
@@ -88,11 +88,11 @@ $req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql
 while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
    <tr bgcolor="FFFFFF">
-   <td> <div align="left"><em><? echo $data['thetitre'];?></em></div> <div align="left"></div></td>
-   <td> <div align="center"><em><? echo $data['Validite'];?></em></div></td>
-   <td><div align="center"><em><? echo $data['qte'];?></em></div></td>
-   <td><div align="center"><em><? echo $data['qtv'];?></em></div></td>
-   <td> <div align="center"><em><? echo $data['reste'];?></em></div></td>
+   <td> <div align="left"><em><?php echo $data['thetitre'];?></em></div> <div align="left"></div></td>
+   <td> <div align="center"><em><?php echo $data['Validite'];?></em></div></td>
+   <td><div align="center"><em><?php echo $data['qte'];?></em></div></td>
+   <td><div align="center"><em><?php echo $data['qtv'];?></em></div></td>
+   <td> <div align="center"><em><?php echo $data['reste'];?></em></div></td>
    <td><a href="app_produit_stock.php" class="btn btn-xs btn-success">Suivi Stock</a></td>
 	
   </tr>

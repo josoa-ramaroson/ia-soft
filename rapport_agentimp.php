@@ -7,7 +7,7 @@ require_once('calendar/classes/tc_calendar.php');
 
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -28,21 +28,18 @@ require_once('calendar/classes/tc_calendar.php');
 //Require("bienvenue.php");    // on appelle la page contenant la fonction
 ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
- <? //require 'rapport_lien.php'; ?>
+ <?php //require 'rapport_lien.php'; ?>
 <p><font size="2"><font size="2"><font size="2">
   <?php
     $date=substr($_REQUEST["datec"],32);
 	$agent=substr($_REQUEST["agent"],32);
-// Connect to server and select databse.
-mysql_connect ($host,$user,$pass)or die("cannot connect"); 
-mysql_select_db($db)or die("cannot select DB");
-  
+
 $sql = "SELECT count(*) FROM $tbl_paiement";  
 
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
  // on teste si ce nombre de vaut pas 0  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -62,10 +59,10 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT SUM(paiement) AS Paie, st, date , id_nom FROM $tbl_paiement where id_nom='$agent' and date='$date' GROUP BY st  LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;  //ASC  DESC
 
 // on ex?cute la requ?te  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()); 
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error()); 
 
 $sqlt = "SELECT SUM(paiement) AS Paie, id_nom , date , st , nserie FROM $tbl_paiement where  id_nom='$agent' and date='$date'";  //ASC  DESC
-$reqt = mysql_query($sqlt); 
+$reqt = mysqli_query($linki,$sqlt); 
 
 ?>
 </p>
@@ -76,30 +73,30 @@ $reqt = mysql_query($sqlt);
       <td width="257" align="center" bgcolor="#3071AA"><font color="#FFFFFF" size="4"><strong>Par date</strong></font></td>
     </tr>
     <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
     <tr bgcolor="#FFFFFF">
-      <td> <? $n=$data['st']; 
+      <td> <?php $n=$data['st']; 
                   if ($n=='E') echo 'FACTURATION';
                   if ($n=='P') echo 'POLICE D ABONNEMENT'; 
                   if ($n=='D') echo 'BRANCHEMENT';
                   if ($n=='F') echo 'FRAUDE'; 
 				  if ($n=='A') echo 'Autre (Chang Nom/compteur/Activation/Transfert)';
                   ?></td>
-      <td align="center"><? $P=strrev(chunk_split(strrev($data['Paie']),3," "));   echo $P;?></td>
-      <td align="center"><? echo $data['date'];?></td>
+      <td align="center"><?php $P=strrev(chunk_split(strrev($data['Paie']),3," "));   echo $P;?></td>
+      <td align="center"><?php echo $data['date'];?></td>
     </tr>
     <?php
 
 }
 
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    //echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
+mysqli_free_result ($resultat);  
 
 
-mysql_close ();  
+mysqli_close ();  
 ?>
   </table>
 <p>&nbsp;</p>
@@ -112,14 +109,14 @@ mysql_close ();
     <td width="18%" align="center"><font color="#FFFFFF" size="4"><strong>DATE</strong></font></td>
   </tr>
   <?php
-while($datat=mysql_fetch_array($reqt)){ // Start looping table row 
+while($datat=mysqli_fetch_array($reqt)){ // Start looping table row 
 ?>
   <tr>
-    <td height="102" align="center" bgcolor="#FFFFFF"><? echo  $datat['id_nom']; ?></td>
+    <td height="102" align="center" bgcolor="#FFFFFF"><?php echo  $datat['id_nom']; ?></td>
     <td align="center" bgcolor="#FFFFFF">&nbsp;</td>
-    <td align="center" bgcolor="#FFFFFF"><? $P=strrev(chunk_split(strrev($datat['Paie']),3," "));   echo $P;?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php $P=strrev(chunk_split(strrev($datat['Paie']),3," "));   echo $P;?></td>
     <td align="center" bgcolor="#FFFFFF"><p>&nbsp;</p>
-      <p><? echo  $datat['date']; ?></p>
+      <p><?php echo  $datat['date']; ?></p>
     <p>&nbsp;</p></td>
   </tr>
   <?php

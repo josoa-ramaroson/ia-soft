@@ -95,8 +95,8 @@ httpxml.send(null);
 <?
     require 'bienvenue.php';    // on appelle la page contenant la fonction
 	$sqldate="SELECT * FROM $tbl_caisse "; //DESC  ASC
-	$resultldate=mysql_query($sqldate);
-	$datecaisse=mysql_fetch_array($resultldate);
+	$resultldate=mysqli_query($linki,$sqldate);
+	$datecaisse=mysqli_fetch_array($resultldate);
 ?>
 <body>
 <div class="panel panel-primary">
@@ -120,8 +120,8 @@ httpxml.send(null);
                 if (isset($_REQUEST["id"]))
                 $id = $_REQUEST["id"];
 $sql = "SELECT * FROM $tbl_contact where id='$id' and statut='6'";
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-$datam=mysql_fetch_array($req);
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$datam=mysqli_fetch_array($req);
 ?></td>
         </tr>
       </table>
@@ -139,7 +139,7 @@ $datam=mysql_fetch_array($req);
           <td width="11%">ID_CLIENT</td>
           <td width="1%">&nbsp;</td>
           <td width="35%"><strong>
-            <? echo $datam['id'];?>
+            <?php echo $datam['id'];?>
             </strong></td>
           <td width="1%">&nbsp;</td>
           <td width="12%">&nbsp;</td>
@@ -149,22 +149,22 @@ $datam=mysql_fetch_array($req);
           <td><strong><font size="2">Designation</font></strong></td>
           <td>&nbsp;</td>
           <td><strong>
-           <? echo $datam['Designation'];?>
+           <?php echo $datam['Designation'];?>
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font color="#000000" size="2">Ville</font></strong></td>
           <td><strong>
-           <? echo $datam['ville'];?>
+           <?php echo $datam['ville'];?>
           </strong></td>
         </tr>
         <tr>
           <td><strong><font size="2">Nom et Prénom <font size="2"><font color="#FF0000"> *</font></font></font></strong></td>
           <td>&nbsp;</td>
-          <td><? echo $datam['nomprenom'];?>&nbsp;</td>
+          <td><?php echo $datam['nomprenom'];?>&nbsp;</td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Quartier</font></strong></td>
           <td><strong>
-            <? echo $datam['quartier'];?>
+            <?php echo $datam['quartier'];?>
           </strong></td>
         </tr>
       </table>
@@ -182,13 +182,13 @@ $datam=mysql_fetch_array($req);
           <td width="11%">&nbsp;</td>
           <td width="1%">&nbsp;</td>
           <td width="35%"><strong>
-            <input name="id" type="hidden" id="id" value="<? echo $datam['id'];?>" size="10" readonly="readonly" />
+            <input name="id" type="hidden" id="id" value="<?php echo $datam['id'];?>" size="10" readonly="readonly" />
             </strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-              <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+              <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
             </font><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-            <input name="nomprenom" type="hidden" id="nomprenom" value="<? echo $datam['nomprenom'];?>" />
+            <input name="nomprenom" type="hidden" id="nomprenom" value="<?php echo $datam['nomprenom'];?>" />
             </font><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-            <input name="quartier" type="hidden" id="quartier" value="<? echo $datam['quartier'];?>" />
+            <input name="quartier" type="hidden" id="quartier" value="<?php echo $datam['quartier'];?>" />
             </font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></td>
           <td width="1%">&nbsp;</td>
           <td width="16%">&nbsp;</td>
@@ -198,13 +198,13 @@ $datam=mysql_fetch_array($req);
           <td><strong><font size="2">N° Phase</font></strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input name="phase" type="text" disabled="disabled" id="phase" value="<? echo $datam['phase'];?>" size="40" readonly="readonly" />
+            <input name="phase" type="text" disabled="disabled" id="phase" value="<?php echo $datam['phase'];?>" size="40" readonly="readonly" />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">N° Phase</font></strong></td>
           <td><strong>
             <select name="phase" id="phase">
-              <option selected="selected"><? echo $datam['phase']; ?></option>
+              <option selected="selected"><?php echo $datam['phase']; ?></option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -215,13 +215,13 @@ $datam=mysql_fetch_array($req);
           <td><strong>Puissance</strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input name="nomprenomi" type="text" disabled="disabled" id="nomprenomi" value="<? echo $datam['puissance'];?>" size="40" readonly="readonly" />
+            <input name="nomprenomi" type="text" disabled="disabled" id="nomprenomi" value="<?php echo $datam['puissance'];?>" size="40" readonly="readonly" />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong>Puissance</strong></td>
           <td><strong>
             <select name="puissance" id="puissance">
-              <option selected="selected"><? echo $datam['puissance']; ?></option>
+              <option selected="selected"><?php echo $datam['puissance']; ?></option>
               <option>1</option>
               <option>2</option>
             </select>
@@ -234,8 +234,8 @@ $datam=mysql_fetch_array($req);
             <input name="Tarif" type="text" disabled="disabled" id="secteur2" value="<?php
 $T=$datam['Tarif'];
 $sql82 = ("SELECT * FROM tarif where idt='$T'");
-$result82 = mysql_query($sql82);
-while ($row82 = mysql_fetch_assoc($result82)) {
+$result82 = mysqli_query($linki,$sql82);
+while ($row82 = mysqli_fetch_assoc($result82)) {
 echo $row82['Libelle'];
 }
 
@@ -249,8 +249,8 @@ echo $row82['Libelle'];
             
               <?php
 			  $sql8 = ("SELECT * FROM tarif ORDER BY idt ASC");
-$result8 = mysql_query($sql8);
-while ($row8 = mysql_fetch_assoc($result8)) {
+$result8 = mysqli_query($linki,$sql8);
+while ($row8 = mysqli_fetch_assoc($result8)) {
 echo '<option value='.$row8['idt'].'> '.$row8['Libelle'].' </option>';
 }
 
@@ -262,7 +262,7 @@ echo '<option value='.$row8['idt'].'> '.$row8['Libelle'].' </option>';
           <td><strong><font size="2">Calibre ( Amperage)</font></strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input name="amperage" type="text" disabled="disabled" id="amperage" value="<? echo $datam['amperage'];?>" size="40" readonly="readonly" />
+            <input name="amperage" type="text" disabled="disabled" id="amperage" value="<?php echo $datam['amperage'];?>" size="40" readonly="readonly" />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Calibre ( Amperage)</font></strong></td>
@@ -274,7 +274,7 @@ echo '<option value='.$row8['idt'].'> '.$row8['Libelle'].' </option>';
           <td><strong><font size="2">Numero Compteur</font></strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input name="ncompteur" type="text" disabled="disabled" id="ncompteur" value="<? echo $datam['ncompteur'];?>" size="40" readonly="readonly" />
+            <input name="ncompteur" type="text" disabled="disabled" id="ncompteur" value="<?php echo $datam['ncompteur'];?>" size="40" readonly="readonly" />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Numero Compteur</font></strong></td>
@@ -286,7 +286,7 @@ echo '<option value='.$row8['idt'].'> '.$row8['Libelle'].' </option>';
           <td><strong><font size="2">Index de depart J</font></strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input name="Indexinitial" type="text" disabled="disabled" id="Indexinitial" value="<? echo $datam['Indexinitial'];?>" size="40" readonly="readonly" />
+            <input name="Indexinitial" type="text" disabled="disabled" id="Indexinitial" value="<?php echo $datam['Indexinitial'];?>" size="40" readonly="readonly" />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Index de depart Jour </font></strong></td>
@@ -298,7 +298,7 @@ echo '<option value='.$row8['idt'].'> '.$row8['Libelle'].' </option>';
           <td><strong><font size="2">Index de depart N</font></strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input name="index2" type="text" disabled="disabled" id="index2" value="<? echo $datam['index2'];?>" size="40" readonly="readonly" />
+            <input name="index2" type="text" disabled="disabled" id="index2" value="<?php echo $datam['index2'];?>" size="40" readonly="readonly" />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Index de depart</font></strong> Nuit </td>
@@ -310,11 +310,11 @@ echo '<option value='.$row8['idt'].'> '.$row8['Libelle'].' </option>';
           <td><strong><font size="2">Date de pose</font></strong></td>
           <td>&nbsp;</td>
           <td><strong>
-            <input name="datepose" type="text" disabled="disabled" id="datepose" value="<? echo $datam['datepose'];?>" size="40" readonly="readonly" />
+            <input name="datepose" type="text" disabled="disabled" id="datepose" value="<?php echo $datam['datepose'];?>" size="40" readonly="readonly" />
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Date de pose</font></strong></td>
-          <td><input name="date" type="text" id="date" value="<? echo $datecaisse['datecaisse'];?>" size="30" readonly="readonly" /></td>
+          <td><input name="date" type="text" id="date" value="<?php echo $datecaisse['datecaisse'];?>" size="30" readonly="readonly" /></td>
         </tr>
         <tr>
           <td>&nbsp;</td>

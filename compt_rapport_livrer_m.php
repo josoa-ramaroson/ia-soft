@@ -11,7 +11,7 @@ require 'fonction.php';
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 </head>
 <?
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
@@ -47,8 +47,8 @@ $annee=$_POST['annee'];
   //$db1=$_POST['db1'];
   //$db2=$_POST['db2'];
   $req2="SELECT Compte , Description , SUM(compt_ecriture.Credit)AS compte_ecripture ,SUM(compt_ecriture.Debit)AS compte_ecripture1  FROM $tb_ecriture where Description='CAISSE' and MONTH(Date)=$mois and YEAR(Date)=$annee " ;
-  $req=mysql_query($req2);
- while ($data3=mysql_fetch_array($req)){ // Start looping table row 
+  $req=mysqli_query($linki,$req2);
+ while ($data3=mysqli_fetch_array($req)){ // Start looping table row 
 $ct=$data3['compte_ecripture'];
 $dt=$data3['compte_ecripture1'];
 $tt=$dt-$ct;
@@ -57,22 +57,22 @@ $tt=$dt-$ct;
 
               <tr> 
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data3['Compte'];?>
+                    <?php echo $data3['Compte'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data3['Description'];?>
+                    <?php echo $data3['Description'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $tt;?>
+                    <?php echo $tt;?>
                     kmf<BR>
                   </div></td>
               </tr>
               <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
             </table>
           </form></td>
@@ -89,24 +89,24 @@ $tt=$dt-$ct;
   //$db1=$_POST['db1'];
   //$db2=$_POST['db2'];
   $req2="SELECT Compte , Description , SUM(compt_ecriture.Credit)AS compte_ecripture ,SUM(compt_ecriture.Debit)AS compte_ecripture1  FROM $tb_ecriture where Description='BANQUES' and MONTH(Date)=$mois and YEAR(Date)=$annee" ;
-  $req=mysql_query($req2);
- while ($data3=mysql_fetch_array($req)){ // Start looping table row 
+  $req=mysqli_query($linki,$req2);
+ while ($data3=mysqli_fetch_array($req)){ // Start looping table row 
 $ct=$data3['compte_ecripture'];
 $dt=$data3['compte_ecripture1'];
 $tt=$dt-$ct;
 ?>
       <tr>
-        <td bgcolor="#FFFFFF"><div align=""> <? echo $data3['Compte'];?> <br>
+        <td bgcolor="#FFFFFF"><div align=""> <?php echo $data3['Compte'];?> <br>
         </div></td>
-        <td bgcolor="#FFFFFF"><div align=""> <? echo $data3['Description'];?> <br>
+        <td bgcolor="#FFFFFF"><div align=""> <?php echo $data3['Description'];?> <br>
         </div></td>
-        <td bgcolor="#FFFFFF"><div align=""> <? echo $tt;?> kmf<br>
+        <td bgcolor="#FFFFFF"><div align=""> <?php echo $tt;?> kmf<br>
         </div></td>
       </tr>
       <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
     </table>
     <p>&nbsp;</p>

@@ -10,8 +10,8 @@ $id_nom=addslashes($_REQUEST['idn']);
 $paiement=addslashes($_REQUEST['pt']);
 $date=addslashes($_REQUEST['dt']);
 $sqlfacturationAP="SELECT * FROM $tbl_fact f, $tbl_contact c  WHERE c.id=f.id and f.id='$id' and (f.st='E' or f.st='P' or f.st='D')  ORDER BY idf desc limit 0,1";
-$resultatfactAP=mysql_query($sqlfacturationAP);
-$identAP=mysql_fetch_array($resultatfactAP);
+$resultatfactAP=mysqli_query($linki,$sqlfacturationAP);
+$identAP=mysqli_fetch_array($resultatfactAP);
 
 if ($identAP) {
 $idf=$identAP['idf'];
@@ -35,8 +35,8 @@ $fanneefacture=$identAP['fannee'];
 // """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if ($clique!=1){
 $sqlfacturation="SELECT * FROM $tbl_fact WHERE idf='$idf'";
-$resultatfact=mysql_query($sqlfacturation);
-$ident=mysql_fetch_array($resultatfact);
+$resultatfact=mysqli_query($linki,$sqlfacturation);
+$ident=mysqli_fetch_array($resultatfact);
 
 if ($ident){
 //$idf=$ident['idf'];
@@ -55,8 +55,8 @@ $type='P';
 $rembourser='';
 
 $sqlconnect="SELECT * FROM $tbl_paiconn  WHERE idrecu='$id_nom' ";
-$resultconnect=mysql_query($sqlconnect);
-$rowsc=mysql_fetch_array($resultconnect);
+$resultconnect=mysqli_query($linki,$sqlconnect);
+$rowsc=mysqli_fetch_array($resultconnect);
 $Maxa_id = $rowsc['idc'];
 
 	if(!isset($Maxa_id)|| empty($Maxa_id)) {
@@ -77,8 +77,8 @@ if ($clique!=1) {
 	
 //-------------------detecter les doublons --------- Une personne peut faire passer un paiement d'une facture---
 $valeur_existant = "SELECT COUNT(*) AS nb FROM $tbl_paiement  WHERE  idf='$idf' and date='$date' and nrecu='$nrecu' and  id_nom='$id_nom'";
-$sqLvaleur = mysql_query($valeur_existant)or exit(mysql_error()); 
-$nb = mysql_fetch_assoc($sqLvaleur);
+$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error()); 
+$nb = mysqli_fetch_assoc($sqLvaleur);
 
 if($nb['nb']==1)
 { 	
@@ -90,7 +90,7 @@ else
 {
 
 $sqplace="update $tbl_fact set etat='$etat', report='$report' WHERE idf='$idf'";
-$resultplace=mysql_query($sqplace);
+$resultplace=mysqli_query($linki,$sqplace);
 
 
 //$ortc_d=$_REQUEST['ortc_d'];
@@ -106,53 +106,53 @@ $sqlp="INSERT INTO $tbl_paiement
  VALUES
 ('$idf', '$id', '$st', '$nserief', '$fanneefacture','$annee','$nrecu',  '$date', '$id_nom', '$nfacture', '$Nomclient','$montant', '$paiement','$report','$rembourser',  '$modalité', '$reference', '$type')";
 					 
-$r=mysql_query($sqlp) ;
+$r=mysqli_query($linki,$sqlp) ;
 
 $sqlmj="update  $tbl_fact  set  miseajours=1  WHERE  idf='$idf'";
-$resulmj=mysql_query($sqlmj);
+$resulmj=mysqli_query($linki,$sqlmj);
 
 $sqlcon="DELETE FROM $tbl_paiconn WHERE   idc='$Maxa_id'";
-$connection=mysql_query($sqlcon);
+$connection=mysqli_query($linki,$sqlcon);
 
 $clique=1;
 }
 //---------------------------------------------------
 
 //$sqplace="update $tbl_fact set etat='$etat', report='$report' WHERE idf='$idf'";
-//$resultplace=mysql_query($sqplace);
+//$resultplace=mysqli_query($linki,$sqplace);
 
 if ($bstatut=='couper')
 {
 $sqlp="update  $tbl_fact  set  bstatut='remise' WHERE  idf='$idf'";
-$resultp=mysql_query($sqlp);	
+$resultp=mysqli_query($linki,$sqlp);	
 }
 
 
 if ($statut=='1' and $report=='0')
 {
 $sqlp="update  $tbl_contact  set  statut='2' WHERE  id='$id' ";
-$resultp=mysql_query($sqlp);	
+$resultp=mysqli_query($linki,$sqlp);	
 }
 
 if ($statut=='3' and $report=='0')
 {
 $sqlp="update  $tbl_contact  set  statut='4' WHERE  id='$id'";
-$resultp=mysql_query($sqlp);	
+$resultp=mysqli_query($linki,$sqlp);	
 }
 
 
 
 $valeur = "SELECT COUNT(*) AS nbrecu FROM $tbl_paiement  WHERE  nrecu='$Maxa_id'";   
-$sqLv = mysql_query($valeur); 
-$nbdata = mysql_fetch_assoc($sqLv);
+$sqLv = mysqli_query($linki,$valeur); 
+$nbdata = mysqli_fetch_assoc($sqLv);
 if($nbdata['nbrecu']==1)
 {
 
 //$sqlcon="update $tbl_paiconn set idrecu='$id' where idc='$Maxa_id'";
-//$connection=mysql_query($sqlcon);
+//$connection=mysqli_query($linki,$sqlcon);
 
 $sqlcon="DELETE FROM $tbl_paiconn WHERE   idc='$Maxa_id'";
-$connection=mysql_query($sqlcon);
+$connection=mysqli_query($linki,$sqlcon);
 
 header("location:paiementcb.php");
 exit;
@@ -160,7 +160,7 @@ exit;
 
 header("location:paiementcb.php");
 }
-mysql_close($link);
+mysqli_close($link);
 
 }
 header("location:paiementcb.php");

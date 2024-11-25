@@ -1,4 +1,4 @@
-<? 	
+<?php 	
 	
 	function le_statut($sta,$tb_role_statut,$linki){
 	$sqlpro3 = "SELECT * FROM $tb_role_statut where id_statut='$sta'";

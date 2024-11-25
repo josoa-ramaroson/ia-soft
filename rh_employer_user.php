@@ -12,7 +12,7 @@ require_once('calendar/classes/tc_calendar.php');
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script language="javascript" src="calendar/calendar.js"></script>
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <script type="text/javascript">
 function AjaxFunction()
@@ -96,25 +96,25 @@ require 'fonction.php';
 $id=substr($_REQUEST["id"],32);
 //$id=substr($_REQUEST["id"],32);
 $sqlm="SELECT * FROM $tb_rhpersonnel WHERE idrhp='$id'";
-$resultm=mysql_query($sqlm);
-$datam=mysql_fetch_array($resultm);
+$resultm=mysqli_query($linki,$sqlm);
+$datam=mysqli_fetch_array($resultm);
 	
 ?>
 <body>
-<? if ($_SESSION['u_niveau']==50){?>
+<?php if ($_SESSION['u_niveau']==50){?>
 <div class="panel panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title">&nbsp;</h3>
   </div>
   <div class="panel-body">
    
- <a href="rh_employer_edit.php?id=<? echo md5(microtime()).$datam['idrhp'];?>" class="btn btn-sm btn-success" >Edit l'employé</a>
+ <a href="rh_employer_edit.php?id=<?php echo md5(microtime()).$datam['idrhp'];?>" class="btn btn-sm btn-success" >Edit l'employé</a>
      | 
 <a href="#" onClick="toggleBox('activite',1);" class="btn btn-sm btn-success">Information Administratif </a> |
 
 <a href="rh_employer_affichage.php" class="btn btn-sm btn-success">Afficher les employés </a> |
 
-<a href="rh_employer_user_conge.php?id=<? echo md5(microtime()).$datam['idrhp'];?>" class="btn btn-sm btn-success">Planning des congés </a> | 
+<a href="rh_employer_user_conge.php?id=<?php echo md5(microtime()).$datam['idrhp'];?>" class="btn btn-sm btn-success">Planning des congés </a> | 
       
      </div>
 </div>
@@ -133,7 +133,7 @@ $datam=mysql_fetch_array($resultm);
             <tr>
               <td width="11%">&nbsp;</td>
               <td width="1%">&nbsp;</td>
-              <td width="35%"><strong> <? echo $datam['idrhp'];?> </strong></td>
+              <td width="35%"><strong> <?php echo $datam['idrhp'];?> </strong></td>
               <td width="1%">&nbsp;</td>
               <td width="12%">&nbsp;</td>
               <td width="40%">&nbsp;</td>
@@ -141,98 +141,98 @@ $datam=mysql_fetch_array($resultm);
             <tr>
               <td><strong><font size="2">Designation</font></strong></td>
               <td>&nbsp;</td>
-              <td><strong> <? echo $datam['Designation'];?> </strong></td>
+              <td><strong> <?php echo $datam['Designation'];?> </strong></td>
               <td>&nbsp;</td>
               <td><strong><font size="2">Niveau d'etude</font></strong></td>
-              <td><strong><? echo $datam['niveau'];?></strong></td>
+              <td><strong><?php echo $datam['niveau'];?></strong></td>
             </tr>
             <tr>
               <td><strong><font size="2">Nom et Prénom <font size="2"><font color="#FF0000"> *</font></font></font></strong></td>
               <td>&nbsp;</td>
-              <td><? echo $datam['nomprenom'];?>&nbsp;</td>
+              <td><?php echo $datam['nomprenom'];?>&nbsp;</td>
               <td>&nbsp;</td>
               <td><strong><font size="2">Specialisation</font></strong></td>
-              <td><strong><? echo $datam['specialisation'];?></strong></td>
+              <td><strong><?php echo $datam['specialisation'];?></strong></td>
             </tr>
             <tr>
               <td><strong><font size="2">Situation familiale</font></strong></td>
               <td>&nbsp;</td>
-              <td><? echo $datam['stfamille'];?></td>
+              <td><?php echo $datam['stfamille'];?></td>
               <td>&nbsp;</td>
               <td><strong><font size="2">Matricule</font></strong></td>
-              <td><strong><? echo $datam['matricule'];?></strong></td>
+              <td><strong><?php echo $datam['matricule'];?></strong></td>
             </tr>
             <tr>
               <td><font size="2">Nombre d'enfant</font></td>
               <td>&nbsp;</td>
-              <td><? echo $datam['nenfant'];?></td>
+              <td><?php echo $datam['nenfant'];?></td>
               <td>&nbsp;</td>
               <td><strong><font size="2">Date de naissance</font></strong></td>
-              <td><strong><? echo $datam['dnaissance'];?></strong></td>
+              <td><strong><?php echo $datam['dnaissance'];?></strong></td>
             </tr>
             <tr>
               <td><strong>Titre </strong></td>
               <td>&nbsp;</td>
-              <td><strong><? echo $datam['titre'];?></strong></td>
+              <td><strong><?php echo $datam['titre'];?></strong></td>
               <td>&nbsp;</td>
               <td><strong><font size="2">Date d'embauche</font></strong></td>
-              <td><strong><? echo $datam['dembauche'];?></strong></td>
+              <td><strong><?php echo $datam['dembauche'];?></strong></td>
             </tr>
             <tr>
               <td><strong><font size="2">Ville</font></strong></td>
               <td>&nbsp;</td>
-              <td><strong><? echo $datam['ville'];?></strong></td>
+              <td><strong><?php echo $datam['ville'];?></strong></td>
               <td>&nbsp;</td>
               <td><strong><font size="2">Date d'inactivité</font></strong></td>
-              <td><strong><? echo $datam['dinactivite'];?></strong></td>
+              <td><strong><?php echo $datam['dinactivite'];?></strong></td>
             </tr>
             <tr>
               <td><strong><font size="2">T&eacute;l&eacute;phone</font></strong></td>
               <td>&nbsp;</td>
-              <td><strong><? echo $datam['tel'];?></strong></td>
+              <td><strong><?php echo $datam['tel'];?></strong></td>
               <td>&nbsp;</td>
               <td><strong><font size="2">Categorie</font></strong></td>
-              <td><strong><? echo $datam['categorie'];?></strong></td>
+              <td><strong><?php echo $datam['categorie'];?></strong></td>
             </tr>
             <tr>
               <td><strong><font size="2">Email</font></strong></td>
               <td>&nbsp;</td>
-              <td><? echo $datam['email'];?></td>
+              <td><?php echo $datam['email'];?></td>
               <td>&nbsp;</td>
               <td><strong><font size="2">Direction</font></strong></td>
-              <td><strong><? echo $datam['direction'];?></strong></td>
+              <td><strong><?php echo $datam['direction'];?></strong></td>
             </tr>
             <tr>
               <td>login</td>
               <td>&nbsp;</td>
-              <td><strong><? echo $datam['login'];?></strong></td>
+              <td><strong><?php echo $datam['login'];?></strong></td>
               <td>&nbsp;</td>
               <td><strong><font size="2">Service</font></strong></td>
-              <td><strong><? echo $datam['service'];?></strong></td>
+              <td><strong><?php echo $datam['service'];?></strong></td>
             </tr>
             <tr>
               <td>pwd</td>
               <td>&nbsp;</td>
-              <td><strong><? echo $datam['pwd'];?></strong></td>
+              <td><strong><?php echo $datam['pwd'];?></strong></td>
               <td>&nbsp;</td>
               <td>Statut </td>
-              <td><strong><? echo $datam['statut'];?></strong></td>
+              <td><strong><?php echo $datam['statut'];?></strong></td>
             </tr>
             <tr>
               <td>Compte CPP</td>
               <td>&nbsp;</td>
-              <td><strong><? echo $datam['CPP'];?></strong></td>
+              <td><strong><?php echo $datam['CPP'];?></strong></td>
               <td>&nbsp;</td>
               <td>Payé à hauteur de </td>
-              <td><strong><? echo $datam['Tin'];?> % de son Indice</strong></td>
+              <td><strong><?php echo $datam['Tin'];?> % de son Indice</strong></td>
             </tr>
             <tr>
               <td>NTC</td>
               <td>&nbsp;</td>
-              <td><strong><? echo $datam['NTC'];?></strong></td>
+              <td><strong><?php echo $datam['NTC'];?></strong></td>
               <td>&nbsp;</td>
               <td>IGR</td>
-              <td><strong><? $igrchoix=$datam['igrchoix'];  if ($igrchoix==0){echo 'Non';} else {echo 'OUI';} ?></strong></td>
+              <td><strong><?php $igrchoix=$datam['igrchoix'];  if ($igrchoix==0){echo 'Non';} else {echo 'OUI';} ?></strong></td>
             </tr>
             <tr>
               <td>&nbsp;</td>
@@ -240,7 +240,7 @@ $datam=mysql_fetch_array($resultm);
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>Cde Retraite</td>
-              <td><strong><? $crchoix=$datam['crchoix'];   if ($crchoix==0){echo "Non";} else {echo "OUI";} ?></strong></td>
+              <td><strong><?php $crchoix=$datam['crchoix'];   if ($crchoix==0){echo "Non";} else {echo "OUI";} ?></strong></td>
             </tr>
             <tr>
               <td>&nbsp;</td>
@@ -249,12 +249,12 @@ $datam=mysql_fetch_array($resultm);
               <td>&nbsp;</td>
               <td>Utilsateur (lien)</td>
               <td><strong>
-                <? //echo $datam['cm'];?>
-                <? 
+                <?php //echo $datam['cm'];?>
+                <?php 
 $cmr=$datam['cm'];
 $sql8="SELECT * FROM $tbl_utilisateur WHERE id_u='$cmr'";
-$result8=mysql_query($sql8);
-$data8=mysql_fetch_array($result8);
+$result8=mysqli_query($linki,$sql8);
+$data8=mysqli_fetch_array($result8);
 echo $data8['u_login'];
 ?>
               </strong></td>
@@ -263,16 +263,16 @@ echo $data8['u_login'];
           <td width="2%">&nbsp;</td>
           <td width="10%">
           
-         <? $filename = 'upload/employer/'.$datam['idrhp'].'.jpg'; ?>
+         <?php $filename = 'upload/employer/'.$datam['idrhp'].'.jpg'; ?>
 									<div class="row">
-										<? if (file_exists($filename) == true) { ?>
-	<img class="pix" width="100" src="<? echo $filename; ?>" alt="<? echo $datam['nomprenom']; ?>" />
-										<? } else { ?>
-                             <? if ($datam['sex'] == 'Masculin') { $picture='homme.jpg';} else {$picture='femme.jpg';} ?>
+										<?php if (file_exists($filename) == true) { ?>
+	<img class="pix" width="100" src="<?php echo $filename; ?>" alt="<?php echo $datam['nomprenom']; ?>" />
+										<?php } else { ?>
+                             <?php if ($datam['sex'] == 'Masculin') { $picture='homme.jpg';} else {$picture='femme.jpg';} ?>
                                     
-	<img class="pix" height="100" width="100" src="upload/employer/<? echo $picture; ?>" alt="<? echo $datam['nomprenom']; ?> 
+	<img class="pix" height="100" width="100" src="upload/employer/<?php echo $picture; ?>" alt="<?php echo $datam['nomprenom']; ?> 
 	" />
-										<? } ?>
+										<?php } ?>
           
           
           </td>
@@ -283,7 +283,7 @@ echo $data8['u_login'];
 </table>
 <p>&nbsp;</p>
 <p>NB: (NTC) <strong>Numero de Travailleur Comorien :</strong> C'est un numero de reference aux cotisations (Retraire &amp; IGR, etc).</p>
-<? if ($_SESSION['u_niveau']==50){?>
+<?php if ($_SESSION['u_niveau']==50){?>
 <div class="panel panel-info">
   <div class="panel-heading">
     <h3 class="panel-title">RETENUES ( On doit preciser si il doit tenir compte de calcul de IGR ou de la caisse de retraite )</h3>
@@ -303,9 +303,9 @@ echo $data8['u_login'];
             <option value="1">Oui</option>
           </select></td>
           <td width="5%"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-            <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+            <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
           </font><font size="2"><strong><font size="2"><strong>
-          <input name="id" type="hidden" id="id" value="<? echo $datam['idrhp'];?>" size="10" readonly />
+          <input name="id" type="hidden" id="id" value="<?php echo $datam['idrhp'];?>" size="10" readonly />
           </strong></font></strong></font></strong></font></strong></font></strong></td>
           <td width="23%"><strong><span style="font-size:8.5pt;font-family:Arial">
             <input type="submit" name="Submit4" value="Enregistrer les mises des retenues" class="btn btn-info" />
@@ -327,12 +327,12 @@ echo $data8['u_login'];
         <tr>
           <td width="11%">Nombre des jours</td>
           <td width="23%"><strong>
-            <input class="form-control" name="nconge" type="text" id="nconge" value="<? echo $datam['nconge'];?>" size="40" />
+            <input class="form-control" name="nconge" type="text" id="nconge" value="<?php echo $datam['nconge'];?>" size="40" />
           </strong></td>
           <td width="4%"><strong>
-            <input name="id" type="hidden" id="id" value="<? echo $datam['idrhp'];?>" size="10" readonly />
+            <input name="id" type="hidden" id="id" value="<?php echo $datam['idrhp'];?>" size="10" readonly />
             <font size="2"><strong><font size="2"><strong><font color="#FF0000">
-            <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+            <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
           </font></strong></font></strong></font></strong></td>
           <td width="40%"><strong><span style="font-size:8.5pt;font-family:Arial">
             <input type="submit" name="Submit2" value="Enregistrer les mises à jours des congés" class="btn btn-info" />
@@ -359,7 +359,7 @@ echo $data8['u_login'];
         </tr>
         <tr>
           <td>Direction</td>
-          <td><strong><? echo $datam['direction'];?></strong></td>
+          <td><strong><?php echo $datam['direction'];?></strong></td>
           <td>&nbsp;</td>
           <td><?Php
 echo "<br><select name=direction id='s1' onchange=AjaxFunction();>
@@ -382,11 +382,11 @@ echo "<option value=$row[idrh]>$row[direction]</option>";
         </tr>
         <tr>
           <td>Service</td>
-          <td><strong><? echo $datam['service'];?></strong></td>
+          <td><strong><?php echo $datam['service'];?></strong></td>
           <td><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-            <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+            <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
           </font>
-                      <input name="id" type="hidden" id="id" value="<? echo $datam['idrhp'];?>" size="10" readonly />
+                      <input name="id" type="hidden" id="id" value="<?php echo $datam['idrhp'];?>" size="10" readonly />
           </strong></font></strong></font></strong></td>
           <td><select name=subcat id='s2'>
           </select></td>
@@ -439,9 +439,9 @@ echo "<option value=$row[idrh]>$row[direction]</option>";
             <input type="file" name="fichier"  size="25">
           </p>
           <p><strong>1Mo max</strong> en formats<strong> .jpg </strong> <strong><font size="2"><strong><font size="2"><strong>
-            <input name="id" type="hidden" id="id" value="<? echo $datam['idrhp'];?>" size="10" readonly />
+            <input name="id" type="hidden" id="id" value="<?php echo $datam['idrhp'];?>" size="10" readonly />
           </strong></font></strong></font></strong><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-          <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+          <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
           </font></strong></font></strong></font></strong></font></strong></font></strong></p></td>
           <td width="3%">&nbsp;</td>
           <td width="31%"><strong><span style="font-size:8.5pt;font-family:Arial">

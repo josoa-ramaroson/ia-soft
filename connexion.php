@@ -1,7 +1,7 @@
 <html>
 <head>
-<title><? include 'titre.php'; ?></title>
-<? 
+<title><?php include 'titre.php'; ?></title>
+<?php 
 include 'inc/head.php'; ?>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 </head>

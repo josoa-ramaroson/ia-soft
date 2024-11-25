@@ -13,7 +13,7 @@ require 'rh_configuration_fonction.php';
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script language="javascript" src="calendar/calendar.js"></script>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -31,8 +31,8 @@ $mois=$_POST['mois'];
 $annee=$_POST['annee'];
 
 $sql2="SELECT SUM(prixt) AS prixt FROM $tbl_appachat where  MONTH(date_dem)=$mois and YEAR(date_dem)=$annee";
-$result2=mysql_query($sql2);
-$rows2=mysql_fetch_array($result2)
+$result2=mysqli_query($linki,$sql2);
+$rows2=mysqli_fetch_array($result2)
 ?>
     </h3>
   </div>
@@ -40,10 +40,10 @@ $rows2=mysql_fetch_array($result2)
     <form action="app_rapport_date.php" method="post" name="testform" id="form2">
       <table width="100%" border="0">
         <tr>
-          <td width="32%"> Mois <? echo $mois.' / '.$annee;?> </td>
-          <td width="23%"><? $P=strrev(chunk_split(strrev($rows2['prixt']),3," "));   echo $P;?></td>
+          <td width="32%"> Mois <?php echo $mois.' / '.$annee;?> </td>
+          <td width="23%"><?php $P=strrev(chunk_split(strrev($rows2['prixt']),3," "));   echo $P;?></td>
           <td width="45%"> 
-          <a href="app_rapport_mois_liste.php?id=<? echo md5(microtime()).$mois; ?>&m=<? echo md5(microtime()).$annee; ?>" class="btn btn-xs btn-success" target="_blank">Cliquez ici pour voir les details</a>          
+          <a href="app_rapport_mois_liste.php?id=<?php echo md5(microtime()).$mois; ?>&m=<?php echo md5(microtime()).$annee; ?>" class="btn btn-xs btn-success" target="_blank">Cliquez ici pour voir les details</a>          
           </td>
         </tr>
       </table>

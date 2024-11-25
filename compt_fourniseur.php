@@ -14,7 +14,7 @@ require_once('calendar/classes/tc_calendar.php');
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script language="javascript" src="calendar/calendar.js"></script>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -29,7 +29,7 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
     <h3 class="panel-title">Ajouter un fourniseur 
       <?php
 $req1="SELECT * FROM $tb_comptf  ";
-$req=mysql_query($req1);
+$req=mysqli_query($linki,$req1);
 ?>
     </h3>
   </div>
@@ -43,12 +43,12 @@ $req=mysql_query($req1);
 
 $sql="SELECT count( compt_fourniseur.Numf ) AS  compt_fourniseur FROM $tb_comptf ";
 // OREDER BY id DESC is order result by descending 
-$result=mysql_query($sql);
-while($rows=mysql_fetch_array($result)){
+$result=mysqli_query($linki,$sql);
+while($rows=mysqli_fetch_array($result)){
  $nf=$rows['compt_fourniseur'];
   //echo $nf+1 ;
    }
-mysql_close();
+mysqli_close($linki);
 			
 			?>
 			 <input class="form-control" name="Numf"  readonly="readonly" type="text" id="nucl" value="<?php echo $nf+1 ?>"> 
@@ -153,27 +153,27 @@ mysql_close();
     <td width="" align="center">&nbsp;</td>
   </tr>
   <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
   <tr>
-    <td bgcolor="#FFFFFF"><div align="left"> <? echo $data['Numf'];?> <BR>
+    <td bgcolor="#FFFFFF"><div align="left"> <?php echo $data['Numf'];?> <BR>
     </div></td>
-    <td bgcolor="#FFFFFF"><div align="left"> <? echo $data['Societef'];?> <BR>
+    <td bgcolor="#FFFFFF"><div align="left"> <?php echo $data['Societef'];?> <BR>
     </div></td>
-    <td bgcolor="#FFFFFF"><div align="left"> <? echo $data['Adressef'];?> <BR>
+    <td bgcolor="#FFFFFF"><div align="left"> <?php echo $data['Adressef'];?> <BR>
     </div></td>
-    <td bgcolor="#FFFFFF"><div align="left"> <? echo $data['Telephonef'];?> <BR>
+    <td bgcolor="#FFFFFF"><div align="left"> <?php echo $data['Telephonef'];?> <BR>
     </div></td>
-    <td bgcolor="#FFFFFF"><div align="left"> <? echo $data['Statutf'];?> <BR>
+    <td bgcolor="#FFFFFF"><div align="left"> <?php echo $data['Statutf'];?> <BR>
     </div></td>
-    <td bgcolor="#FFFFFF"><div align="left"> <? echo $data['Date'];?> <BR>
+    <td bgcolor="#FFFFFF"><div align="left"> <?php echo $data['Date'];?> <BR>
     </div></td>
-    <td bgcolor="#FFFFFF"><div align="left"><a href="compt_fourniseur_update.php?idf=<? echo md5(microtime()).$data['idf']; ?>" class="btn btn-sm btn-success" >Aperçu</a></div></td>
+    <td bgcolor="#FFFFFF"><div align="left"><a href="compt_fourniseur_update.php?idf=<?php echo md5(microtime()).$data['idf']; ?>" class="btn btn-sm btn-success" >Aperçu</a></div></td>
   </tr>
   <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
 </table>
 <p>&nbsp;</p>

@@ -4,8 +4,6 @@ $csv->setFlags(SplFileObject::READ_CSV);
 $csv->setCsvControl(';', '"', '"');
  
 require 'fonction.php';
-$link = mysql_connect ($host,$user,$pass);
-mysql_select_db($db);
 
 ?>
 <?php
@@ -22,8 +20,8 @@ foreach(new LimitIterator($csv, 1) as $ligne)
 
 <?php
 $valeur_existant = "SELECT COUNT(*) AS nb FROM ville  WHERE ville='$ville' ";
-$sqLvaleur = mysql_query($valeur_existant)or exit(mysql_error()); 
-$nb = mysql_fetch_assoc($sqLvaleur);
+$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error()); 
+$nb = mysqli_fetch_assoc($sqLvaleur);
 
 if($nb['nb'] == 1)
 {
@@ -37,7 +35,7 @@ $sql="INSERT INTO ville (refville,ville)
 
 VALUES
 ( '$refville' ,'$ville')";
-$result=mysql_query($sql); 
+$result=mysqli_query($linki,$sql); 
 
 }
 }

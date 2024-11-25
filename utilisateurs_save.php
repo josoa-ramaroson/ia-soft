@@ -6,8 +6,8 @@
 	
 	require 'fonction.php';
 	$sql="SELECT * FROM $tbl_utilisateur WHERE u_login='$u_login' and u_pwd='$u_pwd'" ;
-	$resultat= mysql_query($sql);
-	$u_utilisateur=mysql_fetch_array($resultat);
+	$resultat= mysqli_query($linki,$sql);
+	$u_utilisateur=mysqli_fetch_array($resultat);
 
 	if ($u_utilisateur===FALSE)
 	{
@@ -15,7 +15,7 @@
 		exit;
 	} else {
 $sqlp="update  $tbl_utilisateur set  u_pwd='$u_pwd1' WHERE  u_login='$u_login' and u_pwd='$u_pwd'";
-$resultp=mysql_query($sqlp);
+$resultp=mysqli_query($linki,$sqlp);
 
    header("location:utilisateurs.php?a=true");
    }

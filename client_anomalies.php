@@ -1,10 +1,10 @@
-<?
+<?php
 Require("session.php"); 
 require 'fonction.php';
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <script language="javascript" src="calendar/calendar.js"></script>
@@ -84,14 +84,13 @@ httpxml.send(null);
   }
 </script>
 </head>
-<?
+<?=
 require("bienvenue.php");    // on appelle la page contenant la fonction
-
 ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
 <p>&nbsp;</p>
-<? require 'client_anomalies_menu.php';?>
 
+<?php require 'client_anomalies_menu.php';?>
 
 <div class="panel panel-primary">
   <div class="panel-body">
@@ -104,7 +103,7 @@ require("bienvenue.php");    // on appelle la page contenant la fonction
             <input name="idclient" type="text" class="form-control" id="idclient" size="20" />
           </strong></td>
           <td width="6%"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-          <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>"></td>
+          <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>"></td>
           <td width="74%"><strong>
             <input type="submit" name="Valider" id="envoyer" value="Chercher le client" />
             </strong>
@@ -141,7 +140,7 @@ $datarech=mysqli_fetch_array($reqrech);
       <table width="100%" border="0">
         <tr>
           <td width="19%"><font size="2"><strong>ID DU CLIENT </strong></font></td>
-          <td width="37%"><font color="#FF0000"><? echo $datarech['id'];?></font></td>
+          <td width="37%"><font color="#FF0000"><?php echo $datarech['id'];?></font></td>
           <td width="3%">&nbsp;</td>
           <td width="8%">&nbsp;</td>
           <td width="33%">&nbsp;</td>
@@ -155,7 +154,7 @@ $datarech=mysqli_fetch_array($reqrech);
         </tr>
         <tr>
           <td><strong>Nom et prenom</strong></td>
-          <td><input name="nompassager" type="text" class="form-control" id="nompassager" value="<? $idclient=$datarech['id']; $nom_prenom=Nom_prenom_client($idclient, $tbl_contact,$linki); echo $nom_prenom;?>" size="40" readonly /></td>
+          <td><input name="nompassager" type="text" class="form-control" id="nompassager" value="<?php $idclient=$datarech['id']; $nom_prenom=Nom_prenom_client($idclient, $tbl_contact,$linki); echo $nom_prenom;?>" size="40" readonly /></td>
           <td>&nbsp;</td>
           <td>Service</td>
           <td><input name="service" type="text" class="form-control" id="service" size="40" /></td>
@@ -209,8 +208,8 @@ $datarech=mysqli_fetch_array($reqrech);
           <td>&nbsp;</td>
           <td>&nbsp;</td>
           <td><font color="#FF0000">
-            <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>">
-            <input name="idclient" type="hidden" id="idclient" value="<? echo $datarech['id'];?>">
+            <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>">
+            <input name="idclient" type="hidden" id="idclient" value="<?php echo $datarech['id'];?>">
           </font></td>
           <td><input type="submit" name="Enregistre" id="Enregistre" value="Enregistre"></td>
         </tr>

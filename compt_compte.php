@@ -11,7 +11,7 @@ require 'fonction.php';
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 </head>
 <?
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
@@ -22,7 +22,7 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
     <h3 class="panel-title">Les Comptes 
       <?php
 $req1="SELECT * FROM $compte  ";
-$req=mysql_query($req1);
+$req=mysqli_query($linki,$req1);
 ?>
     </h3>
   </div>
@@ -83,21 +83,21 @@ $req=mysql_query($req1);
                   </strong></font></td>
               </tr>
               <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
               <tr> 
                 <td bgcolor="#FFFFFF"><div align="left"> 
-                    <? echo $data['Numc'];?>
+                    <?php echo $data['Numc'];?>
                     <BR>
                   </div></td>
                 <td align="" bgcolor="#FFFFFF"><em> 
-                  <? echo $data['Description'];?>
+                  <?php echo $data['Description'];?>
                   </em></td>
               </tr>
               <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
             </table>
           </form></td>

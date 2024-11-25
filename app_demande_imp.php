@@ -3,8 +3,8 @@ require 'session.php';
 ?>
 <html>
 <head>
-<title><? include 'titre.php'; ?></title>
-<? include 'inc/head.php'; ?>
+<title><?php include 'titre.php'; ?></title>
+<?php include 'inc/head.php'; ?>
 <style type="text/css">
 .centre {
 	text-align: center;
@@ -55,20 +55,20 @@ $datam=mysqli_fetch_array($req5);
             <td width="47%"><table width="93%" border="0.5" align="center" cellpadding="0" cellspacing="0">
               <tr>
                 <td width="36%">Nom du demandeur </td>
-                <td width="64%"><font color="#000000"><strong><? echo $datam['nomprenom'];?></strong></font></td>
+                <td width="64%"><font color="#000000"><strong><?php echo $datam['nomprenom'];?></strong></font></td>
               </tr>
               <tr>
                 <td>Direction</td>
-                <td><strong><? echo $datam['direction'];?></strong></td>
+                <td><strong><?php echo $datam['direction'];?></strong></td>
               </tr>
               <tr>
                 <td>Service </td>
-                <td><strong><? echo $datam['service'];?></strong></td>
+                <td><strong><?php echo $datam['service'];?></strong></td>
               </tr>
               <tr>
                 <td><span style="width:36%">Date de la demande </span></td>
                 <td><strong>
-                  <? $date_dem=$datam['date_dem'];  echo  date("d-m-Y", strtotime($date_dem));?>
+                  <?php $date_dem=$datam['date_dem'];  echo  date("d-m-Y", strtotime($date_dem));?>
                 </strong></td>
               </tr>
             </table></td>
@@ -78,7 +78,7 @@ $datam=mysqli_fetch_array($req5);
     </div></td>
   </tr>
 </table>
-<p align="left"> <font color="#000000"><strong><? $Codebare=$datam['id_dem'];?> <img src="codeBarre.php?Code=<?=$Codebare?>"></strong></font></p>
+<p align="left"> <font color="#000000"><strong><?php $Codebare=$datam['id_dem'];?> <img src="codeBarre.php?Code=<?=$Codebare?>"></strong></font></p>
 <div class="panel panel-info">
   <div class="panel-body">
   
@@ -96,15 +96,15 @@ $datam=mysqli_fetch_array($req5);
             <td width="31%" align="center">Fournisseur </td>
             <td width="20%">&nbsp;</td>
             </tr>
-    <? while($datam5=mysqli_fetch_array($resultact)){ // Start looping table row?>
+    <?php while($datam5=mysqli_fetch_array($resultact)){ // Start looping table row?>
      
           <tr>
-            <td align="center"><? echo $datam5['designation'];?></td>
-            <td align="center"><? echo $datam5['quantite'];?></td>
-            <td align="center"><? echo $datam5['fournisseur'];?></td>
+            <td align="center"><?php echo $datam5['designation'];?></td>
+            <td align="center"><?php echo $datam5['quantite'];?></td>
+            <td align="center"><?php echo $datam5['fournisseur'];?></td>
             <td>&nbsp;</td>
           </tr>
-        <? } ?>
+        <?php } ?>
         
         </table></td>
       </tr>

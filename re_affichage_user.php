@@ -6,7 +6,7 @@ require_once('calendar/classes/tc_calendar.php');
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script language="javascript" src="calendar/calendar.js"></script>
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 </head>
 <?
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
@@ -17,15 +17,15 @@ require 'fonction.php';
 $id=substr($_REQUEST["id"],32);
 //$id=substr($_REQUEST["id"],32);
 $sqlm="SELECT * FROM $tbl_contact WHERE id='$id'";
-$resultm=mysql_query($sqlm);
-$datam=mysql_fetch_array($resultm);
+$resultm=mysqli_query($linki,$sqlm);
+$datam=mysqli_fetch_array($resultm);
 
 
 	$sqfacd="SELECT * FROM $tbl_fact WHERE id='$id' and st!='E' ORDER BY idf desc";
-	$resultfacd=mysql_query($sqfacd);
+	$resultfacd=mysqli_query($linki,$sqfacd);
 	
 	$sqpaied="SELECT * FROM $tbl_paiement  WHERE id='$id' and st!='E' ORDER BY idp DESC";
-	$resultpaied=mysql_query($sqpaied);
+	$resultpaied=mysqli_query($linki,$sqpaied);
 	
 ?>
 <body>
@@ -45,27 +45,27 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
   </div>
   <div class="panel-body">
     <form action="paiement_apercu.php" method="post" name="form1" id="form2">
-    <? if ($_SESSION['niveau']==1) {?>
-      <a href="re_edit.php?id=<? echo md5(microtime()).$datam['id'];?>" class="btn btn-sm btn-success" >Edit le client</a>
+    <?php if ($_SESSION['niveau']==1) {?>
+      <a href="re_edit.php?id=<?php echo md5(microtime()).$datam['id'];?>" class="btn btn-sm btn-success" >Edit le client</a>
      |
      
-     <a href="client_document.php?id=<? echo md5(microtime()).$datam['id'];?>" class="btn btn-sm btn-success" > Ajouter des documents </a>
+     <a href="client_document.php?id=<?php echo md5(microtime()).$datam['id'];?>" class="btn btn-sm btn-success" > Ajouter des documents </a>
      | 
-    <? } else { } ?> 
-    <? if ($_SESSION['niveau']==1 and $datam['statut']!=6 and $datam['statut']!=7){?> 
-	 <a href="re_edit_modif.php?id=<? echo md5(microtime()).$datam['id'];?>" class="btn btn-sm btn-success" >Modifications</a>
+    <?php } else { } ?> 
+    <?php if ($_SESSION['niveau']==1 and $datam['statut']!=6 and $datam['statut']!=7){?> 
+	 <a href="re_edit_modif.php?id=<?php echo md5(microtime()).$datam['id'];?>" class="btn btn-sm btn-success" >Modifications</a>
 	 |	 
-	<? } else { } ?>
-    <? if ($_SESSION['niveau']==42 and $datam['statut']==4) {?> 
+	<?php } else { } ?>
+    <?php if ($_SESSION['niveau']==42 and $datam['statut']==4) {?> 
      <a href="#" onClick="toggleBox('activite',1);" class="btn btn-sm btn-success">Information de compteur </a>|
-      <? } else { } ?>
-      <? if ($_SESSION['niveau']==44 and $datam['statut']==4) {?>  
+      <?php } else { } ?>
+      <?php if ($_SESSION['niveau']==44 and $datam['statut']==4) {?>  
      <a href="#" onClick="toggleBox('plombage',1);" class="btn btn-sm btn-success" >Ajouter des Plombs </a>
-     |  <? } else { } ?>
+     |  <?php } else { } ?>
      
-     <? if ($_SESSION['niveau']==44 and $datam['statut']==6){?> 
-    <a href="sv_edit.php?id=<? echo md5(microtime()).$datam['id'];?>" class="btn btn-sm btn-success" > Mise à Jours des Blombs</a>
-    <? } else { } ?>
+     <?php if ($_SESSION['niveau']==44 and $datam['statut']==6){?> 
+    <a href="sv_edit.php?id=<?php echo md5(microtime()).$datam['id'];?>" class="btn btn-sm btn-success" > Mise à Jours des Blombs</a>
+    <?php } else { } ?>
     </form>
   </div>
 </div>
@@ -81,7 +81,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
           <td width="11%">&nbsp;</td>
           <td width="1%">&nbsp;</td>
           <td width="35%"><strong>
-          <? echo $datam['id'];?>
+          <?php echo $datam['id'];?>
           </strong></td>
           <td width="1%">&nbsp;</td>
           <td width="12%">&nbsp;</td>
@@ -91,69 +91,69 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
           <td><strong><font size="2">Designation</font></strong></td>
           <td>&nbsp;</td>
           <td><strong>
-           <? echo $datam['Designation'];?>
+           <?php echo $datam['Designation'];?>
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">T&eacute;l&eacute;phone</font></strong></td>
-          <td><strong><? echo $datam['tel'];?></strong></td>
+          <td><strong><?php echo $datam['tel'];?></strong></td>
         </tr>
         <tr>
           <td><strong><font size="2">Nom et Prénom <font size="2"><font color="#FF0000"> *</font></font></font></strong></td>
           <td>&nbsp;</td>
-          <td><? echo $datam['nomprenom'];?>&nbsp;</td>
+          <td><?php echo $datam['nomprenom'];?>&nbsp;</td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Fax</font></strong></td>
-          <td><strong><? echo $datam['fax'];?></strong></td>
+          <td><strong><?php echo $datam['fax'];?></strong></td>
         </tr>
         <tr>
           <td><strong><font size="2">Surnom</font></strong></td>
           <td>&nbsp;</td>
-          <td><? echo $datam['surnom'];?></td>
+          <td><?php echo $datam['surnom'];?></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Site Web</font></strong></td>
-          <td><strong><? echo $datam['url'];?></strong></td>
+          <td><strong><?php echo $datam['url'];?></strong></td>
         </tr>
         <tr>
           <td><strong><font size="2">Email</font></strong></td>
           <td>&nbsp;</td>
-          <td><? echo $datam['email'];?></td>
+          <td><?php echo $datam['email'];?></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Adresse</font></strong></td>
-          <td><strong><? echo $datam['adresse'];?></strong></td>
+          <td><strong><?php echo $datam['adresse'];?></strong></td>
         </tr>
         <tr>
           <td><strong>Titre </strong></td>
           <td>&nbsp;</td>
-          <td><strong><? echo $datam['titre'];?></strong></td>
+          <td><strong><?php echo $datam['titre'];?></strong></td>
           <td>&nbsp;</td>
           <td><strong>Ile</strong></td>
-          <td><strong><? echo $datam['ile'];?></strong></td>
+          <td><strong><?php echo $datam['ile'];?></strong></td>
         </tr>
         <tr>
           <td>login</td>
           <td>&nbsp;</td>
-          <td><strong><? echo $datam['login'];?></strong></td>
+          <td><strong><?php echo $datam['login'];?></strong></td>
           <td>&nbsp;</td>
           <td>Secteur</td>
-          <td><strong><? echo $datam['secteur'];?></strong></td>
+          <td><strong><?php echo $datam['secteur'];?></strong></td>
         </tr>
         <tr>
           <td>pwd</td>
           <td>&nbsp;</td>
-          <td><strong><? echo $datam['pwd'];?></strong></td>
+          <td><strong><?php echo $datam['pwd'];?></strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Ville</font></strong></td>
-          <td><strong><? echo $datam['ville'];?></strong></td>
+          <td><strong><?php echo $datam['ville'];?></strong></td>
         </tr>
         <tr>
           <td>Etablissements </td>
           <td>&nbsp;</td>
           <td><strong>
-            <? 
+            <?php 
 $CodeTypeClts=$datam['CodeTypeClts']; 
 $sqltclient = "SELECT * FROM $tbl_client where idtclient='$CodeTypeClts'";
-$resulttclient = mysql_query($sqltclient);
-$rowtclient = mysql_fetch_assoc($resulttclient);
+$resulttclient = mysqli_query($linki,$sqltclient);
+$rowtclient = mysqli_fetch_assoc($resulttclient);
 if ($rowtclient===FALSE) {}
 else 
  {
@@ -164,13 +164,13 @@ echo $TypeClts=$rowtclient['TypeClts'];
           </strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2"><font size="2">Quartier</font></font></strong></td>
-          <td><strong><? echo $datam['quartier'];?></strong></td>
+          <td><strong><?php echo $datam['quartier'];?></strong></td>
         </tr>
         <tr>
           <td>Taxe</td>
           <td>&nbsp;</td>
           <td><strong>
-            <? $chtaxe=$datam['chtaxe']; 
+            <?php $chtaxe=$datam['chtaxe']; 
 		  
 		  if ($chtaxe==0) echo 'AVEC TAXE';
 	      if ($chtaxe==1) echo 'SANS TAXE'; 
@@ -179,22 +179,22 @@ echo $TypeClts=$rowtclient['TypeClts'];
           </strong></td>
           <td>&nbsp;</td>
           <td>Piece d'identité </td>
-          <td><strong><? 
+          <td><strong><?php 
 $CodeTypePiece=$datam['CodeTypePiece']; 
 $sqltpiece = "SELECT * FROM $tbl_piece where CodeTypePiece='$CodeTypePiece'";
-$resulttpiece = mysql_query($sqltpiece);
-$rowtpiece = mysql_fetch_assoc($resulttpiece);
+$resulttpiece = mysqli_query($linki,$sqltpiece);
+$rowtpiece = mysqli_fetch_assoc($resulttpiece);
 
 if ($rowtpiece===FALSE) {}
 else {
 echo $Pieces=$rowtpiece['Pieces'];
-}?> N°<? echo $datam['NumPieces']; ?></strong></td>
+}?> N°<?php echo $datam['NumPieces']; ?></strong></td>
         </tr>
         <tr>
           <td>TYPE MT</td>
           <td>&nbsp;</td>
           <td><strong>
-            <? $tmt=$datam['tmt']; 
+            <?php $tmt=$datam['tmt']; 
 		  
 		  if ($tmt==0) echo '';
 	      if ($tmt==1) echo 'SimpleMT'; 
@@ -204,7 +204,7 @@ echo $Pieces=$rowtpiece['Pieces'];
           </strong></td>
           <td>&nbsp;</td>
           <td>coefficient TI </td>
-          <td><strong><? echo $datam['coefTi'];?></strong></td>
+          <td><strong><?php echo $datam['coefTi'];?></strong></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
@@ -228,7 +228,7 @@ echo $Pieces=$rowtpiece['Pieces'];
     <td height="50" bgcolor="#FFFFFF">  <p>&nbsp;</p>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 <tr>
-  <td width="59%"><li> Type : <? echo $datam['typecompteur']; ?> &nbsp;</li></td>
+  <td width="59%"><li> Type : <?php echo $datam['typecompteur']; ?> &nbsp;</li></td>
 </tr>
 </table>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -237,8 +237,8 @@ echo $Pieces=$rowtpiece['Pieces'];
 <?php
 $T=$datam['Tarif'];
 $sql82 = ("SELECT * FROM tarif where idt='$T'");
-$result82 = mysql_query($sql82);
-while ($row82 = mysql_fetch_assoc($result82)) {
+$result82 = mysqli_query($linki,$sql82);
+while ($row82 = mysqli_fetch_assoc($result82)) {
 echo $row82['Libelle'];
 }
 
@@ -247,27 +247,27 @@ echo $row82['Libelle'];
 </table>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="59%"><li>Amperage : <? echo $datam['amperage']; ?></li></td>
+    <td width="59%"><li>Amperage : <?php echo $datam['amperage']; ?></li></td>
   </tr>
 </table>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="59%"><li>Numero Compteur : <? echo $datam['ncompteur'];?></li></td>
+    <td width="59%"><li>Numero Compteur : <?php echo $datam['ncompteur'];?></li></td>
   </tr>
 </table>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="59%"><li> Index actuel Jour : <? echo $datam['Indexinitial'];?></li></td>
+    <td width="59%"><li> Index actuel Jour : <?php echo $datam['Indexinitial'];?></li></td>
   </tr>
 </table>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="59%"><li> Index actuel  Nuit : <? echo $datam['index2'];?></li></td>
+    <td width="59%"><li> Index actuel  Nuit : <?php echo $datam['index2'];?></li></td>
   </tr>
 </table>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="59%"><li> Date de realisation: <? echo $datam['datepose']; ?></li></td>
+    <td width="59%"><li> Date de realisation: <?php echo $datam['datepose']; ?></li></td>
   </tr>
 </table>
 <p></td>
@@ -275,22 +275,22 @@ echo $row82['Libelle'];
       <p>
         <?php
 	 $sqaut="SELECT * FROM  $tbl_plombage WHERE id='$id'";
-	 $resultaut=mysql_query($sqaut);
+	 $resultaut=mysqli_query($linki,$sqaut);
 ?>
         <?php
-while($rowsaut=mysql_fetch_array($resultaut)){ 
+while($rowsaut=mysqli_fetch_array($resultaut)){ 
 ?>
       </p>
       <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
-          <td width="35%">CPT1  : <? echo $rowsaut['c1']; ?></td>
-          <td width="35%">CPT2&nbsp;&nbsp;: <? echo $rowsaut['c2']; ?></td>
-          <td width="30%">CPT3 : <? echo $rowsaut['c3']; ?></td>
+          <td width="35%">CPT1  : <?php echo $rowsaut['c1']; ?></td>
+          <td width="35%">CPT2&nbsp;&nbsp;: <?php echo $rowsaut['c2']; ?></td>
+          <td width="30%">CPT3 : <?php echo $rowsaut['c3']; ?></td>
         </tr>
         <tr>
-          <td>CPT4 : <? echo $rowsaut['c4']; ?></td>
-          <td>DJ1 <? echo $rowsaut['d1']; ?></td>
-          <td> DJ2 <? echo $rowsaut['d2']; ?></td>
+          <td>CPT4 : <?php echo $rowsaut['c4']; ?></td>
+          <td>DJ1 <?php echo $rowsaut['d1']; ?></td>
+          <td> DJ2 <?php echo $rowsaut['d2']; ?></td>
         </tr>
       </table>
       <?php }
@@ -323,18 +323,18 @@ while($rowsaut=mysql_fetch_array($resultaut)){
                 <td width="11%" align="center" bgcolor="#FFFFFF">Reste à payer</td>
               </tr>
               <?php
-while($rowsfacd=mysql_fetch_array($resultfacd)){ 
+while($rowsfacd=mysqli_fetch_array($resultfacd)){ 
 ?>
               <tr>
                 <td align="center" bgcolor="#FFFFFF"><em>
 
-				<? echo $rowsfacd['nfacture'];?> 
+				<?php echo $rowsfacd['nfacture'];?> 
                 </em></td>
-                <td align="center" bgcolor="#FFFFFF"><em><? echo $rowsfacd['date'];?></em></td>
-                <td align="center" bgcolor="#FFFFFF"><em><? echo $rowsfacd['id'];?></em></td>
-                <td align="center" bgcolor="#FFFFFF"><em><? echo $rowsfacd['totalttc'];?></em></td>
-                <td align="center" bgcolor="#FFFFFF"><em><? echo $rowsfacd['totalnet'];?></em></td>
-                <td align="center" bgcolor="#FFFFFF"><em><? echo $rowsfacd['report'];?></em></td>
+                <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowsfacd['date'];?></em></td>
+                <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowsfacd['id'];?></em></td>
+                <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowsfacd['totalttc'];?></em></td>
+                <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowsfacd['totalnet'];?></em></td>
+                <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowsfacd['report'];?></em></td>
               </tr>
               <?php
 }
@@ -354,16 +354,16 @@ while($rowsfacd=mysql_fetch_array($resultfacd)){
                   <td width="11%" align="center" bgcolor="#FFFFFF">Reste à payer</td>
                 </tr>
                 <?php
-while($rowspd=mysql_fetch_array($resultpaied)){ 
+while($rowspd=mysqli_fetch_array($resultpaied)){ 
 ?>
                 <tr>
-                  <td align="center" bgcolor="#FFFFFF"><em> <a href="paiement_billimp.php?idp=<? echo md5(microtime()).$rowspd['idp'];?>" target="_blank" > <? echo $rowspd['idp'];?></a></em></td>
-                  <td align="center" bgcolor="#FFFFFF"><em><? echo $rowspd['nfacture'];?></em></td>
-                  <td align="center" bgcolor="#FFFFFF"><em><? echo $rowspd['date'];?></em></td>
-                  <td align="center" bgcolor="#FFFFFF"><em><? echo $rowspd['Nomclient'];?></em></td>
-                  <td align="center" bgcolor="#FFFFFF"><em><? echo $rowspd['montant'];?></em></td>
-                  <td align="center" bgcolor="#FFFFFF"><em><? echo $rowspd['paiement'];?></em></td>
-                  <td align="center" bgcolor="#FFFFFF"><em><? echo $rowspd['report'];?></em></td>
+                  <td align="center" bgcolor="#FFFFFF"><em> <a href="paiement_billimp.php?idp=<?php echo md5(microtime()).$rowspd['idp'];?>" target="_blank" > <?php echo $rowspd['idp'];?></a></em></td>
+                  <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowspd['nfacture'];?></em></td>
+                  <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowspd['date'];?></em></td>
+                  <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowspd['Nomclient'];?></em></td>
+                  <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowspd['montant'];?></em></td>
+                  <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowspd['paiement'];?></em></td>
+                  <td align="center" bgcolor="#FFFFFF"><em><?php echo $rowspd['report'];?></em></td>
                 </tr>
                 <?php
 }

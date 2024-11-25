@@ -12,7 +12,7 @@ $sqlp="INSERT INTO $tb_echangagent  (id_client   , nom_client   ,service,  index
                     VALUES       ('$id_client','$nom_client',  '2' ,'$indexc', '$dated' , '$note')";
 					
 													
-$r=mysql_query($sqlp);
+$r=mysqli_query($linki,$sqlp);
 
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ini_set('SMTP','smtp.comorestelecom.km');
@@ -22,7 +22,7 @@ $texte = " le client :  $nom_client ayant comme N° ID : $id_client a envoyé co
 mail($destinataires,$sujet,$texte,"From:$emailinfo");
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-mysql_close($link);
+mysqli_close($link);
 
 ?>
 <?php

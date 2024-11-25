@@ -3,8 +3,8 @@
 	$motdepasse=addslashes(md5($_POST['m2']));
 	require 'fonction.php';
 	$sql="SELECT * FROM usersys WHERE u_login='$_POST[m1]' and u_pwd='$motdepasse' and statut='Operationnel'" ;
-	$resultat= mysql_query($sql);
-	$u_utilisateur=mysql_fetch_array($resultat);
+	$resultat= mysqli_query($linki,$sql);
+	$u_utilisateur=mysqli_fetch_array($resultat);
 
 	if ($u_utilisateur===FALSE)
 	{

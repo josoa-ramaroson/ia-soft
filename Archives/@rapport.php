@@ -114,7 +114,7 @@ function barre_navigation ($nb_total,$nb_affichage_par_page,$debut,$nb_liens_dan
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -137,16 +137,12 @@ Require("bienvenue.php");    // on appelle la page contenant la fonction
  <?php
 require 'functions/main.php';
 
-// Connect to server and select databse.
-mysql_connect ($host,$user,$pass)or die("cannot connect"); 
-mysql_select_db($db)or die("cannot select DB");
-  
 $sql = "SELECT count(*) FROM $tbl_paiement";  
 
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
  // on teste si ce nombre de vaut pas 0  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -166,33 +162,33 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT SUM(paiement) AS Paie, date  FROM $tbl_paiement GROUP BY  date  LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;  //ASC  DESC
  
 // on ex?cute la requ?te  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()); 
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error()); 
 
 	$sqPT="SELECT SUM(paiement) AS Paie , st FROM $tbl_paiement where st='T'"; 
-	$RPT = mysql_query($sqPT); 
-	$AFPT = mysql_fetch_assoc($RPT);
+	$RPT = mysqli_query($linki,$sqPT); 
+	$AFPT = mysqli_fetch_assoc($RPT);
 	$tPT=$AFPT['Paie'];  
 	
 	
 	$sqPS="SELECT SUM(paiement) AS Paie , st FROM $tbl_paiement where st='S'"; 
-	$RPS = mysql_query($sqPS); 
-	$AFPS = mysql_fetch_assoc($RPS);
+	$RPS = mysqli_query($linki,$sqPS); 
+	$AFPS = mysqli_fetch_assoc($RPS);
 	$tPS=$AFPS['Paie']; 
 	
 	
 	/*$sqPT="SELECT SUM(paiement) AS Paie , st FROM $tbl_paiement where st='T'"; 
-	$RPT = mysql_query($sqPT); 
-	$AFPT = mysql_fetch_assoc($RPT);
+	$RPT = mysqli_query($linki,$sqPT); 
+	$AFPT = mysqli_fetch_assoc($RPT);
 	$tPT=$AFPT['Paie']; */ 
 	
 	$sqFS="SELECT SUM(montant) AS fact , st FROM $tbl_fact where st='S'"; 
-	$RFS = mysql_query($sqFS); 
-	$AFFS = mysql_fetch_assoc($RFS);
+	$RFS = mysqli_query($linki,$sqFS); 
+	$AFFS = mysqli_fetch_assoc($RFS);
 	$tFS=$AFFS['fact']; 
 	
 	$sqFT="SELECT SUM(montant) AS fact , st FROM $tbl_fact where st='T'"; 
-	$RFT = mysql_query($sqFT); 
-	$AFFT = mysql_fetch_assoc($RFT);
+	$RFT = mysqli_query($linki,$sqFT); 
+	$AFFT = mysqli_fetch_assoc($RFT);
 	$tFT=$AFFT['fact']; 
 	
 ?>
@@ -309,21 +305,21 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
               </tr>
               <tr>
                 <td>Activité - Societe - etc ..</td>
-                <td><? echo strrev(chunk_split(strrev($tFS),3," ")) ;?></td> 
-                <td><? echo strrev(chunk_split(strrev($tPS),3," ")) ;?></td>
-                <td><? echo strrev(chunk_split(strrev($tFS-$tPS),3," ")) ;?></td>
+                <td><?php echo strrev(chunk_split(strrev($tFS),3," ")) ;?></td> 
+                <td><?php echo strrev(chunk_split(strrev($tPS),3," ")) ;?></td>
+                <td><?php echo strrev(chunk_split(strrev($tFS-$tPS),3," ")) ;?></td>
               </tr>
               <tr>
                 <td>Transport </td>
-                <td><? echo  strrev(chunk_split(strrev($tFT),3," ")); ?></td>
-                <td><? echo  strrev(chunk_split(strrev($tPT),3," "));?></td>
-                <td><? echo  strrev(chunk_split(strrev($tFT-$tPT),3," "));?></td>
+                <td><?php echo  strrev(chunk_split(strrev($tFT),3," ")); ?></td>
+                <td><?php echo  strrev(chunk_split(strrev($tPT),3," "));?></td>
+                <td><?php echo  strrev(chunk_split(strrev($tFT-$tPT),3," "));?></td>
               </tr>
               <tr>
                 <td>TOTAL</td>
-                <td><? echo  strrev(chunk_split(strrev($tFT +  $tFS),3," ")); ?></td>
-                <td><? echo strrev(chunk_split(strrev($tPT +  $tPS ),3," "));?></td>
-                <td><? echo strrev(chunk_split(strrev(($tFT-$tPT)+($tFS-$tPS) ),3," "));?></td>
+                <td><?php echo  strrev(chunk_split(strrev($tFT +  $tFS),3," ")); ?></td>
+                <td><?php echo strrev(chunk_split(strrev($tPT +  $tPS ),3," "));?></td>
+                <td><?php echo strrev(chunk_split(strrev(($tFT-$tPT)+($tFS-$tPS) ),3," "));?></td>
               </tr>
             </table></td>
           </tr>
@@ -343,25 +339,25 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
       <td width="97" align="center" bgcolor="#3071AA">&nbsp;</td>
     </tr>
     <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
     <tr bgcolor="#FFFFFF">
-      <td align="center"><? echo  $data['date']; ?></td>
+      <td align="center"><?php echo  $data['date']; ?></td>
       <td align="center">&nbsp;</td>
-      <td align="center"><? $P=strrev(chunk_split(strrev($data['Paie']),3," "));   echo $P;?></td>
+      <td align="center"><?php $P=strrev(chunk_split(strrev($data['Paie']),3," "));   echo $P;?></td>
       <td align="center">&nbsp;</td>
     </tr>
     <?php
 
 }
 
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
+mysqli_free_result ($resultat);  
 
 
-mysql_close ();  
+mysqli_close ();  
 ?>
   </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

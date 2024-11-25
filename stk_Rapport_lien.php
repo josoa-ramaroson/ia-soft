@@ -39,8 +39,8 @@
               <td width="57%"><select name="titre" id="select2">
                 <?php
 $sql2 = ("SELECT titre  FROM $tbl_enreg GROUP BY titre ORDER BY titre  ASC ");
-$result2 = mysql_query($sql2);
-while ($row2 = mysql_fetch_assoc($result2)) {
+$result2 = mysqli_query($linki,$sql2);
+while ($row2 = mysqli_fetch_assoc($result2)) {
 echo '<option> '.$row2['titre'].' </option>';
 }
 
@@ -96,8 +96,8 @@ echo '<option> '.$row2['titre'].' </option>';
                               <td width="57%"><select name="titre1" id="select3">
                                 <?php
 $sql2 = ("SELECT titre  FROM $tbl_vente  GROUP BY titre ORDER BY titre  ASC  ");
-$result2 = mysql_query($sql2);
-while ($row2 = mysql_fetch_assoc($result2)) {
+$result2 = mysqli_query($linki,$sql2);
+while ($row2 = mysqli_fetch_assoc($result2)) {
 echo '<option> '.$row2['titre'].' </option>';
 }
 
@@ -215,9 +215,9 @@ echo '<option> '.$row2['titre'].' </option>';
                               <td width="57%"><select name="user" id="select4">
                                 <?php
 $sql2 = ("SELECT id_nom FROM $tbl_vente  GROUP BY id_nom ORDER BY id_nom  ASC ");
-$result2 = mysql_query($sql2);
+$result2 = mysqli_query($linki,$sql2);
 echo '<option>  </option>';
-while ($row2 = mysql_fetch_assoc($result2)) {
+while ($row2 = mysqli_fetch_assoc($result2)) {
 echo '<option> '.$row2['id_nom'].' </option>';
 }
 
@@ -249,9 +249,9 @@ echo '<option> '.$row2['id_nom'].' </option>';
                                 <select name="user" id="select4">
                                   <?php
 $sql2 = ("SELECT id_nom FROM $tbl_vente  GROUP BY id_nom ORDER BY id_nom  ASC ");
-$result2 = mysql_query($sql2);
+$result2 = mysqli_query($linki,$sql2);
 echo '<option>  </option>';
-while ($row2 = mysql_fetch_assoc($result2)) {
+while ($row2 = mysqli_fetch_assoc($result2)) {
 echo '<option> '.$row2['id_nom'].' </option>';
 }
 
@@ -301,9 +301,9 @@ echo '<option> '.$row2['id_nom'].' </option>';
                           <td width="35%"><select name="nc" id="select">
                             <?php
 $sql4 = "SELECT *  FROM $tbl_contact where statut='2' ORDER BY nomprenom  ASC ";
-$result4 = mysql_query($sql4);
+$result4 = mysqli_query($linki,$sql4);
 echo '<option>  </option>';
-while ($row4 = mysql_fetch_assoc($result4)) {
+while ($row4 = mysqli_fetch_assoc($result4)) {
 echo '<option value='.$row4['id'].'>'.$row4['nomprenom'].'</option>';
 }
 ?>

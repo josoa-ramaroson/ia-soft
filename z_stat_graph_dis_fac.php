@@ -3,7 +3,7 @@ require 'session.php';
 ?>
 <html>
 <head>
-<title><? include 'titre.php'; ?></title>
+<title><?php include 'titre.php'; ?></title>
 <?php
 require 'z_stat_variable_cons.php';
 require 'stat_variable_dis.php';

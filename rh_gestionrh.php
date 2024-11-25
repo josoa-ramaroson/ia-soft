@@ -14,7 +14,7 @@ require 'rh_configuration_fonction.php';
 <html>
 <head>
 
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -109,14 +109,14 @@ Require("bienvenue.php");  // on appelle la page contenant la fonction
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title"> <? echo $affichemois.' '.$anneepaie ; ?>&nbsp;</h3>
+    <h3 class="panel-title"> <?php echo $affichemois.' '.$anneepaie ; ?>&nbsp;</h3>
   </div>
   <div class="panel-body">
       <a href="rh_employer.php" class="btn btn-sm btn-success" >Ajouter un employe</a> |
       <a href="rh_employer_affichage.php" class="btn btn-sm btn-success" >Liste des employes </a> |
       <a href="rh_employer_affichage_liste.php" class="btn btn-sm btn-success" >Profil des employes </a> |
       <a href="rh_conge.php" class="btn btn-sm btn-success" > Suivi des planifications des congés </a> |
-     <? /*  <a href="" class="btn btn-sm btn-success" > Les avances  & prets </a> |
+     <?php /*  <a href="" class="btn btn-sm btn-success" > Les avances  & prets </a> |
       <a href="" class="btn btn-sm btn-success" > Heures sup </a> | */?>
   </div>
 </div>

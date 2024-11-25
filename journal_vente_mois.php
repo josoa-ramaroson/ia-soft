@@ -143,9 +143,9 @@ $ref_com=addslashes($_REQUEST['ref_com']);
               <select name="ref_com" size="1" id="ref_com">
                 <?php
 $sql83 = ("SELECT * FROM commune  ORDER BY commune ASC ");
-$result83 = mysql_query($sql83);
+$result83 = mysqli_query($linki,$sql83);
 
-while ($row83 = mysql_fetch_assoc($result83)) {
+while ($row83 = mysqli_fetch_assoc($result83)) {
 echo '<option value= '.$row83['ref_com'].'> '.$row83['commune'].' </option>';
 }
 ?>
@@ -159,7 +159,7 @@ echo '<option value= '.$row83['ref_com'].'> '.$row83['commune'].' </option>';
     </div></td>
     <td width="2%">&nbsp;</td>
     <td width="2%">&nbsp;</td>
-    <td width="44%"><a href="journal_vente_mois_listeimp.php?m1v=<? echo md5(microtime()).$m1v;?>&ref_com=<? echo md5(microtime()).$ref_com;?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a></td>
+    <td width="44%"><a href="journal_vente_mois_listeimp.php?m1v=<?php echo md5(microtime()).$m1v;?>&ref_com=<?php echo md5(microtime()).$ref_com;?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a></td>
   </tr>
   <tr>
     <td>&nbsp;</td>

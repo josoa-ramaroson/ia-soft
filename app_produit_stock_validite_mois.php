@@ -12,7 +12,7 @@ if( ($_SESSION['u_niveau'] != 7)&&($_SESSION['u_niveau'] != 40)&&($_SESSION['u_n
 <html>
 <head>
 <title>
-<? include("titre.php"); ?></title>
+<?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -146,7 +146,7 @@ echo '<option> '.$row81['annee'].' </option>';
     <td width="26%" align="center" bgcolor="#0066FF"><font color="#CCCCCC" size="3"><strong>Produit 
       </strong></font><font color="#CCCCCC" size="4">&nbsp;</font></td>
     
-    <td width="15%" align="center" bgcolor="#0066FF"><font color="#CCCCCC" size="3"><strong>Date Validité</strong></font></td>
+    <td width="15%" align="center" bgcolor="#0066FF"><font color="#CCCCCC" size="3"><strong>Date Validitï¿½</strong></font></td>
     
     <td width="17%" align="center" bgcolor="#0066FF"><font color="#CCCCCC" size="3"><strong>Quantite 
       Enregistre </strong></font></td>
@@ -162,12 +162,12 @@ echo '<option> '.$row81['annee'].' </option>';
 while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
   <tr> 
-    <td height="31" align="center" bgcolor="#FFFFFF"> <div align="left"><em><? echo $data['thetitre'];?></em></div>
+    <td height="31" align="center" bgcolor="#FFFFFF"> <div align="left"><em><?php echo $data['thetitre'];?></em></div>
       <div align="left"></div></td>
-       <td align="center" bgcolor="#FFFFFF"> <div align="center"><em><? echo $data['Validite'];?></em></div></td>
-    <td align="center" bgcolor="#FFFFFF"><div align="center"><em><? echo $data['qte'];?></em></div></td>
-    <td align="center" bgcolor="#FFFFFF"><div align="center"><em><? echo $data['qtv'];?></em></div></td>
-  <td align="center" bgcolor="#FFFFFF"> <div align="center"><em><? echo $data['reste'];?></em></div></td>
+       <td align="center" bgcolor="#FFFFFF"> <div align="center"><em><?php echo $data['Validite'];?></em></div></td>
+    <td align="center" bgcolor="#FFFFFF"><div align="center"><em><?php echo $data['qte'];?></em></div></td>
+    <td align="center" bgcolor="#FFFFFF"><div align="center"><em><?php echo $data['qtv'];?></em></div></td>
+  <td align="center" bgcolor="#FFFFFF"> <div align="center"><em><?php echo $data['reste'];?></em></div></td>
     <td align="center" bgcolor="#FFFFFF"><div align="center"><em> </em>
      <a href="app_produit_stock.php" class="btn btn-xs btn-success">Suivi Stock</a>
     </div></td>

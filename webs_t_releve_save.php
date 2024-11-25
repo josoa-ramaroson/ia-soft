@@ -4,8 +4,8 @@ require 'configuration.php';
 //----------------parametre de configuration--------
 //------------identification du maximun -----------
 $sqlmax="SELECT MAX(idf) AS Maxa_id FROM $tbl_fact";
-$resultmax=mysql_query($sqlmax);
-$rowsmax=mysql_fetch_array($resultmax);
+$resultmax=mysqli_query($linki,$sqlmax);
+$rowsmax=mysqli_fetch_array($resultmax);
 if ($rowsmax) {
 $Max_id = $rowsmax['Maxa_id']+1;
 }
@@ -44,8 +44,8 @@ exit;
 
  $Tarif=addslashes($_POST['Tarif']);
 $sql82 ="SELECT * FROM tarif where idt='$Tarif'";
-$result82 = mysql_query($sql82);
-while ($row82 = mysql_fetch_assoc($result82)) {
+$result82 = mysqli_query($linki,$sql82);
+while ($row82 = mysqli_fetch_assoc($result82)) {
 $t1=$row82['t1'];
 $t2=$row82['t2'];
 $q=$row82['q'];
@@ -130,8 +130,8 @@ $etat='facture';
 
 
 $valeur_existant = "SELECT COUNT(*) AS nb FROM $tbl_fact  WHERE st='E' and id='$id'  and fannee='$fannee' and nserie='$nserie'";
-$sqLvaleur = mysql_query($valeur_existant)or exit(mysql_error()); 
-$nb = mysql_fetch_assoc($sqLvaleur);
+$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error()); 
+$nb = mysqli_fetch_assoc($sqLvaleur);
 
 if($nb['nb'] == 1)
 { 	
@@ -142,15 +142,15 @@ exit;
  $sql="INSERT INTO $tbl_fact ( id,  ci , st, id_nom, bnom, bquartier, nfacture, fannee, nserie, date, datelimite, libelle , nf , n , cons, cons1, cons2, t1, t2, mont1, mont2, puisct, totalht, tax , totalttc, ortc, impayee , totalnet , report, etat, bstatut, impression,coefTi)
 VALUES
 ( '$id','$ci','$st', '$id_nom', '$bnom', '$bquartier', '$nfacture', '$fannee','$nserie', '$date', '$datelimite', '$libelle', '$nf', '$n','$c', '$c1', '$c2', '$t1', '$t2', '$mtt1','$mtt2', '$ps',  '$totalht', '$tax',  '$totalttc', $ortc, '$imp' , '$totalnet', '$totalnet', '$etat', '$bstatut','saisie',  '$coefTi')";
-$result=mysql_query($sql);
+$result=mysqli_query($linki,$sql);
 
 
 $sqlindex="update $tbl_contact  set Indexinitial='$nf'  WHERE id='$id'";
-$resultindex=mysql_query($sqlindex);
+$resultindex=mysqli_query($linki,$sqlindex);
 
 // mise a jour dans Webs releve
 $sqlvalidation="update $tbl_releve_bach  set  miseajours='1' WHERE  id='$id' and id_nom='$id_nom'";
-$resultvalidation=mysql_query($sqlvalidation);
+$resultvalidation=mysqli_query($linki,$sqlvalidation);
 
 
    if($result){
@@ -162,7 +162,7 @@ $resultvalidation=mysql_query($sqlvalidation);
 
 if ($st=='E'){
 $sqlbs="INSERT INTO $tbl_factsave ( id, ci , st, nserie, annee, nfacture ) VALUES ( '$id', '$ci','$st', '$nserie', '$fannee', '$nfacture')";
-$resultbs=mysql_query($sqlbs);
+$resultbs=mysqli_query($linki,$sqlbs);
 
 header("location:webs_t_releve.php");
 }
@@ -170,9 +170,9 @@ header("location:webs_t_releve.php");
 if ($imp>'0'){
 	$idf=addslashes($_POST['idf']);
 	$sqlp="update  $tbl_fact  set etat='impayee' WHERE idf='$idf' and st='E'";
-    $resultp=mysql_query($sqlp);
+    $resultp=mysqli_query($linki,$sqlp);
 	}
 
-mysql_close(); 
+mysqli_close($linki); 
 ?>
 

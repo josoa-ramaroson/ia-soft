@@ -32,8 +32,8 @@ while($reader->read()) {
 	  require 'fonction.php';
 	  
 	  $sqlfacturation = "SELECT * FROM $tbl_contact where  id='$id' and statut='6' ";  
-      $resultatfact=mysql_query($sqlfacturation);
-      $ident=mysql_fetch_array($resultatfact);
+      $resultatfact=mysqli_query($linki,$sqlfacturation);
+      $ident=mysqli_fetch_array($resultatfact);
 	  if ($ident){
 	 $st='E'; 
      $libelle='facture';

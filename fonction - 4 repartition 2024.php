@@ -7,9 +7,9 @@
 		$dbbk='edabk';
 		
 	
-		$link = mysql_connect ($host,$user,$pass);
-		mysql_set_charset('utf8',$link);
-		mysql_select_db($db);
+		$link = mysqli_connect ($host,$user,$pass);
+		mysqli_set_charset('utf8',$link);
+		mysqli_select_db($db);
 		
 		$linkibk = mysqli_connect($host,$user,$pass,$dbbk ) or die(mysqli_error($linkibk));
 		mysqli_set_charset($linkibk, 'utf8');

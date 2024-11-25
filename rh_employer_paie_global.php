@@ -13,7 +13,7 @@ require 'rh_configuration_fonction.php';
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script language="javascript" src="calendar/calendar.js"></script>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -115,9 +115,9 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
                       <select name="annee" size="1" id="annee">
                         <?php
 $sql81 = ("SELECT * FROM annee  ORDER BY annee ASC ");
-$result81 = mysql_query($sql81);
+$result81 = mysqli_query($linki,$sql81);
 
-while ($row81 = mysql_fetch_assoc($result81)) {
+while ($row81 = mysqli_fetch_assoc($result81)) {
 echo '<option> '.$row81['annee'].' </option>';
 }
 ?>
@@ -125,7 +125,7 @@ echo '<option> '.$row81['annee'].' </option>';
                       </font>
                     <input type="submit" name="valider4" id="valider5" value="Valider" />
                     <em><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                    <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+                    <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
                     </font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></em></td>
                 </tr>
               </table>

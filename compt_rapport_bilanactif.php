@@ -11,7 +11,7 @@ require 'fonction.php';
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 </head>
 <?
 require 'bienvenue.php';    // on appelle la page contenant la fonction
@@ -20,7 +20,7 @@ require 'compt_variable_bilanactif.php';
 <body>
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">LES DOCUMENTS COMPTABLES ET FISCAUX  POUR  ANNEE <? echo $annee ?></h3>
+    <h3 class="panel-title">LES DOCUMENTS COMPTABLES ET FISCAUX  POUR  ANNEE <?php echo $annee ?></h3>
   </div>
   <div class="panel-body">
     <table width="100%" border="0">
@@ -63,19 +63,19 @@ require 'compt_variable_bilanactif.php';
           <tr>
             <td>AX</td>
             <td>Frais d'établissement</td>
-            <td><? echo $b1; ?></td>
+            <td><?php echo $b1; ?></td>
             <td>&nbsp;</td>
           </tr>
           <tr>
             <td>AY</td>
             <td>Charges à répartir</td>
-            <td><? echo $b2; ?></td>
+            <td><?php echo $b2; ?></td>
             <td>&nbsp;</td>
           </tr>
           <tr>
             <td>AC</td>
             <td>Primes de remboursement des obligations</td>
-            <td><? echo $b3; ?></td>
+            <td><?php echo $b3; ?></td>
             <td>&nbsp;</td>
           </tr>
           <tr>
@@ -87,26 +87,26 @@ require 'compt_variable_bilanactif.php';
           <tr>
             <td>AE</td>
             <td>Frais de recherche et de développement</td>
-            <td><? echo $b4; ?></td>
-            <td><? echo $m4; ?></td>
+            <td><?php echo $b4; ?></td>
+            <td><?php echo $m4; ?></td>
           </tr>
           <tr>
             <td>AF</td>
             <td>Brevets, licences, logiciels</td>
-            <td><? echo $b5; ?></td>
-            <td><? echo $m5; ?></td>
+            <td><?php echo $b5; ?></td>
+            <td><?php echo $m5; ?></td>
           </tr>
           <tr>
             <td>AG</td>
             <td>Fonds commercial</td>
-            <td><? echo $b6; ?></td>
-            <td><? echo $m6; ?></td>
+            <td><?php echo $b6; ?></td>
+            <td><?php echo $m6; ?></td>
           </tr>
           <tr>
             <td>AH</td>
             <td>Autres immobilisations incorporelles</td>
-            <td><? echo $b7; ?></td>
-            <td><? echo $m7; ?></td>
+            <td><?php echo $b7; ?></td>
+            <td><?php echo $m7; ?></td>
           </tr>
           <tr>
             <td>AI</td>
@@ -117,38 +117,38 @@ require 'compt_variable_bilanactif.php';
           <tr>
             <td>AJ</td>
             <td>Terrains</td>
-            <td><? echo $b8; ?></td>
-            <td><? echo $m8; ?></td>
+            <td><?php echo $b8; ?></td>
+            <td><?php echo $m8; ?></td>
           </tr>
           <tr>
             <td>AK</td>
             <td>Bâtiments</td>
-            <td><? echo $b9; ?></td>
-            <td><? echo $m9; ?></td>
+            <td><?php echo $b9; ?></td>
+            <td><?php echo $m9; ?></td>
           </tr>
           <tr>
             <td>AL</td>
             <td>Installations et agencements</td>
-            <td><? echo $b10; ?></td>
-            <td><? echo $m10; ?></td>
+            <td><?php echo $b10; ?></td>
+            <td><?php echo $m10; ?></td>
           </tr>
           <tr>
             <td>AM</td>
             <td>Matériel</td>
-            <td><? echo $b11; ?></td>
-            <td><? echo $m11; ?></td>
+            <td><?php echo $b11; ?></td>
+            <td><?php echo $m11; ?></td>
           </tr>
           <tr>
             <td>AN</td>
             <td>Matériel de transport</td>
-            <td><? echo $b12; ?></td>
-            <td><? echo $m12; ?></td>
+            <td><?php echo $b12; ?></td>
+            <td><?php echo $m12; ?></td>
           </tr>
           <tr>
             <td>AP</td>
             <td bgcolor="#CCCCCC">AVANCES ET ACOMPTES VERSÉS        SUR IMMOBILISATIONS</td>
-            <td><? echo $b13; ?></td>
-            <td><? echo $m13; ?></td>
+            <td><?php echo $b13; ?></td>
+            <td><?php echo $m13; ?></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
@@ -165,20 +165,20 @@ require 'compt_variable_bilanactif.php';
           <tr>
             <td>AR</td>
             <td>Titres de participation</td>
-            <td><? echo $b14; ?></td>
-            <td><? echo $m14; ?></td>
+            <td><?php echo $b14; ?></td>
+            <td><?php echo $m14; ?></td>
           </tr>
           <tr>
             <td>AS</td>
             <td>Autres immobilisations financières</td>
-            <td><? echo $b15; ?></td>
-            <td><? echo $m15; ?></td>
+            <td><?php echo $b15; ?></td>
+            <td><?php echo $m15; ?></td>
           </tr>
           <tr>
             <td>BA</td>
             <td bgcolor="#CCCCCC">ACTIF CIRCULANT H.A.O.</td>
-            <td><? echo $b16; ?></td>
-            <td><? echo $m16; ?></td>
+            <td><?php echo $b16; ?></td>
+            <td><?php echo $m16; ?></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
@@ -195,26 +195,26 @@ require 'compt_variable_bilanactif.php';
           <tr>
             <td>BC</td>
             <td>Marchandises</td>
-            <td><? echo $b17; ?></td>
-            <td><? echo $m17; ?></td>
+            <td><?php echo $b17; ?></td>
+            <td><?php echo $m17; ?></td>
           </tr>
           <tr>
             <td>BD</td>
             <td>Matières premières et autres approvisionnements</td>
-            <td><? echo $b18; ?></td>
-            <td><? echo $m18; ?></td>
+            <td><?php echo $b18; ?></td>
+            <td><?php echo $m18; ?></td>
           </tr>
           <tr>
             <td>BE</td>
             <td>En-cours</td>
-            <td><? echo $b19; ?></td>
-            <td><? echo $m19; ?></td>
+            <td><?php echo $b19; ?></td>
+            <td><?php echo $m19; ?></td>
           </tr>
           <tr>
             <td>BF</td>
             <td>Produits fabriqués</td>
-            <td><? echo $b20; ?></td>
-            <td><? echo $m20; ?></td>
+            <td><?php echo $b20; ?></td>
+            <td><?php echo $m20; ?></td>
           </tr>
           <tr>
             <td>BG</td>
@@ -225,20 +225,20 @@ require 'compt_variable_bilanactif.php';
           <tr>
             <td>BH</td>
             <td>Fournisseurs avances versées</td>
-            <td><? echo $b21; ?></td>
-            <td><? echo $m21; ?></td>
+            <td><?php echo $b21; ?></td>
+            <td><?php echo $m21; ?></td>
           </tr>
           <tr>
             <td>BI</td>
             <td>Clients</td>
-            <td><? echo $b22; ?></td>
-            <td><? echo $m22; ?></td>
+            <td><?php echo $b22; ?></td>
+            <td><?php echo $m22; ?></td>
           </tr>
           <tr>
             <td>BJ</td>
             <td>Autres créances</td>
-            <td><? echo $b23; ?></td>
-            <td><? echo $m23; ?></td>
+            <td><?php echo $b23; ?></td>
+            <td><?php echo $m23; ?></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
@@ -249,25 +249,25 @@ require 'compt_variable_bilanactif.php';
           <tr>
             <td>BQ</td>
             <td>Titres de placement</td>
-            <td><? echo $b24; ?></td>
-            <td><? echo $m24; ?></td>
+            <td><?php echo $b24; ?></td>
+            <td><?php echo $m24; ?></td>
           </tr>
           <tr>
             <td>BR</td>
             <td>Valeurs à encaisser</td>
-            <td><? echo $b25; ?></td>
-            <td><? echo $m25; ?></td>
+            <td><?php echo $b25; ?></td>
+            <td><?php echo $m25; ?></td>
           </tr>
           <tr>
             <td>BS</td>
             <td>Banques, chèques postaux, caisse</td>
-            <td><? echo $b26; ?></td>
-            <td><? echo $m26; ?></td>
+            <td><?php echo $b26; ?></td>
+            <td><?php echo $m26; ?></td>
           </tr>
           <tr>
             <td>BU</td>
             <td bgcolor="#CCCCCC">Écarts de conversion-Actif</td>
-            <td><? echo $b27; ?></td>
+            <td><?php echo $b27; ?></td>
             <td>&nbsp;</td>
           </tr>
           <tr>

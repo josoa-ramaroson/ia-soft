@@ -7,7 +7,7 @@ require_once('calendar/classes/tc_calendar.php');
 
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -28,7 +28,7 @@ require_once('calendar/classes/tc_calendar.php');
 //Require("bienvenue.php");    // on appelle la page contenant la fonction
 ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
- <? //require 'z_rapport_lien.php'; ?>
+ <?php //require 'z_rapport_lien.php'; ?>
 <p><font size="2"><font size="2"><font size="2">
   <?php
  $date=substr($_REQUEST["datef"],32); 
@@ -36,7 +36,7 @@ $ARCH=date("Y", strtotime("$date"));
   
 $sql = "SELECT count(*) FROM $dbbk.z_"."$ARCH"."_$tbl_paiement";  
 
-$resultat = mysqli_query($linkibk,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linkibk,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
  
 $nb_total = mysqli_fetch_array($resultat);  
@@ -62,7 +62,7 @@ $sql = "SELECT SUM(paiement) AS Paie, p.st, p.date, f.libelle, p.id FROM $dbbk.z
 $req = mysqli_query($linkibk,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error()); 
 
 ?>
-  </font></strong></font></font></font></font></font></font></font></font></font></strong></font></font></font></font></font></font></font></font></font></font></p> <a href="z_rapport_dateautreimp.php?datef=<? echo md5(microtime()).$date;?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a></p>
+  </font></strong></font></font></font></font></font></font></font></font></font></strong></font></font></font></font></font></font></font></font></font></font></p> <a href="z_rapport_dateautreimp.php?datef=<?php echo md5(microtime()).$date;?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a></p>
   <table width="100%" border="1" align="center" cellpadding="0" cellspacing="0" bgcolor="#CCCCCC">
     <tr bgcolor="#0000FF"> 
       <td width="28" align="center" bgcolor="#3071AA">&nbsp;</td>
@@ -75,10 +75,10 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
 ?>
     <tr bgcolor="#FFFFFF">
       <td align="center">&nbsp;</td>
-      <td> <? echo $data['libelle']; 
+      <td> <?php echo $data['libelle']; 
                   ?></td>
-      <td align="center"><? $P=strrev(chunk_split(strrev($data['Paie']),3," "));   echo $P;?></td>
-      <td align="center"><? echo $data['date'];?></td>
+      <td align="center"><?php $P=strrev(chunk_split(strrev($data['Paie']),3," "));   echo $P;?></td>
+      <td align="center"><?php echo $data['date'];?></td>
     </tr>
     <?php
 

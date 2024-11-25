@@ -11,7 +11,7 @@ require 'fonction.php';
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 </head>
 <?
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
@@ -45,47 +45,47 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
   //$dj1=$_POST['dj1'];
   //$dj2=$_POST['dj2'];
   $req2="select * from $tb_ecriture where Date BETWEEN '$dj1'  and '$dj2' and mo='C' " ;
-  $req=mysql_query($req2);
- while ($data=mysql_fetch_array($req)){ // Start looping table row 
+  $req=mysqli_query($linki,$req2);
+ while ($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
               <tr> 
                 <td height="27" bgcolor="#FFFFFF"> <div align=""> 
-                    <? echo $data['ide'];?>
+                    <?php echo $data['ide'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Date'];?>
+                    <?php echo $data['Date'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Compte'];?>
+                    <?php echo $data['Compte'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Description'];?>
+                    <?php echo $data['Description'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Pieces'];?>
+                    <?php echo $data['Pieces'];?>
                     <BR>
                   </div></td>
 				   <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Credit'];?>
+                    <?php echo $data['Credit'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Debit'];?>
+                    <?php echo $data['Debit'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['TTC'];?>
+                    <?php echo $data['TTC'];?>
                     <BR>
                   </div></td>
               </tr>
               <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
             </table>
           </form></td>
@@ -97,8 +97,8 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
   //$dj1=$_POST['dj1'];
   //$dj2=$_POST['dj2'];
   $req2="SELECT SUM(compt_ecriture.Credit)AS compte_ecripture ,SUM(compt_ecriture.Debit)AS compte_ecripture1  FROM $tb_ecriture  where Date BETWEEN '$dj1'  and '$dj2' and mo='C' " ;
-  $req=mysql_query($req2);
- while ($data3=mysql_fetch_array($req)){ ;// Start looping table row 
+  $req=mysqli_query($linki,$req2);
+ while ($data3=mysqli_fetch_array($req)){ ;// Start looping table row 
  $ct=$data3['compte_ecripture'];
  $dt=$data3['compte_ecripture1'];
 ?>
@@ -107,16 +107,16 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
               SOLDES TOTAL DE DEBIT / CREDIT <BR>
             </div></td>
           <td width="10%" bgcolor="#FFFFFF"><div align=""> 
-              <? echo $dt ;?>
+              <?php echo $dt ;?>
               kmf <BR>
             </div></td>
           <td width="14%" bgcolor="#FFFFFF"><div align=""> 
-              <? echo $ct ;?>
+              <?php echo $ct ;?>
               kmf 
               <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
               <BR>
             </div></td>
@@ -146,48 +146,48 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
   //$dj1=$_POST['dj1'];
   //$dj2=$_POST['dj2'];
   $req2="select * from $tb_ecriture where Date BETWEEN '$dj1'  and '$dj2' and mo='D' " ;
-  $req=mysql_query($req2);
- while ($data=mysql_fetch_array($req)){ // Start looping table row 
+  $req=mysqli_query($linki,$req2);
+ while ($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
 
               <tr> 
                 <td height="27" bgcolor="#FFFFFF"> <div align=""> 
-                    <? echo $data['ide'];?>
+                    <?php echo $data['ide'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Date'];?>
+                    <?php echo $data['Date'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Compte'];?>
+                    <?php echo $data['Compte'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Description'];?>
+                    <?php echo $data['Description'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Pieces'];?>
+                    <?php echo $data['Pieces'];?>
                     <BR>
                   </div></td>
 				    <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Credit'];?>
+                    <?php echo $data['Credit'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Debit'];?>
+                    <?php echo $data['Debit'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['TTC'];?>
+                    <?php echo $data['TTC'];?>
                     <BR>
                   </div></td>
               </tr>
               <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
             </table>
           </form></td>
@@ -198,8 +198,8 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
   //$dj1=$_POST['dj1'];
   //$dj2=$_POST['dj2'];
   $req2="SELECT SUM(compt_ecriture.Credit)AS compte_ecripture ,SUM(compt_ecriture.Debit)AS compte_ecripture1  FROM $tb_ecriture  where Date BETWEEN '$dj1'  and '$dj2' and mo='D' " ;
-  $req=mysql_query($req2);
- while ($data3=mysql_fetch_array($req)){ ;// Start looping table row 
+  $req=mysqli_query($linki,$req2);
+ while ($data3=mysqli_fetch_array($req)){ ;// Start looping table row 
  $ct=$data3['compte_ecripture'];
  $dt=$data3['compte_ecripture1'];
 ?>
@@ -209,16 +209,16 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
             TOTAL DE DEBIT / CREDIT <BR>
           </div></td>
         <td width="9%" bgcolor="#FFFFFF"><div align=""> 
-            <? echo $dt ;?>
+            <?php echo $dt ;?>
             kmf<BR>
           </div></td>
         <td width="10%" bgcolor="#FFFFFF"><div align=""> 
-            <? echo $ct ;?>
+            <?php echo $ct ;?>
             kmf 
             <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
             <BR>
           </div></td>

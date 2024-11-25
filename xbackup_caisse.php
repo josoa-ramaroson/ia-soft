@@ -11,24 +11,24 @@
      $password = $pass;
 	 
 
-     $db = mysql_connect($server, $user, $password) or die(mysql_error());
-     mysql_select_db($database, $db) or die(mysql_error());
+     $db = mysqli_connect($server, $user, $password) or die(mysqli_error());
+     mysqli_select_db($database, $db) or die(mysqli_error());
       
 	  $sql = "SHOW TABLES FROM $database WHERE Tables_in_$database='paiement' or Tables_in_$database='billing' or Tables_in_$database='clienteda' " ;
 	 
-     $tables = mysql_query($sql) or die(mysql_error());
+     $tables = mysqli_query($linki,$sql) or die(mysqli_error());
       
 
-     for ($i=0; $i<$ignore; $i++) ($donnees = mysql_fetch_array($tables));
+     for ($i=0; $i<$ignore; $i++) ($donnees = mysqli_fetch_array($tables));
       
 
-     while ($donnees = mysql_fetch_array($tables))
+     while ($donnees = mysqli_fetch_array($tables))
      {
 	 
 
       $table = $donnees[0];
       $sql = 'SHOW CREATE TABLE '.$table;
-      $res = mysql_query($sql) or die(mysql_error().$sql);
+      $res = mysqli_query($linki,$sql) or die(mysqli_error().$sql);
       if ($res)
       {
   
@@ -43,26 +43,26 @@
 	   
        $fp = gzopen($backup_file, 'w');
       
-       $tableau = mysql_fetch_array($res);
+       $tableau = mysqli_fetch_array($res);
        $tableau[1] .= ";\n";
        $insertions = $tableau[1];
        gzwrite($fp, $insertions);
       
-       $req_table = mysql_query('SELECT * FROM '.$table) or die(mysql_error());
-       $nbr_champs = mysql_num_fields($req_table);
-       while ($ligne = mysql_fetch_array($req_table))
+       $req_table = mysqli_query('SELECT * FROM '.$table) or die(mysqli_error());
+       $nbr_champs = mysqli_num_fields($req_table);
+       while ($ligne = mysqli_fetch_array($req_table))
        {
         $insertions = 'INSERT INTO '.$table.' VALUES (';
         for ($i=0; $i<$nbr_champs; $i++)
         {
-         $insertions .= '\'' . mysql_real_escape_string($ligne[$i]) . '\', ';
+         $insertions .= '\'' . mysqli_real_escape_string($ligne[$i]) . '\', ';
         }
         $insertions = substr($insertions, 0, -2);
         $insertions .= ");\n";
         gzwrite($fp, $insertions);
        }
       } 
-      mysql_free_result($res);
+      mysqli_free_result($res);
       gzclose($fp);
 	  
 	  

@@ -9,7 +9,7 @@ $nomprenom=addslashes($_POST['nomprenom']);
 $id=$_POST['id'];
 
 $sql="update $tbl_contact  set id_nom='$id_nom', Designation='$Designation' , nomprenom='$nomprenom'  WHERE id='$id'";
-$result=mysql_query($sql);
+$result=mysqli_query($linki,$sql);
 
   if($result){
 
@@ -20,5 +20,5 @@ $result=mysql_query($sql);
    else {
 echo "ERROR";
    }
-  mysql_close(); 
+  mysqli_close($linki); 
 ?>

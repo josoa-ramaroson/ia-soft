@@ -12,7 +12,7 @@ require 'fonction.php';
 <html>
 <head>
 <title>
-<? include("titre.php"); ?></title>
+<?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -36,10 +36,10 @@ require("bienvenue.php");
 //$nc=addslashes($_POST['nc']);
 $_SESSION["nc"]=$nc;
 $sql1="SELECT SUM(PTotal) AS prix , nc , datev  FROM $tbl_vente   where  nc='$nc' GROUP BY datev ORDER BY datev  ASC  ";
-$req=mysql_query($sql1);
+$req=mysqli_query($linki,$sql1);
 
 $sql5="SELECT * FROM $tbl_clientgaz  where  id='$nc'  ";
-$req5=mysql_query($sql5);
+$req5=mysqli_query($linki,$sql5);
 
 ?>
   </font></strong></font></font></font></font></p>
@@ -61,8 +61,8 @@ $req5=mysql_query($sql5);
                         <?php
 
 $sql4 = "SELECT *  FROM $tbl_clientgaz  ORDER BY nomprenom   ASC ";
-$result4 = mysql_query($sql4);
-while ($row4 = mysql_fetch_assoc($result4)) {
+$result4 = mysqli_query($linki,$sql4);
+while ($row4 = mysqli_fetch_assoc($result4)) {
 echo '<option value='.$row4['id'].'>'.$row4['nomprenom'].'</option>';
 }
 
@@ -103,26 +103,26 @@ echo '<option value='.$row4['id'].'>'.$row4['nomprenom'].'</option>';
               Unitaire </strong></font></td>
           </tr>
           <?php
-while($data5=mysql_fetch_array($req5)){ // Start looping table row
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data5=mysqli_fetch_array($req5)){ // Start looping table row
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
           <tr> 
-            <td bgcolor="#FFFFFF"><div align="left"><strong></strong><? echo $data['nc'];?><BR>
+            <td bgcolor="#FFFFFF"><div align="left"><strong></strong><?php echo $data['nc'];?><BR>
               </div></td>
-            <td align="center" bgcolor="#FFFFFF"><? echo $data5['nomprenom'];?> <div align="left"></div>
+            <td align="center" bgcolor="#FFFFFF"><?php echo $data5['nomprenom'];?> <div align="left"></div>
               <div align="left"></div></td>
-            <td align="center" bgcolor="#FFFFFF"> <a href="stk_factureimp.php?m1=<? echo $_SESSION["nc"];?>&m2=<? echo $data['datev'];?>&m3=<? echo $id_nom;?>" target="_blank" > 
-              </a><? echo $data5['tel'];?> </td>
-            <td align="center" bgcolor="#FFFFFF"><?  echo $data5['adresse'];?> 
+            <td align="center" bgcolor="#FFFFFF"> <a href="stk_factureimp.php?m1=<?php echo $_SESSION["nc"];?>&m2=<?php echo $data['datev'];?>&m3=<?php echo $id_nom;?>" target="_blank" > 
+              </a><?php echo $data5['tel'];?> </td>
+            <td align="center" bgcolor="#FFFFFF"><?php  echo $data5['adresse'];?> 
               <div align="left"></div></td>
-            <td align="center" bgcolor="#FFFFFF"><a href="stk_facture_gaz_imp.php?m1=<? echo $_SESSION["nc"];?>&m2=<? echo $data['datev'];?>&m3=<? echo $id_nom;?>" target="_blank" ><? echo $data['datev'];?></a></td>
-            <td align="center" bgcolor="#FFFFFF"><? echo strrev(chunk_split(strrev($data['prix']),3," "));  ?></td>
+            <td align="center" bgcolor="#FFFFFF"><a href="stk_facture_gaz_imp.php?m1=<?php echo $_SESSION["nc"];?>&m2=<?php echo $data['datev'];?>&m3=<?php echo $id_nom;?>" target="_blank" ><?php echo $data['datev'];?></a></td>
+            <td align="center" bgcolor="#FFFFFF"><?php echo strrev(chunk_split(strrev($data['prix']),3," "));  ?></td>
           </tr>
           <?php 
 }
 }
 
-//mysql_close();
+//mysqli_close($linki);
 ?>
         </table>
       </form></td>

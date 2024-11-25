@@ -6,7 +6,7 @@ require 'fonction.php';
 <html>
 <head>
 <title>
-<? include("titre.php"); ?></title>
+<?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -47,15 +47,15 @@ $req=mysqli_query($linki,$sql1);
 while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
           <tr> 
-            <td align="center" bgcolor="#FFFFFF"><? echo $data['annee'];?></td>
+            <td align="center" bgcolor="#FFFFFF"><?php echo $data['annee'];?></td>
             <td align="center" bgcolor="#FFFFFF">&nbsp; </td>
             <td align="center" bgcolor="#FFFFFF">&nbsp; </td>
-            <td align="center" bgcolor="#FFFFFF"><? echo strrev(chunk_split(strrev($data['prix']),3," "));  ?></td>
+            <td align="center" bgcolor="#FFFFFF"><?php echo strrev(chunk_split(strrev($data['prix']),3," "));  ?></td>
           </tr>
           <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
         </table>
       </form></td>

@@ -13,7 +13,7 @@ require 'rh_configuration_fonction.php';
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script language="javascript" src="calendar/calendar.js"></script>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -89,7 +89,7 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
   <tr>
     <td width="30%" height="180"><div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title">Direction &amp; Service <? echo $affichemois.' '.$anneepaie ; ?></h3>
+        <h3 class="panel-title">Direction &amp; Service <?php echo $affichemois.' '.$anneepaie ; ?></h3>
       </div>
       <div class="panel-body">
         <form action="rh_bulletin_type_ds.php" method="post" name="testform" id="form1">
@@ -139,7 +139,7 @@ echo "<option value=$row[idrh]>$row[direction]</option>";
     <td width="31%"><form name="form3" method="post" action="rh_bulletin_type_d.php">
       <div class="panel panel-primary">
         <div class="panel-heading">
-          <h3 class="panel-title">Affichage par Direction <? echo $affichemois.' '.$anneepaie ; ?></h3>
+          <h3 class="panel-title">Affichage par Direction <?php echo $affichemois.' '.$anneepaie ; ?></h3>
         </div>
         <div class="panel-body">
           <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">

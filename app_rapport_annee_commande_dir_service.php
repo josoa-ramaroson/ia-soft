@@ -13,7 +13,7 @@ require 'rh_configuration_fonction.php';
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 <script language="javascript" src="calendar/calendar.js"></script>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -50,15 +50,15 @@ while($rows2=mysqli_fetch_array($result2)){
 
    $bgcolor = "#FFFFFF";  
 ?>
-        <tr bgcolor=<? echo "$bgcolor" ?>>
-          <td width="20%" height="33"> Annee <? echo $annee;?> </td>
-          <td width="21%"><? echo $rows2['direction'];?></td>
-          <td width="19%"><? echo $rows2['service'];?> 
+        <tr bgcolor=<?php echo "$bgcolor" ?>>
+          <td width="20%" height="33"> Annee <?php echo $annee;?> </td>
+          <td width="21%"><?php echo $rows2['direction'];?></td>
+          <td width="19%"><?php echo $rows2['service'];?> 
                     
           </td>
-          <td width="14%"><? $P=strrev(chunk_split(strrev($rows2['prixt']),3," "));   echo $P;?></td>
+          <td width="14%"><?php $P=strrev(chunk_split(strrev($rows2['prixt']),3," "));   echo $P;?></td>
           <td width="26%">
-          <a href="app_rapport_annee_commande_dir_service_detail.php?id=<? echo md5(microtime()).$annee; ?>&dr=<? echo $rows2['direction'];?>&sr=<? echo $rows2['service']; ?>" class="btn btn-xs btn-success" onclick="return !window.open(this.href, 'pop', 'width=1200,height=670,left=120,top=120');"> Detail </a>
+          <a href="app_rapport_annee_commande_dir_service_detail.php?id=<?php echo md5(microtime()).$annee; ?>&dr=<?php echo $rows2['direction'];?>&sr=<?php echo $rows2['service']; ?>" class="btn btn-xs btn-success" onclick="return !window.open(this.href, 'pop', 'width=1200,height=670,left=120,top=120');"> Detail </a>
           </td>
         </tr>
 		  <?php

@@ -18,8 +18,8 @@ $prixt=$prixu*$quantite;
 $idfournisseur=addslashes($_POST['fournisseur']);
 
 $sqlS = "SELECT * FROM $tb_comptf  where idf=$idfournisseur";
-$resultS = mysql_query($sqlS);
-$rowS = mysql_fetch_assoc($resultS);
+$resultS = mysqli_query($linki, $sqlS);
+$rowS = mysqli_fetch_assoc($resultS);
 $fournisseur=$rowS['Societef'];
 
 //---------------------------------------------------------------------

@@ -11,7 +11,7 @@ if(($_SESSION['u_niveau'] != 7)) {
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 
@@ -64,7 +64,7 @@ $nombre_inscrit=$nb['nb'] ;
 <a href="Journal_audit_v_bd_read_filtreip.php" class="btn btn-sm btn-success" >  IP  </a> | 
 </div>
 
-<h2>Nombre des inscrits : <? echo $nombre_inscrit;  ?> </h2> 
+<h2>Nombre des inscrits : <?php echo $nombre_inscrit;  ?> </h2> 
  
 <table width="100%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
   <tr bgcolor="#0000FF">
@@ -80,12 +80,12 @@ $nombre_inscrit=$nb['nb'] ;
 while($data=mysqli_fetch_array($req)){ 
 ?>
    <tr bgcolor=<?php gettatut2($data['id_nom']); ?>>
-    <td align="center"  style="background-color:#FFF;"><? //echo $data['id_j'];?>      <div align="left"></div></td>
-    <td align="center"><? echo $data['id_nom'];?></td>
-    <td align="center"  style="background-color:#FFF;"><? //echo $data['le_file'];?></td>
+    <td align="center"  style="background-color:#FFF;"><?php //echo $data['id_j'];?>      <div align="left"></div></td>
+    <td align="center"><?php echo $data['id_nom'];?></td>
+    <td align="center"  style="background-color:#FFF;"><?php //echo $data['le_file'];?></td>
     <td align="center"  style="background-color:#FFF;">&nbsp;</td>
-    <td width="212"  style="background-color:#FFF;"><? // echo $data['date_Audit'];?></td>
-    <td width="87"   style="background-color:#FFF;"><? echo $data['Ip_user'];?></td>
+    <td width="212"  style="background-color:#FFF;"><?php // echo $data['date_Audit'];?></td>
+    <td width="87"   style="background-color:#FFF;"><?php echo $data['Ip_user'];?></td>
     <td width="86">&nbsp;</td>
   </tr>
   <?php

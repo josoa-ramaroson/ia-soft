@@ -1,4 +1,4 @@
-<?
+<?php
 require 'session.php';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -7,7 +7,7 @@ require 'session.php';
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Document sans titre</title>
 </head>
-<?
+<?php
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <?php
@@ -15,8 +15,8 @@ require 'fonction.php';
 //$id=$_GET['id'];
 $id=substr($_REQUEST["id"],32);
 $sqlm="SELECT * FROM $tbl_pc WHERE id='$id'";
-$resultm=mysql_query($sqlm);
-$datam=mysql_fetch_array($resultm);
+$resultm=mysqli_query($linki,$sqlm);
+$datam=mysqli_fetch_array($resultm);
 ?>
 <body>
 <script type="text/javascript"> 
@@ -34,9 +34,9 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
     <h3 class="panel-title">&nbsp;</h3>
   </div>
   <div class="panel-body">
-  <? if ($_SESSION['u_niveau']==10){?>
-      <a href="pc_edit.php?id=<? echo md5(microtime()).$datam['id'];?>" class="btn btn-sm btn-warning" >Edit le client</a>
-     |<? } else {} ?>
+  <?php if ($_SESSION['u_niveau']==10){?>
+      <a href="pc_edit.php?id=<?php echo md5(microtime()).$datam['id'];?>" class="btn btn-sm btn-warning" >Edit le client</a>
+     |<?php } else {} ?>
      <a href="#" onclick="toggleBox('activite',1);" class="btn btn-sm btn-success">Ajouter une tache </a>|
   </div>
 </div>
@@ -52,7 +52,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
           <td width="11%">&nbsp;</td>
           <td width="1%">&nbsp;</td>
           <td width="35%"><strong>
-          <? echo $datam['id'];?>
+          <?php echo $datam['id'];?>
           </strong></td>
           <td width="1%">&nbsp;</td>
           <td width="12%">&nbsp;</td>
@@ -62,83 +62,83 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
           <td><font size="2"><strong>Nom du PC </strong></font></td>
           <td>&nbsp;</td>
           <td><strong>
-           <? echo $datam['nom'];?>
+           <?php echo $datam['nom'];?>
           </strong></td>
           <td>&nbsp;</td>
           <td><font size="2"><strong>Souris</strong></font></td>
-          <td><strong><? echo $datam['souris'];?></strong></td>
+          <td><strong><?php echo $datam['souris'];?></strong></td>
         </tr>
         <tr>
           <td><font size="2"><strong>N de serie</strong></font></td>
           <td>&nbsp;</td>
-          <td><? echo $datam['nodeserie'];?>&nbsp;</td>
+          <td><?php echo $datam['nodeserie'];?>&nbsp;</td>
           <td>&nbsp;</td>
           <td><font size="2"><strong>Clavier</strong></font></td>
-          <td><strong><? echo $datam['clavier'];?></strong></td>
+          <td><strong><?php echo $datam['clavier'];?></strong></td>
         </tr>
         <tr>
           <td><font size="2"><strong>Modele</strong></font></td>
           <td>&nbsp;</td>
-          <td><? echo $datam['modele'];?></td>
+          <td><?php echo $datam['modele'];?></td>
           <td>&nbsp;</td>
           <td><font size="2"><strong>Ecran</strong></font></td>
-          <td><strong><? echo $datam['ecran'];?></strong></td>
+          <td><strong><?php echo $datam['ecran'];?></strong></td>
         </tr>
         <tr>
           <td><font size="2"><strong>Carte mere</strong></font></td>
           <td>&nbsp;</td>
-          <td><? echo $datam['cartemere'];?></td>
+          <td><?php echo $datam['cartemere'];?></td>
           <td>&nbsp;</td>
           <td><font size="2"><strong>Adresse IP</strong></font></td>
-          <td><strong><? echo $datam['adresseIP'];?></strong></td>
+          <td><strong><?php echo $datam['adresseIP'];?></strong></td>
         </tr>
         <tr>
           <td><font size="2"><strong>Processeur</strong></font></td>
           <td>&nbsp;</td>
-          <td><strong><? echo $datam['processeur'];?></strong></td>
+          <td><strong><?php echo $datam['processeur'];?></strong></td>
           <td>&nbsp;</td>
           <td><strong>Iles</strong></td>
-          <td><strong><? echo $datam['ile'];?></strong></td>
+          <td><strong><?php echo $datam['ile'];?></strong></td>
         </tr>
         <tr>
           <td><font size="2"><strong>Memoire Vive</strong></font></td>
           <td>&nbsp;</td>
-          <td><strong><? echo $datam['memoirevive'];?></strong></td>
+          <td><strong><?php echo $datam['memoirevive'];?></strong></td>
           <td>&nbsp;</td>
           <td><strong><font size="2">Ville</font></strong></td>
-          <td><strong><? echo $datam['ville'];?></strong></td>
+          <td><strong><?php echo $datam['ville'];?></strong></td>
         </tr>
         <tr>
           <td><font size="2"><strong>Disque dur</strong></font></td>
           <td>&nbsp;</td>
-          <td><strong><? echo $datam['disquedur'];?></strong></td>
+          <td><strong><?php echo $datam['disquedur'];?></strong></td>
           <td>&nbsp;</td>
           <td>Agence</td>
-          <td><strong><? echo $datam['agence'];?></strong></td>
+          <td><strong><?php echo $datam['agence'];?></strong></td>
         </tr>
         <tr>
           <td><font size="2"><strong>Carte de son</strong></font></td>
           <td>&nbsp;</td>
-          <td><strong><? echo $datam['cartedeson'];?></strong></td>
+          <td><strong><?php echo $datam['cartedeson'];?></strong></td>
           <td>&nbsp;</td>
           <td><font size="2"><strong>Utilisation</strong></font></td>
-          <td><strong><? echo $datam['utilisateur'];?></strong></td>
+          <td><strong><?php echo $datam['utilisateur'];?></strong></td>
         </tr>
         <tr>
           <td><font size="2"><strong>Carte Video</strong></font></td>
           <td>&nbsp;</td>
-          <td><strong><? echo $datam['cartevideo'];?></strong></td>
+          <td><strong><?php echo $datam['cartevideo'];?></strong></td>
           <td>&nbsp;</td>
           <td><font size="2"><strong>Email utilisateur</strong></font></td>
-          <td><strong><? echo $datam['email'];?></strong></td>
+          <td><strong><?php echo $datam['email'];?></strong></td>
         </tr>
         <tr>
           <td><font size="2"><strong>Carte reseau </strong></font></td>
           <td>&nbsp;</td>
-          <td><strong><? echo $datam['cartereseau'];?></strong></td>
+          <td><strong><?php echo $datam['cartereseau'];?></strong></td>
           <td>&nbsp;</td>
           <td><font size="2"><strong>Utilisateur </strong></font></td>
-          <td><strong><? echo $datam['utilisation'];?></strong></td>
+          <td><strong><?php echo $datam['utilisation'];?></strong></td>
         </tr>
       </table>
     </form></td>
@@ -153,24 +153,24 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
     <td height="50" bgcolor="#FFFFFF">  <p>
       <?php
 	 $sqact="SELECT * FROM $tbl_pctaches WHERE id='$id'";
-	 $resultact=mysql_query($sqact);
+	 $resultact=mysqli_query($linki,$sqact);
 
 ?>
       <?php
-while($rowsact=mysql_fetch_array($resultact)){
+while($rowsact=mysqli_fetch_array($resultact)){
 	 
 ?>
       </p>
   <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr bgcolor="<? gettatut($rowsact['suivi']); ?>">
-  <td width="42%"><li><? echo $rowsact['taches']; ?> &nbsp;&nbsp;</li></td>
-  <td width="13%"><? echo $rowsact['statut']; ?></td>
-  <td width="11%"><? echo $rowsact['suivi']; ?></td>
-  <td width="11%"><? echo $rowsact['realisateur']; ?></td>
-  <td width="12%"><? echo $rowsact['date']; ?></td>
+  <tr bgcolor="<?php gettatut($rowsact['suivi']); ?>">
+  <td width="42%"><li><?php echo $rowsact['taches']; ?> &nbsp;&nbsp;</li></td>
+  <td width="13%"><?php echo $rowsact['statut']; ?></td>
+  <td width="11%"><?php echo $rowsact['suivi']; ?></td>
+  <td width="11%"><?php echo $rowsact['realisateur']; ?></td>
+  <td width="12%"><?php echo $rowsact['date']; ?></td>
   <td width="11%">
-  <? if (($_SESSION['u_niveau']==10)&&  ($rowsact['suivi']!= 'Traité')){?>
-  <a href="pct_edit.php?id=<? echo md5(microtime()).$datam['id'];?>&amp;idpc=<? echo md5(microtime()).$rowsact['idpc'];?>" class="btn btn-sm btn-danger" >Mise à jours</a> <? } else {} ?>
+  <?php if (($_SESSION['u_niveau']==10)&&  ($rowsact['suivi']!= 'Traité')){?>
+  <a href="pct_edit.php?id=<?php echo md5(microtime()).$datam['id'];?>&amp;idpc=<?php echo md5(microtime()).$rowsact['idpc'];?>" class="btn btn-sm btn-danger" >Mise à jours</a> <?php } else {} ?>
   
   </td>
   </tr>

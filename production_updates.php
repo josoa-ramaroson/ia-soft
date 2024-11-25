@@ -1,7 +1,5 @@
 <?php
 	require 'fonction.php';
-    $link = mysql_connect ($host,$user,$pass);
-    mysql_select_db($db);
 
 $id=addslashes($_POST['idp']);
 $id_nom=addslashes($_POST['id_nom']);
@@ -15,13 +13,13 @@ $Huile=addslashes($_POST['Huile']);
 $centrale=addslashes($_POST['centrale']);
 
 $sqlp="update $tbl_production  set  id_nom='$id_nom', mois='$mois' , annee='$annee' ,  prod='$prod' , dist='$dist' ,auxi='$auxi' , gazoil='$gazoil', Huile='$Huile', centrale='$centrale' WHERE  id='$id'";
-$resultp=mysql_query($sqlp);
+$resultp=mysqli_query($linki,$sqlp);
 if($resultp){
 }
 else {
 echo "ERROR";
 }
-mysql_close();
+mysqli_close($linki);
 ?>
 <?php
 header("location: production.php");

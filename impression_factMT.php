@@ -123,8 +123,8 @@ require 'configuration.php';
 $sql = "SELECT count(*) FROM $tbl_contact c , $tbl_fact f  where f.id=c.id  and f.nserie=$nserie and f.fannee=$anneec 
 
 and Tarif=10";  
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-$nb_total = mysql_fetch_array($resultat);  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
 }  
@@ -134,7 +134,7 @@ $nb_affichage_par_page =50;
 $sql = " SELECT * FROM $tbl_fact f , $tbl_contact c  where f.id=c.id and f.nserie=$nserie and f.fannee=$anneec 
 
 and  Tarif=10 ORDER BY f.id ASC  LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
  </p>
 <table width="100%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
@@ -149,29 +149,29 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
      <td width="11%" align="center"><font color="#FFFFFF"><strong>Montant Total</strong></font></td>
    </tr>
    <?php
-while($datafact=mysql_fetch_array($req)){ // Start looping table row 
+while($datafact=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
-    <tr bgcolor="<? gettatut($datafact['totalht']); ?>">
+    <tr bgcolor="<?php gettatut($datafact['totalht']); ?>">
      <td align="center"><font color="#000000">
      
-	 <a href="<? if ($datafact['Tarif']!=10){echo'co_bill.php';} else { echo'co_billMT.php';}?>?idf=<? echo md5(microtime()).$datafact['idf'];?>" class="btn btn-sm btn-default" target="_blank" ><? echo $datafact['id'];?></a>
+	 <a href="<?php if ($datafact['Tarif']!=10){echo'co_bill.php';} else { echo'co_billMT.php';}?>?idf=<?php echo md5(microtime()).$datafact['idf'];?>" class="btn btn-sm btn-default" target="_blank" ><?php echo $datafact['id'];?></a>
      
 	 </font></td>
-     <td ><font color="#000000"><? echo $datafact['nomprenom'];?></font></td>
-     <td align="center" ><font color="#000000"><? echo $datafact['ville'];?></font></td>
-     <td align="center" ><font color="#000000"><? echo $datafact['quartier'];?></font></td>
-     <td align="center" ><em><font color="#000000"><? echo $datafact['totalttc'];?></font></em></td>
-     <td align="center" ><font color="#000000"><? echo $datafact['impayee'];?></font></td>
-     <td align="center" ><font color="#000000"><? echo $datafact['Pre'];?></font></td>
-     <td align="center" ><font color="#000000"><? echo $datafact['totalnet'];?></font></td>
+     <td ><font color="#000000"><?php echo $datafact['nomprenom'];?></font></td>
+     <td align="center" ><font color="#000000"><?php echo $datafact['ville'];?></font></td>
+     <td align="center" ><font color="#000000"><?php echo $datafact['quartier'];?></font></td>
+     <td align="center" ><em><font color="#000000"><?php echo $datafact['totalttc'];?></font></em></td>
+     <td align="center" ><font color="#000000"><?php echo $datafact['impayee'];?></font></td>
+     <td align="center" ><font color="#000000"><?php echo $datafact['Pre'];?></font></td>
+     <td align="center" ><font color="#000000"><?php echo $datafact['totalnet'];?></font></td>
    </tr>
    <?php
 }
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close ();  
+mysqli_free_result ($resultat);  
+mysqli_close ();  
 				  function gettatut($fetat){
 				  if ($fetat<=1500000 && $fetat>=1000000)         { echo $couleur="#ffc88d";}//orange 
 				  if ($fetat>=1500000)                          { echo $couleur="#ec9b9b";}//rouge -Declined

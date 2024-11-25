@@ -27,8 +27,8 @@ $req="UPDATE  $tb_comptf SET  Societef='$Societef',Adressef='$Adressef',Telephon
 personne='$personne' , Telephonem='$Telephonem' , faxe='$faxe' , email='$email' , web='$web' , ville='$ville' , pays='$pays'
 
  where idf='$idf' ";
- $result=mysql_query($req);
- mysql_close();
+ $result=mysqli_query($linki,$req);
+ mysqli_close($linki);
 
 
 include ("compt_fourniseur.php");

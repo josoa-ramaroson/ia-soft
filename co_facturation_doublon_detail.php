@@ -10,7 +10,7 @@ if(($_SESSION['u_niveau'] != 2) && ($_SESSION['u_niveau'] != 8)  && ($_SESSION['
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <script language="javascript" src="calendar/calendar.js"></script>
@@ -73,22 +73,22 @@ $reqdoub = mysqli_query($linki,$Sdoubl) or die('Erreur SQL !<br />'.$Sdoubl.'<br
 while($LesDoublons=mysqli_fetch_array($reqdoub)){ // Start looping table row 
 ?>
   <tr>
-    <td align="center" bgcolor="#FFFFFF"><div align="left"><? echo $LesDoublons['nfacture'];?></div></td>
-    <td  bgcolor="#FFFFFF"><? echo $LesDoublons['st'];?></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo $LesDoublons['id'];?></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo $LesDoublons['date'];?></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo $LesDoublons['bnom'];?></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo $LesDoublons['nserie'];?></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo $LesDoublons['fannee'];?></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo $LesDoublons['totalnet'];?></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo $LesDoublons['etat'];?></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo $LesDoublons['bstatut'];?></td>		
-    <td align="center" bgcolor="#FFFFFF"><? echo $LesDoublons['id_nom'];?></td>
+    <td align="center" bgcolor="#FFFFFF"><div align="left"><?php echo $LesDoublons['nfacture'];?></div></td>
+    <td  bgcolor="#FFFFFF"><?php echo $LesDoublons['st'];?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $LesDoublons['id'];?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $LesDoublons['date'];?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $LesDoublons['bnom'];?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $LesDoublons['nserie'];?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $LesDoublons['fannee'];?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $LesDoublons['totalnet'];?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $LesDoublons['etat'];?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $LesDoublons['bstatut'];?></td>		
+    <td align="center" bgcolor="#FFFFFF"><?php echo $LesDoublons['id_nom'];?></td>
     <td align="center" bgcolor="#FFFFFF">
 	
-	<? if (($LesDoublons['etat']=='facture') OR  ($LesDoublons['etat']=='')) { ?>
-	<a href="co_facturation_doublon_cancel.php?ID=<? echo md5(microtime()).$LesDoublons['idf'];?>&i=<? echo md5(microtime()).$LesDoublons['id'];?>&s=<? echo md5(microtime()).$LesDoublons['nserie'];?>&a=<? echo md5(microtime()).$LesDoublons['fannee'];?>" onClick="return confirm('Etes-vous sur de vouloir supprimer ce doublon')" ; style="margin:5px"  class="btn btn btn-danger"> Supprimer doublon</a>
-	<? } else { } ?>
+	<?php if (($LesDoublons['etat']=='facture') OR  ($LesDoublons['etat']=='')) { ?>
+	<a href="co_facturation_doublon_cancel.php?ID=<?php echo md5(microtime()).$LesDoublons['idf'];?>&i=<?php echo md5(microtime()).$LesDoublons['id'];?>&s=<?php echo md5(microtime()).$LesDoublons['nserie'];?>&a=<?php echo md5(microtime()).$LesDoublons['fannee'];?>" onClick="return confirm('Etes-vous sur de vouloir supprimer ce doublon')" ; style="margin:5px"  class="btn btn btn-danger"> Supprimer doublon</a>
+	<?php } else { } ?>
 	
 	</td>
   </tr>

@@ -20,9 +20,9 @@ if(($_SESSION['u_niveau'] != 2)) {
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 
 $sqlu = "SELECT * FROM $tbl_saisie where blogin='$id_nom'";
-$resultu = mysql_query($sqlu);
+$resultu = mysqli_query($linki,$sqlu);
 
-while ($rowu = mysql_fetch_assoc($resultu)) {
+while ($rowu = mysqli_fetch_assoc($resultu)) {
 $bville=$rowu['bville'];
 $bquartier=$rowu['bquartier'];
 }  
@@ -32,8 +32,8 @@ $bquartier=$rowu['bquartier'];
  <table width="100%" border="0">
    <tr>
      <td width="42%"><a href="co_facturation_listeFacT.php" class="btn btn-sm btn-success" > LISTE DES FACTURATIONS BT  triphase  </a> | <a href="co_facturation_listeNoFacT.php" class="btn btn-sm btn-success" > LISTE DES  BT NON FACTURE  BT  triphase </a> </td>
-     <td width="13%"><? echo  $bville ?> </td>
-     <td width="16%"><? echo  $bquartier ?> </td>
+     <td width="13%"><?php echo  $bville ?> </td>
+     <td width="16%"><?php echo  $bquartier ?> </td>
      <td width="29%"><form name="form1" method="post" action="co_facturationuser.php">
                    <label for="mr1"></label>
                    <input name="mr1" type="text" id="mr1" size="30">
@@ -45,8 +45,8 @@ $bquartier=$rowu['bquartier'];
    <?php
 
 $sql = "SELECT count(*) FROM $tbl_contact where ville='$bville'  and quartier='$bquartier' and statut='6' and  (Tarif='1' or Tarif='5'  or Tarif='12') and id NOT IN(SELECT id FROM $tbl_factsave where annee='$anneec' and nserie='$nserie')";  
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
-$nb_total = mysql_fetch_array($resultat);  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo '</br>';
 echo 'Veuillez choisir la Ville et le quartier pour debuter la saisie des factures';  
@@ -55,7 +55,7 @@ else {
 if (!isset($_GET['debut'])) $_GET['debut'] = 0; 
 $nb_affichage_par_page = 1; 
 $sql = "SELECT * FROM $tbl_contact where  ville='$bville'  and quartier='$bquartier' and statut='6' and  (Tarif='1' or Tarif='5'  or Tarif='12') and id NOT IN(SELECT id FROM $tbl_factsave where annee='$anneec'  and nserie='$nserie') ORDER BY id ASC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 
 	//recherche du repport 
 ?>
@@ -66,7 +66,7 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
      <td width="53%" align="center">&nbsp;</td>
   </tr>
    <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
    <tr>
      <td align="center" bgcolor="#FFFFFF"><form name="form1" method="post" action="">
@@ -74,12 +74,12 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
          <tr>
            <td width="34%">ID_CLIENT</td>
            <td width="2%">&nbsp;</td>
-           <td width="64%"><strong> <? $idcl=$data['id']; echo $data['id'];?></strong></td>
+           <td width="64%"><strong> <?php $idcl=$data['id']; echo $data['id'];?></strong></td>
          </tr>
          <tr>
            <td>Police </td>
            <td>&nbsp;</td>
-           <td><strong><? echo $data['Police'];?></strong></td>
+           <td><strong><?php echo $data['Police'];?></strong></td>
          </tr>
          <tr>
            <td><strong><font color="#000000" size="2">Reference géographique</font></strong></td>
@@ -89,35 +89,35 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
          <tr>
            <td>Coefficient TI</td>
            <td>&nbsp;</td>
-           <td><? echo $data['coefTi'];?></td>
+           <td><?php echo $data['coefTi'];?></td>
          </tr>
          <tr>
            <td><strong><font size="2">Nom et Prénom <font size="2"><font color="#FF0000"> *</font></font></font></strong></td>
            <td>&nbsp;</td>
-           <td><? echo $data['nomprenom'];?></td>
+           <td><?php echo $data['nomprenom'];?></td>
          </tr>
          <tr>
            <td><strong><font size="2">Ville</font></strong></td>
            <td>&nbsp;</td>
-           <td><strong><? echo $data['ville'];?></strong></td>
+           <td><strong><?php echo $data['ville'];?></strong></td>
          </tr>
          <tr>
            <td><strong><font size="2"><font size="2">Quartier</font></font></strong></td>
            <td>&nbsp;</td>
-           <td><strong><? echo $data['quartier'];?></strong></td>
+           <td><strong><?php echo $data['quartier'];?></strong></td>
          </tr>
        </table>
        <?
 	  
 	 //recherche du repport 
 	 $sqlp = "SELECT * FROM $tbl_fact WHERE id='$idcl' and st='E' ORDER BY idf desc limit 0,1";  
-	 $resultp=mysql_query($sqlp);
-	 $datap=mysql_fetch_array($resultp);
+	 $resultp=mysqli_query($linki,$sqlp);
+	 $datap=mysqli_fetch_array($resultp);
 			
 	//affichage des facturations
 	$sqfac="SELECT * FROM $tbl_fact  WHERE id='$idcl' and  st='E' ORDER BY idf desc limit 0,1";
-	$resultfac=mysql_query($sqfac);
-	$datindex=mysql_fetch_array($resultfac);
+	$resultfac=mysqli_query($linki,$sqfac);
+	$datindex=mysqli_fetch_array($resultfac);
 			?>
      </form></td>
      <td align="center" bgcolor="#FFFFFF"><form name="form2" method="post" action="co_facturation_saveT.php">
@@ -162,11 +162,11 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
 	 	  if(!isset($datap['report'])|| empty($datap['report'])){ echo 0;} else { echo $datap['report'];} ?>" size="20" readonly />
            </strong></td>
            <td>KMF<font color="#FF0000">
-           <input name="idf" type="hidden" id="idf" value="<? echo $datap['idf']; ?>" />
-           <input name="Tarif" type="hidden" id="Tarif" value="<? echo $data['Tarif']; ?>" />
-           <input name="amperage" type="hidden" id="amperage" value="<? echo $data['amperage']; ?>" />
-           <input name="chtaxe" type="hidden" id="chtaxe" value="<? echo $data['chtaxe']; ?>" />
-           <input name="Police" type="hidden" id="Police" value="<? echo $data['Police']; ?>" />
+           <input name="idf" type="hidden" id="idf" value="<?php echo $datap['idf']; ?>" />
+           <input name="Tarif" type="hidden" id="Tarif" value="<?php echo $data['Tarif']; ?>" />
+           <input name="amperage" type="hidden" id="amperage" value="<?php echo $data['amperage']; ?>" />
+           <input name="chtaxe" type="hidden" id="chtaxe" value="<?php echo $data['chtaxe']; ?>" />
+           <input name="Police" type="hidden" id="Police" value="<?php echo $data['Police']; ?>" />
            </font></td>
          </tr>
          <tr>
@@ -179,22 +179,22 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
            <td>&nbsp;</td>
            <td>&nbsp;</td>
            <td>&nbsp;</td>
-           <td><input name="id" type="hidden" id="id" value="<? echo $data['id']; ?>" />
+           <td><input name="id" type="hidden" id="id" value="<?php echo $data['id']; ?>" />
              <input name="st" type="hidden" value="E" />
              <font color="#FF0000">
-             <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
+             <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
              </font><font color="#FF0000">
              <input name="libelle" type="hidden" id="libelle" value="Facture" />
              </font><font color="#FF0000">
              <input name="bstatut" type="hidden" id="bstatut" value="saisie" />
              </font><font color="#FF0000">
-             <input name="bnom" type="hidden" id="bnom" value="<? echo $data['nomprenom']; ?>" />
+             <input name="bnom" type="hidden" id="bnom" value="<?php echo $data['nomprenom']; ?>" />
              </font><font color="#FF0000">
-             <input name="bquartier" type="hidden" id="bquartier" value="<? echo $data['quartier']; ?>" />
+             <input name="bquartier" type="hidden" id="bquartier" value="<?php echo $data['quartier']; ?>" />
              </font><strong>
-             <input name="coefTi" type="hidden" class="form-control" id="coefTi" value="<? echo $data['coefTi'];?>" size="20" />
+             <input name="coefTi" type="hidden" class="form-control" id="coefTi" value="<?php echo $data['coefTi'];?>" size="20" />
              </strong><font color="#FF0000">
-             <input name="id_user" type="hidden" id="id_user" value="<? echo $id_user; ?>" />
+             <input name="id_user" type="hidden" id="id_user" value="<?php echo $id_user; ?>" />
              </font><strong><font color="#FF0000"></td>
          </tr>
        </table>
@@ -202,11 +202,11 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
    </tr>
    <?php
 }
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
-mysql_free_result ($resultat);  
-mysql_close ();  
+mysqli_free_result ($resultat);  
+mysqli_close ();  
 ?>
 </table>
 <p>&nbsp;</p>

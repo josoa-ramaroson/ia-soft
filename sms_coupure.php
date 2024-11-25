@@ -14,7 +14,7 @@ if(($_SESSION['u_niveau'] != 30)) {
 <html>
 <head>
 
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -179,7 +179,7 @@ echo "<option value=$row[refville]>$row[ville]</option>";
                 <td width="52%"><form name="form1" method="post" action="sms_chercher.php">
                   <label for="mr3"></label>
                 
-                  <a href="sms_envoi_affichage_text_num.php?id_nom=<? echo $id_nom;?>&<? echo md5(microtime()); ?>" onclick="return !window.open(this.href, 'pop',  'width=600,height=370,left=120,top=120');" class="btn btn-sm btn-success"  target=_blank  >Envoi SMS</a>
+                  <a href="sms_envoi_affichage_text_num.php?id_nom=<?php echo $id_nom;?>&<?php echo md5(microtime()); ?>" onclick="return !window.open(this.href, 'pop',  'width=600,height=370,left=120,top=120');" class="btn btn-sm btn-success"  target=_blank  >Envoi SMS</a>
                 
                 
                 

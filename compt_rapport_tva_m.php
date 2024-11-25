@@ -11,7 +11,7 @@ require 'fonction.php';
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 
 </head>
 <?
@@ -42,44 +42,44 @@ $annee=$_POST['annee'];
               </tr>
   <?php
   $req2="select * from $tb_ecriture where MONTH(Date)=$mois and YEAR(Date)=$annee  and Description= 'TVA' " ;
-  $req=mysql_query($req2);
- while ($data=mysql_fetch_array($req)){ // Start looping table row 
+  $req=mysqli_query($linki,$req2);
+ while ($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
               <tr> 
                 <td height="27" bgcolor="#FFFFFF"> <div align=""> 
-                    <? echo $data['ide'];?>
+                    <?php echo $data['ide'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Date'];?>
+                    <?php echo $data['Date'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Compte'];?>
+                    <?php echo $data['Compte'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Description'];?>
+                    <?php echo $data['Description'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Pieces'];?>
+                    <?php echo $data['Pieces'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Debit'];?>
+                    <?php echo $data['Debit'];?>
                     <BR>
                   </div></td>
 				  <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Credit'];?>
+                    <?php echo $data['Credit'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['Tva'];?>
+                    <?php echo $data['Tva'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""> 
-                    <? echo $data['TTC'];?>
+                    <?php echo $data['TTC'];?>
                     <BR>
                   </div></td>
                 <td bgcolor="#FFFFFF"><div align=""></div></td>
@@ -87,7 +87,7 @@ $annee=$_POST['annee'];
               <?php
 // Exit looping and close connection 
 }
-//mysql_close();
+//mysqli_close($linki);
 ?>
             </table>
           </form></td>

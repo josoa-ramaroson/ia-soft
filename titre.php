@@ -1,1 +1,1 @@
-<?php echo 'IaSoft - Connexion'?>
+<?php echo 'D-IA Tool'?>

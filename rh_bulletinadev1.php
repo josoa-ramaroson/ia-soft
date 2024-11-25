@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title><? include 'titre.php'; ?></title>
-<? //include 'inc/head.php'; ?>
+<title><?php include 'titre.php'; ?></title>
+<?php //include 'inc/head.php'; ?>
 <style type="text/css">
 .centre {
 	text-align: center;
@@ -23,16 +23,16 @@ require 'rh_configuration_fonction.php';
 $iddirection=addslashes($_REQUEST['direction']);
 
 $sql2 = "SELECT * FROM $tb_rhdirection where idrh=$iddirection";
-$result2 = mysql_query($sql2);
-while ($row2 = mysql_fetch_assoc($result2)) {
+$result2 = mysqli_query($linki,$sql2);
+while ($row2 = mysqli_fetch_assoc($result2)) {
 $direction=$row2['direction'];
 } 
     $m1d=$direction;
 
 $sql5="SELECT * FROM $tb_rhpaie where anneepaie='$anneepaie' and moispaie='$moispaie' and direction='$m1d' ORDER BY matricule ASC";
-$req5=mysql_query($sql5);
+$req5=mysqli_query($linki,$sql5);
 
-while($datam=mysql_fetch_array($req5)){ // Start looping table row
+while($datam=mysqli_fetch_array($req5)){ // Start looping table row
 ?>
     <img src="images/eda.png" width="208" height="96" /></strong><strong> </strong></p></td>
     <td width="53%"><h1 class="centre"> BULLETIN DE PAIE <span style="width: 75%; font-size: 24px;">
@@ -52,34 +52,34 @@ while($datam=mysql_fetch_array($req5)){ // Start looping table row
         <td><table width="93%" border="0.5" align="center" cellpadding="0" cellspacing="0">
           <tr>
             <td width="36%">Nom et prenom</td>
-            <td width="64%"><font color="#000000"><strong><? echo $datam['Designation'];?></strong> <? echo $datam['nomprenom'];?></font></td>
+            <td width="64%"><font color="#000000"><strong><?php echo $datam['Designation'];?></strong> <?php echo $datam['nomprenom'];?></font></td>
           </tr>
           <tr>
             <td>Fonction</td>
-            <td><strong><? echo $datam['titre'];?></strong></td>
+            <td><strong><?php echo $datam['titre'];?></strong></td>
           </tr>
           <tr>
             <td>Matricule </td>
-            <td><strong><? echo $datam['matricule'];?></strong></td>
+            <td><strong><?php echo $datam['matricule'];?></strong></td>
           </tr>
           <tr>
             <td>Direction</td>
-            <td><strong><? echo $datam['direction'];?></strong></td>
+            <td><strong><?php echo $datam['direction'];?></strong></td>
           </tr>
           <tr>
             <td>Service </td>
-            <td><strong><? echo $datam['service'];?></strong></td>
+            <td><strong><?php echo $datam['service'];?></strong></td>
           </tr>
           <tr>
             <td><span style="width:36%">Date d'embauche</span></td>
-            <td><strong><? echo $datam['dembauche'];?></strong></td>
+            <td><strong><?php echo $datam['dembauche'];?></strong></td>
           </tr>
         </table></td>
       </tr>
     </table></td>
   </tr>
 </table>
-<p align="center">PERIODE DE PAIEMENT :&nbsp;&nbsp;<b> <? $n1=$datam['moispaie']; 
+<p align="center">PERIODE DE PAIEMENT :&nbsp;&nbsp;<b> <?php $n1=$datam['moispaie']; 
 	  if ($n1==1) echo 'janvier';
 	  if ($n1==2) echo 'février'; 
 	  if ($n1==3) echo 'Mars';
@@ -94,7 +94,7 @@ while($datam=mysql_fetch_array($req5)){ // Start looping table row
 	  if ($n1==12) echo 'Decembre';  
 	  ?>
 
-<? echo $datam['anneepaie']; ?></b></p>
+<?php echo $datam['anneepaie']; ?></b></p>
 <div class="panel panel-info">
   <div class="panel-heading">
     <h3 class="panel-title">Salaire base &amp; Indemnités</h3>
@@ -111,104 +111,104 @@ while($datam=mysql_fetch_array($req5)){ // Start looping table row
             </tr>
           <tr>
             <td>Indice de Base </td>
-            <td><? echo $datam['indice']; ?></td>
-            <td width="31%"><? if ($datam['fonction']!=0){?>
+            <td><?php echo $datam['indice']; ?></td>
+            <td width="31%"><?php if ($datam['fonction']!=0){?>
               Fonction 
-              <? $fonction=$datam['fonction']; } else { $fonction='';}?></td>
-            <td width="20%"><? echo $fonction; ?>
+              <?php $fonction=$datam['fonction']; } else { $fonction='';}?></td>
+            <td width="20%"><?php echo $fonction; ?>
              </td>
             </tr>
           <tr>
             <td>Taux </td>
-            <td><? echo $datam['taux']; ?></td>
+            <td><?php echo $datam['taux']; ?></td>
             <td>
-             <? if ($datam['transport']!=0){?> Transport <? $transportt=$datam['transport']; } else { $transport='';}?></td>
-            <td><? echo $transport; ?></td>
+             <?php if ($datam['transport']!=0){?> Transport <?php $transportt=$datam['transport']; } else { $transport='';}?></td>
+            <td><?php echo $transport; ?></td>
             </tr>
           <tr>
             <td>Salaire de Base </td>
-            <td><? echo $datam['sbase']; ?></td>
+            <td><?php echo $datam['sbase']; ?></td>
             <td>
-      <? if ($datam['logement']!=0){?> Logement <? $logement=$datam['logement']; } else { $logement='';}?>
+      <?php if ($datam['logement']!=0){?> Logement <?php $logement=$datam['logement']; } else { $logement='';}?>
             </td>
-            <td><? echo $logement; ?></td>
+            <td><?php echo $logement; ?></td>
             </tr>
             
           <tr>
      <td>
-	 <? if ($datam['avancement']!=0){?> Avancement au marité <? $avancement=$datam['avancement']; } else { $avancement='';}?></td>
-            <td><? echo $avancement; ?></td>
+	 <?php if ($datam['avancement']!=0){?> Avancement au marité <?php $avancement=$datam['avancement']; } else { $avancement='';}?></td>
+            <td><?php echo $avancement; ?></td>
             
             
-            <td><? if ($datam['telephone']!=0){?> Téléphone <? $telephone=$datam['telephone']; } else { $telephone='';}?></td>
+            <td><?php if ($datam['telephone']!=0){?> Téléphone <?php $telephone=$datam['telephone']; } else { $telephone='';}?></td>
             <td>
-              <? echo $telephone; ?></td>
+              <?php echo $telephone; ?></td>
             </tr>
           <tr>
-            <td><? if ($datam['anciennete']!=0){?>
+            <td><?php if ($datam['anciennete']!=0){?>
               Prime d'anciennete
-              <? $anciennete=$datam['anciennete']; } else { $anciennete='';}?></td>
-            <td><? echo $anciennete; ?></td>
+              <?php $anciennete=$datam['anciennete']; } else { $anciennete='';}?></td>
+            <td><?php echo $anciennete; ?></td>
             
-            <td><? if ($datam['risque']!=0){?> 
+            <td><?php if ($datam['risque']!=0){?> 
               Risque / Autres Indemnite
-              <? $risque=$datam['risque']; } else { $risque='';}?></td>
-             <td><? echo $risque;?></td>
+              <?php $risque=$datam['risque']; } else { $risque='';}?></td>
+             <td><?php echo $risque;?></td>
             </tr>
             
           <tr>
-            <td><? if ($datam['gratification']!=0){?>
+            <td><?php if ($datam['gratification']!=0){?>
               Gratification
-              <? $gratification=$datam['gratification']; } else { $gratification='';}?></td>
-            <td><? echo $gratification; ?></td>
+              <?php $gratification=$datam['gratification']; } else { $gratification='';}?></td>
+            <td><?php echo $gratification; ?></td>
             
             
-            <td><? if ($datam['caisse']!=0){?>
+            <td><?php if ($datam['caisse']!=0){?>
               Caisse
-              <? $caisse=$datam['caisse']; } else { $caisse='';}?></td>
-            <td><? echo $caisse;?></td>
+              <?php $caisse=$datam['caisse']; } else { $caisse='';}?></td>
+            <td><?php echo $caisse;?></td>
             </tr>
             
             
           <tr>
-            <td><? if ($datam['srappel']!=0){?>
+            <td><?php if ($datam['srappel']!=0){?>
               Rappel
-              <? $srappel=$datam['srappel']; } else { $srappel='';}?></td>
-            <td><? echo $srappel;?></td>
+              <?php $srappel=$datam['srappel']; } else { $srappel='';}?></td>
+            <td><?php echo $srappel;?></td>
             
             
-            <td><? if ($datam['astreinte']!=0){?>
+            <td><?php if ($datam['astreinte']!=0){?>
               Prime Nuit (Astreinte)
-              <? $astreinte=$datam['astreinte']; } else { $astreinte='';}?></td>
-            <td><? echo $astreinte;?></td>
+              <?php $astreinte=$datam['astreinte']; } else { $astreinte='';}?></td>
+            <td><?php echo $astreinte;?></td>
             </tr>
             
             
           <tr>
-            <td><? if ($datam['heuressup']!=0){?>
+            <td><?php if ($datam['heuressup']!=0){?>
               Heures supplementaire
-              <? $heuressup=$datam['heuressup']; } else { $heuressup='';}?></td>
-            <td><? echo $heuressup; ?></td>
+              <?php $heuressup=$datam['heuressup']; } else { $heuressup='';}?></td>
+            <td><?php echo $heuressup; ?></td>
             
             
-            <td><? if ($datam['panier']!=0){?>
+            <td><?php if ($datam['panier']!=0){?>
               Prime de panier
-              <? $panier=$datam['panier']; } else { $panier='';}?></td>
-            <td><? echo $panier; ?></td>
+              <?php $panier=$datam['panier']; } else { $panier='';}?></td>
+            <td><?php echo $panier; ?></td>
             </tr>
             
             
           <tr>
-            <td><? if ($datam['conge']!=0){?>
+            <td><?php if ($datam['conge']!=0){?>
               Congé payé
-              <? $conge=$datam['conge']; } else { $conge='';}?></td>
-            <td><? echo $conge; ?></td>
+              <?php $conge=$datam['conge']; } else { $conge='';}?></td>
+            <td><?php echo $conge; ?></td>
             
             
-            <td><? if ($datam['remboursement']!=0){?>
+            <td><?php if ($datam['remboursement']!=0){?>
               Remboursement de frais
-              <? $remboursement=$datam['remboursement']; } else { $remboursement='';}?></td>
-            <td><? echo $remboursement; ?></td>
+              <?php $remboursement=$datam['remboursement']; } else { $remboursement='';}?></td>
+            <td><?php echo $remboursement; ?></td>
             </tr>
             
           <tr>
@@ -220,11 +220,11 @@ while($datam=mysql_fetch_array($req5)){ // Start looping table row
           <tr>
             <td>TOTAL DE BASE </td>
             <td><strong>
-              <? $SS=$datam['SS']; echo $datam['SS']; ?>
+              <?php $SS=$datam['SS']; echo $datam['SS']; ?>
             KMF</strong></td>
             <td>TOTAL INDEMNITES </td>
             <td><strong>
-              <? $SI=$datam['SI']; echo $datam['SI']; ?>
+              <?php $SI=$datam['SI']; echo $datam['SI']; ?>
             KMF</strong></td>
           </tr>
           <tr>
@@ -238,7 +238,7 @@ while($datam=mysql_fetch_array($req5)){ // Start looping table row
             <td>&nbsp;</td>
             <td>SALAIRE BRUT</td>
             <td><strong>
-              <? $SB=$SS+$SI; echo $SB; ?>
+              <?php $SB=$SS+$SI; echo $SB; ?>
             KMF</strong></td>
           </tr>
         </table></td>
@@ -255,55 +255,55 @@ while($datam=mysql_fetch_array($req5)){ // Start looping table row
       <tr>
         <td width="47%"><table width="100%" border="0.5" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="26%"><? if ($datam['cotisation']!=0){?>
+            <td width="26%"><?php if ($datam['cotisation']!=0){?>
               Cotisation maladies
-              <? $cotisation=$datam['cotisation']; } else { $cotisation='';}?></td>
-            <td width="29%"><? echo $cotisation; ?></td>
+              <?php $cotisation=$datam['cotisation']; } else { $cotisation='';}?></td>
+            <td width="29%"><?php echo $cotisation; ?></td>
             
-            <td width="25%"><? if ($datam['igr']!=0){?>
+            <td width="25%"><?php if ($datam['igr']!=0){?>
               IGR
-              <? $igr=$datam['igr']; } else { $igr='';}?></td>
-            <td width="20%"><? echo $igr; ?></td>
+              <?php $igr=$datam['igr']; } else { $igr='';}?></td>
+            <td width="20%"><?php echo $igr; ?></td>
           </tr>
           
           <tr>
-            <td><? if ($datam['avances']!=0){?>
+            <td><?php if ($datam['avances']!=0){?>
               Avance sur Salaire
-              <? $avances=$datam['avances']; } else { $avances='';}?></td>
-            <td><? echo $avances;?></td>
+              <?php $avances=$datam['avances']; } else { $avances='';}?></td>
+            <td><?php echo $avances;?></td>
             
             
-            <td><? if ($datam['retraite']!=0){?>
+            <td><?php if ($datam['retraite']!=0){?>
               Caisse de retraite
-              <? $retraite=$datam['retraite']; } else { $retraite='';}?></td>
-            <td><? echo $retraite;?></td>
+              <?php $retraite=$datam['retraite']; } else { $retraite='';}?></td>
+            <td><?php echo $retraite;?></td>
           </tr>
           
           
           <tr>
-            <td><? if ($datam['pret']!=0){?>
+            <td><?php if ($datam['pret']!=0){?>
               Pret
-              <? $pret=$datam['pret']; } else { $pret='';}?></td>
-            <td><? echo $pret;?></td>
+              <?php $pret=$datam['pret']; } else { $pret='';}?></td>
+            <td><?php echo $pret;?></td>
             
             
-            <td><? if ($datam['prevoyance']!=0){?>
+            <td><?php if ($datam['prevoyance']!=0){?>
               Caisse de prevoyances
-              <? $prevoyance=$datam['prevoyance']; } else { $prevoyance='';}?></td>
-            <td><? echo $prevoyance;?></td>
+              <?php $prevoyance=$datam['prevoyance']; } else { $prevoyance='';}?></td>
+            <td><?php echo $prevoyance;?></td>
           </tr>
           
           <tr>
-            <td><? if ($datam['adeduction']!=0){?>
+            <td><?php if ($datam['adeduction']!=0){?>
               Autre deduction
-              <? $adeduction=$datam['adeduction']; } else { $adeduction='';}?></td>
-            <td><? echo $adeduction;?></td>
+              <?php $adeduction=$datam['adeduction']; } else { $adeduction='';}?></td>
+            <td><?php echo $adeduction;?></td>
             
             
-            <td><? if ($datam['aretenue']!=0){?>
+            <td><?php if ($datam['aretenue']!=0){?>
               Autres retenue
-              <? $aretenue=$datam['aretenue']; } else { $aretenue='';}?></td>
-            <td><? echo $aretenue;?></td>
+              <?php $aretenue=$datam['aretenue']; } else { $aretenue='';}?></td>
+            <td><?php echo $aretenue;?></td>
           </tr>
           
           <tr>
@@ -314,9 +314,9 @@ while($datam=mysql_fetch_array($req5)){ // Start looping table row
           </tr>
           <tr>
             <td>TOTAL DEDUCTIONS</td>
-            <td><strong><? echo $datam['SD'];?> KMF</strong></td>
+            <td><strong><?php echo $datam['SD'];?> KMF</strong></td>
             <td>TOTAL RETENUES</td>
-            <td><strong><? echo $datam['SR'];?> KMF</strong></td>
+            <td><strong><?php echo $datam['SR'];?> KMF</strong></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
@@ -329,7 +329,7 @@ while($datam=mysql_fetch_array($req5)){ // Start looping table row
             <td>&nbsp;</td>
             <td>SALAIRE NET </td>
             <td><strong>
-              <? echo $datam['SNET']; ?>
+              <?php echo $datam['SNET']; ?>
             KMF</strong></td>
           </tr>
         </table></td>

@@ -14,7 +14,7 @@ require 'configuration.php';
 <html>
 <head>
 
-<<title><? include("titre.php"); ?></title>
+<<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
@@ -125,9 +125,9 @@ Etablissement :
 <select name="CodeTypeClts" id="CodeTypeClts">
   <?php
 $sql81 = ("SELECT * FROM $tbl_client ORDER BY idtclient ASC");
-$result81 = mysql_query($sql81);
+$result81 = mysqli_query($linki,$sql81);
 
-while ($row81 = mysql_fetch_assoc($result81)) {
+while ($row81 = mysqli_fetch_assoc($result81)) {
 echo '<option value='.$row81['idtclient'].'> '.$row81['TypeClts'].' </option>';
 }
 
@@ -176,9 +176,9 @@ echo "<option value=$row[refville]>$row[ville]</option>";
                   <select name="CodeTypeClts" id="CodeTypeClts">
                     <?php
 $sql81 = ("SELECT * FROM $tbl_client ORDER BY idtclient ASC");
-$result81 = mysql_query($sql81);
+$result81 = mysqli_query($linki,$sql81);
 
-while ($row81 = mysql_fetch_assoc($result81)) {
+while ($row81 = mysqli_fetch_assoc($result81)) {
 echo '<option value='.$row81['idtclient'].'> '.$row81['TypeClts'].' </option>';
 }
 
@@ -215,9 +215,9 @@ echo '<option value='.$row81['idtclient'].'> '.$row81['TypeClts'].' </option>';
                     <select name="tarif" id="tarif">
                       <?php
 $sql81 = ("SELECT * FROM tarif ORDER BY idt ASC");
-$result81 = mysql_query($sql81);
+$result81 = mysqli_query($linki,$sql81);
 
-while ($row81 = mysql_fetch_assoc($result81)) {
+while ($row81 = mysqli_fetch_assoc($result81)) {
 echo '<option value='.$row81['idt'].'> '.$row81['Libelle'].' </option>';
 }
 

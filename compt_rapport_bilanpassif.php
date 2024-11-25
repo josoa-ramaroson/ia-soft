@@ -11,7 +11,7 @@ require 'fonction.php';
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><? include 'titre.php' ?></title>
+<title><?php include 'titre.php' ?></title>
 </head>
 <?
 require 'bienvenue.php';    // on appelle la page contenant la fonction
@@ -20,7 +20,7 @@ require 'compt_variable_bilanpassif.php';
 <body>
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">LES DOCUMENTS COMPTABLES ET FISCAUX  POUR  ANNEE <? echo $annee ?></h3>
+    <h3 class="panel-title">LES DOCUMENTS COMPTABLES ET FISCAUX  POUR  ANNEE <?php echo $annee ?></h3>
   </div>
   <div class="panel-body">
     <table width="100%" border="0">
@@ -60,12 +60,12 @@ require 'compt_variable_bilanpassif.php';
           <tr>
             <td>CA</td>
             <td bgcolor="#CCCCCC">CAPITAL</td>
-            <td><? echo $ps1; ?></td>
+            <td><?php echo $ps1; ?></td>
             </tr>
           <tr>
             <td>CB</td>
             <td>Actionnaires, capital souscrit non appelé</td>
-            <td><? echo $ps2; ?></td>
+            <td><?php echo $ps2; ?></td>
             </tr>
           <tr>
             <td>CC</td>
@@ -75,32 +75,32 @@ require 'compt_variable_bilanpassif.php';
           <tr>
             <td>CD</td>
             <td>Primes d’émission, d’apport, de fusion</td>
-            <td><? echo $ps3; ?></td>
+            <td><?php echo $ps3; ?></td>
             </tr>
           <tr>
             <td>CE</td>
             <td>Ecarts de réévaluation</td>
-            <td><? echo $ps4; ?></td>
+            <td><?php echo $ps4; ?></td>
             </tr>
           <tr>
             <td>CF</td>
             <td>Réserves indisponibles</td>
-            <td><? echo $ps5; ?></td>
+            <td><?php echo $ps5; ?></td>
             </tr>
           <tr>
             <td>CG</td>
             <td>Réserves libres</td>
-            <td><? echo $ps6; ?></td>
+            <td><?php echo $ps6; ?></td>
             </tr>
           <tr>
             <td>CH</td>
             <td>Report à nouveau</td>
-            <td><? echo $ps7; ?></td>
+            <td><?php echo $ps7; ?></td>
             </tr>
           <tr>
             <td>CI</td>
             <td bgcolor="#CCCCCC">RÉSULTAT NET DE L’EXERCICE</td>
-            <td><? echo $ps8; ?></td>
+            <td><?php echo $ps8; ?></td>
             </tr>
           <tr>
             <td>CK</td>
@@ -110,12 +110,12 @@ require 'compt_variable_bilanpassif.php';
           <tr>
             <td>CL</td>
             <td>Subventions d’investissement</td>
-            <td><? echo $ps9; ?></td>
+            <td><?php echo $ps9; ?></td>
             </tr>
           <tr>
             <td>CM</td>
             <td>Provisions réglementées et fonds assimilés</td>
-            <td><? echo $ps10; ?></td>
+            <td><?php echo $ps10; ?></td>
             </tr>
           <tr>
             <td>&nbsp;</td>
@@ -126,22 +126,22 @@ require 'compt_variable_bilanpassif.php';
           <tr>
             <td>DA</td>
             <td>Emprunts</td>
-            <td><? echo $ps11; ?></td>
+            <td><?php echo $ps11; ?></td>
             </tr>
           <tr>
             <td>DB</td>
             <td>Dettes de crédit-bail et contrats assimilés</td>
-            <td><? echo $ps12; ?></td>
+            <td><?php echo $ps12; ?></td>
             </tr>
           <tr>
             <td>DC</td>
             <td>Dettes financières diverses</td>
-            <td><? echo $ps13; ?></td>
+            <td><?php echo $ps13; ?></td>
             </tr>
           <tr>
             <td>DD</td>
             <td>Provisions financières pour risques et charges</td>
-            <td><? echo $ps14; ?></td>
+            <td><?php echo $ps14; ?></td>
             </tr>
           <tr>
             <td>&nbsp;</td>
@@ -151,37 +151,37 @@ require 'compt_variable_bilanpassif.php';
           <tr>
             <td>DH</td>
             <td>Dettes circulantes HAO et ressources              assimilées</td>
-            <td><? echo $ps15; ?></td>
+            <td><?php echo $ps15; ?></td>
             </tr>
           <tr>
             <td>DI</td>
             <td>Clients, avances reçues</td>
-            <td><? echo $ps16; ?></td>
+            <td><?php echo $ps16; ?></td>
             </tr>
           <tr>
             <td>DJ</td>
             <td>Fournisseurs d'exploitation</td>
-            <td><? echo $ps17; ?></td>
+            <td><?php echo $ps17; ?></td>
             </tr>
           <tr>
             <td>DK</td>
             <td>Dettes fiscales</td>
-            <td><? echo $ps18; ?></td>
+            <td><?php echo $ps18; ?></td>
             </tr>
           <tr>
             <td>DL</td>
             <td>Dettes sociales</td>
-            <td><? echo $ps19; ?></td>
+            <td><?php echo $ps19; ?></td>
             </tr>
           <tr>
             <td>DM</td>
             <td>Autres dettes</td>
-            <td><? echo $ps20; ?></td>
+            <td><?php echo $ps20; ?></td>
             </tr>
           <tr>
             <td>DN</td>
             <td>Risques provisionnés</td>
-            <td><? echo $ps21; ?></td>
+            <td><?php echo $ps21; ?></td>
             </tr>
           <tr>
             <td>&nbsp;</td>
@@ -191,22 +191,22 @@ require 'compt_variable_bilanpassif.php';
           <tr>
             <td>DQ</td>
             <td>Banques, crédits d’escompte</td>
-            <td><? echo $ps22; ?></td>
+            <td><?php echo $ps22; ?></td>
             </tr>
           <tr>
             <td>DR</td>
             <td>Banques, crédits de trésorerie</td>
-            <td><? echo $ps23; ?></td>
+            <td><?php echo $ps23; ?></td>
             </tr>
           <tr>
             <td>DS</td>
             <td>Banques, découverts</td>
-            <td><? echo $ps24; ?></td>
+            <td><?php echo $ps24; ?></td>
             </tr>
           <tr>
             <td>&nbsp;</td>
             <td bgcolor="#CCCCCC">Écarts de conversion - Passif</td>
-            <td><? echo $ps25; ?></td>
+            <td><?php echo $ps25; ?></td>
             </tr>
         </table></td>
       </tr>

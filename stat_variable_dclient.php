@@ -8,55 +8,55 @@ $annee=$_REQUEST['annee'];
 require 'fonction.php';
 
 $sqFP="SELECT  COUNT(*) AS nbres, SUM(totalttc) AS fact , SUM(totalnet) AS ft, st FROM $tbl_fact   where st='P' and   MONTH(date)=$mois and YEAR(date)=$annee"; 
-	$RFP = mysql_query($sqFP); 
-	$AFP = mysql_fetch_assoc($RFP);
+	$RFP = mysqli_query($linki,$sqFP); 
+	$AFP = mysqli_fetch_assoc($RFP);
 	$tFP=$AFP['fact']; 
 	$tFPt=$AFP['ft']; 
 	$tFPn=$AFP['nbres'];
 
 
 	$sqFD="SELECT  COUNT(*) AS nbres, SUM(totalttc) AS fact , SUM(totalnet) AS ft, SUM(impayee) AS impayee, st FROM $tbl_fact   where st='D' and  MONTH(date)=$mois and YEAR(date)=$annee"; 
-	$RFD = mysql_query($sqFD); 
-	$AFD = mysql_fetch_assoc($RFD);
+	$RFD = mysqli_query($linki,$sqFD); 
+	$AFD = mysqli_fetch_assoc($RFD);
 	$tFD=$AFD['fact']; 
 	$tFDt=$AFD['ft']; 
 	$tFDi=$AFD['impayee'];
 	$tFDn=$AFD['nbres'];
 	
 	$sqFAN="SELECT  COUNT(*) AS nbres, SUM(totalttc) AS fact , SUM(totalnet) AS ft, st FROM $tbl_fact   where st='A' and nfacture LIKE '%N' and  MONTH(date)=$mois and YEAR(date)=$annee";  
-	$RFAN = mysql_query($sqFAN); 
-	$AFAN = mysql_fetch_assoc($RFAN);
+	$RFAN = mysqli_query($linki,$sqFAN); 
+	$AFAN = mysqli_fetch_assoc($RFAN);
 	$tFAN=$AFAN['fact']; 
 	$tFAtN=$AFAN['ft'];
 	$tFAtNn=$AFAN['nbres'];
 	
 	
 	$sqFAC="SELECT  COUNT(*) AS nbres, SUM(totalttc) AS fact , SUM(totalnet) AS ft, st FROM $tbl_fact   where st='A' and nfacture LIKE '%C' and  MONTH(date)=$mois and YEAR(date)=$annee";  
-	$RFAC = mysql_query($sqFAC); 
-	$AFAC = mysql_fetch_assoc($RFAC);
+	$RFAC = mysqli_query($linki,$sqFAC); 
+	$AFAC = mysqli_fetch_assoc($RFAC);
 	$tFAC=$AFAC['fact']; 
 	$tFAtC=$AFAC['ft'];
 	$tFAtCn=$AFAC['nbres'];
 	
 	
 	$sqFAT="SELECT  COUNT(*) AS nbres, SUM(totalttc) AS fact , SUM(totalnet) AS ft, st FROM $tbl_fact   where st='A' and nfacture LIKE '%T' and  MONTH(date)=$mois and YEAR(date)=$annee";  
-	$RFAT = mysql_query($sqFAT); 
-	$AFAT = mysql_fetch_assoc($RFAT);
+	$RFAT = mysqli_query($linki,$sqFAT); 
+	$AFAT = mysqli_fetch_assoc($RFAT);
 	$tFAT=$AFAT['fact']; 
 	$tFAtT=$AFAT['ft'];
 	$tFAtTn=$AFAT['nbres'];
 	
 	
 	$sqFAR="SELECT  COUNT(*) AS nbres, SUM(totalttc) AS fact , SUM(totalnet) AS ft, st FROM $tbl_fact   where st='A' and nfacture LIKE '%R' and  MONTH(date)=$mois and YEAR(date)=$annee";  
-	$RFAR = mysql_query($sqFAR); 
-	$AFAR = mysql_fetch_assoc($RFAR);
+	$RFAR = mysqli_query($linki,$sqFAR); 
+	$AFAR = mysqli_fetch_assoc($RFAR);
 	$tFAR=$AFAR['fact']; 
 	$tFAtR=$AFAR['ft'];
 	$tFAtRn=$AFAR['nbres'];
 	
 	$sqFF="SELECT  COUNT(*) AS nbres, SUM(totalttc) AS fact , SUM(totalnet) AS ft, st FROM $tbl_fact   where st='F' and   MONTH(date)=$mois and YEAR(date)=$annee"; 
-	$RFF = mysql_query($sqFF); 
-	$AFF = mysql_fetch_assoc($RFF);
+	$RFF = mysqli_query($linki,$sqFF); 
+	$AFF = mysqli_fetch_assoc($RFF);
 	$tFF=$AFF['fact']; 
 	$tFFt=$AFF['ft']; 
 	$tFFn=$AFF['nbres'];

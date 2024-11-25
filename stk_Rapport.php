@@ -9,7 +9,7 @@ require"fc-affichage.php";
 <html>
 <head>
 <title>
-<? include("titre.php"); ?></title>
+<?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -41,10 +41,10 @@ SELECT e.titre , SUM(e.Quantite) AS qtenreg FROM $tbl_enreg e GROUP BY e.titre
 
 
 // on ex?cute cette requ?te  
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
 // on r?cup?re le nombre d'?l?ments ? afficher  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
  // on teste si ce nombre de vaut pas 0  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -67,7 +67,7 @@ $sql = "SELECT e.titre as thetitre, SUM(e.qtenreg) AS qte , SUM(v.qtvendu) AS qt
 FROM $tv_enreg e LEFT JOIN $tv_vente v ON e.titre=v.titre GROUP BY  e.titre ORDER BY e.titre  DESC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;
 
 // on ex?cute la requ?te  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
   <strong> <a href="pdf.php">SUIVI DE STOCK</a></strong></font><a href="pdf.php"></strong></a></font></font><a href="pdf.php"><strong></font></font></font></font></font></font></font></strong></font></font></font></font></font></font></font></font></font></font></a> </strong> 
 </p>
@@ -84,14 +84,14 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
     <td width="12%" align="center" bgcolor="#006ABE"><font color="#CCCCCC" size="3">&nbsp;</font></td>
   </tr>
   <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
   <tr> 
     <td align="center" bgcolor="#FFFFFF"> <div align="left"></div>
-      <div align="left"><em><? echo $data['thetitre'];?></em></div></td>
-    <td align="center" bgcolor="#FFFFFF"><div align="center"><em><? echo $data['qte'];?></em></div></td>
-    <td align="center" bgcolor="#FFFFFF"><div align="center"><em><? echo $data['qtv'];?></em></div></td>
-  <td align="center" bgcolor="#FFFFFF"> <div align="center"><em><? echo $data['reste'];?></em></div></td>
+      <div align="left"><em><?php echo $data['thetitre'];?></em></div></td>
+    <td align="center" bgcolor="#FFFFFF"><div align="center"><em><?php echo $data['qte'];?></em></div></td>
+    <td align="center" bgcolor="#FFFFFF"><div align="center"><em><?php echo $data['qtv'];?></em></div></td>
+  <td align="center" bgcolor="#FFFFFF"> <div align="center"><em><?php echo $data['reste'];?></em></div></td>
     <td align="center" bgcolor="#FFFFFF"><div align="center"><em> </em></div></td>
 	
   </tr>
@@ -99,15 +99,15 @@ while($data=mysql_fetch_array($req)){ // Start looping table row
 // Exit looping and close connection 
 }
 // on lib?re l'espace m?moire allou? pour cette requ?te  
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
  
    // on affiche enfin notre barre 20 avant de passer a l autre page
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
 // on lib?re l'espace m?moire allou? pour cette requ?te  
-mysql_free_result ($resultat);  
+mysqli_free_result ($resultat);  
 // on ferme la connexion ? la base de donn?es.  
-mysql_close ();  
+mysqli_close ();  
 ?>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

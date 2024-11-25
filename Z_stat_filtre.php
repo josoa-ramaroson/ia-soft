@@ -11,7 +11,7 @@ require 'fonction_niveau_statistique.php';
 <html>
 <head>
 
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
@@ -175,15 +175,15 @@ $cmt=$data8['mt'];
                 <td width="13%">Client Resilié</td>
               </tr>
               <tr>
-                <td><? echo $ppolice;?></td>
-                <td><? echo $pdevis1;?></td>
-                <td><? echo $pdevis2;?></td>
-                <td><? echo $pbrancher;?></td>
-                <td><? echo $ffacture;?></td>
-                <td><? echo $Actif;?></td>
-                <td><? echo $cbt;?></td>
-                <td><? echo $cmt;?></td>
-                <td><? echo $Resilier;?></td>
+                <td><?php echo $ppolice;?></td>
+                <td><?php echo $pdevis1;?></td>
+                <td><?php echo $pdevis2;?></td>
+                <td><?php echo $pbrancher;?></td>
+                <td><?php echo $ffacture;?></td>
+                <td><?php echo $Actif;?></td>
+                <td><?php echo $cbt;?></td>
+                <td><?php echo $cmt;?></td>
+                <td><?php echo $Resilier;?></td>
               </tr>
             </table></td>
           </tr>

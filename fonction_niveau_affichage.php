@@ -1,4 +1,4 @@
-      <? $n=$data['u_niveau']; 
+      <?php $n=$data['u_niveau']; 
 	  if ($n==1) echo 'clientèle';
 	  if ($n==2) echo 'Facturation'; 
 	  if ($n==3) echo 'Recouvrement';

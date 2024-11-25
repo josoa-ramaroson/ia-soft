@@ -30,8 +30,8 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
     $resultDEL=mysqli_query($linki,$sqlDEL);
 	
 	 $sql6="SELECT * FROM $tbl_seq_transf  WHERE  n_transfert=2";
-    $result6=mysql_query($sql6);
-	$affichedate=mysql_fetch_array($result6)
+    $result6=mysqli_query($linki,$sql6);
+	$affichedate=mysqli_fetch_array($result6)
 ?>
 <body>
 <script type="text/javascript"> 
@@ -59,7 +59,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
 
                   <td width="71%" height="32">       
                   
-                     <? 
+                     <?php 
 					 
 					 
 					 $Hcontrole=date("H"); $Icontrole=date("i");
@@ -76,9 +76,9 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
 		   
 				  ?>
                          
-                  <a href="webs_t_releve_lecture.php?<? echo md5(microtime()); ?>"  class="btn btn-sm btn-info" onClick="return !window.open(this.href, 'pop', 'width=450,height=450,left=120,top=120');"> SERVICE D EXTRACTION  </a>
+                  <a href="webs_t_releve_lecture.php?<?php echo md5(microtime()); ?>"  class="btn btn-sm btn-info" onClick="return !window.open(this.href, 'pop', 'width=450,height=450,left=120,top=120');"> SERVICE D EXTRACTION  </a>
                   
-                  <? } else {} 
+                  <?php } else {} 
 				  ?>
                   
                   </td>
@@ -100,7 +100,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
             <table width="100%" border="0" align="center" cellpadding="3" cellspacing="0" bgcolor="#FFFFFF">
 
 
-                  <td width="82%" height="32"><a href="webs_t_releve_choix.php?id_nom=<? echo $id_nom;?>&<? echo md5(microtime()); ?>"  class="btn btn-sm btn-info" onClick="return !window.open(this.href, 'pop', 'width=450,height=450,left=120,top=120');"> PROCESSUS DE REPARTISION</a></td>
+                  <td width="82%" height="32"><a href="webs_t_releve_choix.php?id_nom=<?php echo $id_nom;?>&<?php echo md5(microtime()); ?>"  class="btn btn-sm btn-info" onClick="return !window.open(this.href, 'pop', 'width=450,height=450,left=120,top=120');"> PROCESSUS DE REPARTISION</a></td>
                   <td width="18%" height="32">
 
                   
@@ -122,7 +122,7 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
             <table width="100%" border="0" align="center" cellpadding="3" cellspacing="0" bgcolor="#FFFFFF">
               <tr bgcolor="#FFFFFF">
                 <form method="post" enctype="multipart/form-data" action="paiement_bach_transfert_save.php">
-                  <td width="32%" height="32"><? echo $affichedate['periode'];?></td>
+                  <td width="32%" height="32"><?php echo $affichedate['periode'];?></td>
                   <td width="13%" height="32">&nbsp;</td>
                 </form>
               </tr>
@@ -156,44 +156,44 @@ function toggleBox(szDivID, iState)// 1 visible, 0 hidden
           <?php
 while($client=mysqli_fetch_array($resultana)){ 
 ?>
-             <tr bgcolor="<?  $cons=$client['valeur']-$client['n']; gettatut($cons); ?>">
+             <tr bgcolor="<?php  $cons=$client['valeur']-$client['n']; gettatut($cons); ?>">
            
             <form action="webs_t_releve_save.php" method="post" name="form1" id="form1">
             
               <td align="center" ><div align="left">
-  <a href="webs_t_releve_cancel.php?ID=<? echo  md5(microtime()).$client['idpb']; ?>"  class="btn btn-danger">X</a>
+  <a href="webs_t_releve_cancel.php?ID=<?php echo  md5(microtime()).$client['idpb']; ?>"  class="btn btn-danger">X</a>
         
         </div></td>
-              <td height="39"><? echo $client['id']; ?></td>
-              <td height="39"><? echo $client['bnom']; ?></td>
-              <td height="39"><? echo $client['n']; ?></td>
-              <td height="39"><? echo $client['valeur']; ?></td>
-              <td height="39"><? echo $client['valeur']-$client['n'];?></td>
-              <td height="39"><? $impayee=impaye($client['id'], $tbl_fact,$linki); echo $impayee[0];?></td>
+              <td height="39"><?php echo $client['id']; ?></td>
+              <td height="39"><?php echo $client['bnom']; ?></td>
+              <td height="39"><?php echo $client['n']; ?></td>
+              <td height="39"><?php echo $client['valeur']; ?></td>
+              <td height="39"><?php echo $client['valeur']-$client['n'];?></td>
+              <td height="39"><?php $impayee=impaye($client['id'], $tbl_fact,$linki); echo $impayee[0];?></td>
               <td><em><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-                <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>" />
-                <input name="id" type="hidden" id="id" value="<? echo $client['id'];?>" size="30" readonly/>
-                <input name="st" type="hidden" id="st" value="<? echo $client['st'];?>" />
-                <input name="libelle" type="hidden" id="libelle" value="<? echo $client['libelle'];?>" />
-                <input name="bnom" type="hidden" id="bnom" value="<? echo $client['bnom'];?>" />
-                <input name="bquartier" type="hidden" id="bquartier" value="<? echo $client['bquartier'];?>" />
-                <input name="bstatut" type="hidden" id="bstatut" value="<? echo $client['bstatut'];?>" />
-                <input name="n" type="hidden" id="n" value="<? echo $client['n'];?>" />
-                <input name="nf" type="hidden" id="nf" value="<? echo $client['valeur'];?>" />
-                <input name="Tarif" type="hidden" id="Tarif" value="<? echo $client['Tarif'];?>" />
-                <input name="coefTi" type="hidden" id="coefTi" value="<? echo $client['coefTi'];?>" />
-                <input name="amperage" type="hidden" id="amperage" value="<? echo $client['amperage'];?>" />
-                <input name="chtaxe" type="hidden" id="chtaxe" value="<? echo $client['chtaxe'];?>" />
-                <input name="impayee" type="hidden" id="impayee" value="<? echo $impayee[0]; ?>" />
-                 <input name="idf" type="hidden" id="idf" value="<? echo $impayee[1]; ?>" />
-                <input name="id_user" type="hidden" id="id_user" value="<? echo $id_user; ?>" />
+                <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>" />
+                <input name="id" type="hidden" id="id" value="<?php echo $client['id'];?>" size="30" readonly/>
+                <input name="st" type="hidden" id="st" value="<?php echo $client['st'];?>" />
+                <input name="libelle" type="hidden" id="libelle" value="<?php echo $client['libelle'];?>" />
+                <input name="bnom" type="hidden" id="bnom" value="<?php echo $client['bnom'];?>" />
+                <input name="bquartier" type="hidden" id="bquartier" value="<?php echo $client['bquartier'];?>" />
+                <input name="bstatut" type="hidden" id="bstatut" value="<?php echo $client['bstatut'];?>" />
+                <input name="n" type="hidden" id="n" value="<?php echo $client['n'];?>" />
+                <input name="nf" type="hidden" id="nf" value="<?php echo $client['valeur'];?>" />
+                <input name="Tarif" type="hidden" id="Tarif" value="<?php echo $client['Tarif'];?>" />
+                <input name="coefTi" type="hidden" id="coefTi" value="<?php echo $client['coefTi'];?>" />
+                <input name="amperage" type="hidden" id="amperage" value="<?php echo $client['amperage'];?>" />
+                <input name="chtaxe" type="hidden" id="chtaxe" value="<?php echo $client['chtaxe'];?>" />
+                <input name="impayee" type="hidden" id="impayee" value="<?php echo $impayee[0]; ?>" />
+                 <input name="idf" type="hidden" id="idf" value="<?php echo $impayee[1]; ?>" />
+                <input name="id_user" type="hidden" id="id_user" value="<?php echo $id_user; ?>" />
               </font></strong></font></strong></font></strong></font></strong></font></strong></font></strong></font></em></td>
               <td>
               
-              <? if ( $client['n']<= $client['valeur']) {?>
+              <?php if ( $client['n']<= $client['valeur']) {?>
               
               <input name="upload" type="submit" class="btn btn-info" id="upload" value="Validation">
-              <? }?>
+              <?php }?>
               </td>
             </form>
           </tr>
@@ -201,8 +201,8 @@ while($client=mysqli_fetch_array($resultana)){
 		  
     function impaye($idclient, $tbl_fact,$linki){
     $sqlp = "SELECT * FROM $tbl_fact WHERE id='$idclient' and st='E' ORDER BY idf desc limit 0,1";  
-	$resultp=mysql_query($sqlp);
-	$datap=mysql_fetch_array($resultp);	
+	$resultp=mysqli_query($linki,$sqlp);
+	$datap=mysqli_fetch_array($resultp);	
 
 	if((!isset($datap['report'])|| empty($datap['report']))) 
 	{ //$qt2='0'.'_'.$datap['idf']; return $qt2;

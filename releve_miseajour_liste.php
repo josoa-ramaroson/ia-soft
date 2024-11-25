@@ -61,29 +61,29 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
 ?>
    <tr>
      <td align="center" >&nbsp;</td>
-     <td align="center" ><em><? echo $data['id'];?></em></td>
-     <td><em><? echo $data['nomprenom'];?></em></td>
-     <td align="center" ><em><? echo $data['ncompteur'];?></em></td>
+     <td align="center" ><em><?php echo $data['id'];?></em></td>
+     <td><em><?php echo $data['nomprenom'];?></em></td>
+     <td align="center" ><em><?php echo $data['ncompteur'];?></em></td>
      <td align="center" >
      
  
      
-     <? // if (empty($data['ncompteur'])) {?>
+     <?php // if (empty($data['ncompteur'])) {?>
      
        <form name="form1" method="post" action="releve_miseajour_liste_updates.php">
        <table width="100%" border="0">
          <tr>
            <td width="51%"><input type="text" name="miseajour" id="miseajour">
              <font color="#FF0000">
-             <input name="id" type="hidden" id="id" value="<? echo $data['id'];?>" size="30" readonly/>
-             <input name="rv" type="hidden" id="rv" value="<? echo $refville;?>" size="30" readonly/>
-             <input name="rq" type="hidden" id="rq" value="<? echo $RefQuartier;?>" size="30" readonly/>
+             <input name="id" type="hidden" id="id" value="<?php echo $data['id'];?>" size="30" readonly/>
+             <input name="rv" type="hidden" id="rv" value="<?php echo $refville;?>" size="30" readonly/>
+             <input name="rq" type="hidden" id="rq" value="<?php echo $RefQuartier;?>" size="30" readonly/>
             </font></td>
            <td width="49%"><input type="submit" name="Submit4" class="btn btn-sm btn-default" value="Mise à jour " /></td>
           </tr>
         </table>
      </form>
-     <? // }  else { } ?>
+     <?php // }  else { } ?>
    
      
      </td>

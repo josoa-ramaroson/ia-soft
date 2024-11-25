@@ -7,7 +7,7 @@ require_once('calendar/classes/tc_calendar.php');
 
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -76,15 +76,15 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
 ?>
     <tr bgcolor="#FFFFFF">
       <td align="center">&nbsp;</td>
-      <td> <? $n=$data['st']; 
+      <td> <?php $n=$data['st']; 
                   if ($n=='E') echo 'FACTURATION CYCLIQUE';
                   if ($n=='P') echo 'POLICE D ABONNEMENT'; 
                   if ($n=='D') echo 'BRANCHEMENT';
                   if ($n=='F') echo 'FRAUDE'; 
 				  if ($n=='A') echo 'Autre (Chang Nom/compteur/Activation/Transfert)'; 
                   ?></td>
-      <td align="center"><? $P=strrev(chunk_split(strrev($data['Paie']),3," "));   echo $P;?></td>
-      <td align="center"><? echo $data['date'];?></td>
+      <td align="center"><?php $P=strrev(chunk_split(strrev($data['Paie']),3," "));   echo $P;?></td>
+      <td align="center"><?php echo $data['date'];?></td>
     </tr>
     <?php
 

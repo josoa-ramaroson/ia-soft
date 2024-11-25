@@ -4,7 +4,7 @@
 <?php include 'inc/head.php'; ?>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 </head>
-<BODY BGCOLOR="#ffffff" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0">
+<body BGCOLOR="#ffffff" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">

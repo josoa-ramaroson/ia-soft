@@ -12,7 +12,7 @@ require 'fonction.php';
 
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 
@@ -46,7 +46,7 @@ Require("bienvenue.php");
           </tr>
         <tr> 
           <td><font size="2"><strong><font size="2"><strong><font color="#FF0000"> 
-            <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>">
+            <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>">
             </font></strong></font></strong></font></td>
           <td>&nbsp;</td>
           </tr>
@@ -69,10 +69,10 @@ require 'fonction.php';
 $sql = "SELECT count(*) FROM $tbl_client ";  
 
 // on ex?cute cette requ?te  
-$resultat = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
  
 // on r?cup?re le nombre d'?l?ments ? afficher  
-$nb_total = mysql_fetch_array($resultat);  
+$nb_total = mysqli_fetch_array($resultat);  
  // on teste si ce nombre de vaut pas 0  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -92,7 +92,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT * FROM $tbl_client  ORDER BY idtclient DESC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  //ASC
  
 // on ex?cute la requ?te  
-$req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
 ?>
   </font></strong></font></font></font></font></font></font></font></font></font></strong></font></font></font></font></font></font></font></font></font></font></p>
 <form name="form2" method="post" action="produit_cancel.php">
@@ -104,27 +104,27 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
       <td width="19%" align="center" bgcolor="#0033FF">&nbsp;</td>
     </tr>
     <?php
-while($data=mysql_fetch_array($req)){ // Start looping table row 
+while($data=mysqli_fetch_array($req)){ // Start looping table row 
 ?>
     <tr> 
-      <td align="center" bgcolor="#FFFFFF"> <div align="left"><? echo $data['idtclient'];?></div>
+      <td align="center" bgcolor="#FFFFFF"> <div align="left"><?php echo $data['idtclient'];?></div>
         <div align="left"></div></td>
-      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><? echo $data['TypeClts'];?></em></div></td>
-      <td align="center" bgcolor="#FFFFFF"><p><a href="categorie_modifie.php?id=<? echo $data['idtclient']; ?>" class="btn btn-xs btn-success"><? echo 'Modifier' ?></a></p></td>
+      <td align="center" bgcolor="#FFFFFF"><div align="left"><em><?php echo $data['TypeClts'];?></em></div></td>
+      <td align="center" bgcolor="#FFFFFF"><p><a href="categorie_modifie.php?id=<?php echo $data['idtclient']; ?>" class="btn btn-xs btn-success"><?php echo 'Modifier' ?></a></p></td>
     </tr>
     <?php
 // Exit looping and close connection 
 }
 // on lib?re l'espace m?moire allou? pour cette requ?te  
-mysql_free_result ($req); 
+mysqli_free_result ($req); 
  
    // on affiche enfin notre barre 20 avant de passer a l autre page
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
 // on lib?re l'espace m?moire allou? pour cette requ?te  
-mysql_free_result ($resultat);  
+mysqli_free_result ($resultat);  
 // on ferme la connexion ? la base de donn?es.  
-mysql_close ();  
+mysqli_close ();  
 ?>
   </table>
 </form>

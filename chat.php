@@ -17,7 +17,7 @@ Require("bienvenue.php");    // on appelle la page contenant la fonction
 			<div class="container">				
 					<!-- chat-display -->
 					<div id="chat-refresh">
-						<? // Affichage 
+						<?php // Affichage 
 							include 'chat_display.php';
 							include 'chat_online.php'; 
 						?>
@@ -27,7 +27,7 @@ Require("bienvenue.php");    // on appelle la page contenant la fonction
 					$sqlup = "UPDATE $tbl_ind SET nbligne = '2' WHERE sid1='".$_SESSION['SID2']."' AND sid2= '".$_SESSION['SID1']."' AND nbligne = '1'";
 	
 	//$sqlup = 'UPDATE  chat_ind SET nbligne = "2" WHERE sid1= "'.$_SESSION['SID2'].'" AND sid2= "'.$_SESSION['SID1'].'" AND nbligne = "1"'; 
-						$requp = mysql_query($sqlup);						mysql_close (); 					?>
+						$requp = mysqli_query($linki,$sqlup);						mysqli_close (); 					?>
 					<!-- /chat-display -->				
 					<!-- chat-form -->
 					<div id="chat-form" class="row">
@@ -55,15 +55,15 @@ Require("bienvenue.php");    // on appelle la page contenant la fonction
 		<!-- main -->	
 	</div>
 	<!-- /page -->
-	<? include_once('inc/scripts.php'); ?>
+	<?php include_once('inc/scripts.php'); ?>
 	<script>
 		$(document).ready(function(){
 				$.ajaxSetup({cache:false}); // This part addresses an IE bug. without it, IE will only load the first number and will never refresh
 				var firstTimer = setTimeout(function() {
-					$('#chat-refresh').load('chat_display.php?sid1=<? echo $_SESSION['SID1']; ?>&sid2=<? echo $_SESSION['SID2']; ?>');
+					$('#chat-refresh').load('chat_display.php?sid1=<?php echo $_SESSION['SID1']; ?>&sid2=<?php echo $_SESSION['SID2']; ?>');
 				}, 250);		
 				var secondTimer = setInterval(function() {
-					$('#chat-refresh').load('chat_display.php?sid1=<? echo $_SESSION['SID1']; ?>&sid2=<? echo $_SESSION['SID2']; ?>');
+					$('#chat-refresh').load('chat_display.php?sid1=<?php echo $_SESSION['SID1']; ?>&sid2=<?php echo $_SESSION['SID2']; ?>');
 				}, 10000);			
 		});
 	</script>

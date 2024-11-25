@@ -14,7 +14,7 @@ require 'rh_configuration_fonction.php';
 <html>
 <head>
 
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
@@ -43,9 +43,9 @@ Require("bienvenue.php");  // on appelle la page contenant la fonction
         <h3 class="panel-title">GESTION DES STOCKES (VENTES)</h3>
       </div>
       <div class="panel-body"> 
-      <? if (($_SESSION['u_niveau']== 40)or($_SESSION['u_niveau']== 7)) {?>
+      <?php if (($_SESSION['u_niveau']== 40)or($_SESSION['u_niveau']== 7)) {?>
        <a href="stk_produit.php" class="btn btn-sm btn-success" > Liste des Produits </a> |
-       <? } else { }?>
+       <?php } else { }?>
        <a href="stk_enregistrement.php" class="btn btn-sm btn-success" > Ajouter la quantité </a> |
        <a href="stk_stock.php" class="btn btn-sm btn-success" >Suivi du Stock</a> |
        <a href="stk_Rapport.php" class="btn btn-sm btn-success" >Les rapports </a> |
@@ -58,9 +58,9 @@ Require("bienvenue.php");  // on appelle la page contenant la fonction
         <h3 class="panel-title">GESTION DU MAGASIN INTERNE</h3>
       </div>
       <div class="panel-body"> 
-      <? if (($_SESSION['u_niveau']== 40)or($_SESSION['u_niveau']== 7)) {?>
+      <?php if (($_SESSION['u_niveau']== 40)or($_SESSION['u_niveau']== 7)) {?>
       <a href="app_produit_liste.php" class="btn btn-sm btn-default" > Liste des Produits </a> |
-      <? } else { }?>
+      <?php } else { }?>
       <a href="app_produit_entre.php" class="btn btn-sm btn-default" > Entre au Magasin </a> | 
       <a href="app_produit_sortie.php" class="btn btn-sm btn-default" > Sortie au Magasin </a> | 
       <a href="app_produit_stock.php" class="btn btn-sm btn-default" >Suivi du Stock Magasin</a> |

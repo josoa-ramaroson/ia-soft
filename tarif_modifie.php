@@ -11,7 +11,7 @@ if(($_SESSION['u_niveau'] != 7)) {
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 
@@ -45,7 +45,7 @@ $rows3=mysqli_fetch_array($result3);
 ?>
         </font>libelle</strong></td>
         <td width="30%"><em>
-          <input name="mnom" type="text" id="mnom" value="<? echo $rows3['Libelle'];?>" size="30" readonly>
+          <input name="mnom" type="text" id="mnom" value="<?php echo $rows3['Libelle'];?>" size="30" readonly>
         </em></td>
         <td width="21%">&nbsp;</td>
         <td width="33%">&nbsp;</td>
@@ -59,7 +59,7 @@ $rows3=mysqli_fetch_array($result3);
       <tr>
         <td height="31"><strong>Tarif 1</strong></td>
         <td><em>
-          <input name="t1" type="text" id="t1" value="<? echo $rows3['t1'];?>" size="30">
+          <input name="t1" type="text" id="t1" value="<?php echo $rows3['t1'];?>" size="30">
         </em></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -73,7 +73,7 @@ $rows3=mysqli_fetch_array($result3);
       <tr>
         <td height="36"><strong>Tarif 2</strong></td>
         <td><em>
-          <input name="t2" type="text" id="t2" value="<? echo $rows3['t2'];?>" size="30">
+          <input name="t2" type="text" id="t2" value="<?php echo $rows3['t2'];?>" size="30">
         </em></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
@@ -86,7 +86,7 @@ $rows3=mysqli_fetch_array($result3);
       </tr>
       <tr>
         <td height="47"><strong>Quantité</strong></td>
-        <td><input name="q" type="text" id="q" value="<? echo $rows3['q'];?>" size="30"></td>
+        <td><input name="q" type="text" id="q" value="<?php echo $rows3['q'];?>" size="30"></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
       </tr>
@@ -100,8 +100,8 @@ $rows3=mysqli_fetch_array($result3);
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td><em>
-          <input name="idp" type="hidden" id="idp" value="<? echo $rows3['idt'];?>">
-          <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>">
+          <input name="idp" type="hidden" id="idp" value="<?php echo $rows3['idt'];?>">
+          <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>">
         </em></td>
         <td><input type="submit" name="Submit3" value="Enregistrer"></td>
       </tr>

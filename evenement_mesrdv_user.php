@@ -1,281 +1,288 @@
-<?
-require 'fonction.php';
-require_once('calendar/classes/tc_calendar.php');
-?>
-
-
- </p>
- <style type="text/css">
- .taille16 {	font-size: 16px;
-}
- </style>
- 
- <CENTER>
-   <table width="100%" border="0">
-     <tr>
-       <td width="1%">&nbsp;</td>
-       <td width="74%"><div class="panel panel-primary">
-         <div class="panel-heading">
-           <h3 class="panel-title">AJOUTER MES RDV </h3>
-         </div>
-         <div class="panel-body">
-           <form id="form1" name="form1" method="post" action="evenement_liste_save.php">
-           <table width="100%" border="0" cellpadding="0" cellspacing="0" bordercolor="#000000">
-             <tr>
-               <td width="47%"><table width="99%" border="0.5" cellspacing="0" cellpadding="0">
-                 <tr>
-                   <td width="22%">Login :</td>
-                   <td width="78%"><font color="#000000"><strong>
-                     <select name="u_login" id="u_login">
-                     <option  value = '<? echo $id_nom; ?>' selected><? echo $nom.''.$prenom ; ?></option>
-                       </select>
-                   </strong></font></td>
-                   </tr>
-                 <tr>
-                   <td>&nbsp;</td>
-                   <td>&nbsp;</td>
-                   </tr>
-                 <tr>
-                   <td>Date &amp; heure</td>
-                   <td><?php
-					  $myCalendar = new tc_calendar("datet1", true, false);
-					  $myCalendar->setIcon("calendar/images/iconCalendar.gif");
-					  $myCalendar->setPath("calendar/");
-					  $myCalendar->setYearInterval($annee1, $annee2);
-					  $myCalendar->dateAllow($date1,$date2);
-					  $myCalendar->setDateFormat('j F Y');
-					  $myCalendar->setAlignment('left', 'bottom');
-					  $myCalendar->writeScript();
-					  ?>
-...Time ( hh : mm)
-  <input name="heures" type="text" id="heures" value="00:00" size="7" /></td>
-                 </tr>
-                 <tr>
-                   <td>&nbsp;</td>
-                   <td>&nbsp;</td>
-                 </tr>
-                 <tr>
-                   <td>Durée</td>
-                   <td><font color="#000000"><strong>
-                     <select name="Ndh" id="Ndh">
-                       <option value="0" selected="selected">0 heure</option>
-                       <option value="1">1 heure</option>
-                       <option value="2">2 heures</option>
-                       <option value="3">3 heures</option>
-                       <option value="4">4 heures</option>
-                       <option value="5">5 heures</option>
-                       <option value="6">6 heures</option>
-                       <option value="7">7 heures</option>
-                       <option value="8">8 heures</option>
-                       <option value="9">9 heures</option>
-                       <option value="10">10 heures</option>
-                       <option value="11">11 heures</option>
-                       <option value="12">12 heures</option>
-                       <option value="13">13 heures</option>
-                       <option value="14">14 heures</option>
-                       <option value="15">15 heures</option>
-                       <option value="16">16 heures</option>
-                       <option value="17">17 heures</option>
-                       <option value="18">18 heures</option>
-                       <option value="19">19 heures</option>
-                       <option value="20">20 heures</option>
-                       <option value="21">21 heures</option>
-                       <option value="22">22 heures</option>
-                       <option value="23">23 heures</option>
-                       <option value="24">24 heures</option>
-                     </select>
-                   </strong></font><font color="#000000"><strong>
-                   <select name="Ndm" id="Ndm">
-                     <option value="0">0 minute</option>
-                     <option value="15">15 minutes </option>
-                     <option value="30" selected="selected">30 minutes</option>
-                     <option value="45">45 minutes</option>
-                   </select>
-                   </strong></font></td>
-                 </tr>
-                 <tr>
-                   <td>&nbsp;</td>
-                   <td>&nbsp;</td>
-                 </tr>
-                 <tr>
-                   <td>Commentaire</td>
-                   <td><input class="form-control" name="evenement" type="text" id="evenement" size="80" /></td>
-                 </tr>
-                 <tr>
-                   <td>&nbsp;</td>
-                   <td>&nbsp;</td>
-                 </tr>
-                 <tr>
-                   <td>&nbsp;</td>
-                   <td><input type="submit" name="Enregistrer" id="Enregistrer" value="AJOUTER UN RDV" /></td>
-                 </tr>
-               </table></td>
-             </tr>
-           </table>
-         </form>
-         </div>
-       </div>
-           
-           </td>
-       <td width="1%">&nbsp;</td>
-       <td width="22%"><div class="panel panel-primary">
-         <div class="panel-heading">
-           <h3 class="panel-title">AFFICHER LES RDV </h3>
-         </div>
-         <div class="panel-body">
-           <table width="100%" border="0" cellpadding="0" cellspacing="0" bordercolor="#000000">
-             <tr>
-               <td width="47%"><form id="form2" name="form2" method="post" action="evenement.php">
-                 <table width="99%" border="0.5" cellspacing="0" cellpadding="0">
-                   <tr>
-                     <td width="27%">Date </td>
-                     <td width="73%"><?php
-					  $myCalendar = new tc_calendar("datet2", true, false);
-					  $myCalendar->setIcon("calendar/images/iconCalendar.gif");
-					  $myCalendar->setPath("calendar/");
-					  $myCalendar->setYearInterval($annee1, $annee2);
-					  $myCalendar->dateAllow($date1,$date2);
-					  $myCalendar->setDateFormat('j F Y');
-					  $myCalendar->setAlignment('left', 'bottom');
-					  $myCalendar->writeScript();
-					  ?></td>
-                   </tr>
-                   <tr>
-                     <td>&nbsp;</td>
-                     <td>&nbsp;</td>
-                   </tr>
-                   <tr>
-                     <td>&nbsp;</td>
-                     <td>&nbsp;</td>
-                   </tr>
-                   <tr>
-                     <td height="28">&nbsp;</td>
-                     <td><input type="submit" name="Afficher" id="Afficher" value="AFFICHER LES RDV" /></td>
-                   </tr>
-                   <tr>
-                     <td height="28">&nbsp;</td>
-                     <td>&nbsp;</td>
-                   </tr>
-                   <tr>
-                     <td height="28">&nbsp;</td>
-                     <td>&nbsp;</td>
-                   </tr>
-                   <tr>
-                     <td height="28">&nbsp;</td>
-                     <td>&nbsp;</td>
-                   </tr>
-                   <tr>
-                     <td height="28">&nbsp;</td>
-                     <td>&nbsp;</td>
-                   </tr>
-                   </table>
-               </form></td>
-             </tr>
-           </table>
-         </div>
-       </div></td>
-       <td width="2%">&nbsp;</td>
-     </tr>
-   </table>
-     <H1> LES RENDEZ-VOUS </H1>
-
 <?php
+require 'fonction.php';
 
-if (isset($_SESSION['datecalendrier'])and(!isset($_REQUEST['datet2'])) )
-{
-	$datecalendrier=$_SESSION['datecalendrier'];
+// Vérifier que le chemin vers les classes du calendrier est correct
+if(file_exists('calendar/classes/tc_calendar.php')) {
+    require_once('calendar/classes/tc_calendar.php');
+} else {
+    die("Erreur: Le fichier tc_calendar.php n'a pas été trouvé dans le dossier calendar/classes/");
 }
-
-if (isset($_SESSION['datecalendrier'])and(isset($_REQUEST['datet2'])) )
-{
-	$datecalendrier=$_REQUEST['datet2'];
-}
-
-if (!isset($_SESSION['datecalendrier'])and (!isset($_REQUEST['datet2'])) )
-{
-	$datecalendrier='';
-}
-
-
-if (isset($datecalendrier))
-{
-
-$date2=$datecalendrier;
-
-$_SESSION['datecalendrier']=$date2;
-	
-$sql = "SELECT * FROM $tb_evenement where datev='$date2'  and  id_nom='$id_nom' ORDER BY heures "; // DESC ASC  
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
-
-?>     
-     
- </CENTER>
- <table width="100%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
-   <tr bgcolor="#3071AA">
-     <td width="16%" align="center"><strong><font color="#FFFFFF" size="4">DEBUT</font></strong></td>
-     <td width="13%" align="center"><strong><font color="#FFFFFF" size="4">FIN</font></strong></td>
-     <td width="45%" align="center"><strong><font color="#FFFFFF">EVENEMENT</font></strong></td>
-     <td width="16%" align="center">&nbsp;</td>
-     <td width="10%" align="center">&nbsp;</td>
-   </tr>
-   <?php
-
-$numboucle=0; 
-
-while($data=mysqli_fetch_array($req)){ // Start looping table row 
-
- if($numboucle %2 == 0) 
- 
-   $bgcolor = "#CCDD44"; 
-
-        else 
-
-   $bgcolor = "#FFFFFF"; 
 ?>
-  <tr bgcolor=<? echo "$bgcolor" ?>>
-     <td height="33" align="center" ><div align="left"><em><? echo $data['datev'].' '.$data['heures'];?></em></div></td>
-    <td align="center" ><div align="left"><em><? echo $data['datef'].' '.$data['heuresf'];?></em></div></td>
-     <td align="center" ><div align="left"><em><? echo $data['evenement'];?></em>
-     </div></td>
-     <td align="center" ><em>
-       <? $SID1=$data['Pris_par_user']; $SID2=$data['id_nom']; echo $SID1;?>
-     </em></td>
-     <td align="center" >
-         
-    <? $sqldate="SELECT * FROM $tbl_caisse "; //DESC  ASC
-	$resultldate=mysql_query($sqldate);
-	$datecaisse=mysql_fetch_array($resultldate);
-	$dateJour=$datecaisse['datecaisse'];
-	$dareRDV=$data['datev'];
-    ?>
-    
-    <? if ((($SID1==$_SESSION['u_login']) or ($SID2==$_SESSION['u_login'])) and ($dateJour <=$dareRDV)) { ?>
-	<a href="evenement_user_cancel.php?&ID=<? echo  md5(microtime()).$data['idev']; ?>" class="btn-xs btn-danger">X</a>
-	<? } ?>
-     
-     </td>
-   </tr>
-   <?php
-   
-   $numboucle++;
-}	
-mysqli_close ($linki);  
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Rendez-vous</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/validator.js"></script>
+    <script src="calendar/calendar.js"></script>
+    <style>
+        :root {
+            --primary: #1976D2;
+            --primary-dark: #1565C0;
+            --primary-light: #BBDEFB;
+            --accent: #43A047;
+            --accent-light: #A5D6A7;
+            --text: #212121;
+            --text-secondary: #757575;
+            --background: #F5F5F5;
+            --white: #FFFFFF;
+            --error: #D32F2F;
+            --border: #E0E0E0;
+        }
 
-}
-else {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-} 
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
 
-?>
-</table>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
 
-<script language="JavaScript" type="text/javascript" xml:space="preserve"> 
-    var frmvalidator  = new Validator("form1");
-	frmvalidator.EnableOnPageErrorDisplaySingleBox();
+        .panel {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .panel-heading {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            font-weight: 500;
+        }
+
+        .panel-body {
+            padding: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary-light);
+        }
+
+        select.form-control {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23555' viewBox='0 0 16 16'%3E%3Cpath d='M8 10l4-4H4z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 12px;
+            padding-right: 2.5rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            text-align: center;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .calendar-input {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .calendar-icon {
+            font-size: 1.25rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .table th {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .table tr:hover {
+            background: var(--primary-light);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Formulaire d'ajout de RDV -->
+    <div class="panel">
+        <div class="panel-heading">
+            <h3>Ajouter un rendez-vous</h3>
+        </div>
+        <div class="panel-body">
+            <form id="form1" name="form1" method="post" action="evenement_liste_save.php">
+                <div class="form-group">
+                    <label class="form-label">Login</label>
+                    <select name="u_login" id="u_login" class="form-control">
+                        <option value="<?php echo htmlspecialchars($id_nom); ?>">
+                            <?php echo htmlspecialchars($nom.' '.$prenom); ?>
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Date & Heure</label>
+                    <div class="calendar-input">
+                        <?php
+                        $myCalendar = new tc_calendar("datet1", true, false);
+                        $myCalendar->setIcon("calendar/images/iconCalendar.gif");
+                        $myCalendar->setPath("calendar/");
+                        $myCalendar->setYearInterval($annee1, $annee2);
+                        $myCalendar->dateAllow($date1, $date2);
+                        $myCalendar->setDateFormat('j F Y');
+                        $myCalendar->setAlignment('left', 'bottom');
+                        $myCalendar->writeScript();
+                        ?>
+                        <input name="heures" type="time" id="heures" class="form-control" value="00:00">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Durée</label>
+                    <div class="duration-inputs">
+                        <select name="Ndh" id="Ndh" class="form-control">
+                            <?php
+                            for($i = 0; $i <= 24; $i++) {
+                                $selected = ($i === 0) ? ' selected' : '';
+                                echo "<option value=\"$i\"$selected>$i heure" . ($i > 1 ? 's' : '') . "</option>";
+                            }
+                            ?>
+                        </select>
+                        <select name="Ndm" id="Ndm" class="form-control">
+                            <option value="0">0 minute</option>
+                            <option value="15">15 minutes</option>
+                            <option value="30" selected>30 minutes</option>
+                            <option value="45">45 minutes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Commentaire</label>
+                    <input class="form-control" name="evenement" type="text" id="evenement">
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" name="Enregistrer" class="btn btn-primary">
+                        Ajouter le rendez-vous
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Panneau de recherche de RDV -->
+    <div class="panel">
+        <div class="panel-heading">
+            <h3>Afficher les rendez-vous</h3>
+        </div>
+        <div class="panel-body">
+            <form id="form2" name="form2" method="post" action="evenement.php">
+                <div class="form-group">
+                    <label class="form-label">Date</label>
+                    <div class="calendar-input">
+                        <?php
+                        $myCalendar = new tc_calendar("datet2", true, false);
+                        $myCalendar->setIcon("calendar/images/iconCalendar.gif");
+                        $myCalendar->setPath("calendar/");
+                        $myCalendar->setYearInterval($annee1, $annee2);
+                        $myCalendar->dateAllow($date1, $date2);
+                        $myCalendar->setDateFormat('j F Y');
+                        $myCalendar->setAlignment('left', 'bottom');
+                        $myCalendar->writeScript();
+                        ?>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" name="Afficher" class="btn btn-primary">
+                        Afficher les rendez-vous
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    var frmvalidator = new Validator("form1");
+    frmvalidator.EnableOnPageErrorDisplaySingleBox();
     frmvalidator.EnableMsgsTogether();
 
-    frmvalidator.addValidation("heures","dontselect=00:00","nom ");
-	frmvalidator.addValidation("evenement","req","nom ");
-	frmvalidator.addValidation("datet1","dontselect=0000-00-00","date_sortie");
-	
+    frmvalidator.addValidation("heures", "req", "Veuillez saisir une heure");
+    frmvalidator.addValidation("evenement", "req", "Veuillez saisir un commentaire");
+    frmvalidator.addValidation("datet1", "req", "Veuillez sélectionner une date");
 </script>
+</body>
+</html>

@@ -119,7 +119,7 @@ function barre_navigation ($nb_total,$nb_affichage_par_page,$debut,$nb_liens_dan
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
@@ -239,7 +239,7 @@ Require("bienvenue.php"); // on appelle la page contenant la fonction
                       <tr>
                         <td>&nbsp;</td>
                         <td><font color="#FF0000">
-                          <input name="verification" type="hidden" id="verification" value="<? 
+                          <input name="verification" type="hidden" id="verification" value="<?php 
 						  
 	$sqfac="SELECT * FROM annee ORDER BY ID desc limit 0,1";
 	$resultfac=mysqli_query($linki,$sqfac);
@@ -309,10 +309,10 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
    $bgcolor = "#FFFFFF";
    
 ?>
-    <tr bgcolor=<? echo "$bgcolor" ?>>
-      <td height="37" align="center" ><? echo $data['ID'];?>        <div align="left"></div></td>
+    <tr bgcolor=<?php echo "$bgcolor" ?>>
+      <td height="37" align="center" ><?php echo $data['ID'];?>        <div align="left"></div></td>
       <td align="center" >&nbsp;</td>
-      <td align="center" ><em><? echo $data['annee'];?></em></td>
+      <td align="center" ><em><?php echo $data['annee'];?></em></td>
       <td align="center" >&nbsp;</td>
     </tr>
     <?php

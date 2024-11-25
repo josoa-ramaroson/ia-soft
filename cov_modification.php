@@ -5,7 +5,7 @@ require_once('calendar/classes/tc_calendar.php');
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="javascript" src="calendar/calendar.js"></script>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
@@ -28,13 +28,13 @@ Require("bienvenue.php");    // on appelle la page contenant la fonction
 
 $idf=substr($_REQUEST["idf"],32);
 $sql3="SELECT * FROM $tbl_fact WHERE idf='$idf'";
-$result3=mysql_query($sql3);
+$result3=mysqli_query($linki,$sql3);
 
-$rows3=mysql_fetch_array($result3);
+$rows3=mysqli_fetch_array($result3);
 ?>
         </font>Indication</strong></td>
         <td width="30%"><em>
-          <input name="stlib" type="text" id="stlib" value="<? echo $rows3['bnom']; ?> " size="30" readonly>
+          <input name="stlib" type="text" id="stlib" value="<?php echo $rows3['bnom']; ?> " size="30" readonly>
         </em></td>
         <td width="13%"><strong>Date</strong></td>
         <td width="41%"><?php
@@ -57,7 +57,7 @@ $rows3=mysql_fetch_array($result3);
       <tr>
         <td><strong>Date</strong></td>
         <td><em>
-          <input name="date1" type="text" disabled id="date1" value="<? echo $rows3['date']; ?> " size="30">
+          <input name="date1" type="text" disabled id="date1" value="<?php echo $rows3['date']; ?> " size="30">
         </em></td>
         <td><strong>Montant à rectifier</strong></td>
         <td><em>
@@ -72,7 +72,7 @@ $rows3=mysql_fetch_array($result3);
       </tr>
       <tr>
         <td><strong>Montant Total</strong></td>
-        <td><input name="montanti" type="text" id="montanti" value="<? echo $rows3['totalnet']; ?> " size="30" readonly></td>
+        <td><input name="montanti" type="text" id="montanti" value="<?php echo $rows3['totalnet']; ?> " size="30" readonly></td>
         <td><strong>Observation</strong></td>
         <td><textarea name="obs" id="obs" cols="50" rows="2"></textarea></td>
       </tr>
@@ -86,10 +86,10 @@ $rows3=mysql_fetch_array($result3);
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td><em>
-          <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom;?>">
-          <input name="idf" type="hidden" id="idf" value="<? echo $idf;?>">
-          <input name="st" type="hidden" value="<? echo $rows3['st'];?>" />
-          <input name="id" type="hidden" id="id" value="<? echo $rows3['id'];?>">
+          <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom;?>">
+          <input name="idf" type="hidden" id="idf" value="<?php echo $idf;?>">
+          <input name="st" type="hidden" value="<?php echo $rows3['st'];?>" />
+          <input name="id" type="hidden" id="id" value="<?php echo $rows3['id'];?>">
         </em></td>
         <td><input type="submit" name="Submit3" value="Valider votre modification"></td>
       </tr>
