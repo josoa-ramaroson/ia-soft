@@ -64,7 +64,7 @@ Require("bienvenue.php");    // on appelle la page contenant la fonction
 							</div>
 						</section>
 						<!-- /participants-list -->
-				<?	// End Content
+				<?php	// End Content
 					} mysqli_close($linki);
 				?>		
 				</div>
