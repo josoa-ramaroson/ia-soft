@@ -1,8 +1,8 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 ?>
-<?
-	if($_SESSION['u_niveau'] != 1) {
+<?php
+ if($_SESSION['u_niveau'] != 1) {
 	header("location:index.php?error=false");
 	exit;
  }
@@ -84,7 +84,7 @@ httpxml.send(null);
 </script>
 
 </head>
-<?
+<?php
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <?php

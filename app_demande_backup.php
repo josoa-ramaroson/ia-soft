@@ -1,11 +1,11 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fonction.php';
 require 'fc-affichage.php';
 require_once('calendar/classes/tc_calendar.php');
 ?>
-<?
-	if((($_SESSION['u_niveau'] != 20) ) && ($_SESSION['u_niveau'] != 40) && ($_SESSION['u_niveau'] != 90)) {
+<?php
+ if((($_SESSION['u_niveau'] != 20) ) && ($_SESSION['u_niveau'] != 40) && ($_SESSION['u_niveau'] != 90)) {
 	header("location:index.php?error=false");
 	exit;
  }
@@ -81,8 +81,8 @@ httpxml.send(null);
 </script>
 
 </head>
-<?
-require 'bienvenue.php';    // on appelle la page contenant la fonction
+<?php
+Require 'bienvenue.php';    // on appelle la page contenant la fonction
 	$sqldate="SELECT * FROM $tbl_caisse "; //DESC  ASC
 	$resultldate=mysqli_query($linki,$sqldate);
 	$datecaisse=mysqli_fetch_array($resultldate);

@@ -1,10 +1,10 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fonction.php';
 require 'configuration.php';
 ?>
-<?
-	if($_SESSION['u_niveau'] != 1) {
+<?php
+ if($_SESSION['u_niveau'] != 1) {
 	header("location:index.php?error=false");
 	exit;
  }

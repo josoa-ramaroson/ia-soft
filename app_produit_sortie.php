@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
 require_once('calendar/classes/tc_calendar.php');
@@ -88,8 +88,8 @@ httpxml.send(null);
   }
 </script>
 </head>
-<?
-require 'bienvenue.php';    // on appelle la page contenant la fonction
+<?php
+Require 'bienvenue.php';    // on appelle la page contenant la fonction
 
  //choix d espace de memoire pour les connection.---------------------------------------------------------------- 
 	$valeur_existant = "SELECT COUNT(*) AS nb FROM $tbl_apppaiconn WHERE loguser='$id_nom' ";

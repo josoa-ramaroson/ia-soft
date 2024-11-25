@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fonction.php';
 require 'configuration.php';
 
@@ -15,7 +15,7 @@ $annee1rp=$annee_recouvrement;
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Document sans titre</title>
 </head>
-<?
+<?php
 Require("bienvenue.php");  // on appelle la page contenant la fonction
 ?>
 <body>

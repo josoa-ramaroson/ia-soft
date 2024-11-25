@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fonction.php';
 ?>
 <html>
@@ -19,7 +19,7 @@ require 'fonction.php';
 }
 </style>
 </head>
-<?
+<?php
 Require("bienvenue.php");    // on appelle la page contenant la fonction
 ?>
 

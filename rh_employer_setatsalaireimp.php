@@ -1,10 +1,10 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fonction.php';
 require 'rh_configuration_fonction.php';
 ?>
-<?
-	if((($_SESSION['u_niveau'] != 50) ) && ($_SESSION['u_niveau'] != 90)) {
+<?php
+ if((($_SESSION['u_niveau'] != 50) ) && ($_SESSION['u_niveau'] != 90)) {
 	header("location:index.php?error=false");
 	exit;
  }

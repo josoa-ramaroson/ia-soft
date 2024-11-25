@@ -81,8 +81,8 @@ httpxml.send(null);
 </script>
 
 </head>
-<?
-require 'bienvenue.php';    // on appelle la page contenant la fonction
+<?php
+Require 'bienvenue.php';    // on appelle la page contenant la fonction
 	$sqldate="SELECT * FROM $tbl_caisse "; //DESC  ASC
 	$resultldate=mysqli_query($linki, $sqldate);
 	$datecaisse=mysqli_fetch_array($resultldate);

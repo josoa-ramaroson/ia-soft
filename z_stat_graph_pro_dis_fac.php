@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -137,8 +137,8 @@ $(function () {
 });
 		</script>
 	</head>
-    <?
-require("bienvenue.php");    // on appelle la page contenant la fonction
+    <?php
+Require("bienvenue.php");    // on appelle la page contenant la fonction
 ?>
 	<body>
 <script src="js/highcharts.js"></script>

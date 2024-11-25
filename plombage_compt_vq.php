@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require_once('calendar/classes/tc_calendar.php');
 require 'fonction.php';
 require 'configuration.php';
@@ -184,7 +184,7 @@ httpxml.send(null);
   }
 </script>
 </head>
-<?
+<?php
 Require 'bienvenue.php';  
 
 $RefQuartier=addslashes($_REQUEST['quartier']);

@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
 ?>
@@ -11,8 +11,8 @@ require 'fonction.php';
 <script language="javascript" src="calendar/calendar.js"></script>
 
 </head>
-<?
-require("bienvenue.php");    // on appelle la page contenant la fonction
+<?php
+Require("bienvenue.php");    // on appelle la page contenant la fonction
 ?>
 <?
 $service=$_SESSION['u_niveau'];
@@ -56,8 +56,8 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
                   <td><?php $idv=$data['idv']; echo $data['idv'];?></td>
                                     
                   <td>
-                   <?
-				   
+                   <?php
+ 			   
 				   $sqlr="SELECT * FROM $tb_echangreponse WHERE idv='$idv'" ;
 				   $resu= mysqli_query($linki,$sqlr);
 				   $suivi=mysqli_fetch_array($resu);

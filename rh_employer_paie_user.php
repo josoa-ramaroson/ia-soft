@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
 require 'rh_configuration_fonction.php';
@@ -16,8 +16,8 @@ if(($_SESSION['u_niveau'] != 50)) {
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Document sans titre</title>
 </head>
-<?
-require 'bienvenue.php';    // on appelle la page contenant la fonction
+<?php
+Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <body>
 <table width="100%" border="0">

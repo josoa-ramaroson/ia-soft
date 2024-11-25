@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fonction.php';
 function barre_navigation ($nb_total,$nb_affichage_par_page,$debut, $refville , $RefQuartier, $nb_liens_dans_la_barre) { 
     $barre = ''; 
@@ -113,8 +113,8 @@ if(($_SESSION['u_niveau'] != 30)) {
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>EDA</title>
 </head>
-<?
-require 'bienvenue.php';    // on appelle la page contenant la fonction
+<?php
+Require 'bienvenue.php';    // on appelle la page contenant la fonction
 
 
 $RefQuartier=addslashes($_REQUEST['quartier']);

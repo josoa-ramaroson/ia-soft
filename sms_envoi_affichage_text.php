@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fonction.php';
 if(($_SESSION['u_niveau'] != 30)) {
 	header("location:index.php?error=false");
@@ -14,8 +14,8 @@ if(($_SESSION['u_niveau'] != 30)) {
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>EDA</title>
 </head>
-<?
-	$id=substr($_REQUEST['id'],32);
+<?php
+ $id=substr($_REQUEST['id'],32);
 	$Numero=addslashes($_REQUEST['GSM']);
 	$id_nom=addslashes($_REQUEST['id_nom']);
 	

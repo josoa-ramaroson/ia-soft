@@ -1,5 +1,5 @@
-    <?
-	require 'fonction.php';
+    <?php
+ require 'fonction.php';
 	function stat_eda1($mois,$annee,$tbl_paiement, $id){
 	$sql = "SELECT SUM(paiement) AS Paie , st FROM $tbl_paiement where st='E' and MONTH(date)=$mois and YEAR(date)=$annee and id='$id' ";
 
@@ -12,8 +12,8 @@
 	}	
 	?>
     
-        <?
-	//$annee=$_POST['annee']; 
+        <?php
+ //$annee=$_POST['annee']; 
 	require 'fonction.php';
 	$annee=$_REQUEST['annee'];
     $id=$_REQUEST['id'];

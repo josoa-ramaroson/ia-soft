@@ -1,5 +1,5 @@
-<?
-require 'fonction.php';
+<?php
+Require 'fonction.php';
 require_once('calendar/classes/tc_calendar.php');
 ?>
 

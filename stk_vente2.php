@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
 require_once('calendar/classes/tc_calendar.php');
@@ -84,8 +84,8 @@ httpxml.send(null);
   }
 </script>
 </head>
-<?
-require 'bienvenue.php';    // on appelle la page contenant la fonction
+<?php
+Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <body>
 <table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#000000">

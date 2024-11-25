@@ -1,12 +1,12 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require_once('calendar/classes/tc_calendar.php');
 require 'fc-affichage.php';
 require 'fonction.php';
 require 'configuration.php';
 ?>
-<?
-	if(($_SESSION['u_niveau'] != 5) ) {
+<?php
+ if(($_SESSION['u_niveau'] != 5) ) {
 	header("location:index.php?error=false");
 	exit;
  }
@@ -102,7 +102,7 @@ httpxml.send(null);
 </script>
 
 </head>
-<?
+<?php
 Require("bienvenue.php");  // on appelle la page contenant la fonction
 ?>
  

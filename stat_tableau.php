@@ -1,11 +1,11 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require_once('calendar/classes/tc_calendar.php');
 require 'fc-affichage.php';
 require 'fonction.php';
 ?>
-<?
-require 'fonction_niveau_statistique.php';
+<?php
+Require 'fonction_niveau_statistique.php';
 ?>
 <html>
 <head>
@@ -26,8 +26,8 @@ require 'fonction_niveau_statistique.php';
 <script language="javascript" src="calendar/calendar.js"></script>
 
 </head>
-<?
-require("bienvenue.php");    // on appelle la page contenant la fonction
+<?php
+Require("bienvenue.php");    // on appelle la page contenant la fonction
 ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
  <table width="100%" border="0">

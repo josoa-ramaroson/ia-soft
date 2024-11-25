@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
 ?>
@@ -21,8 +21,8 @@ if(($_SESSION['u_niveau']!= 7) &&($_SESSION['u_niveau']!= 10)) {
 }
 </style>
 </head>
-<?
-require 'bienvenue.php';    // on appelle la page contenant la fonction
+<?php
+Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
 <p>

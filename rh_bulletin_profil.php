@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fonction.php';
 
 function barre_navigation ($nb_total,$nb_affichage_par_page,$debut, $matricule,  $nb_liens_dans_la_barre) { 
@@ -107,7 +107,7 @@ function barre_navigation ($nb_total,$nb_affichage_par_page,$debut, $matricule, 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Document sans titre</title>
 </head>
-<?
+<?php
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 require 'rh_configuration_fonction.php';
 

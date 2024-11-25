@@ -1,11 +1,11 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
 ?>
 
-<?
-require 'session_niveau_trasfertmagasin.php';    // on appelle la page contenant la fonction
+<?php
+Require 'session_niveau_trasfertmagasin.php';    // on appelle la page contenant la fonction
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -13,8 +13,8 @@ require 'session_niveau_trasfertmagasin.php';    // on appelle la page contenant
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Document sans titre</title>
 </head>
-<?
-require 'bienvenue.php';    // on appelle la page contenant la fonction
+<?php
+Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <body>
 

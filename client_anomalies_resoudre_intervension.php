@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -7,7 +7,7 @@ require 'session.php';
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Document sans titre</title>
 </head>
-<?
+<?php
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <?php

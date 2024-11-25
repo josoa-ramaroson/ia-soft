@@ -5,7 +5,7 @@ require 'session.php';
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
-<link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
+<!-- <link href="calendar/calendar.css" rel="stylesheet" type="text/css" /> -->
 <style type="text/css">
 .centrevaleur {
 	text-align: center;

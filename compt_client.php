@@ -1,10 +1,10 @@
-﻿<?
-require 'session.php';
+﻿<?php
+Require 'session.php';
 require 'fonction.php';
 require_once('calendar/classes/tc_calendar.php');
 ?>
-<?
-	if($_SESSION['u_niveau'] != 20) {
+<?php
+ if($_SESSION['u_niveau'] != 20) {
 	header("location:index.php?error=false");
 	exit;
  }
@@ -18,7 +18,7 @@ require_once('calendar/classes/tc_calendar.php');
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
 
 </head>
-<?
+<?php
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <body>

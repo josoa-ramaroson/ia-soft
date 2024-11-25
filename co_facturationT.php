@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
 require 'configuration.php';
@@ -16,7 +16,7 @@ if(($_SESSION['u_niveau'] != 2)) {
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Document sans titre</title>
 </head>
-<?
+<?php
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 
 $sqlu = "SELECT * FROM $tbl_saisie where blogin='$id_nom'";
@@ -107,8 +107,8 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
            <td><strong><?php echo $data['quartier'];?></strong></td>
          </tr>
        </table>
-       <?
-	  
+       <?php
+   
 	 //recherche du repport 
 	 $sqlp = "SELECT * FROM $tbl_fact WHERE id='$idcl' and st='E' ORDER BY idf desc limit 0,1";  
 	 $resultp=mysqli_query($linki,$sqlp);
@@ -140,8 +140,8 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
            <td>Nouveau Index</td>
            <td>&nbsp;</td>
            <td><strong>
-             <input name="n" type="text" class="form-control" id="n" value="<?
-	 	  if(!isset($datindex['nf'])|| empty($datindex['nf'])){ echo 0;} else { echo $datindex['nf'];} ?>" size="20" readonly />
+             <input name="n" type="text" class="form-control" id="n" value="<?php
+  	  if(!isset($datindex['nf'])|| empty($datindex['nf'])){ echo 0;} else { echo $datindex['nf'];} ?>" size="20" readonly />
            </strong></td>
            <td>S.I</td>
          </tr>
@@ -149,8 +149,8 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
            <td>Ancien Index</td>
            <td>&nbsp;</td>
            <td><strong>
-             <input name="a" type="text" class="form-control" id="a" value="<?
-	 	  if(!isset($datindex['n'])|| empty($datindex['n'])){ echo 0;} else { echo $datindex['n'];} ?>" size="20" readonly />
+             <input name="a" type="text" class="form-control" id="a" value="<?php
+  	  if(!isset($datindex['n'])|| empty($datindex['n'])){ echo 0;} else { echo $datindex['n'];} ?>" size="20" readonly />
            </strong></td>
            <td>S.I</td>
          </tr>
@@ -158,8 +158,8 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
            <td>Impayé</td>
            <td>&nbsp;</td>
            <td><strong>
-             <input name="impayee" type="text" class="form-control" id="impayee" value="<?
-	 	  if(!isset($datap['report'])|| empty($datap['report'])){ echo 0;} else { echo $datap['report'];} ?>" size="20" readonly />
+             <input name="impayee" type="text" class="form-control" id="impayee" value="<?php
+  	  if(!isset($datap['report'])|| empty($datap['report'])){ echo 0;} else { echo $datap['report'];} ?>" size="20" readonly />
            </strong></td>
            <td>KMF<font color="#FF0000">
            <input name="idf" type="hidden" id="idf" value="<?php echo $datap['idf']; ?>" />

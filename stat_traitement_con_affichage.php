@@ -1,12 +1,12 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require_once('calendar/classes/tc_calendar.php');
 require 'fc-affichage.php';
 require 'fonction.php';
 require 'configuration.php';
 ?>
-<?
-require 'fonction_niveau_statistique.php';
+<?php
+Require 'fonction_niveau_statistique.php';
 ?>
 <html>
 <head>
@@ -103,7 +103,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 </script>
 
 </head>
-<?
+<?php
 Require("bienvenue.php");  // on appelle la page contenant la fonction
 ?>
  

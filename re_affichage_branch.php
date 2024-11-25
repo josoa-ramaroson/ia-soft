@@ -1,10 +1,10 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
 ?>
-<?
-	if(($_SESSION['u_niveau'] != 1)&& ($_SESSION['u_niveau'] != 42)&& ($_SESSION['u_niveau'] != 42)
+<?php
+ if(($_SESSION['u_niveau'] != 1)&& ($_SESSION['u_niveau'] != 42)&& ($_SESSION['u_niveau'] != 42)
 	    && ($_SESSION['u_niveau'] != 43) && ($_SESSION['u_niveau'] != 44)&& ($_SESSION['u_niveau'] != 90)&& ($_SESSION['u_niveau'] != 46)){
 	header("location:index.php?error=false");
 	exit;
@@ -16,7 +16,7 @@ require 'fonction.php';
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php include 'titre.php' ?></title>
 </head>
-<?
+<?php
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <body>

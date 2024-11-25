@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 ?>
 <html>
 <head>
@@ -13,8 +13,8 @@ require 'session.php';
 </head>
 
 <body>
-<?
-	if((($_SESSION['u_niveau'] != 20) ) && ($_SESSION['u_niveau'] != 40) && ($_SESSION['u_niveau'] != 90)) {
+<?php
+ if((($_SESSION['u_niveau'] != 20) ) && ($_SESSION['u_niveau'] != 40) && ($_SESSION['u_niveau'] != 90)) {
 	header("location:index.php?error=false");
 	exit;
  }

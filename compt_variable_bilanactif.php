@@ -1,5 +1,5 @@
-    <?
-	require 'fonction.php';
+    <?php
+ require 'fonction.php';
 	function compt_bilactif($Compte,$annee,$tb_ecriture){
 	$sql = "SELECT SUM(TTC) AS TTC FROM $tb_ecriture where  Compte=$Compte and  YEAR(Date)=$annee and  mo='C' ";
 	$resultat = mysqli_query($linki,$sql) or exit(mysqli_error()); 
@@ -12,8 +12,8 @@
 	?>
     
     
-    <?
-	//$annee=$_REQUEST['annee'];
+    <?php
+ //$annee=$_REQUEST['annee'];
 	//$anneecomptable='2015';
 
 //CHARGES IMMOBILISÉES

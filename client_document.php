@@ -1,8 +1,8 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 ?>
-<?
-require 'session_niveau_client.php';
+<?php
+Require 'session_niveau_client.php';
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -10,7 +10,7 @@ require 'session_niveau_client.php';
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <title>Archive documentation</title>
 </head>
-<?
+<?php
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <?php

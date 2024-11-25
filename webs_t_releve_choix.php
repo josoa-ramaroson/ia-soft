@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fonction.php';
 if(($_SESSION['u_niveau'] != 2)) {
 	header("location:index.php?error=false");
@@ -8,8 +8,8 @@ if(($_SESSION['u_niveau'] != 2)) {
  include 'inc/head.php';
 ?>
 
-<?
-	$id_nom=addslashes($_REQUEST['id_nom']);
+<?php
+ $id_nom=addslashes($_REQUEST['id_nom']);
 ?>
 
 <html>

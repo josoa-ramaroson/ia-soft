@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fonction.php';
 
 function barre_navigation ($nb_total,$nb_affichage_par_page,$debut, $iddirection,  $nb_liens_dans_la_barre) { 

@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fonction.php';
 $nserie1=addslashes($_POST['nserie']);
 $annee1fl=addslashes($_POST['annee']);
@@ -8,8 +8,8 @@ $CB=addslashes($_POST['CB']);
 
 $ARCH=$annee1fl;
 ?>
-<?
-require 'fonction_niveau_stat_filtre.php';
+<?php
+Require 'fonction_niveau_stat_filtre.php';
 ?>
 <html>
 <head>
@@ -17,7 +17,7 @@ require 'fonction_niveau_stat_filtre.php';
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Document sans titre</title>
 </head>
-<?
+<?php
 Require("bienvenue.php");  // on appelle la page contenant la fonction
 ?>
 <body>

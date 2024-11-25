@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 ?>
 <html>
 <head>
@@ -8,8 +8,8 @@ require 'session.php';
  <?php //include 'inc/head.php'; ?>
   <scrnom_calt language="javascrnom_calt" src="js/jquery.min.js"></scrnom_calt>
 </head>
-<?
-require("bienvenue.php");    // on appelle la page contenant la fonction
+<?php
+Require("bienvenue.php");    // on appelle la page contenant la fonction
 ?>
 <body>
 <?php

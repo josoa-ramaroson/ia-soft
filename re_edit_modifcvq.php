@@ -1,10 +1,10 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fonction.php';
 require 'configuration.php';
 ?>
-<?
-	if($_SESSION['u_niveau'] != 1) {
+<?php
+ if($_SESSION['u_niveau'] != 1) {
 	header("location:index.php?error=false");
 	exit;
  }
@@ -92,8 +92,8 @@ httpxml.send(null);
 <script language="javascript" src="calendar/calendar.js"></script>
 <script type="text/javascript" src="js/validator.js"></script>
 </head>
-<?
-require 'bienvenue.php';    // on appelle la page contenant la fonction
+<?php
+Require 'bienvenue.php';    // on appelle la page contenant la fonction
 	$sqldate="SELECT * FROM $tbl_caisse "; //DESC  ASC
 	$resultldate=mysqli_query($linki,$sqldate);
 	$datecaisse=mysqli_fetch_array($resultldate);

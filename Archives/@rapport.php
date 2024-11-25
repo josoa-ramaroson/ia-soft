@@ -1,5 +1,5 @@
-<?
-require 'functions/session.php';
+<?php
+Require 'functions/session.php';
 ?>
 <?php
 require_once('calendar/classes/tc_calendar.php');
@@ -131,7 +131,7 @@ function barre_navigation ($nb_total,$nb_affichage_par_page,$debut,$nb_liens_dan
 <script language="javascript" src="calendar/calendar.js"></script>
 
 </head>
-<?
+<?php
 Require("bienvenue.php");    // on appelle la page contenant la fonction
 ?>
  <?php

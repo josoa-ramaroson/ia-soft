@@ -1,10 +1,10 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
 ?>
-<?
-	if($_SESSION['u_niveau'] != 6) {
+<?php
+ if($_SESSION['u_niveau'] != 6) {
 	header("location:index.php?error=false");
 	exit;
  }
@@ -21,7 +21,7 @@ require_once('calendar/classes/tc_calendar.php');
 <script language="javascript" src="calendar/calendar.js"></script>
 <script type="text/javascript" src="js/validator.js"></script>
 </head>
-<?
+<?php
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <body>

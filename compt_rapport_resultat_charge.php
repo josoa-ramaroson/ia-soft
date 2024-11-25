@@ -1,9 +1,9 @@
-﻿<?
-require 'session.php';
+﻿<?php
+Require 'session.php';
 require 'fonction.php';
 ?>
-<?
-	if((($_SESSION['u_niveau'] != 20) ) && ($_SESSION['u_niveau'] != 90)) {
+<?php
+ if((($_SESSION['u_niveau'] != 20) ) && ($_SESSION['u_niveau'] != 90)) {
 	header("location:index.php?error=false");
 	exit;
  }
@@ -13,8 +13,8 @@ require 'fonction.php';
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php include 'titre.php' ?></title>
 </head>
-<?
-require 'bienvenue.php';    // on appelle la page contenant la fonction
+<?php
+Require 'bienvenue.php';    // on appelle la page contenant la fonction
 require 'compt_variable_bilanactif.php';  
 ?>
 <body>

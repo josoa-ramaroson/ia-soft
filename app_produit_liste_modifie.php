@@ -15,8 +15,8 @@ if(($_SESSION['u_niveau'] != 40)) {
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 
 </head>
-<?
-require("bienvenue.php"); 
+<?php
+Require("bienvenue.php"); 
 ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
 <div class="panel panel-primary">

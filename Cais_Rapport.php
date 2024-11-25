@@ -1,10 +1,10 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require_once('calendar/classes/tc_calendar.php');
 require 'fonction.php';
 ?>
-<?
-require 'session_niveau_tresorie_rapport.php';
+<?php
+Require 'session_niveau_tresorie_rapport.php';
 ?>
 <?php
 require"fc-affichage.php";
@@ -18,8 +18,8 @@ require"fc-affichage.php";
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
 <script language="javascript" src="calendar/calendar.js"></script>
 </head>
-<?
-require("bienvenue.php"); 
+<?php
+Require("bienvenue.php"); 
 ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
 <table width="100%" border="0" cellpadding="0" cellspacing="0" bordercolor="#000000">

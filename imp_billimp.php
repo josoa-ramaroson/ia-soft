@@ -62,8 +62,8 @@ while($data5=mysqli_fetch_array($req5)){
                   </tr>
                   <tr>
                     <td>Adresse :</td>
-                    <td><span style="width: 40%; text-align: left"><span style="width:36%"><?
-					$ville=substr($data5['ville'],0,15); echo $ville;?></span> <span style="width:36%"><?php $quartier=substr($data5['quartier'],0,11); echo $quartier;?></span></span></td>
+                    <td><span style="width: 40%; text-align: left"><span style="width:36%"><?php
+ 				$ville=substr($data5['ville'],0,15); echo $ville;?></span> <span style="width:36%"><?php $quartier=substr($data5['quartier'],0,11); echo $quartier;?></span></span></td>
                   </tr>
                   <tr>
                     <td>ID Client :</td>

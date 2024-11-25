@@ -1,11 +1,11 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fonction.php';
 require_once('calendar/classes/tc_calendar.php');
 require 'rh_configuration_fonction.php';
 ?>
-<?
-	if((($_SESSION['u_niveau'] != 40) ) && ($_SESSION['u_niveau'] != 90)) {
+<?php
+ if((($_SESSION['u_niveau'] != 40) ) && ($_SESSION['u_niveau'] != 90)) {
 	header("location:index.php?error=false");
 	exit;
  }
@@ -18,7 +18,7 @@ require 'rh_configuration_fonction.php';
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
 </head>
-<?
+<?php
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <body>

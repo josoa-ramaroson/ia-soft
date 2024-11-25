@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 ?>
 <?php
 require_once('calendar/classes/tc_calendar.php');
@@ -13,7 +13,7 @@ require_once('calendar/classes/tc_calendar.php');
 <script language="javascript" src="calendar/calendar.js"></script>
 <script type="text/javascript" src="js/validator.js"></script>
 </head>
-<?
+<?php
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <body>

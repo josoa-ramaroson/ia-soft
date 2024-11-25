@@ -1,9 +1,9 @@
-<?
+<?php
 Require("session.php"); 
 require 'fonction.php';
 ?>
-<?
-	if($_SESSION['u_niveau'] != 40) {
+<?php
+ if($_SESSION['u_niveau'] != 40) {
 	header("location:index.php?error=false");
 	exit;
  }
@@ -31,7 +31,7 @@ require_once('calendar/classes/tc_calendar.php');
 }
 </style>
 </head>
-<?
+<?php
 Require("bienvenue.php");    // on appelle la page contenant la fonction
 $id=substr($_REQUEST["id"],32);
 $sqlm="SELECT * FROM $tbl_appbonachat WHERE id_dem='$id'";

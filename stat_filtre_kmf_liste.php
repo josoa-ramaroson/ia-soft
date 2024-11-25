@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fonction.php';
      $nserie1=substr($_REQUEST["ns"],32);
      $annee1f=substr($_REQUEST["an"],32);   
@@ -7,8 +7,8 @@ require 'fonction.php';
 	 $CB=substr($_REQUEST['CB'],32);
 	 $ARCH=$annee1f;
 ?>
-<?
-require 'fonction_niveau_stat_filtre.php';
+<?php
+Require 'fonction_niveau_stat_filtre.php';
 ?>
 <html>
 <head>

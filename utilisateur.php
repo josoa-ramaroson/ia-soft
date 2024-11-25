@@ -16,7 +16,7 @@ if(($_SESSION['u_niveau'] != 7)) {
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 
 </head>
-<?
+<?php
 Require("bienvenue.php");    // on appelle la page contenant la fonction
 ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
@@ -129,7 +129,7 @@ echo '<option> '.$row2['a_nom'].' </option>';
   
 $sql = "SELECT count(*) FROM $tbl_utilisateur";  
 
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
  
 $nb_total = mysqli_fetch_array($resultat);  
@@ -152,7 +152,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT * FROM $tbl_utilisateur  ORDER BY id_u DESC LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;  //ASC
  
 // on ex?cute la requ?te  
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 ?>
   </font></strong></font></font></font></font></font></font></font></font></font></strong></font></font></font></font></font></font></font></font></font></font></p>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
@@ -189,7 +189,7 @@ mysqli_free_result ($req);
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
 mysqli_free_result ($resultat);  
-mysqli_close ();  
+mysqli_close ($linki);  
 ?>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

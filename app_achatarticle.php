@@ -1,11 +1,11 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fonction.php';
 require 'fc-affichage.php';
 require_once('calendar/classes/tc_calendar.php');
 ?>
-<?
-	if($_SESSION['u_niveau'] != 40) {
+<?php
+ if($_SESSION['u_niveau'] != 40) {
 	header("location:index.php?error=false");
 	exit;
  }
@@ -81,8 +81,8 @@ httpxml.send(null);
 </script>
 
 </head>
-<?
-require 'bienvenue.php';  
+<?php
+Require 'bienvenue.php';  
 	$sqldate="SELECT * FROM $tbl_app_caisse "; //DESC  ASC
 	$resultldate=mysqli_query($linki, $sqldate);
 	$datecaisse=mysqli_fetch_array($resultldate);

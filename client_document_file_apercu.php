@@ -1,5 +1,5 @@
-<?
-require "session.php"; 
+<?php
+Require "session.php"; 
 require 'fonction.php';
 
 require 'session_niveau_client.php';

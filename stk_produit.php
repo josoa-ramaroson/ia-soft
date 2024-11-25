@@ -1,4 +1,4 @@
-<?
+<?php
 Require("session.php"); 
 require"fc-affichage.php";
 ?>
@@ -15,7 +15,7 @@ if(($_SESSION['u_niveau'] != 40)) {
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 
 </head>
-<?
+<?php
 Require("bienvenue.php"); 
 //$_SESSION['niveau'];
 ?>

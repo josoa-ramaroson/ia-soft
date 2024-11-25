@@ -1,5 +1,5 @@
-<?
-	global $u_utilisateur;
+<?php
+ global $u_utilisateur;
 	$u_login=addslashes($_POST['u_login']);
 	$u_pwd=addslashes(md5($_POST['u_pwd']));
 	$u_pwd1=addslashes(md5($_POST['u_pwd1']));

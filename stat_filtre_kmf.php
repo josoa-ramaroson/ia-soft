@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fonction.php';
 $nserie1=addslashes($_POST['nserie']);
 $annee1f=addslashes($_POST['annee']);
@@ -7,8 +7,8 @@ $CA=addslashes($_POST['CA']);
 $CB=addslashes($_POST['CB']);
 $ARCH=$annee1f;
 ?>
-<?
-require 'fonction_niveau_stat_filtre.php';
+<?php
+Require 'fonction_niveau_stat_filtre.php';
 ?>
 <html>
 <head>
@@ -16,8 +16,8 @@ require 'fonction_niveau_stat_filtre.php';
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Document sans titre</title>
 </head>
-<?
-require"bienvenue.php";  // on appelle la page contenant la fonction
+<?php
+Require"bienvenue.php";  // on appelle la page contenant la fonction
 ?>
 <body>
  <p><a href="stat_filtre_kmfsimp.php?an=<?php echo md5(microtime()).$annee1f;?>&ns=<?php echo md5(microtime()).$nserie1;?>&CA=<?php echo md5(microtime()).$CA;?>&CB=<?php echo md5(microtime()).$CB;?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a></p>

@@ -1,11 +1,11 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
 require 'configuration.php';
 ?>
-<?
-	if($_SESSION['u_niveau'] != 2) {
+<?php
+ if($_SESSION['u_niveau'] != 2) {
 	header("location:index.php?error=false");
 	exit;
  }
@@ -16,7 +16,7 @@ require 'configuration.php';
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <title>Archive documentation</title>
 </head>
-<?
+<?php
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <?php

@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
 require_once('calendar/classes/tc_calendar.php');
@@ -9,8 +9,8 @@ require_once('calendar/classes/tc_calendar.php');
 	$datecaisse=mysqli_fetch_array($resultldate);
 	
 ?>
-<?
-	if($_SESSION['u_niveau'] != 42) {
+<?php
+ if($_SESSION['u_niveau'] != 42) {
 	header("location:index.php?error=false");
 	exit;
  }
@@ -86,8 +86,8 @@ httpxml.send(null);
   }
 </script>
 </head>
-<?
-require 'bienvenue.php';   
+<?php
+Require 'bienvenue.php';   
 ?>
 <body>
 <table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#000000">

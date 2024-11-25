@@ -2,6 +2,7 @@
 require 'session.php';
 require 'fonction.php';
 require_once('calendar/classes/tc_calendar.php');
+$id_user  = $_SESSION["id_user"];
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -37,7 +38,6 @@ require_once('calendar/classes/tc_calendar.php');
             background-color: var(--background);
             color: var(--text-primary);
             line-height: 1.6;
-            padding: 20px;
         }
 
         .top-nav {

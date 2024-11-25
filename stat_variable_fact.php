@@ -1,5 +1,5 @@
-    <?
-	require 'fonction.php';
+    <?php
+ require 'fonction.php';
 	function stat_eda($mois,$annee,$tv_facturation){
 	$sql = "SELECT SUM(cons) AS cons, SUM(totalht) AS totalht, SUM(tax) AS tax, SUM(totalttc) AS totalttc, SUM(ortc) AS ortc, SUM(impayee) AS impayee, SUM(Pre) AS Pre, SUM(totalnet) AS totalnet, RefLocalite , nserie , fannee , st 
 	FROM $tv_facturation where  st='E' and  fannee='$annee'  and nserie='$mois'"; 
@@ -12,8 +12,8 @@
 	}	
 	?>
     
-        <?
-	//$annee=$_POST['annee']; 
+        <?php
+ //$annee=$_POST['annee']; 
 	require 'fonction.php';
 	$annee=$_REQUEST['annee']; 
 	$b1=stat_eda(1,$annee,$tv_facturation);

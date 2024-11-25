@@ -1,5 +1,5 @@
-<?
-require 'sessionclient.php';
+<?php
+Require 'sessionclient.php';
 require 'fc-affichage.php';
 require_once('calendar/classes/tc_calendar.php');
 require 'fonction.php';

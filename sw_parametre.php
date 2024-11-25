@@ -1,4 +1,4 @@
-<?
+<?php
 Require("session.php"); 
 ?>
 <?
@@ -28,7 +28,7 @@ if(($_SESSION['u_niveau']!= 7) &&($_SESSION['u_niveau']!= 10)) {
 <script language="javascript" src="calendar/calendar.js"></script>
 
 </head>
-<?
+<?php
 Require("bienvenue.php");  // on appelle la page contenant la fonction
 ?>
  

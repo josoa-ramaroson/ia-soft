@@ -1,5 +1,5 @@
-<?
-require 'fonction.php';
+<?php
+Require 'fonction.php';
 require 'sessionclient.php';	
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -38,8 +38,8 @@ $datam=mysqli_fetch_array($resultm);
 	$nomclient=$datam['nomprenom'];
 ?>
 <body>
-<?
-require "client_lient.php";
+<?php
+Require "client_lient.php";
 ?>
 <table width="99%" border="0">
   <tr>

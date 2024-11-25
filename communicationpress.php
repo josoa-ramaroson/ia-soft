@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
 require_once('calendar/classes/tc_calendar.php');
@@ -23,7 +23,7 @@ if(($_SESSION['u_niveau'] != 30) && ($_SESSION['u_niveau'] != 7)) {
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 </head>
 <BODY BGCOLOR="#ffffff" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0">
-<?
+<?php
 Require("bienvenue.php");    // on appelle la page contenant la fonction
 ?>
      <div class="panel panel-primary">

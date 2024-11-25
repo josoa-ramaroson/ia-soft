@@ -1,11 +1,11 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
 require 'rh_configuration_fonction.php';
 ?>
-<?
-	if($_SESSION['u_niveau'] != 50) {
+<?php
+ if($_SESSION['u_niveau'] != 50) {
 	header("location:index.php?error=false");
 	exit;
  }
@@ -16,7 +16,7 @@ require 'rh_configuration_fonction.php';
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php include 'titre.php' ?></title>
 </head>
-<?
+<?php
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <body>

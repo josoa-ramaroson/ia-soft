@@ -1,12 +1,12 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require_once('calendar/classes/tc_calendar.php');
 require 'fc-affichage.php';
 require 'fonction.php';
 require 'configuration.php';
 ?>
-<?
-require 'fonction_niveau_statistique.php';
+<?php
+Require 'fonction_niveau_statistique.php';
 ?>
 <html>
 <head>
@@ -100,8 +100,8 @@ httpxml.send(null);
 </script>
 
 </head>
-<?
-require("bienvenue.php");  // on appelle la page contenant la fonction
+<?php
+Require("bienvenue.php");  // on appelle la page contenant la fonction
 ?>
 <?
 $sql = "SELECT COUNT(*) AS actif FROM $tbl_contact  WHERE statut='6'";   

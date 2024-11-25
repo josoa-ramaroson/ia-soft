@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fonction.php';
 $nserie1=addslashes($_POST['nserie']);
 $annee1rp=addslashes($_POST['annee']);
@@ -10,7 +10,7 @@ $annee1rp=addslashes($_POST['annee']);
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Document sans titre</title>
 </head>
-<?
+<?php
 Require("bienvenue.php");  // on appelle la page contenant la fonction
 ?>
 <body>

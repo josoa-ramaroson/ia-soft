@@ -1,4 +1,4 @@
-<?
+<?php
 Require("session.php"); 
 require_once('calendar/classes/tc_calendar.php');
 ?>
@@ -199,7 +199,7 @@ httpxml.send(null);
 }
 </style>
 </head>
-<?
+<?php
 Require("bienvenue.php"); // on appelle la page contenant la fonction
 ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">

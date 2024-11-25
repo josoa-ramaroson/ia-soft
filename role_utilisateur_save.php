@@ -1,5 +1,5 @@
-<?
-	 $id_role=addslashes($_POST['id_role']);
+<?php
+  $id_role=addslashes($_POST['id_role']);
 	 $id_user=addslashes($_POST['id_user']);
 	
 	require 'fonction.php';

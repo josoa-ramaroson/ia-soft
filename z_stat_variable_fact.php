@@ -1,5 +1,5 @@
-    <?
-	require 'fonction.php';
+    <?php
+ require 'fonction.php';
 	function stat_eda($mois,$annee,$dbbk,$ARCH,$tbl_fact,$linkibk){
 	$sql = "SELECT SUM(cons) AS cons, SUM(totalht) AS totalht, SUM(tax) AS tax, SUM(totalttc) AS totalttc, SUM(ortc) AS ortc, SUM(impayee) AS impayee, SUM(Pre) AS Pre, SUM(totalnet) AS totalnet,  nserie , fannee , st 
 	FROM $dbbk.z_"."$ARCH"."_$tbl_fact where  st='E' and  fannee='$annee'  and nserie='$mois'"; 
@@ -12,8 +12,8 @@
 	}	
 	?>
     
-        <?
-	require 'fonction.php';
+        <?php
+ require 'fonction.php';
 	$annee=$_REQUEST['annee']; 
 	$ARCH=$_REQUEST['annee'];
 	$b1=stat_eda(1,$annee,$dbbk,$ARCH,$tbl_fact,$linkibk);

@@ -1,8 +1,8 @@
-<?
+<?php
 Require("session.php"); 
 ?>
-<?
-	if($_SESSION['u_niveau'] != 43) {
+<?php
+ if($_SESSION['u_niveau'] != 43) {
 	header("location:index.php?error=false");
 	exit;
  }
@@ -27,7 +27,7 @@ Require("session.php");
 <script language="javascript" src="calendar/calendar.js"></script>
 
 </head>
-<?
+<?php
 Require("bienvenue.php");  // on appelle la page contenant la fonction
 ?>
  

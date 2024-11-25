@@ -1,10 +1,10 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
 ?>
-<?
-	if($_SESSION['u_niveau'] != 10) {
+<?php
+ if($_SESSION['u_niveau'] != 10) {
 	header("location:index.php?error=false");
 	exit;
  }
@@ -14,7 +14,7 @@ require 'fonction.php';
 <title><?php include("titre.php"); ?></title>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 </head>
-<?
+<?php
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <body>

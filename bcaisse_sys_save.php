@@ -1,5 +1,5 @@
-<?
-	$login=addslashes($_POST['m1']);
+<?php
+ $login=addslashes($_POST['m1']);
 	$motdepasse=addslashes(md5($_POST['m2']));
 	require 'fonction.php';
 	$sql="SELECT * FROM usersys WHERE u_login='$_POST[m1]' and u_pwd='$motdepasse' and statut='Operationnel'" ;

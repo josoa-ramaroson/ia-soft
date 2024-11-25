@@ -1,11 +1,11 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require_once('calendar/classes/tc_calendar.php');
 require 'fc-affichage.php';
 require 'fonction.php';
 ?>
-<?
-	if(($_SESSION['u_niveau'] != 2) && ($_SESSION['u_niveau'] != 43) && ($_SESSION['u_niveau'] != 8) && ($_SESSION['u_niveau'] != 3)    && ($_SESSION['u_niveau'] != 90) && ($_SESSION['u_niveau'] != 91) && ($_SESSION['u_niveau'] != 80) && ($_SESSION['u_niveau'] != 46)) {
+<?php
+ if(($_SESSION['u_niveau'] != 2) && ($_SESSION['u_niveau'] != 43) && ($_SESSION['u_niveau'] != 8) && ($_SESSION['u_niveau'] != 3)    && ($_SESSION['u_niveau'] != 90) && ($_SESSION['u_niveau'] != 91) && ($_SESSION['u_niveau'] != 80) && ($_SESSION['u_niveau'] != 46)) {
 	header("location:index.php?error=false");
 	exit;
  }
@@ -29,8 +29,8 @@ require 'fonction.php';
 <script language="javascript" src="calendar/calendar.js"></script>
 
 </head>
-<?
-require("bienvenue.php");    // on appelle la page contenant la fonction
+<?php
+Require("bienvenue.php");    // on appelle la page contenant la fonction
 ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
  <table width="100%" border="0">

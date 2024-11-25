@@ -1,5 +1,5 @@
-<?
-require("session.php"); 
+<?php
+Require("session.php"); 
 require 'fc-affichage.php';
 ?>
 
@@ -12,8 +12,8 @@ require 'fc-affichage.php';
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
 <script language="javascript" src="calendar/calendar.js"></script>
 </head>
-<?
-require("bienvenue.php"); 
+<?php
+Require("bienvenue.php"); 
 ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
 <p><font size="2"><font size="2"><font size="2"> 

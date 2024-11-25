@@ -1,10 +1,10 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
 ?>
-<?
-	if(($_SESSION['u_niveau'] != 50)) {
+<?php
+ if(($_SESSION['u_niveau'] != 50)) {
 	header("location:index.php?error=false");
 	exit;
  }
@@ -17,7 +17,7 @@ require 'fonction.php';
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 
 </head>
-<?
+<?php
 Require("bienvenue.php"); 
 //$_SESSION['niveau'];
 ?>
@@ -153,8 +153,8 @@ mysqli_close ();
   </tr>
   <tr> 
     <td height="21"> 
-              <?
-	function direction_eda($iddr,$tb_rhdirection){
+              <?php
+ function direction_eda($iddr,$tb_rhdirection){
 	
 	$sql = "SELECT * FROM $tb_rhdirection where  idrh=$iddr ";
 

@@ -1,7 +1,7 @@
 <?php
 	global $u_utilisateur;
 	$login=addslashes($_POST['m1']);
-	$motdepasse=addslashes(md5($_POST['m2']));
+	$motdepasse=(md5($_POST['m2']));
 	
 	require 'fonction.php';
 	
@@ -13,6 +13,7 @@
 	$resultat = mysqli_query($linki, $sql);
 	 
 	$u_utilisateur = mysqli_fetch_array($resultat, MYSQLI_ASSOC);
+	
 	if (!$u_utilisateur || empty($u_utilisateur))
 	{	
 		header("location:index.php?a=false");

@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fonction.php';
 $nserie1=substr($_REQUEST["ns"],32);
 $annee1rp=substr($_REQUEST["an"],32);

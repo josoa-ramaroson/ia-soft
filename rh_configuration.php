@@ -1,4 +1,4 @@
-<?
+<?php
 Require("session.php"); 
 require_once('calendar/classes/tc_calendar.php');
 ?>
@@ -199,7 +199,7 @@ httpxml.send(null);
 }
 </style>
 </head>
-<?
+<?php
 Require("bienvenue.php"); // on appelle la page contenant la fonction
 
 	$sqfac="SELECT * FROM $tb_rhconfig WHERE rhc='1' ORDER BY rhc desc limit 0,1";
@@ -232,8 +232,8 @@ Require("bienvenue.php"); // on appelle la page contenant la fonction
                         <td><input name="blogin" type="text" class="form-control" id="blogin" value="<?php echo $id_nom; ?>" size="20" readonly></td>
                         <td>&nbsp;</td>
                         <td>Taux </td>
-                        <td><input name="taux" type="text" class="form-control" id="taux" value="<?
-	 	  if(!isset($dattaux['taux'])|| empty($dattaux['taux'])){ echo 0;} else { echo $dattaux['taux'];} ?>" size="20"></td>
+                        <td><input name="taux" type="text" class="form-control" id="taux" value="<?php
+  	  if(!isset($dattaux['taux'])|| empty($dattaux['taux'])){ echo 0;} else { echo $dattaux['taux'];} ?>" size="20"></td>
                         <td>&nbsp;</td>
                         <td>IGR </td>
                         <td><font color="#000000">

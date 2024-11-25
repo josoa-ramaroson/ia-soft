@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -13,12 +13,12 @@ require 'stat_variable_cons.php';
 ?>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<style type="text/css">
-${demo.css}
+
 		.centre {
-	text-align: center;
-	font-weight: bold;
-}
-        </style>
+      text-align: center;
+      font-weight: bold;
+    }
+    </style>
 		<script type="text/javascript">
 $(function () {
 	
@@ -137,8 +137,8 @@ $(function () {
 });
 		</script>
 	</head>
-    <?
-require("bienvenue.php");    // on appelle la page contenant la fonction
+    <?php
+Require("bienvenue.php");    // on appelle la page contenant la fonction
 ?>
 	<body>
 <script src="js/highcharts.js"></script>

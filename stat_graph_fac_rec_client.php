@@ -1,5 +1,5 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 ?>
 <html>
 <head>
@@ -85,8 +85,8 @@ $(function () {
 });
 		</script>
 </head>
-<?
-require("bienvenue.php");    // on appelle la page contenant la fonction
+<?php
+Require("bienvenue.php");    // on appelle la page contenant la fonction
 ?>
 
 <BODY BGCOLOR="#ffffff" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0">

@@ -1,5 +1,5 @@
-<?
-require 'functions/session.php';
+<?php
+Require 'functions/session.php';
 ?>
 <?php
 require 'functions/fc-affichage.php';
@@ -11,7 +11,7 @@ require 'functions/main.php';
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Document sans titre</title>
 </head>
-<?
+<?php
 Require 'bienvenue.php';    // on appelle la page contenant la fonction
 ?>
 <body>

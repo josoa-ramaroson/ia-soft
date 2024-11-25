@@ -1,5 +1,5 @@
-<?
-require 'sessionclient.php';
+<?php
+Require 'sessionclient.php';
 require 'fc-affichage.php';
 require_once('calendar/classes/tc_calendar.php');
 require 'fonction.php';
@@ -52,8 +52,8 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
                   </td>
                   <td>
                   
-                   <?
-				   $idv=$data['idv'];
+                   <?php
+ 			   $idv=$data['idv'];
 				   $sqlr="SELECT * FROM $tb_echangreponse WHERE idv='$idv'" ;
 				   $resu= mysqli_query($linki,$sqlr);
 				   $suivi=mysqli_fetch_array($resu);

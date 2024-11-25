@@ -1,11 +1,11 @@
-<?
-require 'session.php';
+<?php
+Require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
 ?>
 
-<?
-require 'fonction_niveau_statistique.php';
+<?php
+Require 'fonction_niveau_statistique.php';
 ?>
 <html>
 <head>
@@ -13,8 +13,8 @@ require 'fonction_niveau_statistique.php';
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Document sans titre</title>
 </head>
-<?
-require 'bienvenue.php';    // on appelle la page contenant la fonction
+<?php
+Require 'bienvenue.php';    // on appelle la page contenant la fonction
 
 
 $RefQuartier=addslashes($_POST['quartier']);
