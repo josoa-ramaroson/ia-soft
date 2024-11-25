@@ -1,1 +1,1 @@
-<?php echo ' GE-Soft Version 6.1 '?>
+<?php echo 'IaSoft - Connexion'?>

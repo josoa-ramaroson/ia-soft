@@ -1,8 +1,8 @@
-<?
+<?php
 require 'session.php';
 require 'fonction.php';
 ?>
-<?
+<?php
 if(($_SESSION['privileges']!= 7)) {
 	header("location:index.php?error=false");
 	exit;
@@ -10,7 +10,7 @@ if(($_SESSION['privileges']!= 7)) {
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <script language="javascript" src="calendar/calendar.js"></script>
@@ -25,7 +25,7 @@ if(($_SESSION['privileges']!= 7)) {
 }
 </style>
 </head>
-<?
+<?php
 Require("bienvenue.php");    // on appelle la page contenant la fonction
 ?>
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
@@ -38,7 +38,7 @@ Require("bienvenue.php");    // on appelle la page contenant la fonction
       <table width="100%" border="0">
         <tr>
           <td width="16%">Login :</td>
-          <td width="18%"><input name="u_login" type="text" class="form-control" id="u_login" value="<? echo $id_nom; ?>" size="30" readonly></td>
+          <td width="18%"><input name="u_login" type="text" class="form-control" id="u_login" value="<?php echo $id_nom; ?>" size="30" readonly></td>
           <td width="7%">&nbsp;</td>
           <td width="59%">&nbsp;</td>
         </tr>
@@ -51,14 +51,14 @@ Require("bienvenue.php");    // on appelle la page contenant la fonction
         <tr>
           <td><strong>Niveau</strong></td>
           <td><select name="u_niveau" id="u_niveau">
-            <? require 'fonction_niveau_choix.php'; ?>
+            <?php require 'fonction_niveau_choix.php'; ?>
           </select></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
           <td><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-            <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>">
+            <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>">
           </font></strong></font></strong></font></td>
           <td>&nbsp;</td>
           <td><input type="submit" name="Valider" id="Valider" value="Envoyer"></td>

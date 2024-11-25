@@ -1,8 +1,8 @@
 <?php
+echo "here";
 require 'fonction.php';
-$link = mysql_connect ($host,$user,$pass);
-mysql_select_db($db);
-
+// $link = mysql_connect ($host,$user,$pass);
+// mysql_select_db($db);
 //------------identification du maximun -----------
 $u_nom=addslashes($_POST['u_nom']);
 $u_prenom=addslashes($_POST['u_prenom']);
@@ -19,13 +19,18 @@ $datetime=date("y/m/d H:i:s");
 $id_nom=addslashes($_POST['id_nom']);
 
 require 'fonction_niveau_save.php';
+// ancien code
+// $sqlp="INSERT INTO $tbl_utilisateur ( id_nom   , u_nom   ,u_prenom,  u_email, u_login, u_pwd, u_niveau , type, titre, mobile, statut, agence,  datetime )
 
-$sqlp="INSERT INTO $tbl_utilisateur ( id_nom   , u_nom   ,u_prenom,  u_email, u_login, u_pwd, u_niveau , type, titre, mobile, statut, agence,  datetime )
-
- VALUES ('$id_nom' ,'$u_nom','$u_prenom',  '$u_email', '$u_login', '$u_pwd', '$u_niveau' ,'$type' , '$titre','$mobile' ,'$statut', '$agence', '$datetime')";
+//  VALUES ('$id_nom' ,'$u_nom','$u_prenom',  '$u_email', '$u_login', '$u_pwd', '$u_niveau' ,'$type' , '$titre','$mobile' ,'$statut', '$agence', '$datetime')";
 				 
-$r=mysql_query($sqlp);
-mysql_close($link);
+
+// $r=mysql_query($sqlp);
+// mysql_close($link);
+$sqlp = "INSERT INTO $tbl_utilisateur (id_nom, u_nom, u_prenom, u_email, u_login, u_pwd, u_niveau, type, titre, mobile, statut, agence, datetime)
+         VALUES ('$id_nom', '$u_nom', '$u_prenom', '$u_email', '$u_login', '$u_pwd', '$u_niveau', '$type', '$titre', '$mobile', '$statut', '$agence', '$datetime')";
+$r = mysqli_query($linki, $sqlp) or die("Erreur SQL : " . mysqli_error($linki));
+mysqli_close($linki);
 ?>
 <?php
 header("location: utilisateur.php");

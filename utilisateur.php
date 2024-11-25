@@ -1,9 +1,9 @@
-<?
+<?php
 require 'session.php';
 require 'fc-affichage.php';
 require 'fonction.php';
 ?>
-<?
+<?php
 if(($_SESSION['u_niveau'] != 7)) {
 	header("location:index.php?error=false");
 	exit;
@@ -11,7 +11,7 @@ if(($_SESSION['u_niveau'] != 7)) {
 ?>
 <html>
 <head>
-<title><? include("titre.php"); ?></title>
+<title><?php include("titre.php"); ?></title>
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 
@@ -64,7 +64,7 @@ Require("bienvenue.php");    // on appelle la page contenant la fonction
             <td><input name="u_email" type="text" id="u_email" value="" size="30"></td>
             <td><strong>Niveau</strong></td>
             <td><select name="u_niveau" id="u_niveau">
-            <? require 'fonction_niveau_choix.php'; ?>               
+            <?php require 'fonction_niveau_choix.php'; ?>               
               </select></td>
           </tr>
           <tr>
@@ -107,7 +107,7 @@ echo '<option> '.$row2['a_nom'].' </option>';
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td><font size="2"><strong><font size="2"><strong><font color="#FF0000">
-              <input name="id_nom" type="hidden" id="id_nom" value="<? echo $id_nom; ?>">
+              <input name="id_nom" type="hidden" id="id_nom" value="<?php echo $id_nom; ?>">
             </font></strong></font></strong></font></td>
             <td>&nbsp;</td>
           </tr>
@@ -170,16 +170,16 @@ $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error()
 while($data=mysql_fetch_array($req)){ // Start looping table row 
 ?>
   <tr>
-    <td align="center" bgcolor="#FFFFFF"><? echo $data['id_u'];?>      <div align="left"></div></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo $data['statut'];?></td>
-    <td align="center" bgcolor="#FFFFFF"><? echo $data['agence'];?></td>
-    <td width="213"   style="background-color:#FFF;"><em><? echo $data['u_nom'].' '.$data['u_prenom'];?></em></td>
-    <td width="148"   style="background-color:#FFF;"><em><? echo $data['u_login'];?></em></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $data['id_u'];?>      <div align="left"></div></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $data['statut'];?></td>
+    <td align="center" bgcolor="#FFFFFF"><?php echo $data['agence'];?></td>
+    <td width="213"   style="background-color:#FFF;"><em><?php echo $data['u_nom'].' '.$data['u_prenom'];?></em></td>
+    <td width="148"   style="background-color:#FFF;"><em><?php echo $data['u_login'];?></em></td>
     <td width="143"   style="background-color:#FFF;"><em>
-   <? require 'fonction_niveau_affichage.php'; ?>  
+   <?php require 'fonction_niveau_affichage.php'; ?>  
     </em></td>
-    <td width="74"   style="background-color:#FFF;"><a href="utilisateur_modifie.php?id=<? echo  md5(microtime()).$data['id_u']; ?>"  class="btn btn-xs btn-success"><? echo 'Modifier' ?></a></td>
-    <td width="68"   style="background-color:#FFF;"><a href="utilisateur_cancel.php?ID=<? echo  md5(microtime()).$data['id_u']; ?>" onClick="return confirm('Etes-vous s&ucirc;r de vouloir supprimer')" ; style="margin:5px"  class="btn btn-xs btn-danger">Supprimer</a></td>
+    <td width="74"   style="background-color:#FFF;"><a href="utilisateur_modifie.php?id=<?php echo  md5(microtime()).$data['id_u']; ?>"  class="btn btn-xs btn-success"><?php echo 'Modifier' ?></a></td>
+    <td width="68"   style="background-color:#FFF;"><a href="utilisateur_cancel.php?ID=<?php echo  md5(microtime()).$data['id_u']; ?>" onClick="return confirm('Etes-vous s&ucirc;r de vouloir supprimer')" ; style="margin:5px"  class="btn btn-xs btn-danger">Supprimer</a></td>
   </tr>
   <?php
 

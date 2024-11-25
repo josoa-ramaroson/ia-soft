@@ -7,7 +7,7 @@ require 'bienvenue.php';
 <div class="text-center">
     <h2><img src="images/BSCSR9M1.jpg" width="644" height="410" alt="BSC SR9M1" /></h2>
 </div>
-
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <?php
 // Comptage du nombre total d'enregistrements
 $sql = "SELECT COUNT(*) as total FROM $tbl_com";
