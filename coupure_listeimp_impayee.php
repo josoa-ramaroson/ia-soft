@@ -73,7 +73,8 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
    </tr>
    <?php
 }  
-mysqli_close ();  
+
+ mysqli_close($linki);;  
 ?>
 </table>
 <p>&nbsp;</p>

@@ -107,7 +107,8 @@ mysqli_free_result ($req);
 // on lib?re l'espace m?moire allou? pour cette requ?te  
 mysqli_free_result ($resultat);  
 // on ferme la connexion ? la base de donn?es.  
-mysqli_close ();  
+
+ mysqli_close($linki);;  
 ?>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

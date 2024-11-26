@@ -70,7 +70,8 @@ $nCPP= $rmat['CPP'];
    <?php
 }
 
-mysqli_close ();  
+
+ mysqli_close($linki);;  
 ?>
 </table>
 <p>&nbsp;</p>

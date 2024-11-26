@@ -245,7 +245,8 @@ mysqli_free_result ($resultat);
 				 if ($fetat=='R')    { echo $couleur="#ec9b9b";}//rouge -Declined	
 				 }
 				 
-mysqli_close ();  
+
+ mysqli_close($linki);;  
 ?>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

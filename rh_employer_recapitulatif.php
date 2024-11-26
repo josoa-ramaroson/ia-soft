@@ -106,7 +106,8 @@ while($data=mysqli_fetch_array($resultat)){ // Start looping table row
     <td align="center" bgcolor="#FFFFFF"><em><?php echo strrev(chunk_split(strrev($data2['SNET']),3," "));?><em></td>
   </tr>
   <?php
-mysqli_close ();  
+
+ mysqli_close($linki);;  
 ?>
 </table>
 <p>&nbsp;</p>

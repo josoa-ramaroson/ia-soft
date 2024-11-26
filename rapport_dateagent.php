@@ -91,7 +91,8 @@ mysqli_free_result ($req);
 mysqli_free_result ($resultat);  
 
 
-mysqli_close ();  
+
+ mysqli_close($linki);;  
 ?>
   </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

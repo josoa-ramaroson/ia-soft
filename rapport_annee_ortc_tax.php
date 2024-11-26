@@ -105,7 +105,8 @@ while($datat=mysqli_fetch_array($reqt)){ // Start looping table row
 }  
 
 
-mysqli_close ();  
+
+ mysqli_close($linki);;  
 ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr> 

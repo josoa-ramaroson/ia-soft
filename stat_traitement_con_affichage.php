@@ -129,9 +129,11 @@ echo "<select name=refville id='s1' onchange=AjaxFunction();>
 
 $sql="select * from ville "; // Query to collect data from table 
 
-foreach ($dbo->query($sql) as $row) {
-echo "<option value=$row[refville]>$row[ville]</option>";
+$result = mysqli_query($linki, $sql);
+while($row = mysqli_fetch_assoc($result)) {
+    echo "<option value=" . $row['refville'] . ">" . $row['ville'] . "</option>";
 }
+mysqli_free_result($result);
 ?></select>
 <strong>Quartier</strong>
                   : 

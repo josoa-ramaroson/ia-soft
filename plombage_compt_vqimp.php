@@ -158,7 +158,8 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
 		if ($fetat>0) { echo $couleur="#87e385";} else { echo $couleur="#ffffff";}//vert
 		}
 		
-mysqli_close ();  
+
+ mysqli_close($linki);;  
 ?>
 </table>
 <p>&nbsp;</p>

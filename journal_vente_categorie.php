@@ -85,7 +85,8 @@ while($datafact=mysqli_fetch_array($req)){ // Start looping table row
    <?php
 }
 
-mysqli_close ();  
+
+ mysqli_close($linki);;  
 				  function gettatut($fetat){
 				  if ($fetat<=100000 && $fetat>=75000)         { echo $couleur="#ffc88d";}//orange 
 				  if ($fetat>=100000)                          { echo $couleur="#ec9b9b";}//rouge -Declined

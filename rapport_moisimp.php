@@ -276,7 +276,8 @@ mysqli_free_result ($req);
 mysqli_free_result ($resultat);  
 
 
-mysqli_close ();  
+
+ mysqli_close($linki);;  
 ?>
   </table>
   

@@ -340,7 +340,8 @@ mysqli_free_result ($req);
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
 mysqli_free_result ($resultat);  
-mysqli_close ();  
+
+ mysqli_close($linki);;  
 ?>
 </table>
 <p></p>

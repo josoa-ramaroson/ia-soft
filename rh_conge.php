@@ -132,7 +132,8 @@ mysqli_free_result ($resultat);
 		if ($fetat>0) { echo $couleur="#87e385";} else { echo $couleur="#FFFFFF";}//vert
 		}
 		 
-mysqli_close ();  
+
+ mysqli_close($linki);;  
 ?>
 </table>
 <p>&nbsp;</p>

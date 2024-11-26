@@ -80,7 +80,8 @@ mysqli_free_result ($req);
 mysqli_free_result ($resultat);  
 
 
-mysqli_close ();  
+
+ mysqli_close($linki);;  
 
 	                 function gettatut($fetat){
 				   if ($fetat=='imprimé')         { echo $couleur="#fdff00";}//jaune		 

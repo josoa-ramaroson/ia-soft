@@ -45,6 +45,7 @@ require 'configuration.php';
 
 
 	function stat_eda($mois,$annee,$tv_facturation, $id){
+    global $linki;
 	$sql = "SELECT SUM(cons) AS cons, SUM(totalht) AS totalht, SUM(tax) AS tax, SUM(totalttc) AS totalttc, SUM(ortc) AS ortc, SUM(impayee) AS impayee, SUM(Pre) AS Pre, SUM(totalnet) AS totalnet, RefLocalite , nserie , fannee , st 
 	FROM $tv_facturation where  st='E' and  fannee='$annee'  and nserie='$mois' and id='$id' "; 
 	$resultat = mysqli_query($linki,$sql) or exit(mysqli_error($linki)); 
@@ -101,7 +102,7 @@ while($dataA=mysqli_fetch_array($reqA)){ // Start looping table row
   </tr>
   <?php
 }
-mysqli_close ();  
+mysqli_close ($linki);  
 			 
 ?>
 </table>

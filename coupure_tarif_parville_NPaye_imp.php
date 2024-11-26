@@ -97,7 +97,7 @@ while($data=mysqli_fetch_array($req)){ // Start looping table row
 				// if ($fetat=='Annuler')       { echo $couleur="#ec9b9b";}//orange
 				  }
 				 
-mysqli_close ();  
+mysqli_close ($linki);  
 ?>
 </table>
 <p>&nbsp;</p>

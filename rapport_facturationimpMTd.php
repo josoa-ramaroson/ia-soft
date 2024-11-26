@@ -157,7 +157,8 @@ while($data3=mysqli_fetch_array($req3)){ // Start looping table row
   </tr>
   <?php
 }  
-mysqli_close ();  
+
+ mysqli_close($linki);;  
 ?>
 </table>
 </body>

@@ -127,10 +127,18 @@ echo "<select name=refville id='s1' onchange=AjaxFunction();>
 <option value=''>Choisissez une ville</option>";
 
 $sql="select * from ville "; // Query to collect data from table 
+$result = mysqli_query($linki, $sql);
 
-foreach ($dbo->query($sql) as $row) {
-echo "<option value=$row[refville]>$row[ville]</option>";
+if (!$result) {
+    die("Erreur dans la requête : " . mysqli_error($linki));
 }
+
+while ($row = mysqli_fetch_assoc($result)) {
+    echo '<option value="' . htmlspecialchars($row['refville'], ENT_QUOTES) . '">' 
+         . htmlspecialchars($row['ville'], ENT_QUOTES) . '</option>';
+}
+
+mysqli_free_result($result);
 ?></select>
 <strong>Quartier</strong>
                   : 
@@ -155,7 +163,7 @@ echo "<option value=$row[refville]>$row[ville]</option>";
           <tr>
             <td width="47%"><table width="100%" border="0.5" cellspacing="0" cellpadding="0">
               <tr>
-                <td width="52%"><?php echo "<a class=\"$class6\" type=\"button\" href=\"penalite_ttclient.php\" onClick=\"return confirm('Etes-vous sûr de vouloir taxer les 1000FC ')\"> Penalité pour tous les clients </a> ";?></td>
+                <td width="52%"><?php echo "<a class=\"text-black\" type=\"button\" href=\"penalite_ttclient.php\" onClick=\"return confirm('Etes-vous sûr de vouloir taxer les 1000FC ')\"> Penalité pour tous les clients </a> ";?></td>
               </tr>
             </table></td>
           </tr>

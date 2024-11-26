@@ -116,7 +116,7 @@ Require 'bienvenue.php';
 echo "<br><select name=direction id='s1' onchange=AjaxFunction();>
 <option value=''>Choisissez une direction</option>";
 
-$sql="select * from $tb_rhdirection ";
+$sql="select idrh, direction from $tb_rhdirection ";
 
 foreach ($dbo->query($sql) as $row) {
 echo "<option value=$row[idrh]>$row[direction]</option>";

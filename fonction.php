@@ -151,8 +151,8 @@
 		$tbl_appproduit_liste="app_produit_liste"; // NOUVEAU 
 		$tbl_appproduit_entre="app_produit_entre"; // NOUVEAU
 		$tbl_appproduit_sortie="app_produit_sortie"; // NOUVEAU
-		$tv_appproduit_entre="V_app_produit_entre"; // NOUVEAU
-		$tv_appproduit_sortie="V_app_produit_sortie"; // NOUVEAU
+		$tv_appproduit_entre="v_app_produit_entre"; // NOUVEAU
+		$tv_appproduit_sortie="v_app_produit_sortie"; // NOUVEAU
 		$tv_appproduit_dedate="v_app_produit_dedate"; // NOUVEAU
 		$tv_appproduit_dsdate="v_app_produit_dsdate"; // NOUVEAU
 		$CONTRATN='RE_001_GC0032015';	

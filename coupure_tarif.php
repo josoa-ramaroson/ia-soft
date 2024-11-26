@@ -132,17 +132,26 @@ echo '<option value='.$row81['idt'].'> '.$row81['Libelle'].' </option>';
 ?>
 </select>
 Ville</strong> :
-                  <?Php
-require "fonction.php";// connection to database 
+<?Php
+    require "fonction.php";// connection to database 
 
-echo "<select name=refville id='s1' onchange=AjaxFunction();>
-<option value=''>Choisissez une ville</option>";
+    echo "<select name=refville id='s1' onchange=AjaxFunction();>
+    <option value=''>Choisissez une ville</option>";
 
-$sql="select * from ville "; // Query to collect data from table 
+    $sql="select refville,ville from ville "; // Query to collect data from table 
 
-foreach ($dbo->query($sql) as $row) {
-echo "<option value=$row[refville]>$row[ville]</option>";
-}
+    $result = mysqli_query($linki, $sql);
+
+    if (!$result) {
+        die("Erreur dans la requête : " . mysqli_error($linki));
+    }
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo '<option value="' . htmlspecialchars($row['refville'], ENT_QUOTES) . '">' 
+        . htmlspecialchars($row['ville'], ENT_QUOTES) . '</option>';
+    }
+
+mysqli_free_result($result);
 ?></select>
                   <input type="submit" name="Submit4" class="btn btn-sm btn-default" value="Chercher" />
                   

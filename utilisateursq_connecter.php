@@ -90,7 +90,8 @@ mysqli_free_result ($resultat);
 				 echo "$couleur";
 				 }
 				  
-mysqli_close ();  
+
+ mysqli_close($linki);;  
 ?>
     </table>      <div align="center"></div></td>
   </tr>

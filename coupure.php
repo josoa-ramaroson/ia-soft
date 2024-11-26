@@ -127,10 +127,18 @@ echo "<select name=refville id='s1' onchange=AjaxFunction();>
 <option value=''>Choisissez une ville</option>";
 
 $sql="select * from ville "; // Query to collect data from table 
+$result = mysqli_query($linki, $sql);
 
-foreach ($dbo->query($sql) as $row) {
-echo "<option value=$row[refville]>$row[ville]</option>";
+if (!$result) {
+    die("Erreur dans la requête : " . mysqli_error($linki));
 }
+
+while ($row = mysqli_fetch_assoc($result)) {
+    echo '<option value="' . htmlspecialchars($row['refville'], ENT_QUOTES) . '">' 
+         . htmlspecialchars($row['ville'], ENT_QUOTES) . '</option>';
+}
+
+mysqli_free_result($result);
 ?></select>
 <strong>Quartier</strong>
                   : 

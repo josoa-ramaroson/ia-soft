@@ -18,68 +18,66 @@ require_once('calendar/classes/tc_calendar.php');
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-function AjaxFunction()
-{
-var httpxml;
-try
-  {
-  // Firefox, Opera 8.0+, Safari
-  httpxml=new XMLHttpRequest();
-  }
-catch (e)
-  {
-  // Internet Explorer
-		  try
-   			 		{
-   				 httpxml=new ActiveXObject("Msxml2.XMLHTTP");
-    				}
-  			catch (e)
-    				{
-    			try
-      		{
-      		httpxml=new ActiveXObject("Microsoft.XMLHTTP");
-     		 }
-    			catch (e)
-      		{
-      		alert("Your browser does not support AJAX!");
-      		return false;
-      		}
-    		}
-  }
-function stateck() 
-    {
-    if(httpxml.readyState==4)
-      {
-//alert(httpxml.responseText);
-var myarray = JSON.parse(httpxml.responseText);
-// Remove the options from 2nd dropdown list 
-for(j=document.testform.subcat.options.length-1;j>=0;j--)
-{
-document.testform.subcat.remove(j);
+function AjaxFunction() {
+    var httpxml;
+    
+    // Création de l'objet XMLHttpRequest avec gestion des différents navigateurs
+    try {
+        // Firefox, Opera 8.0+, Safari
+        httpxml = new XMLHttpRequest();
+    } catch (e) {
+        // Internet Explorer
+        try {
+            httpxml = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch (e) {
+            try {
+                httpxml = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {
+                alert("Your browser does not support AJAX!");
+                return false;
+            }
+        }
+    }
+
+    // Fonction de callback
+    httpxml.onreadystatechange = function() {
+        if (httpxml.readyState == 4) {
+            if (httpxml.status == 200) {
+                try {
+                    var myarray = JSON.parse(httpxml.responseText);
+                    
+                    // Récupération du select
+                    var subcatSelect = document.testform.subcat;
+                    
+                    // Suppression des anciennes options
+                    while (subcatSelect.options.length > 0) {
+                        subcatSelect.remove(0);
+                    }
+                    
+                    // Ajout des nouvelles options
+                    myarray.data.forEach(function(item) {
+                        var optn = document.createElement("OPTION");
+                        optn.text = item.service;
+                        optn.value = item.idser;
+                        subcatSelect.add(optn);
+                    });
+                } catch (e) {
+                    console.error("Erreur parsing JSON:", e);
+                }
+            } else {
+                console.error("Erreur HTTP:", httpxml.status);
+            }
+        }
+    };
+
+    // Préparation et envoi de la requête
+    var idrh = document.getElementById('s1').value;
+    var url = "rh_fonction_direction.php?idrh=" + encodeURIComponent(idrh) + "&sid=" + Math.random();
+    
+    httpxml.open("GET", url, true);
+    httpxml.send(null);
 }
-
-
-for (i=0;i<myarray.data.length;i++)
-{
-var optn = document.createElement("OPTION");
-optn.text = myarray.data[i].service;
-optn.value = myarray.data[i].idser;  // You can change this to subcategory 
-document.testform.subcat.options.add(optn);
-
-} 
-      }
-    } // end of function stateck
-	var url="rh_fonction_direction.php";
-var idrh=document.getElementById('s1').value;
-url=url+"?idrh="+idrh;
-url=url+"&sid="+Math.random();
-httpxml.onreadystatechange=stateck;
-//alert(url);
-httpxml.open("GET",url,true);
-httpxml.send(null);
-  }
 </script>
-
 </head>
 <?php
 require 'bienvenue.php';  
@@ -113,14 +111,15 @@ require 'bienvenue.php';
           <td>&nbsp;</td>
           <td><strong><font size="2">Direction</font></strong></td>
           <td><?Php
-echo "<br><select name=direction id='s1' onchange=AjaxFunction();>
+echo "<br><select name=direction id='s1' onchange=\"AjaxFunction()\";>
 <option value=''>Choisissez une direction</option>";
 
-$sql="select * from $tb_rhdirection ";
-
-foreach ($dbo->query($sql) as $row) {
-echo "<option value=$row[idrh]>$row[direction]</option>";
+$sql = "SELECT idrh,direction  FROM $tb_rhdirection";
+$result = mysqli_query($linki, $sql);
+while($row = mysqli_fetch_assoc($result)) {
+    echo "<option value=" . $row['idrh'] . ">" . $row['direction'] . "</option>";
 }
+mysqli_free_result($result);
 ?></td>
         </tr>
         <tr>

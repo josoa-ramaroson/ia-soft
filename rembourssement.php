@@ -126,7 +126,8 @@ mysqli_free_result ($resultfac);
 mysqli_free_result ($resultat);  
 
 
-mysqli_close ();  
+
+ mysqli_close($linki);;  
 ?>
 </table>
 <p>&nbsp;</p>

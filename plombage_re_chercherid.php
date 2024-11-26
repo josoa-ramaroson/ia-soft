@@ -282,7 +282,8 @@ echo " ce compteur n'est pas encore verifier <br>";
 		if ($fetat>0) { echo $couleur="#87e385";} else { echo $couleur="#ffc88d";}//vert
 		}
 		
-mysqli_close ();  
+
+ mysqli_close($linki);;  
 ?>
 </body>
 </html>

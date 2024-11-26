@@ -247,7 +247,8 @@ $nb= $data33['nbres'];
   </tr>
   <tr>
     <td height="21"><?php
-mysqli_close (); 
+
+ mysqli_close($linki);; 
 include_once('pied.php');
 ?></td>
   </tr>

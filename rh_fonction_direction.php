@@ -1,19 +1,31 @@
-<?Php
-@$idrh=$_GET['idrh'];
-//$cat_id=2;
-/// Preventing injection attack //// 
-if(!is_numeric($idrh)){
-echo "Data Error";
-exit;
- }
-/// end of checking injection attack ////
-require "fonction.php";
+<?php
+require "fonction.php"; // le variable de connexion Mysqli $linki est définie ici
 
-$sql="select * from $tb_rhservice where iddr='$idrh'";
-$row=$dbo->prepare($sql);
-$row->execute();
-$result=$row->fetchAll(PDO::FETCH_ASSOC);
+@$idrh = $_GET['idrh'];
 
-$main = array('data'=>$result);
+// Preventing injection attack
+if (!is_numeric($idrh)) {
+    echo "Data Error";
+    exit;
+}
+// end of checking injection attack
+
+// Requête directe
+$sql = "SELECT * FROM $tb_rhservice WHERE iddr = '$idrh'";
+$result = mysqli_query($linki, $sql);
+
+// Fetch all results as associative array
+$data = array();
+while ($row = mysqli_fetch_assoc($result)) {
+    $data[] = $row;
+}
+
+// Create the same output structure
+$main = array('data' => $data);
+
+// Output JSON
 echo json_encode($main);
+
+// Free result
+mysqli_free_result($result);
 ?>

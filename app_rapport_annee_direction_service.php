@@ -65,7 +65,8 @@ while($rows2=mysqli_fetch_array($result2)){
 $numboucle++;
 }
 mysqli_free_result ($result2);  
-mysqli_close ();  
+
+ mysqli_close($linki);;  
 ?>
       </table>
 
