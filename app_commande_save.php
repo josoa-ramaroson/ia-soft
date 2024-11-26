@@ -46,10 +46,10 @@ $num=$num1.$num2.'/'.$num3;
 
 
 //---------------------------------------------------------------------
-$sql="INSERT INTO $tbl_appcommande ( id_nom , date_dem, nomprenom, direction, service, statut, num)
+$sql="INSERT INTO $tbl_appcommande ( id_nom , date_dem, nomprenom, direction, service, statut, num, code)
 
 VALUES
-('$id_nom' ,  '$date_dem', '$nomprenom', '$direction', '$service', '$statut', '$num')";
+('$id_nom' ,  '$date_dem', '$nomprenom', '$direction', '$service', '$statut', '$num', 0)";
 $result=mysqli_query($linki,$sql);
 
 mysqli_close($linki); 

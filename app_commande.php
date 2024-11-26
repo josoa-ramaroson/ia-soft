@@ -113,14 +113,19 @@ Require 'bienvenue.php';
           <td>&nbsp;</td>
           <td><strong><font size="2">Direction</font></strong></td>
           <td><?Php
-echo "<br><select name=direction id='s1' onchange=AjaxFunction();>
+echo "<br><select name=direction id='s1' onchange=\"AjaxFunction()\";>
 <option value=''>Choisissez une direction</option>";
 
 $sql="select idrh, direction from $tb_rhdirection ";
 
-foreach ($dbo->query($sql) as $row) {
-echo "<option value=$row[idrh]>$row[direction]</option>";
+$result = mysqli_query($linki, $sql);
+
+while ($row = mysqli_fetch_assoc($result)) {
+    // Ajout des guillemets pour les valeurs pour éviter les problèmes avec les espaces
+    echo "<option value='" . $row['idrh'] . "'>" . $row['direction'] . "</option>";
 }
+
+mysqli_free_result($result);
 ?></td>
         </tr>
         <tr>

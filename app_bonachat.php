@@ -18,42 +18,59 @@ if($_SESSION['u_niveau'] != 40) {
 <link href="calendar/calendar.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 function AjaxFunction() {
-    var httpxml;
-    try {
-        httpxml = new XMLHttpRequest();
-    } catch (e) {
-        try {
-            httpxml = new ActiveXObject("Msxml2.XMLHTTP");
-        } catch (e) {
-            try {
-                httpxml = new ActiveXObject("Microsoft.XMLHTTP");
-            } catch (e) {
-                alert("Your browser does not support AJAX!");
-                return false;
-            }
-        }
-    }
-    function stateck() {
-        if(httpxml.readyState == 4) {
-            var myarray = JSON.parse(httpxml.responseText);
-            for(j = document.testform.subcat.options.length-1; j >= 0; j--) {
-                document.testform.subcat.remove(j);
-            }
-            for (i = 0; i < myarray.data.length; i++) {
-                var optn = document.createElement("OPTION");
-                optn.text = myarray.data[i].service;
-                optn.value = myarray.data[i].idser;
-                document.testform.subcat.options.add(optn);
-            }
-        }
-    }
-    var url = "rh_fonction_direction.php";
-    var idrh = document.getElementById('s1').value;
-    url = url + "?idrh=" + idrh;
-    url = url + "&sid=" + Math.random();
-    httpxml.onreadystatechange = stateck;
-    httpxml.open("GET", url, true);
-    httpxml.send(null);
+   var httpxml;
+
+   // Crée l'objet XMLHttpRequest
+   try {
+       httpxml = new XMLHttpRequest();
+   } catch (e) {
+       try {
+           httpxml = new ActiveXObject("Msxml2.XMLHTTP");
+       } catch (e) {
+           try {
+               httpxml = new ActiveXObject("Microsoft.XMLHTTP");
+           } catch (e) {
+               alert("Your browser does not support AJAX!");
+               return false;
+           }
+       }
+   }
+
+   // Fonction appelée à chaque changement d'état de la requête
+   httpxml.onreadystatechange = function() {
+       if(httpxml.readyState == 4) {
+           if(httpxml.status == 200) {
+               try {
+                   var myarray = JSON.parse(httpxml.responseText);
+                   var subcatSelect = document.testform.subcat;
+
+                   // Vide la liste déroulante
+                   while(subcatSelect.options.length > 0) {
+                       subcatSelect.remove(0);
+                   }
+
+                   // Ajoute les nouvelles options
+                   for (var i = 0; i < myarray.data.length; i++) {
+                       var optn = document.createElement("OPTION");
+                       optn.text = myarray.data[i].service;
+                       optn.value = myarray.data[i].idser;
+                       subcatSelect.add(optn);
+                   }
+               } catch(e) {
+                   console.error("Erreur lors du parsing JSON:", e);
+               }
+           } else {
+               console.error("Erreur HTTP:", httpxml.status);
+           }
+       }
+   };
+
+   // Prépare et envoie la requête
+   var idrh = document.getElementById('s1').value;
+   var url = "rh_fonction_direction.php?idrh=" + encodeURIComponent(idrh) + "&sid=" + Math.random();
+   
+   httpxml.open("GET", url, true);
+   httpxml.send(null);
 }
 </script>
 </head>
@@ -74,11 +91,11 @@ $datecaisse = mysqli_fetch_array($resultldate);
         <table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
             <!-- ... [Le reste du HTML du formulaire reste identique] ... -->
             <td><?php
-                echo "<br><select name=direction id='s1' onchange=AjaxFunction();>
+                echo "<br><select name=direction id='s1' onchange=\"AjaxFunction()\";>
                 <option value=''>Choisissez une direction</option>";
                 $sql = "SELECT * FROM $tb_rhdirection";
                 $result = mysqli_query($linki, $sql);
-                while($row = mysqli_fetch_assoc($result)) {
+                while($row = mysqli_fetch_assoc($result)){
                     echo "<option value='".$row['idrh']."'>".$row['direction']."</option>";
                 }
                 mysqli_free_result($result);
