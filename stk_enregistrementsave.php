@@ -14,7 +14,7 @@ $sqlp="INSERT INTO $tbl_enreg ( date  , titre  , Quantite  ,  Validite   , PrixU
 					
 $r=mysqli_query($linki,$sqlp)
 
-or die(mysqli_error());
+or die(mysqli_error($linki));
 mysqli_close($link);
 ?>
 <?php

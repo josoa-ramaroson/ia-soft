@@ -32,7 +32,7 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
 $mr1=addslashes($_POST['mr1']);
 
 $sql = "SELECT * FROM $tbl_contact where  id='$mr1' and statut='6' and  Tarif!='10' and id NOT IN(SELECT id FROM $tbl_factsave where annee='$anneec'  and nserie='$nserie')";  
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 
 	//recherche du repport 
 ?>

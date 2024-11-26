@@ -1,5 +1,6 @@
 <?php
-Require("session.php"); 
+require_once "session.php"; 
+require_once "fonction.php";
 ?>
 <?php
 
@@ -115,75 +116,43 @@ function barre_navigation ($nb_total,$nb_affichage_par_page,$debut,$nb_liens_dan
 <meta name="viewport" content="width=device-width, minimum-scale=0.25"/>
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <script type="text/javascript">
-function AjaxFunction()
-{
-var httpxml;
-try
-  {
-  // Firefox, Opera 8.0+, Safari
-  httpxml=new XMLHttpRequest();
-  }
-catch (e)
-  {
-  // Internet Explorer
-		  try
-   			 		{
-   				 httpxml=new ActiveXObject("Msxml2.XMLHTTP");
-    				}
-  			catch (e)
-    				{
-    			try
-      		{
-      		httpxml=new ActiveXObject("Microsoft.XMLHTTP");
-     		 }
-    			catch (e)
-      		{
-      		alert("Your browser does not support AJAX!");
-      		return false;
-      		}
-    		}
-  }
-function stateck() 
-    {
-    if(httpxml.readyState==4)
-      {
-//alert(httpxml.responseText);
-var myarray = JSON.parse(httpxml.responseText);
+  function AjaxFunction() {
+    var httpxml = new XMLHttpRequest();
+    var selectQuartier = document.testform.quartier;
+    
+    httpxml.onreadystatechange = function() {
+        if(httpxml.readyState == 4 && httpxml.status == 200) {
+            try {
+                var myarray = JSON.parse(httpxml.responseText);
+                
+                // Vider le select
+                selectQuartier.options.length = 0;
+                
+                // Ajouter l'option par défaut
+                var defaultOption = document.createElement("OPTION");
+                defaultOption.text = "Choisissez un quartier";
+                defaultOption.value = "";
+                selectQuartier.add(defaultOption);
+                
+                // Ajouter les quartiers
+                myarray.data.forEach(function(item) {
+                    var optn = document.createElement("OPTION");
+                    optn.text = item.quartier;
+                    optn.value = item.id_quartier;
+                    selectQuartier.add(optn);
+                });
+            } catch(e) {
+                console.error("Erreur parsing JSON:", e);
+            }
+        }
+    };
 
-//--------- Pour le champs il y a 3 document.testform.quartier.options
-for(j=document.testform.quartier.options.length-1;j>=0;j--)
-{
-//--------- Pour le champs il y a document.testform.quartier.options
-document.testform.quartier.remove(j);
+    var refville = document.getElementById('s1').value;
+    var url = "fonction_dvq.php?refville=" + encodeURIComponent(refville) + "&sid=" + Math.random();
+    
+    httpxml.open("GET", url, true);
+    httpxml.send(null);
 }
-
-
-for (i=0;i<myarray.data.length;i++)
-{
-var optn = document.createElement("OPTION");
-
-//le champs quartier qui est dans la table quartier
-optn.text = myarray.data[i].quartier;
-optn.value = myarray.data[i].id_quartier;  // You can change this to subcategory 
-
-//--------- Pour le champs il y a 3 document.testform.quartier.options 
-document.testform.quartier.options.add(optn);
-
-} 
-      }
-    } // end of function stateck
-	var url="fonction_dvq.php";
-
-//le champs ville qui se trouve dans la table Ville
-var refville=document.getElementById('s1').value;
-url=url+"?refville="+refville;
-//-------------------------------------
-url=url+"&sid="+Math.random();
-httpxml.onreadystatechange=stateck;
-//alert(url);
-httpxml.open("GET",url,true);
-httpxml.send(null);
-  }
 </script>
 
 </head>
@@ -215,15 +184,22 @@ Require("bienvenue.php"); // on appelle la page contenant la fonction
                       <tr>
                         <td>Ville</td>
                         <td> <?Php
-require "fonction.php";// connection to database 
 
-echo "<select name=refville id='s1' onchange=AjaxFunction();>
-<option value=''>Choisissez une ville</option>";
+echo '<select name="refville" id="s1" onchange="AjaxFunction();">
+    <option value="">Choisissez une ville</option>';
+    
+$sql = "SELECT refville, ville FROM ville";
+$resultat = mysqli_query($linki, $sql);
 
-$sql="select * from ville "; // Query to collect data from table 
+// Vérification de la requête
+if (!$resultat) {
+    die("Erreur dans la requête : " . $linki->error);
+}
 
-foreach ($dbo->query($sql) as $row) {
-echo "<option value=$row[refville]>$row[ville]</option>";
+// Affichage des options
+while ($row = $resultat->fetch_assoc()) {
+    echo "<option value='" . htmlspecialchars($row['refville'], ENT_QUOTES) . "'>" 
+         . htmlspecialchars($row['ville'], ENT_QUOTES) . "</option>";
 }
 ?>
 </select></td>
@@ -256,12 +232,11 @@ echo "<option value=$row[refville]>$row[ville]</option>";
           </div>
 <p><font size="2"><font size="2"><font size="2">
   <?php
-require 'fonction.php';
 
 
 $sql = "SELECT count(*) FROM $tbl_saisie ";  
 
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
  
 $nb_total = mysqli_fetch_array($resultat);  
@@ -284,7 +259,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT * FROM $tbl_saisie  ORDER BY id_saisie DESC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  //ASC
  
 // on ex?cute la requ?te  
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 ?>
   </font></strong></font></font></font></font></font></font></font></font></font></strong></font></font></font></font></font></font></font></font></font></font></p>
 <form name="form2" method="post" action="produit_cancel.php">
@@ -312,7 +287,7 @@ mysqli_free_result ($req);
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
 }  
 mysqli_free_result ($resultat);  
-mysqli_close ();  
+mysqli_close ($linki);  
 ?>
   </table>
 </form>

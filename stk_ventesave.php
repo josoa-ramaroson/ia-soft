@@ -24,7 +24,7 @@ echo $sqlp="INSERT INTO $tbl_vente  ( datev  , titre  , Qvente  ,  PUnitaire   ,
 					
 $r=mysqli_query($linki,$sqlp)
 
-or die(mysqli_error());
+or die(mysqli_error($linki));
 mysqli_close($linki);
 header("location: stk_vente.php");
 ?>

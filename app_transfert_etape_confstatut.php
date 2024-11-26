@@ -21,7 +21,7 @@ $resultp=mysqli_query($linki,$sqlp);
 $sqlp="INSERT INTO $tbl_enreg ( date  , titre  , Quantite  ,   id_nom , a_nom )
                     VALUES    ('$date','$titre','$Quantite', '$id_nom', '$agence')";
 					
-$r=mysqli_query($linki,$sqlp) or die(mysqli_error());
+$r=mysqli_query($linki,$sqlp) or die(mysqli_error($linki));
 
 header("location:app_transfert_etape2.php");
 }  

@@ -34,7 +34,7 @@ SELECT e.titre , SUM(e.Quantite) AS qtenreg FROM $tbl_appproduit_entre e GROUP B
 
 
 
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
 
 $nb_total = mysqli_fetch_array($resultat);  
@@ -71,7 +71,7 @@ FROM $tv_appproduit_entre e LEFT JOIN $tv_appproduit_sortie v ON e.titre=v.titre
 
 
 
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 ?>
 </font></font></font></p>
 <p><font size="2"><font size="2"><font size="2"><strong>SUIVI DE STOCK AU MAGASIN </strong></font></font></font></p>

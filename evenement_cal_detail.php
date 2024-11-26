@@ -15,7 +15,7 @@ $jouruser=$_REQUEST["jour"];
   <?php
 require 'fonction.php';	
 $sql = "SELECT * FROM $tb_evenement where  id_nom='$nom_cal' and DAY(datev)=$jouruser and  MONTH(datev)=$moisuser and YEAR(datev)=$anneeuser ORDER BY heures "; // DESC ASC  
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 
 ?>
 </CENTER>

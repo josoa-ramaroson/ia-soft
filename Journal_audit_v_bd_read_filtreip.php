@@ -29,7 +29,7 @@ Require("bienvenue.php");    // on appelle la page contenant la fonction
   
 $sql = "SELECT count(*) FROM $tbl_journal_audit";  
 
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
  
 $nb_total = mysqli_fetch_array($resultat);  
@@ -48,10 +48,10 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT DISTINCT (Ip_user)  FROM  $tbl_journal_audit  ORDER BY date_Audit DESC LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;  //ASC
  
 
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 
 $Sqlinscrit= "SELECT COUNT(DISTINCT Ip_user) AS nb  FROM  $tbl_journal_audit  ";
-$sqLvaleur = mysqli_query($linki,$Sqlinscrit)or exit(mysqli_error()); 
+$sqLvaleur = mysqli_query($linki,$Sqlinscrit)or exit(mysqli_error($linki)); 
 $nb = mysqli_fetch_assoc($sqLvaleur);
 $nombre_inscrit=$nb['nb'] ; 
 

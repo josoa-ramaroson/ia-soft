@@ -189,7 +189,7 @@ echo '<option> '.$row81['annee'].' </option>';
 $ARCH=$_REQUEST['annee'];
 
 $sql = "SELECT count(*) FROM $dbbk.z_"."$ARCH"."_$tbl_fact where st='A' and libelle!='Gaz' ";  
-$resultat = mysqli_query($linkibk,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linkibk,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 $nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -198,7 +198,7 @@ else {
 if (!isset($_GET['debut'])) $_GET['debut'] = 0; 
 $nb_affichage_par_page = 100; 
 $sql = "SELECT * FROM $dbbk.z_"."$ARCH"."_$tbl_fact where st='A' and libelle!='Gaz' ORDER BY idf desc LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
-$req = mysqli_query($linkibk,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linkibk,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 ?>
  </p>
  <table width="98%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">

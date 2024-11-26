@@ -1,20 +1,18 @@
     <?php
- require 'fonction.php';
+ 	require_once 'fonction.php';
+	?>
+	<?php
 	function stat_eda1($mois,$annee,$tbl_production){
+		global $linki;
 	$sql = "SELECT * FROM $tbl_production where  mois=$mois and  annee=$annee ";
-
-	$resultat = mysqli_query($linki,$sql) or exit(mysqli_error()); 
+	$resultat = mysqli_query($linki, $sql);
 	$nqt = mysqli_fetch_assoc($resultat);
-
 	if((!isset($nqt['prod'])|| empty($nqt['prod']))) { $qt=0; return $qt;}
 	else {$qt=$nqt['prod']; return $qt;}
 
 	}	
-	?>
-    
-        <?php
  //$annee=$_POST['annee']; 
-	require 'fonction.php';
+	
 	$annee=$_REQUEST['annee'];
 	$b13=stat_eda1(1,$annee,$tbl_production);
 	$b14=stat_eda1(2,$annee,$tbl_production);

@@ -40,7 +40,7 @@ if(($_SESSION['u_niveau'] != 2)) {
                       <td width="3%">&nbsp;</td>
                       <td width="65%"><select name="userchoix" id="select">
                         <?php
-$sql2 = ("SELECT id_nom FROM $tbl_releve_bachtemp where miseajours!=1 GROUP BY id_nom ORDER BY id_nom  ASC ");
+$sql2 = ("SELECT DISTINCT id_nom FROM $tbl_releve_bachtemp where miseajours!=1 ORDER BY id_nom  ASC ");
 $result2 = mysqli_query($linki,$sql2);
 echo '<option>  </option>';
 while ($row2 = mysqli_fetch_assoc($result2)) {

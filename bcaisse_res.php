@@ -209,7 +209,7 @@ Require("bienvenue.php"); // on appelle la page contenant la fonction
                    
                     <?php 
 $valeur_existant = "SELECT * FROM $tbl_paiement order by date desc LIMIT 0,1 ";
-$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error()); 
+$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error($linki)); 
 $data=mysqli_fetch_array($sqLvaleur);
 $dateretour=$data['date'];
 	   ?>
@@ -270,7 +270,7 @@ require 'fonction.php';
  
 $sql = "SELECT count(*) FROM $tbl_caisse ";  
 
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
  
 $nb_total = mysqli_fetch_array($resultat);  
@@ -293,7 +293,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT * FROM $tbl_caisse  ORDER BY idcaisse DESC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  //ASC
  
 // on ex?cute la requ?te  
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 ?>
 <form name="form2" method="post" action="produit_cancel.php">
   <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">

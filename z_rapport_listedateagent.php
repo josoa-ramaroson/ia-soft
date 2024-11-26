@@ -20,7 +20,7 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
  $ARCH=date("Y", strtotime("$date"));
  
 $sql = "SELECT count(*) FROM $dbbk.z_"."$ARCH"."_$tbl_paiement where id_nom='$agent' and date='$date'";  
-$resultat = mysqli_query($linkibk,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linkibk,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 $nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -29,7 +29,7 @@ else {
 if (!isset($_GET['debut'])) $_GET['debut'] = 0; 
 $nb_affichage_par_page = 400; 
 $sql = "SELECT * FROM $dbbk.z_"."$ARCH"."_$tbl_paiement where id_nom='$agent' and date='$date' ORDER BY idp ASC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
-$req = mysqli_query($linkibk,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linkibk,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 
 
 $sqlt = "SELECT SUM(paiement) AS Paie, id_nom , date , st , nserie FROM $dbbk.z_"."$ARCH"."_$tbl_paiement where  id_nom='$agent' and date='$date'";  //ASC  DESC

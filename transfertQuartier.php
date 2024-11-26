@@ -21,7 +21,7 @@ foreach(new LimitIterator($csv, 1) as $ligne)
 
 <?php
 $valeur_existant = "SELECT COUNT(*) AS nb FROM quartier  WHERE id_quartier='$id_quartier' ";
-$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error()); 
+$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error($linki)); 
 $nb = mysqli_fetch_assoc($sqLvaleur);
 
 if($nb['nb'] == 1)

@@ -13,7 +13,7 @@ exit;
 }
 
 $sqlcomp = "SELECT count(*) FROM anneeref  WHERE  annee='$annee' ";  
-$resultatcomp = mysqli_query($linki,$sqlcomp) or die('Erreur SQL !<br />'.$sqlcomp.'<br />'.mysqli_error());  
+$resultatcomp = mysqli_query($linki,$sqlcomp) or die('Erreur SQL !<br />'.$sqlcomp.'<br />'.mysqli_error($linki));  
 $nb_total = mysqli_fetch_array($resultatcomp); 
 
 if (($nb_total = $nb_total[0]) == 0) {   
@@ -21,12 +21,12 @@ if (($nb_total = $nb_total[0]) == 0) {
 
 $sqlp1="INSERT INTO anneeref ( annee)
                     VALUES      ( '$annee')";								
-$r1=mysqli_query($linki,$sqlp1) or die(mysqli_error());
+$r1=mysqli_query($linki,$sqlp1) or die(mysqli_error($linki));
 
 
 $sqlp2="INSERT INTO z_annee ( annee)
                     VALUES      ( '$annee')";								
-$r2=mysqli_query($linki,$sqlp2) or die(mysqli_error());
+$r2=mysqli_query($linki,$sqlp2) or die(mysqli_error($linki));
 
 mysqli_close($linki);
 

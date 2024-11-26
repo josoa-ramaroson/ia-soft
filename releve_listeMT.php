@@ -56,7 +56,7 @@ $ville=$row2['ville'];
    <?php
 require 'configuration.php';
 $sql = "SELECT * FROM  $tbl_contact c  where c.ville='$m1v'  and statut='6' and Tarif='10'  ORDER BY c.id ASC";  
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 
 $sql7 = "SELECT COUNT(*) AS bt FROM $tbl_contact c  where c.ville='$m1v'  and statut='6' and Tarif='10' ";   
 $req7=mysqli_query($linki,$sql7);

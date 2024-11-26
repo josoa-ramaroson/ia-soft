@@ -114,7 +114,7 @@ require("bienvenue.php");    // on appelle la page contenant la fonction
                 $idclient = $_REQUEST["idclient"];
 				
 $sqlrech = "SELECT * FROM $tbl_contact where id='$idclient'";
-$reqrech = mysqli_query($linki,$sqlrech) or die('Erreur SQL !<br />'.$sqlrech.'<br />'.mysqli_error());  
+$reqrech = mysqli_query($linki,$sqlrech) or die('Erreur SQL !<br />'.$sqlrech.'<br />'.mysqli_error($linki));  
 $datarech=mysqli_fetch_array($reqrech);
 
 

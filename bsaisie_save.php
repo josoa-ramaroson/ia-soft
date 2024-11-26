@@ -20,7 +20,7 @@ $bville=$row2['ville'];
 $blogin=addslashes($_POST['blogin']);
 
 $valeur_existant = "SELECT COUNT(*) AS nb FROM $tbl_saisie  WHERE blogin='$blogin' ";
-$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error()); 
+$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error($linki)); 
 $nb = mysqli_fetch_assoc($sqLvaleur);
 
 if($nb['nb'] == 1)
@@ -35,7 +35,7 @@ else
 $sqlp="INSERT INTO $tbl_saisie  ( blogin  , bville , bquartier)
                     VALUES      ('$blogin','$bville', '$bquartier')";								
 $r=mysqli_query($linki,$sqlp)
-or die(mysqli_error());
+or die(mysqli_error($linki));
 mysqli_close($link);
 header("location: bsaisie.php");
 }

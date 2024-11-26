@@ -15,7 +15,7 @@ $sqlp="INSERT INTO $tbl_client_anom_suivi    ( id_nom   , idanomalie     ,realis
 					
 													
 $r=mysqli_query($linki,$sqlp)
-or die(mysqli_error());
+or die(mysqli_error($linki));
 
 
 	$sqlcon="update $tbl_client_anom set statut='$statut' where idanomalie='$idanomalie'";

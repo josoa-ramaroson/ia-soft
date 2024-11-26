@@ -23,7 +23,7 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
   <?php
 require 'configuration.php';
 $sql = "SELECT count(*) FROM $tbl_contact c , $tbl_fact f  where c.email!='' and f.id=c.id  ";  
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 $nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -32,7 +32,7 @@ else {
 if (!isset($_GET['debut'])) $_GET['debut'] = 0; 
 $nb_affichage_par_page = 50; 
 $sql = " SELECT * FROM $tbl_fact f , $tbl_contact c  where  c.email!='' and f.id=c.id and f.nserie=$nserie and f.fannee=$anneec ORDER BY f.id ASC  LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 ?>
 </p>
 <H1>ENVOI DES COURRIELS : <a href="#?&<?php echo md5(microtime()); ?>" onClick="return !window.open(this.href, 'pop',  'width=600,height=370,left=120,top=120');" class="btn btn-sm btn-success"  target=_blank  >MASS-EMAIL </a></H1>

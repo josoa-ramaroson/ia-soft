@@ -180,7 +180,7 @@ echo '<option value='.$row4['id'].'>'.$row4['nomprenom'].'</option>';
 $sql = "SELECT count(*) FROM $tbl_vente where '500000'>=nc ";  
 
 
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
 
 $nb_total = mysqli_fetch_array($resultat);  
@@ -196,7 +196,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
    
 
 $sql = "SELECT * FROM $tbl_vente  where '500000'>=nc ORDER BY idvente  DESC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;   
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 ?>
 </p>
 <table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">

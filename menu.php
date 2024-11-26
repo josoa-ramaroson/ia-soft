@@ -1,5 +1,5 @@
 ﻿<?php
-session_start();
+
 require_once 'fonction.php';
 $class='nav-link text-white';
 $class2='nav-link  text-white';

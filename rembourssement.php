@@ -53,7 +53,7 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
 
 $sql = "SELECT count(*) FROM $tbl_paiement where type='R'";  
 
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
  
 $nb_total = mysqli_fetch_array($resultat);  
@@ -76,7 +76,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sqfac = "SELECT * FROM $tbl_paiement where type='R' GROUP BY  idp desc LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;  //ASC  DESC
  
 // on ex?cute la requ?te  
-$resultfac = mysqli_query($linki,$sqfac) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error()); 
+$resultfac = mysqli_query($linki,$sqfac) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki)); 
 
 
 

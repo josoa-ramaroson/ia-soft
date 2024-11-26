@@ -30,7 +30,7 @@ $bquartier=$rowu['bquartier'];
 
 require 'configuration.php';
 $sql = " SELECT * FROM $tbl_fact f , $tbl_contact c  where f.id=c.id and f.nserie=$nserie and f.fannee=$anneec and ville='$bville'  and quartier='$bquartier' and statut='6'  and  (Tarif='1' or Tarif='5'  or Tarif='12')  ORDER BY f.id ASC";  
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 ?>
  </p>
 <table width="100%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
@@ -62,7 +62,7 @@ while($datafact=mysqli_fetch_array($req)){ // Start looping table row
    </tr>
    <?php
 }
-mysqli_close ();  
+mysqli_close ($linki);  
 ?>
 </table>
 <p>&nbsp;</p>

@@ -10,14 +10,14 @@
 
 $sjournal_audit="INSERT INTO $tbl_journal_audit (le_file,Ip_user,date_Audit)VALUES('$le_file','$Ip_user','$date_Audit')";
 $Rjournal_audit=mysqli_query($linki,$sjournal_audit)
-or die(mysqli_error());
+or die(mysqli_error($linki));
 mysqli_close($linki);  	
 	}
 	else
 	{
 $sjournal_audit="INSERT INTO $tbl_journal_audit (id_nom,le_file,Ip_user,date_Audit)VALUES('$id_nom','$le_file','$Ip_user','$date_Audit')";
 $Rjournal_audit=mysqli_query($linki,$sjournal_audit)
-or die(mysqli_error());
+or die(mysqli_error($linki));
 mysqli_close($linki);
     }
   ?>

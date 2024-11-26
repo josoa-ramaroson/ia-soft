@@ -17,7 +17,7 @@
 	{
 	
 $valeur_existant = "SELECT * FROM $tbl_paiement order by date desc LIMIT 0,1 ";
-$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error()); 
+$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error($linki)); 
 $data=mysqli_fetch_array($sqLvaleur);
 $date=$data['date'];
 

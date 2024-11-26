@@ -41,7 +41,7 @@ $Max_idf = $rowsmaxf['Maxa_id'];
 
 
 $valeur_existant = "SELECT COUNT(*) AS nb FROM $tbl_fact  WHERE id='$id' and st='E' and idf='$Max_idf'";
-$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error()); 
+$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error($linki)); 
 $nb = mysqli_fetch_assoc($sqLvaleur);
 
 if($nb['nb'] == 1)
@@ -53,7 +53,7 @@ else
 {
 $sql2="INSERT INTO $tbl_fact ( id, ci , st, id_nom, fannee, nfacture,  nf, libelle) VALUES
 ( '$id','$ci', '$st', '$id_nom', '$anneec',  '$nfacture', '$Indexinitial', '$libelle')";
-$r=mysqli_query($linki,$sql2) or die(mysqli_error());
+$r=mysqli_query($linki,$sql2) or die(mysqli_error($linki));
 }
 //--------------------------------------------------------------------------------------------------
 

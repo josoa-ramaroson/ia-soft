@@ -33,7 +33,7 @@ require 'fonction.php';
 			    if (isset($_REQUEST["annee"])){ $annee = $_REQUEST["annee"]; $mois = $_REQUEST["mois"];}
 				
 $sql2 = "SELECT DISTINCT(id_nom) FROM $tb_evenement where MONTH(datev)=$mois and YEAR(datev)=$annee"; // DESC ASC  
-$req2 = mysqli_query($linki,$sql2) or die('Erreur SQL !<br />'.$sql2.'<br />'.mysqli_error()); 
+$req2 = mysqli_query($linki,$sql2) or die('Erreur SQL !<br />'.$sql2.'<br />'.mysqli_error($linki)); 
  
 ?>
 
@@ -295,7 +295,7 @@ while($data2=mysqli_fetch_array($req2)){
 
 	function scan_date($nom_cal,$annee, $mois, $jour, $tb_evenement , $linki){
 	$sqlfonct = "SELECT COUNT(*) AS nb  FROM $tb_evenement where  id_nom='$nom_cal' and DAY(datev)=$jour and  MONTH(datev)=$mois and YEAR(datev)=$annee ";
-	$resultatfonct = mysqli_query($linki,$sqlfonct) or exit(mysqli_error()); 
+	$resultatfonct = mysqli_query($linki,$sqlfonct) or exit(mysqli_error($linki)); 
 	$nqtfonct = mysqli_fetch_assoc($resultatfonct);
     $nombre=$nqtfonct['nb'] ;
 	if((!isset($nombre)|| empty($nombre))) { $nombre=0; return '';}

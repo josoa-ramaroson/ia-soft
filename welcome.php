@@ -4,44 +4,25 @@ require 'fonction.php';
 require 'fc-affichage.php';
 require 'bienvenue.php';
 ?>
+
 <div class="text-center">
-        <div class="wheel-container">
-            <div id="wheel-svg"></div>
-        </div>
+    <div class="wheel-container">
+        <div id="wheel-svg"></div>
+    </div>
 </div>
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <?php
-// Comptage du nombre total d'enregistrements
-$sql = "SELECT COUNT(*) as total FROM $tbl_com";
-$resultat = mysqli_query($linki, $sql) or die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($linki));
-$nb_total = mysqli_fetch_array($resultat, MYSQLI_ASSOC);
+// Requête pour récupérer la dernière information
+$sql = "SELECT * FROM $tbl_com ORDER BY idcom DESC LIMIT 1";
+$req = mysqli_query($linki, $sql);
 
-// Vérification s'il y a des informations
-if ($nb_total['total'] == 0) {
-    echo '<p>Aucune information</p>';
-} else {
-    // Initialisation de la pagination
-    if (!isset($_GET['debut'])) {
-        $_GET['debut'] = 0;
-    }
-
-    // Nombre d'éléments par page
-    $nb_affichage_par_page = 1;
-
-    // Requête pour récupérer les données avec pagination
-    $sql = "SELECT * FROM $tbl_com 
-            ORDER BY idcom DESC 
-            LIMIT " . (int)$_GET['debut'] . "," . $nb_affichage_par_page;
-
-    // Exécution de la requête
-    $req = mysqli_query($linki, $sql);
-    if (!$req) {
-        die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($linki));
-    }
-    ?>
-
-    <table width="100%" border="0">
-        <?php while ($data = mysqli_fetch_array($req, MYSQLI_ASSOC)) { ?>
+if ($req) {
+    $data = mysqli_fetch_array($req, MYSQLI_ASSOC);
+    if ($data) {
+        ?>
+        <table width="100%" border="0">
             <tr>
                 <td>&nbsp;</td>
                 <td align="center">
@@ -53,59 +34,29 @@ if ($nb_total['total'] == 0) {
                 </td>
                 <td>&nbsp;</td>
             </tr>
-        <?php } ?>
-    </table>
-
-    <?php
-    // Pagination
-    $total_pages = ceil($nb_total['total'] / $nb_affichage_par_page);
-    $current_page = floor($_GET['debut'] / $nb_affichage_par_page) + 1;
-
-    if ($total_pages > 1) {
-        echo '<div class="text-center mt-3">';
-        // Bouton précédent
-        if ($current_page > 1) {
-            echo '<a href="?debut=' . (($_GET['debut'] - $nb_affichage_par_page)) . '" class="btn btn-sm btn-primary mr-2">Précédent</a> ';
-        }
-
-        // Numéros des pages
-        for ($i = 1; $i <= $total_pages; $i++) {
-            if ($i == $current_page) {
-                echo '<strong>' . $i . '</strong> ';
-            } else {
-                echo '<a href="?debut=' . (($i - 1) * $nb_affichage_par_page) . '">' . $i . '</a> ';
-            }
-        }
-
-        // Bouton suivant
-        if ($current_page < $total_pages) {
-            echo ' <a href="?debut=' . ($_GET['debut'] + $nb_affichage_par_page) . '" class="btn btn-sm btn-primary ml-2">Suivant</a>';
-        }
-        echo '</div>';
+        </table>
+        <?php
+    } else {
+        echo '<p>Aucune information</p>';
     }
 }
 
-// Fermeture de la connexion
 mysqli_close($linki);
 ?>
-        </p>
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td><div align="center"></div></td>
-          </tr>
-          <tr>
-            <td height="21">&nbsp;</td>
-          </tr>
-          <tr>
-            <td height="21">
-</td>
-          </tr>
-        </table>
-        <p>&nbsp;</p>
-                <?php
-include_once('pied.php');
-?>
 
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td><div align="center"></div></td>
+    </tr>
+    <tr>
+        <td height="21">&nbsp;</td>
+    </tr>
+    <tr>
+        <td height="21"></td>
+    </tr>
+</table>
+
+<?php include_once('pied.php'); ?>
 
 <style>
     * {
@@ -118,7 +69,6 @@ include_once('pied.php');
         font-family: system-ui, -apple-system, sans-serif;
         background: linear-gradient(to bottom right, #f8fafc, #e2e8f0);
         min-height: 100vh;
-       
     }
 
     .container {
@@ -154,7 +104,6 @@ include_once('pied.php');
         font-size: clamp(1.25rem, 2vw, 1.5rem);
         color: #1e293b;
         margin-bottom: 1.25rem;
-        /* Nouvelles propriétés pour la gestion du titre */
         max-width: 100%;
         overflow-wrap: break-word;
         word-wrap: break-word;
@@ -164,15 +113,14 @@ include_once('pied.php');
 
     .category-item {
         display: flex;
-        align-items: flex-start; /* Changé de center à flex-start */
+        align-items: flex-start;
         gap: 0.75rem;
         padding: 0.75rem;
         border-radius: 0.5rem;
         cursor: pointer;
         transition: background-color 0.2s;
-        /* Ajout de propriétés pour contenir le contenu */
         width: 100%;
-        min-width: 0; /* Important pour permettre le flex shrink */
+        min-width: 0;
     }
 
     .category-item:hover {
@@ -185,7 +133,7 @@ include_once('pied.php');
         border-radius: 50%;
         box-shadow: 0 0 0 2px white;
         transition: transform 0.2s;
-        flex-shrink: 0; /* Empêche le point de couleur de rétrécir */
+        flex-shrink: 0;
     }
 
     .category-item:hover .category-color {
@@ -197,15 +145,13 @@ include_once('pied.php');
         color: #334155;
         flex: 1;
         font-size: clamp(0.875rem, 1.5vw, 1rem);
-        /* Nouvelles propriétés pour la gestion du texte */
         min-width: 0;
         overflow-wrap: break-word;
         word-wrap: break-word;
         hyphens: auto;
         line-height: 1.4;
-        /* Gestion de l'overflow avec ellipsis si nécessaire */
         display: -webkit-box;
-        -webkit-line-clamp: 3; /* Limite à 3 lignes maximum */
+        -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
@@ -213,30 +159,26 @@ include_once('pied.php');
     .module-count {
         color: #64748b;
         font-size: clamp(0.75rem, 1.2vw, 0.875rem);
-        white-space: nowrap; /* Empêche le compteur de se scinder */
-        flex-shrink: 0; /* Empêche le compteur de rétrécir */
+        white-space: nowrap;
+        flex-shrink: 0;
         margin-left: 0.5rem;
     }
 
-    /* Styles pour les sous-titres dans toute l'application */
     .subtitle,
     h3,
     .h3-like {
         font-size: clamp(1rem, 1.5vw, 1.25rem);
         color: #475569;
         margin-bottom: 1rem;
-        /* Gestion du texte */
         max-width: 100%;
         overflow-wrap: break-word;
         word-wrap: break-word;
         hyphens: auto;
         line-height: 1.4;
-        /* Conteneur flex pour meilleure gestion de l'espace */
         display: inline-flex;
         flex-wrap: wrap;
     }
 
-    /* Table styles */
     table {
         width: 100%;
         border-collapse: collapse;
@@ -244,14 +186,12 @@ include_once('pied.php');
 
     td {
         padding: 0.75rem;
-        /* Gestion du texte dans les cellules */
-        max-width: 0; /* Force le wrapping */
+        max-width: 0;
         overflow-wrap: break-word;
         word-wrap: break-word;
         hyphens: auto;
     }
 
-    /* Pagination styles */
     .text-center {
         text-align: center;
         margin: 1.5rem 0;
@@ -275,7 +215,6 @@ include_once('pied.php');
         background-color: #1d4ed8;
     }
 
-    /* Media Queries */
     @media (max-width: 1024px) {
         .container {
             gap: 1rem;
@@ -286,7 +225,6 @@ include_once('pied.php');
             padding: 1rem;
         }
 
-        /* Ajustement des marges pour les sous-titres */
         .subtitle, h3, .h3-like {
             margin-bottom: 0.875rem;
         }
@@ -306,7 +244,6 @@ include_once('pied.php');
             padding: 0.75rem;
         }
 
-        /* Réduction du nombre de lignes sur mobile */
         .category-name {
             -webkit-line-clamp: 2;
         }
@@ -335,11 +272,11 @@ include_once('pied.php');
             font-size: 0.813rem;
         }
 
-        /* Ajustements supplémentaires pour petits écrans */
         .subtitle, h3, .h3-like {
             font-size: 1rem;
             margin-bottom: 0.75rem;
         }
     }
 </style>
+
 <script type="text/javascript" src="/js/wheel.js"></script>

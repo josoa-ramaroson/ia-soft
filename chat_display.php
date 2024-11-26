@@ -52,7 +52,7 @@ $_SESSION['SID2']=$_GET['sid2'];
 $sql = "SELECT count(*) FROM $tbl_message ";  
 
 
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
 $nb_total = mysqli_fetch_array($resultat);  
    
@@ -61,7 +61,7 @@ $sql = "SELECT * FROM $tbl_message  where (SID1=$sid1 and SID2=$sid2) or (SID1=$
    
 //$sql = "SELECT * FROM $tbl_message  where (SID1=$sid1 and SID2=$sid2) or (SID1=$sid2 and SID2=$sid1) ORDER BY id_chat   DESC  LIMIT 20";  //ASC DESC
  
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 while($data=mysqli_fetch_array($req)){ 
 ?>  
 

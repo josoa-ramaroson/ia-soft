@@ -325,7 +325,7 @@ $date2=$datecalendrier;
 $_SESSION['datecalendrier']=$date2;
 	
 $sql = "SELECT * FROM $tb_evenement where datev='$date2'  and  id_nom='$id_nom' ORDER BY heures "; // DESC ASC  
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 
 ?>     
      

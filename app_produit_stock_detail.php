@@ -33,7 +33,7 @@ SELECT e.titre , SUM(e.Quantite) AS qtenreg FROM $tbl_enreg e GROUP BY e.titre
 
 
 
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
 
 $nb_total = mysqli_fetch_array($resultat);  
@@ -64,7 +64,7 @@ $np=substr($_REQUEST["np"],32);
    $nb_affichage_par_page;
   
   
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 ?>
   <strong> SUIVI DES SORTIE AU MAGASIN PAR PRODUIT </strong></font></font></font></p>
 <p><a href="app_produit_stock_detail_validite.php?np=<?php echo md5(microtime()).$np; ?>" class="btn btn-xs btn-success">Detail du stock par date de validite ( <?php echo $np; ?>) </a></p>

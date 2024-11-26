@@ -7,6 +7,159 @@ require_once('calendar/classes/tc_calendar.php');
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        min-height: 100vh;
+        padding: 20px;
+    }
+    
+    .panel {
+        background: white;
+        border-radius: 15px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+    }
+    
+    .panel-heading {
+        margin-bottom: 1rem;
+    }
+    
+    .panel-title {
+        font-size: 1.5rem;
+        color: #198754;
+        margin: 0;
+    }
+    
+    .form-control {
+        border-radius: 8px;
+        border: 1px solid #dee2e6;
+        padding: 0.6rem 0.8rem;
+        font-size: 1rem;
+        height: auto;
+    }
+
+    select, input {
+        font-size: 1rem !important;
+        padding: 0.6rem 0.8rem !important;
+        border-radius: 8px !important;
+        border: 1px solid #dee2e6 !important;
+    }
+
+    em {
+        font-style: normal;
+        color: #198754;
+        font-weight: 500;
+        font-size: 1rem;
+    }
+
+    table {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    table thead th {
+        background-color: #198754 !important;
+        color: white !important;
+        border: none !important;
+        padding: 0.8rem !important;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        text-align: left !important;
+    }
+    
+    table tbody tr:hover {
+        background-color: rgba(25, 135, 84, 0.05);
+    }
+    
+    table td {
+        padding: 0.8rem !important;
+        font-size: 0.95rem;
+        vertical-align: middle;
+        border-bottom: 1px solid #f0f0f0;
+        text-align: left !important;
+    }
+
+    /* Ajustement des colonnes du tableau */
+    table th:first-child,
+    table td:first-child {
+        padding-left: 1.5rem !important;
+    }
+
+    table th:last-child,
+    table td:last-child {
+        padding-right: 1.5rem !important;
+    }
+
+    input[type="submit"], .btn {
+        font-size: 1rem !important;
+        padding: 0.6rem 1.2rem !important;
+        border-radius: 8px !important;
+        transition: all 0.3s ease;
+        background-color: #198754;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover, .btn:hover {
+        background-color: #146c43;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(25, 135, 84, 0.3);
+    }
+
+    /* Style amélioré pour ORTC */
+    .ortc-status {
+        padding: 0.8rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+
+    .ortc-status.success {
+        background-color: rgba(25, 135, 84, 0.1);
+        border: 1px solid #198754;
+    }
+
+    .ortc-status.success select {
+        background-color: white;
+        color: #198754;
+    }
+
+    .ortc-status.danger {
+        background-color: rgba(220, 53, 69, 0.1);
+        border: 1px solid #dc3545;
+    }
+
+    .ortc-status.danger select {
+        background-color: white;
+        color: #dc3545;
+    }
+
+    /* Ajustements des marges dans le formulaire */
+    .form-group {
+        margin-bottom: 0.8rem;
+    }
+
+    label {
+        margin-bottom: 0.3rem;
+        font-weight: 500;
+        color: #444;
+        font-size: 0.95rem;
+    }
+
+    .row > div {
+        margin-bottom: 0.8rem;
+    }
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
 <script language="javascript" src="calendar/calendar.js"></script>
@@ -311,6 +464,8 @@ include_once('pied.php');
 <p>&nbsp;</p>
 </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <script language="JavaScript" type="text/javascript" xml:space="preserve"> 
     var frmvalidator  = new Validator("form1");
 	frmvalidator.EnableOnPageErrorDisplaySingleBox();

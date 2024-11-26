@@ -3,7 +3,7 @@
 	function stat_eda($mois,$annee,$tv_facturation){
 	$sql = "SELECT SUM(cons) AS cons, SUM(totalht) AS totalht, SUM(tax) AS tax, SUM(totalttc) AS totalttc, SUM(ortc) AS ortc, SUM(impayee) AS impayee, SUM(Pre) AS Pre, SUM(totalnet) AS totalnet, RefLocalite , nserie , fannee , st 
 	FROM $tv_facturation where  st='E' and  fannee='$annee'  and nserie='$mois'"; 
-	$resultat = mysqli_query($linki,$sql) or exit(mysqli_error()); 
+	$resultat = mysqli_query($linki,$sql) or exit(mysqli_error($linki)); 
 	$nqt = mysqli_fetch_assoc($resultat);
 
 	if((!isset($nqt['cons'])|| empty($nqt['cons']))) { $qt=0; return $qt;}

@@ -140,7 +140,7 @@ require 'configuration.php';
 $sql = "SELECT count(*) FROM $tbl_contact c , $tbl_fact f  where f.id=c.id  and f.nserie=$nserie and f.fannee=$anneec 
 
 and  c.ville='$m1v' and  c.quartier='$m2q' and  Tarif!='10' ";  
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 $nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -151,7 +151,7 @@ $nb_affichage_par_page =50;
 $sql = " SELECT * FROM $tbl_fact f , $tbl_contact c  where f.id=c.id and f.nserie=$nserie and f.fannee=$anneec 
 
 and c.ville='$m1v' and  c.quartier='$m2q' and  Tarif!='10' ORDER BY f.id ASC  LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 ?>
  </p>
 <table width="100%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
@@ -188,7 +188,7 @@ mysqli_free_result ($req);
    echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], $refville , $RefQuartier,  10).'</span>';  
 }  
 mysqli_free_result ($resultat);  
-mysqli_close ();  
+mysqli_close ($linki);  
 				  function gettatut($fetat){
 				  if ($fetat<=100000 && $fetat>=75000)         { echo $couleur="#ffc88d";}//orange 
 				  if ($fetat>=100000)                          { echo $couleur="#ec9b9b";}//rouge -Declined

@@ -43,7 +43,7 @@ $Sdoubl= " SELECT  * FROM $tbl_fact WHERE id='$idr' and  nserie='$nserie'  and  
  FROM $tbl_paiement GROUP BY idf, `date`,`montant`,`report`
  HAVING COUNT(*) > 1  ";  //ASC*/
   
-$reqdoub = mysqli_query($linki,$Sdoubl) or die('Erreur SQL !<br />'.$Sdoubl.'<br />'.mysqli_error());  
+$reqdoub = mysqli_query($linki,$Sdoubl) or die('Erreur SQL !<br />'.$Sdoubl.'<br />'.mysqli_error($linki));  
 ?>
 </font></font></font></p>
 <div class="panel panel-danger">

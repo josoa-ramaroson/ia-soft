@@ -27,7 +27,7 @@ SELECT e.titre , SUM(e.Quantite) AS qtenreg FROM $tbl_enreg e GROUP BY e.titre
 
 
 // on ex?cute cette requ?te  
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
 // on r?cup?re le nombre d'?l?ments ? afficher  
 $nb_total = mysqli_fetch_array($resultat);  
@@ -63,7 +63,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sql = "SELECT e.titre as thetitre, SUM(e.qtenreg) AS qte , SUM(v.qtvendu) AS qtv , SUM(e.qtenreg)-SUM(v.qtvendu) as reste
 FROM $tv_enreg e LEFT JOIN $tv_vente v ON e.titre=v.titre GROUP BY  e.titre ORDER BY e.titre  asc LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;
 
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 ?>
   <strong> SUIVI DE STOCK</strong></font><strong></strong></strong></font></font><strong></font></font></font></font></font></font></font></strong></font></font></font></font></font></font></font></font></font></font> 
   </strong> produit &agrave; vendre</p>

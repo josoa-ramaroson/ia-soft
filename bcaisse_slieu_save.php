@@ -9,7 +9,7 @@ $organisme=addslashes($_POST['organisme']);
 $sqlp="INSERT INTO $tbl_caisse_lieu ( id_nom  , organisme)
                     VALUES      ('$id_nom','$organisme')";								
 $r=mysqli_query($linki,$sqlp)
-or die(mysqli_error());
+or die(mysqli_error($linki));
 
 
 header("location: bcaisse_slieu.php");

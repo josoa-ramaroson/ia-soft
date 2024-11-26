@@ -1,6 +1,6 @@
 <?php
 Require 'session.php';
-require 'fonction.php';
+require_once 'fonction.php';
 $nserie1=addslashes($_POST['nserie']);
 $annee1rp=addslashes($_POST['annee']);
 $ARCH=$annee1rp;
@@ -16,11 +16,11 @@ Require("bienvenue.php");  // on appelle la page contenant la fonction
 ?>
 <body>
  <p>
-   <?php
+<?php
 
 require 'configuration.php';
 $sql = "SELECT  COUNT(*) AS nbres, SUM(f.cons1) AS cons1, SUM(f.cons2) AS cons2, SUM(f.cons) AS cons, SUM(f.mont1) AS mont1,SUM(f.mont2) AS mont2,SUM(f.puisct) AS puisct, SUM(f.totalht) AS totalht, SUM(f.tax) AS tax, SUM(f.totalttc) AS totalttc, SUM(f.ortc) AS ortc, SUM(f.impayee) AS impayee, SUM(f.Pre) AS Pre, SUM(f.totalnet) AS totalnet, c.refcommune , f.nserie , f.fannee FROM $dbbk.z_"."$ARCH"."_$tbl_fact f , $db.$tbl_contact c  where f.nserie='$nserie1' and c.id=f.id GROUP BY c.refcommune ";  
-$req=mysqli_query($linkibk,$sql);
+$req=mysqli_query($linki,$sql);
 ?>
  <a href="z_rapport_facturationimp.php?an=<?php echo md5(microtime()).$annee1rp;?>&ns=<?php echo md5(microtime()).$nserie1;?>" target="_blank"><img src="images/imprimante.png" width="50" height="30"></a></p>
  <p>&nbsp; </p>
@@ -72,7 +72,7 @@ echo $secteur=$row3['commune'];
 
 require 'configuration.php';
 $sql11 = "SELECT  COUNT(*) AS nbres, SUM(f.cons1) AS cons1, SUM(f.cons2) AS cons2, SUM(f.cons) AS cons, SUM(f.mont1) AS mont1,SUM(f.mont2) AS mont2,SUM(f.puisct) AS puisct, SUM(f.totalht) AS totalht, SUM(f.tax) AS tax, SUM(f.totalttc) AS totalttc, SUM(f.ortc) AS ortc, SUM(f.impayee) AS impayee, SUM(f.Pre) AS Pre, SUM(f.totalnet) AS totalnet, c.refcommune , f.nserie , f.fannee , c.Tarif , f.st FROM $dbbk.z_"."$ARCH"."_$tbl_fact f, $db.$tbl_contact c where  f.nserie='$nserie1'  and c.id=f.id GROUP BY c.refcommune ";  
-$req11=mysqli_query($linkibk,$sql11);
+$req11=mysqli_query($linki,$sql11);
 ?>
 </p>
 <H2>

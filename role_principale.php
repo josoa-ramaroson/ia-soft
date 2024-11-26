@@ -27,7 +27,7 @@ Require("bienvenue.php"); // on appelle la page contenant la fonction
  
 $sql = "SELECT count(*) FROM $tb_role_user where r_p='1' ";  
 
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
  
 $nb_total = mysqli_fetch_array($resultat);  
@@ -44,7 +44,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
    
 $sql = "SELECT * FROM $tb_role_user  where r_p='1'  ORDER BY id_role_user	DESC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  //ASC
  
-$req = mysqli_query($linki, $sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki, $sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 
 
 

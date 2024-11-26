@@ -30,7 +30,7 @@ Require("bienvenue.php");  // on appelle la page contenant la fonction
 <?
 $sql = "SELECT count(id) FROM $tbl_contact  WHERE statut='6' ";  
 
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
  
 $nb_total = mysqli_fetch_array($resultat);  
@@ -52,7 +52,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
  
 $sql = "SELECT c.quartier, c.ville,  COUNT(id) AS nbch  FROM  $tbl_contact c WHERE statut='6' GROUP BY  quartier  order by ville LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;  //ASC  DESC
   
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));
 ?>
  
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">

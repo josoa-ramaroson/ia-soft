@@ -72,22 +72,23 @@ while($data5=mysqli_fetch_array($req5)){
   <div class="panel-body">
     <table width="100%" border="0" cellpadding="0" cellspacing="0" bordercolor="#000000">
       <tr>
-        <td width="47%"><table width="100%" border="0.5" cellspacing="0" cellpadding="0">
+        <td width="100%">
+          <table width="100%" border="0.5" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="18%"><strong>Ancien Index</strong></td>
-            <td width="21%"><strong>Nouveau Index</strong></td>
-            <td width="18%"><strong>Consommation </strong></td>
-            <td width="13%"><strong>Facture N° </strong></td>
-            <td width="12%"><strong>Ampere </strong></td>
-            <td width="18%"><strong>Compteur  N° </strong></td>
+            <td width="18%" style="padding: 10px 5px; text-align: center;"><strong>Ancien Index</strong></td>
+            <td width="21%" style="padding: 10px 5px; text-align: center;"><strong>Nouveau Index</strong></td>
+            <td width="18%" style="padding: 10px 5px; text-align: center;"><strong>Consommation </strong></td>
+            <td width="13%" style="padding: 10px 5px; text-align: center;"><strong>Facture N° </strong></td>
+            <td width="12%" style="padding: 10px 5px; text-align: center;"><strong>Ampere </strong></td>
+            <td width="18%" style="padding: 10px 5px; text-align: center;"><strong>Compteur  N° </strong></td>
             </tr>
           <tr>
-            <td><span style="width:36%"> <?php echo $data5['n'];?> KWH</span></td>
-            <td><span style="width:36%"> <?php echo $data5['nf'];?> KWH</span></td>
-            <td><span style="width:36%"><?php echo $data5['cons'];?> KWH</span></td>
-            <td><span style="width:36%"><?php echo $data5['nfacture'];$nfacture=$data5['nfacture']; ?></span></td>
-            <td><span style="width:36%"><?php echo $data5['amperage'];?></span></td>
-            <td><span style="width:36%"><?php echo $data5['ncompteur'];?></span></td>
+            <td><span style="width:36%" style="padding: 10px 5px; text-align: center;"> <?php echo $data5['n'];?> KWH</span></td>
+            <td><span style="width:36%" style="padding: 10px 5px; text-align: center;"> <?php echo $data5['nf'];?> KWH</span></td>
+            <td><span style="width:36%" style="padding: 10px 5px; text-align: center;"><?php echo $data5['cons'];?> KWH</span></td>
+            <td><span style="width:36%" style="padding: 10px 5px; text-align: center;"><?php echo $data5['nfacture'];$nfacture=$data5['nfacture']; ?></span></td>
+            <td><span style="width:36%" style="padding: 10px 5px;text-align: center;"><?php echo $data5['amperage'];?></span></td>
+            <td><span style="width:36%" style="padding: 10px 5px; text-align: center;"><?php echo $data5['ncompteur'];?></span></td>
             </tr>
         </table></td>
       </tr>
@@ -187,7 +188,7 @@ while($data5=mysqli_fetch_array($req5)){
   <div class="panel-body">
     <table width="100%" border="0" cellpadding="0" cellspacing="0" bordercolor="#000000">
       <tr>
-        <td width="47%"><table width="100%" border="0.5" cellspacing="0" cellpadding="0">
+        <td width="100%"><table width="100%" border="0.5" cellspacing="0" cellpadding="0">
           <tr>
             <td width="16%"><img src="codeqrfonction_fact.php?qr=<?=$Codebare?>&idf=<?=$idf?>" width="100" height="100"/></td>
             <td width="84%"><table width="100%" border="0.5" cellspacing="0" cellpadding="0">

@@ -44,7 +44,7 @@ $CodeTypeClts=addslashes($_REQUEST['CodeTypeClts']);
 require 'configuration.php';
 
 $sql = " SELECT * FROM $tbl_fact f , $tbl_contact c  where f.id=c.id and f.nserie=$nserie and f.fannee=$anneec  and c.ville='$m1v' and  c.quartier='$m2q' and CodeTypeClts='$CodeTypeClts' ORDER BY f.id ASC ";
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
 ?>
  Ville : <em><?php echo  $m1v;?></em> Quartier : <em><?php echo $m2q;?></em> Categorie : <em><?php //$CodeTypeClts;

@@ -21,7 +21,7 @@ $tarif=addslashes($_REQUEST['tarif']);
 require 'configuration.php';
 
 $sql = " SELECT * FROM $tbl_fact f , $tbl_contact c  where f.id=c.id and f.nserie=$nserie and f.fannee=$anneec  and  Tarif='$tarif' ORDER BY f.id ASC ";
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
 $sql7 = "SELECT COUNT(*) AS nombre FROM $tbl_contact  WHERE statut='6' and Tarif='$tarif'";   
 $req7=mysqli_query($linki,$sql7);

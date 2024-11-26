@@ -16,6 +16,6 @@
 $sqlp="update  $tbl_utilisateur set  u_niveau='$u_niveau' WHERE  u_login='$u_login'";
 $resultp=mysqli_query($linki,$sqlp);
 
-   header("location:deconnexion.php");
+   header("location:deconnexion.php?id=".$u_utilisateur["id_u"]);
    }
 ?>

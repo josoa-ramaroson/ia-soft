@@ -34,7 +34,7 @@ $mois=$_POST['mois'];
 $annee=$_POST['annee']; 
 
 
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
 
 $nb_total = mysqli_fetch_array($resultat);  
@@ -62,7 +62,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
  v.dateValidite  FROM  $tv_appproduit_dedate e   LEFT JOIN   $tv_appproduit_dsdate v  ON ( e.titre=v.titre) and (v.dateValidite=e.Validite) where MONTH(e.Validite)=$mois and YEAR(e.Validite)=$annee  LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;
   
   
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 ?>
 </font></font></font></p>
 <table width="1167" border="0">

@@ -1,10 +1,10 @@
 <?php	
 		
 		$host = 'localhost';
-		$user = 'iaT00ls';
-		$pass = 'jrpsrRMBXP#73';
-		$db = 'c2iaT00lsDb';
-		$dbbk='c2iaT00lsDb';
+		$user = 'root';
+		$pass = 'I7I4I2-70&o@';
+		$db = 'eda';
+		$dbbk='edabk';
 		
 	
 		// $link = mysqli_connect ($host,$user,$pass);

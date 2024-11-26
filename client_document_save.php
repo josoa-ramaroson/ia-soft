@@ -18,7 +18,7 @@ $sqlp="INSERT INTO $tbl_client_doc  ( id_nom   , idclient  , titre,   descriptio
 					
 													
 $r=mysqli_query($linki,$sqlp)
-or die(mysqli_error());
+or die(mysqli_error($linki));
 mysqli_close($linki);
 
 

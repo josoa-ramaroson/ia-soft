@@ -16,7 +16,7 @@ require 'fonction.php';
 	 // $m2q=substr($_REQUEST["m2q"],32);
 require 'configuration.php';
 $sql = "SELECT * FROM  $tbl_contact c  where statut='6' and (Tarif='1' or Tarif='5'  or Tarif='12') ORDER BY c.id ASC";  
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error()); 
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki)); 
 
 $sql7 = "SELECT COUNT(*) AS bt FROM $tbl_contact c  where statut='6' and (Tarif='1' or Tarif='5'  or Tarif='12') ";   
 $req7=mysqli_query($linki,$sql7);

@@ -1,4 +1,4 @@
-<?
+<?php
   
     require 'fonction.php';
 	$sqlVER="SELECT * FROM $tbl_seq_transf  WHERE  n_transfert='2' " ;

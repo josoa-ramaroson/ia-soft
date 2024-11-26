@@ -43,12 +43,12 @@ $ville=$row2['ville'];
   <?php
 require 'configuration.php';
 $sql = "SELECT * FROM  $tbl_contact c  where c.ville='$m1v' and  c.quartier='$m2q' and statut='6'   ORDER BY c.id ASC";  
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 
 	function stat_eda($mois,$annee,$tv_facturation, $id){
 	$sql = "SELECT SUM(cons) AS cons, SUM(totalht) AS totalht, SUM(tax) AS tax, SUM(totalttc) AS totalttc, SUM(ortc) AS ortc, SUM(impayee) AS impayee, SUM(Pre) AS Pre, SUM(totalnet) AS totalnet, RefLocalite , nserie , fannee , st 
 	FROM $tv_facturation where  st='E' and  fannee='$annee'  and nserie='$mois' and id='$id' "; 
-	$resultat = mysqli_query($linki,$sql) or exit(mysqli_error()); 
+	$resultat = mysqli_query($linki,$sql) or exit(mysqli_error($linki)); 
 	$nqt = mysqli_fetch_assoc($resultat);
 
 	if((!isset($nqt['cons'])|| empty($nqt['cons']))) { $qt=0; return $qt;}

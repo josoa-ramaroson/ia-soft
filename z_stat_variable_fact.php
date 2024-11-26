@@ -3,7 +3,7 @@
 	function stat_eda($mois,$annee,$dbbk,$ARCH,$tbl_fact,$linkibk){
 	$sql = "SELECT SUM(cons) AS cons, SUM(totalht) AS totalht, SUM(tax) AS tax, SUM(totalttc) AS totalttc, SUM(ortc) AS ortc, SUM(impayee) AS impayee, SUM(Pre) AS Pre, SUM(totalnet) AS totalnet,  nserie , fannee , st 
 	FROM $dbbk.z_"."$ARCH"."_$tbl_fact where  st='E' and  fannee='$annee'  and nserie='$mois'"; 
-	$resultat = mysqli_query($linkibk,$sql) or exit(mysqli_error()); 
+	$resultat = mysqli_query($linkibk,$sql) or exit(mysqli_error($linki)); 
 	$nqt = mysqli_fetch_assoc($resultat);
 
 	if((!isset($nqt['totalttc'])|| empty($nqt['totalttc']))) { $qt=0; return $qt;}

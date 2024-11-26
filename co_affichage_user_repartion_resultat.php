@@ -19,7 +19,7 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
  require 'co_affichage_variable_repartion.php';
  
 $sql = "SELECT count(*) FROM $tbl_contact  where RefLocalite='$RefLocalite'  and  (RefQuartier='$RefQuartier_1'  or RefQuartier='$RefQuartier_2' ) and  statut='6'";  
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 $nb_total = mysqli_fetch_array($resultat);  
 if (($nb_total = $nb_total[0]) == 0) {  
 echo 'Aucune reponse trouvee';  
@@ -28,7 +28,7 @@ else {
 if (!isset($_GET['debut'])) $_GET['debut'] = 0; 
 $nb_affichage_par_page = 100; 
 $sql = "SELECT * FROM $tbl_contact  where   RefLocalite='$RefLocalite'  and  (RefQuartier='$RefQuartier_1'  or RefQuartier='$RefQuartier_2' )  and statut='6' ORDER BY id ASC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 
 
 	$sqldate="SELECT * FROM $tbl_caisse "; //DESC  ASC

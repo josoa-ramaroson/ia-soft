@@ -17,7 +17,7 @@ else
 $sqlp="INSERT INTO $tbl_caisse_ver  ( id_nom  ,  date,Montant , organisme, nversement )
                     VALUES      ('$id_nom','$date','$Montant', '$organisme', '$nversement')";								
 $r=mysqli_query($linki,$sqlp)
-or die(mysqli_error());
+or die(mysqli_error($linki));
 }
 
 header("location: bcaisse_ver.php");

@@ -35,7 +35,7 @@ $ARCH=$_POST['annee'];
   
 $sql = "SELECT count(*) FROM $dbbk.z_"."$ARCH"."_$tbl_paiement";  
 
-$resultat = mysqli_query($linkibk,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linkibk,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
  
 $nb_total = mysqli_fetch_array($resultat);  
@@ -62,7 +62,7 @@ $sql = "SELECT SUM(paiement) AS Paie, st, date FROM $dbbk.z_"."$ARCH"."_$tbl_pai
 	$tPT=$AFPT['Paie']; 
 
 // on ex?cute la requ?te  
-$req = mysqli_query($linkibk,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error()); 
+$req = mysqli_query($linkibk,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki)); 
 
 	$sqPS="SELECT SUM(paiement) AS Paie , st FROM $dbbk.z_"."$ARCH"."_$tbl_paiement where st='E' and MONTH(date)=$mois and YEAR(date)=$annee "; 
 	$RPS = mysqli_query($linkibk,$sqPS); 

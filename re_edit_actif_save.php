@@ -45,7 +45,7 @@ $result2=mysqli_query($linki,$sql2);
 
 
 $sql3 = "SELECT count(*) FROM $tbl_fact  where id='$id' and  st='E'";  
-$resultat3 = mysqli_query($linki,$sql3) or die('Erreur SQL !<br />'.$sql3.'<br />'.mysqli_error());  
+$resultat3 = mysqli_query($linki,$sql3) or die('Erreur SQL !<br />'.$sql3.'<br />'.mysqli_error($linki));  
 $nb_total = mysqli_fetch_array($resultat3);  
 if (($nb_total = $nb_total[0]) == 0) {  
 

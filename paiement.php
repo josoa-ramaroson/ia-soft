@@ -2,202 +2,321 @@
 require 'session.php';
 require_once 'fonction.php';
 require 'fc-affichage.php';
-?>
-<?php
+
 if(($_SESSION['u_niveau'] != 4)) {
-	header("location:index.php?error=false");
-	exit;
- }
-?>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php include("titre.php") ?> - paiement</title>
-<script language="JavaScript" src="js/validator.js" type="text/javascript" xml:space="preserve"></script>
-</head>
-<?php
-  require_once 'bienvenue.php';    // on appelle la page contenant la fonction
-
-    //choix d espace de memoire pour les connection.---------------------------------------------------------------- 
-	$valeur_existant = "SELECT COUNT(*) AS nb FROM $tbl_paiconn  WHERE idrecu='$id_nom' ";
-	$valeur_existant = "SELECT COUNT(*) AS nb FROM $tbl_paiconn WHERE idrecu='$id_nom'";
-  $result = $linki->query($valeur_existant);
-  $nb = $result->fetch_assoc();
-
-	if($nb['nb'] == 1)
-   {
-
-   }
-  else {
-    $sqlcon = "INSERT INTO $tbl_paiconn (idrecu) VALUES ('$id_nom')";
-    $linki->query($sqlcon);
-  }
-    //------------------------FIn du Programme ---------------------------------------------------------
-?>
-<body>
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3 class="panel-title">ETAPE 1 PAIEMENT : </h3>
-  </div>
-  <div class="panel-body">
-    <table width="100%" border="0">
-      <tr>
-        <td width="53%"><form action="paiement_apercu.php" method="post" name="form2" id="form2">
-          <table width="100%" border="0">
-            <tr>
-              <td width="21%">&nbsp;</td>
-              <td width="45%"> Electrique , Police, Devis</td>
-              <td width="1%">&nbsp;</td>
-              <td width="33%">&nbsp;</td>
-            </tr>
-            <tr>
-              <td><span class="panel-title">ID CLIENT</span></td>
-              <td><input class="form-control" name="id" type="text" id="id" size="30" /></td>
-              <td>&nbsp;</td>
-              <td><input type="submit" name="Paiement2" id="Paiement2" value="Etape 2 : Paiement" class="btn btn-sm btn-success" /></td>
-            </tr>
-          </table>
-        </form></td>
-        <td width="46%"><form action="paiement_apercuAutre.php" method="post" name="form22" id="form22">
-          <table width="100%" border="0">
-            <tr>
-              <td width="22%">&nbsp;</td>
-              <td width="41%">Autres Paiement </td>
-              <td width="3%">&nbsp;</td>
-              <td width="34%">&nbsp;</td>
-            </tr>
-            <tr>
-              <td>N°Facture</td>
-              <td><input class="form-control" name="idf" type="text" id="idf" size="30" /></td>
-              <td>&nbsp;</td>
-              <td><input type="submit" name="Paiement" id="Paiement" value="Etape 2 : Paiement" class="btn btn-sm btn-success" /></td>
-            </tr>
-          </table>
-        </form></td>
-        <td width="1%">&nbsp;</td>
-      </tr>
-    </table>
-  </div>
-</div>
-<?php
-
-$sql = "SELECT count(*) FROM $tbl_paiement where id<500000";  
-
-$resultat = $linki->query($sql);
-
-if (!$resultat) {
-  // Gérer une erreur de requête SQL
-  die("Erreur dans la requête SQL : " . $linki->error);
+    header("location:index.php?error=false");
+    exit;
 }
 
-$nb_total = $resultat->fetch_array(MYSQLI_NUM);
- // on teste si ce nombre de vaut pas 0  
-if (($nb_total = $nb_total[0]) == 0) {
-  echo 'Aucune réponse trouvée';
-} else {
-        // premi?re ligne on affiche les titres pr?nom et surnom dans 2 colonnes
-  
-// sinon, on regarde si la variable $debut (le x de notre LIMIT) n'a pas d?j? ?t? d?clar?e, et dans ce cas, on l'initialise ? 0  
-    if (!isset($_GET['debut'])) $_GET['debut'] = 0; 
-    
-	// 6 maroufchangement 1 par 5
-    $nb_affichage_par_page = 50; 
+// Correction de la variable indéfinie
+$id_nom = isset($_SESSION['id_nom']) ? $_SESSION['id_nom'] : '';
 
-    // $sqfac = "SELECT * FROM $tbl_paiement WHERE id < 500000 GROUP BY idp DESC LIMIT " . $_GET['debut'] . ',' . $nb_affichage_par_page;
-    $sqfac = "SELECT * FROM $tbl_paiement WHERE id < 500000 GROUP BY idp ORDER BY idp DESC LIMIT " . $nb_affichage_par_page . " OFFSET " . $_GET['debut'] ;
+$valeur_existant = "SELECT COUNT(*) AS nb FROM $tbl_paiconn WHERE idrecu='$id_nom'";
+$result = $linki->query($valeur_existant);
+$nb = $result->fetch_assoc();
 
-    // Exécution de la requête
-    $resultfac = $linki->query($sqfac) or die('Erreur SQL !<br />' . $sqfac . '<br />' . $linki->error);
-
-
-	//$sqfac="SELECT * FROM $tbl_paiement ORDER BY idp DESC";
-	//$resultfac=mysqli_query($linki,$sqfac);
-
-    ?>
-    <p>&nbsp;</p>
-    <table width="100%" border="0" cellpadding="0" cellspacing="0">
-      <tr bgcolor="#0794F0">
-        <td width="100%" bgcolor="#3071AA"><div align="center"><strong><font color="#FFFFFF">Historique des paiements</font></strong></div></td>
-      </tr>
-    </table>
-    <table width="100%" border="1" align="center" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
-      <tr bgcolor="#0794F0">
-        <td width="8%" align="center" bgcolor="#FFFFFF"><font color="#000000">ID Client</font></td>
-        <td width="8%" align="center" bgcolor="#FFFFFF"><font color="#000000" size="3"><strong>Vendeur</strong></font></td>
-        <td width="8%" align="center" bgcolor="#FFFFFF"><font color="#000000" size="3"><strong>Date</strong></font></td>
-        <td width="19%" align="center" bgcolor="#FFFFFF"><font color="#000000" size="3"><strong>Nom du client</strong></font></td>
-        <td width="13%" align="center" bgcolor="#FFFFFF"><font color="#000000" size="3"><strong>N Facture</strong></font></td>
-        <td width="13%" align="center" bgcolor="#FFFFFF"><font color="#000000"><strong>N Reçu </strong></font></td>
-        <td width="12%" align="center" bgcolor="#FFFFFF"><font color="#000000"><strong>Montant</strong></font></td>
-        <td width="10%" align="center" bgcolor="#FFFFFF"><font color="#000000"><strong>Payé</strong></font></td>
-        <td width="17%" align="center" bgcolor="#FFFFFF">Reste à payer</td>
-      </tr>
-      <?php while ($rowsfac = $resultfac->fetch_array(MYSQLI_ASSOC)) { // Utilise fetch_array ou fetch_assoc ?>
-                <tr bgcolor="<?php echo gettatut($rowsfac['type']); ?>">
-                  <td align="center" ><em><?php echo $rowsfac['id']; ?></em></td>
-                  <td align="center" ><div align="left"><em><?php echo $rowsfac['id_nom']; ?></em></div></td>
-                  <td align="center" ><div align="left"><em><?php echo $rowsfac['date']; ?></em></div></td>
-                  <td align="center" ><div align="left"><em><?php echo $rowsfac['Nomclient']; ?></em></div></td>
-                  <td align="center" ><em><?php echo $rowsfac['nfacture']; ?></em></td>
-                  <td align="center" ><em>
-                  
-                  <?php if ($rowsfac['id'] < 500000) { ?>
-                  <a href="paiement_billimp.php?idp=<?php echo md5(microtime()) . $rowsfac['idp']; ?>" target="_blank"><?php echo $rowsfac['idp']; ?></a>
-                  <?php } else { ?>
-                  <a href="paiement_billimpG.php?idp=<?php echo md5(microtime()) . $rowsfac['idp']; ?>" target="_blank"><?php echo $rowsfac['idp']; ?></a>
-                  <?php } ?> 
-                      
-                  </em></td>
-                  <td align="center" ><em><?php echo $rowsfac['montant']; ?></em></td>
-                  <td align="center" ><em><?php echo $rowsfac['paiement']; ?></em></td>
-                  <td align="center" ><em><?php echo $rowsfac['report']; ?></em></td>
-                </tr>
-            <?php
-          }
-
-mysqli_free_result ($resultfac); 
-
-echo '<span class="gras">'.barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10).'</span>';  
-}  
-mysqli_free_result ($resultat);  
-
-    function gettatut($fetat){
-        // if ($fetat=='P')    { echo $couleur="#ffc88d";}//vert fonce
-      if ($fetat=='R')    { echo $couleur="#ec9b9b";}//rouge -Declined	
-      }
-				 
-mysqli_close ($linki);  
+if($nb['nb'] != 1) {
+    $sqlcon = "INSERT INTO $tbl_paiconn (idrecu) VALUES ('$id_nom')";
+    $linki->query($sqlcon);
+}
 ?>
-</table>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><div align="center"></div></td>
-  </tr>
-  <tr>
-    <td height="21">&nbsp;</td>
-  </tr>
-  <tr>
-    <td height="21"><?php
-include_once('pied.php');
-?></td>
-  </tr>
-</table>
-<p>&nbsp;</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php include("titre.php") ?> - Paiement</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main-content {
+            min-height: calc(100vh - 60px); /* Hauteur totale moins footer */
+            padding: 2rem 0;
+        }
+        
+        .payment-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .payment-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .payment-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .payment-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .payment-card h4 {
+            color: #198754;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem; /* Plus grand */
+        }
+        
+        .payment-card .form-control {
+            border-radius: 10px;
+            border: 1px solid #dee2e6;
+            padding: 1rem 1.25rem; /* Plus grand padding */
+            font-size: 1.2rem; /* Plus grand */
+            height: auto;
+        }
+
+        .payment-card label {
+            font-size: 1.2rem; /* Plus grand */
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .btn {
+            font-size: 1.2rem !important; /* Plus grand */
+            padding: 0.8rem 1.5rem !important;
+        }
+        
+        .payment-card .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.25);
+            border-color: #198754;
+        }
+        
+        .btn-success {
+            border-radius: 10px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(25, 135, 84, 0.3);
+        }
+        
+        .history-table {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+            overflow: hidden;
+        }
+        
+        .table {
+            margin: 0;
+        }
+        
+        .table thead th {
+            background-color: #198754;
+            color: white;
+            border: none;
+            padding: 1.2rem; /* Plus grand padding */
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 1.1rem; /* Plus grand */
+            letter-spacing: 0.5px;
+        }
+        
+        .table tbody tr:hover {
+            background-color: rgba(25, 135, 84, 0.05);
+        }
+        
+        .table td {
+            vertical-align: middle;
+            padding: 1.2rem; /* Plus grand padding */
+            font-size: 1.1rem; /* Plus grand */
+        }
+
+        .history-table h4 {
+            font-size: 1.8rem; /* Plus grand */
+            font-weight: 600;
+        }
+
+        .btn-sm {
+            font-size: 1rem !important; /* Plus grand pour les petits boutons */
+            padding: 0.5rem 1rem !important;
+        }
+        
+        .amount-positive {
+            color: #198754;
+            font-weight: 600;
+        }
+        
+        .amount-negative {
+            color: #dc3545;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .payment-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .history-table {
+                margin-top: 1rem;
+                padding: 1rem;
+            }
+            
+            .table thead th {
+                padding: 0.75rem;
+            }
+            
+            .table td {
+                padding: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <?php require_once 'bienvenue.php'; ?>
+    
+    <div class="main-content">
+        <div class="payment-container">
+            <div class="payment-cards">
+                <!-- Carte de paiement électrique -->
+                <div class="payment-card">
+                    <h4><i class="fas fa-bolt"></i> Paiement Électrique, Police, Devis</h4>
+                    <form action="paiement_apercu.php" method="post" name="form2" id="form2">
+                        <div class="mb-3">
+                            <label class="form-label">ID CLIENT</label>
+                            <input class="form-control" name="id" type="text" id="id" placeholder="Entrez l'ID client">
+                        </div>
+                        <button type="submit" name="Paiement2" class="btn btn-success w-100">
+                            <i class="fas fa-arrow-right"></i> Étape suivante
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Carte autres paiements -->
+                <div class="payment-card">
+                    <h4><i class="fas fa-file-invoice-dollar"></i> Autres Paiements</h4>
+                    <form action="paiement_apercuAutre.php" method="post" name="form22" id="form22">
+                        <div class="mb-3">
+                            <label class="form-label">N° FACTURE</label>
+                            <input class="form-control" name="idf" type="text" id="idf" placeholder="Entrez le numéro de facture">
+                        </div>
+                        <button type="submit" name="Paiement" class="btn btn-success w-100">
+                            <i class="fas fa-arrow-right"></i> Étape suivante
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Historique des paiements -->
+            <div class="history-table">
+                <h4 class="mb-4"><i class="fas fa-history"></i> Historique des paiements</h4>
+                
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID Client</th>
+                                <th>Vendeur</th>
+                                <th>Date</th>
+                                <th>Nom du client</th>
+                                <th>N° Facture</th>
+                                <th>N° Reçu</th>
+                                <th>Montant</th>
+                                <th>Payé</th>
+                                <th>Reste</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $sql = "SELECT count(*) FROM $tbl_paiement where id<500000";
+                        $resultat = $linki->query($sql);
+                        $nb_total = $resultat->fetch_array(MYSQLI_NUM);
+
+                        if (($nb_total = $nb_total[0]) > 0) {
+                            if (!isset($_GET['debut'])) $_GET['debut'] = 0;
+                            $nb_affichage_par_page = 50;
+
+                            $sqfac = "SELECT * FROM $tbl_paiement WHERE id < 500000 GROUP BY idp ORDER BY idp DESC LIMIT " . $nb_affichage_par_page . " OFFSET " . $_GET['debut'];
+                            $resultfac = $linki->query($sqfac);
+
+                            while ($rowsfac = $resultfac->fetch_array(MYSQLI_ASSOC)) {
+                                $reste = $rowsfac['report'];
+                                $classe_montant = $reste > 0 ? 'amount-negative' : 'amount-positive';
+                            ?>
+                                <tr>
+                                    <td><?php echo $rowsfac['id']; ?></td>
+                                    <td><?php echo $rowsfac['id_nom']; ?></td>
+                                    <td><?php echo $rowsfac['date']; ?></td>
+                                    <td><?php echo $rowsfac['Nomclient']; ?></td>
+                                    <td><?php echo $rowsfac['nfacture']; ?></td>
+                                    <td>
+                                        <?php if ($rowsfac['id'] < 500000) { ?>
+                                            <a href="paiement_billimp.php?idp=<?php echo md5(microtime()) . $rowsfac['idp']; ?>" class="btn btn-sm btn-outline-success">
+                                                <?php echo $rowsfac['idp']; ?>
+                                            </a>
+                                        <?php } else { ?>
+                                            <a href="paiement_billimpG.php?idp=<?php echo md5(microtime()) . $rowsfac['idp']; ?>" class="btn btn-sm btn-outline-success">
+                                                <?php echo $rowsfac['idp']; ?>
+                                            </a>
+                                        <?php } ?>
+                                    </td>
+                                    <td class="amount-positive"><?php echo number_format($rowsfac['montant'], 0, ',', ' '); ?> KMF</td>
+                                    <td class="amount-positive"><?php echo number_format($rowsfac['paiement'], 0, ',', ' '); ?> KMF</td>
+                                    <td class="<?php echo $classe_montant; ?>">
+                                        <?php echo number_format($rowsfac['report'], 0, ',', ' '); ?> KMF
+                                    </td>
+                                </tr>
+                            <?php }
+                            mysqli_free_result($resultfac);
+                            
+                            // Pagination
+                            echo '<div class="d-flex justify-content-center mt-4">';
+                            echo barre_navigation($nb_total, $nb_affichage_par_page, $_GET['debut'], 10);
+                            echo '</div>';
+                        }
+                        mysqli_free_result($resultat);
+                        mysqli_close($linki);
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/validator.js"></script>
+    <script>
+        // Validation pour le formulaire électrique
+        var frmvalidator = new Validator("form2");
+        frmvalidator.EnableOnPageErrorDisplaySingleBox();
+        frmvalidator.EnableMsgsTogether();
+        frmvalidator.addValidation("id", "req", "Veuillez entrer un ID client");
+        frmvalidator.addValidation("id", "num", "L'ID client doit être un nombre");
+
+        // Validation pour le formulaire autres paiements
+        var frmvalidator2 = new Validator("form22");
+        frmvalidator2.EnableOnPageErrorDisplaySingleBox();
+        frmvalidator2.EnableMsgsTogether();
+        frmvalidator2.addValidation("idf", "req", "Veuillez entrer un numéro de facture");
+        frmvalidator2.addValidation("idf", "num", "Le numéro de facture doit être un nombre");
+    </script>
 </body>
 </html>
-<script language="JavaScript" type="text/javascript" xml:space="preserve"> 
-    var frmvalidator  = new Validator("form2");
-	frmvalidator.EnableOnPageErrorDisplaySingleBox();
-    frmvalidator.EnableMsgsTogether();
-    frmvalidator.addValidation("id","req","SVP entre un nombre");
-	frmvalidator.addValidation("id","num","Allow numbers only ");
-</script>
-
-<script language="JavaScript" type="text/javascript" xml:space="preserve"> 
-    var frmvalidator  = new Validator("form22");
-	frmvalidator.EnableOnPageErrorDisplaySingleBox();
-    frmvalidator.EnableMsgsTogether();
-    frmvalidator.addValidation("idf","req","SVP entre un nombre");
-	frmvalidator.addValidation("idf","num","Allow numbers only ");
-</script>
-

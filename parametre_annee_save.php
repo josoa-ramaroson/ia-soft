@@ -15,7 +15,7 @@ header("location: parametre_annee.php");
 else
 {
 $valeur_existant = "SELECT COUNT(*) AS nb FROM annee ";
-$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error()); 
+$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error($linki)); 
 $nb = mysqli_fetch_assoc($sqLvaleur);
 
 if($nb['nb'] == 1)
@@ -31,7 +31,7 @@ else
 $sqlp="INSERT INTO annee ( annee)
                     VALUES      ( '$annee')";								
 $r=mysqli_query($linki,$sqlp)
-or die(mysqli_error());
+or die(mysqli_error($linki));
 
 mysqli_close($linki);
 

@@ -11,12 +11,12 @@
      $password = $pass;
 	 
 
-     $db = mysqli_connect($server, $user, $password) or die(mysqli_error());
-     mysqli_select_db($database, $db) or die(mysqli_error());
+     $db = mysqli_connect($server, $user, $password) or die(mysqli_error($linki));
+     mysqli_select_db($database, $db) or die(mysqli_error($linki));
       
 	  $sql = "SHOW TABLES FROM $database WHERE Tables_in_$database='paiement' or Tables_in_$database='billing' or Tables_in_$database='clienteda' " ;
 	 
-     $tables = mysqli_query($linki,$sql) or die(mysqli_error());
+     $tables = mysqli_query($linki,$sql) or die(mysqli_error($linki));
       
 
      for ($i=0; $i<$ignore; $i++) ($donnees = mysqli_fetch_array($tables));
@@ -28,7 +28,7 @@
 
       $table = $donnees[0];
       $sql = 'SHOW CREATE TABLE '.$table;
-      $res = mysqli_query($linki,$sql) or die(mysqli_error().$sql);
+      $res = mysqli_query($linki,$sql) or die(mysqli_error($linki).$sql);
       if ($res)
       {
   
@@ -48,7 +48,7 @@
        $insertions = $tableau[1];
        gzwrite($fp, $insertions);
       
-       $req_table = mysqli_query('SELECT * FROM '.$table) or die(mysqli_error());
+       $req_table = mysqli_query('SELECT * FROM '.$table) or die(mysqli_error($linki));
        $nbr_champs = mysqli_num_fields($req_table);
        while ($ligne = mysqli_fetch_array($req_table))
        {

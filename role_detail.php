@@ -28,7 +28,7 @@ $id_role=substr($_REQUEST["id_role"],32);
  
 $sql = "SELECT count(*) FROM $tb_role_user where id_role='$id_role' ";  
 
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
  
 $nb_total = mysqli_fetch_array($resultat);  
@@ -45,7 +45,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
    
 $sql = "SELECT * FROM $tb_role_user  where id_role='$id_role'  ORDER BY id_role_user	DESC LIMIT ".$_GET['debut'].",".$nb_affichage_par_page;  //ASC
  
-$req = mysqli_query($linki, $sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$req = mysqli_query($linki, $sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
 
 
 

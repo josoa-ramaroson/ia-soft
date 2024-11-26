@@ -6,9 +6,9 @@
 		$db = 'websit77_boltorevn';
 		
 	
-		$link = mysqli_connect ($host,$user,$pass);
-		mysqli_set_charset('utf8',$link);
-		mysqli_select_db($db);
+		$link = mysql_connect ($host,$user,$pass);
+		mysql_set_charset('utf8',$link);
+		mysql_select_db($db);
 		
 		//MENU_DEROULANTE_VILLE ET QUARTIER____
 		try {

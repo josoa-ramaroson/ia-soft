@@ -146,7 +146,7 @@ $etat='facture';
 $date=$m2;
 
 $valeur_existant = "SELECT COUNT(*) AS nb , idf FROM $tbl_fact  WHERE st='A' and id='$m1' and date='$m2'";
-$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error()); 
+$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error($linki)); 
 $nb = mysqli_fetch_assoc($sqLvaleur);
 
 if($nb['nb'] == 1)

@@ -15,7 +15,7 @@ $sqlp="INSERT INTO $tbl_client_anom  ( id_nom   , idclient  ,   description   , 
 					
 													
 $r=mysqli_query($linki,$sqlp)
-or die(mysqli_error());
+or die(mysqli_error($linki));
 mysqli_close($linki);
 
 header("location:client_anomalies.php");

@@ -20,7 +20,7 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
 
 	    //choix d espace de memoire pour les connection.---------------------------------------------------------------- 
 	$valeur_existant = "SELECT COUNT(*) AS nb FROM $tbl_paiconn  WHERE idrecu='$id_nom' ";
-	$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error()); 
+	$sqLvaleur = mysqli_query($linki,$valeur_existant)or exit(mysqli_error($linki)); 
 	$nb = mysqli_fetch_assoc($sqLvaleur);
 	
 	if($nb['nb'] == 1)
@@ -69,7 +69,7 @@ Require 'bienvenue.php';    // on appelle la page contenant la fonction
 
 $sql = "SELECT count(*) FROM $tbl_paiement where id>500000 ";  
 
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
  
 $nb_total = mysqli_fetch_array($resultat);  
@@ -92,7 +92,7 @@ if (!isset($_GET['debut'])) $_GET['debut'] = 0;
 $sqfac = "SELECT * FROM $tbl_paiement where id>500000  GROUP BY  idp desc LIMIT ".$_GET['debut'].','.$nb_affichage_par_page;  //ASC  DESC
  
 // on ex?cute la requ?te  
-$resultfac = mysqli_query($linki,$sqfac) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error()); 
+$resultfac = mysqli_query($linki,$sqfac) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki)); 
 
 
 

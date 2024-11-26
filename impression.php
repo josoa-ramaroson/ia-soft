@@ -5,7 +5,7 @@ require 'fc-affichage.php';
 require 'fonction.php';
 require 'configuration.php';
 ?>
-<?
+<?php
 if(($_SESSION['u_niveau'] != 2)) {
 	header("location:index.php?error=false");
 	exit;
@@ -106,10 +106,10 @@ httpxml.send(null);
 <?php
 Require("bienvenue.php");  // on appelle la page contenant la fonction
 ?>
-<?
+<?php
 $sql = "SELECT count(*) FROM $tbl_fact  WHERE fannee='$anneec' and nserie='$nserie' and st='E' ";  
 
-$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());  
+$resultat = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));  
  
  
 $nb_total = mysqli_fetch_array($resultat);  
@@ -147,7 +147,7 @@ $sql = "SELECT  f.bstatut, c.quartier, c.ville, f.impression , COUNT(*) AS nbch 
 	
  
 // on ex?cute la requ?te  
-$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error());
+$req = mysqli_query($linki,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysqli_error($linki));
 ?>
  
 <body link="#0000FF" vlink="#0000FF" alink="#0000FF">
@@ -172,9 +172,19 @@ echo "<select name=refville id='s1' onchange=AjaxFunction();>
 
 $sql="select * from ville "; // Query to collect data from table 
 
-foreach ($dbo->query($sql) as $row) {
-echo "<option value=$row[refville]>$row[ville]</option>";
+$result = mysqli_query($linki, $sql);
+
+if (!$result) {
+    die("Erreur dans la requête : " . mysqli_error($linki));
 }
+
+while ($row = mysqli_fetch_assoc($result)) {
+    echo '<option value="' . htmlspecialchars($row['refville'], ENT_QUOTES) . '">' 
+         . htmlspecialchars($row['ville'], ENT_QUOTES) . '</option>';
+}
+
+mysqli_free_result($result);
+
 ?></select>
 <strong>Quartier</strong>
                   : 
@@ -237,7 +247,7 @@ mysqli_free_result ($req);
 mysqli_free_result ($resultat);  
 
 
-mysqli_close ();  
+mysqli_close ($linki);  
 
 	                 function gettatut($fetat){
 				   if ($fetat=='imprimé')         { echo $couleur="#fdff00";}//jaune		 

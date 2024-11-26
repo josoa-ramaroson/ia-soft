@@ -29,7 +29,7 @@ $sqlp="INSERT INTO $tb_evenement ( id_nom   , datev   ,heures, datef   ,heuresf,
 					
 													
 $r=mysqli_query($linki,$sqlp)
-or die(mysqli_error());
+or die(mysqli_error($linki));
 mysqli_close($linki);
 
 ?>

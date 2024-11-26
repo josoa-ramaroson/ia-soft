@@ -36,7 +36,7 @@ $PTotal=$Qvente*$PUnitaire;
                     VALUES    ('$idcsortie','$datev','$Validite', '$titre', '$Qvente', '$PUnitaire', '$PTotal','$nc', '$a_nom', '$id_nom','$service' , '$Snumero' )";
 					
 $r=mysqli_query($linki,$sqlp) 
-or die(mysqli_error());
+or die(mysqli_error($linki));
 
 if ($transfert==1)
 {
@@ -45,7 +45,7 @@ if ($transfert==1)
                     VALUES    ('$idcsortie','$datev', '$titre', '$Qvente', '$Snumero','$id_nom' , '$Etitre' , '$statut', '$a_nom')";
 					
 $rt=mysqli_query($linki,$sqlpt) 
-or die(mysqli_error());
+or die(mysqli_error($linki));
 }
 else 
 {
